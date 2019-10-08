@@ -1,11 +1,9 @@
 # APV1920B
-APV1920-JensPeeters created by GitHub Classroom
+##AP Valley 2019-2020  
+###EasyRes
 
-AP Valley 2019-2020
-EasyRes
-
-#Jens Peeters
-#Hector Brasfalean
-#Davy Cools
-#Cédric De Rudder
-#Kenneth De Cock
+*Scrum Master: Jens Peeters  
+*Developer: Hector Brasfalean  
+*Product Owner: Davy Cools  
+*Tester: Cédric De Rudder  
+*Designer: Kenneth De Cock  
