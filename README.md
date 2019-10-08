@@ -2,8 +2,8 @@
 ## AP Valley 2019-2020  
 ### EasyRes
 
+* Product Owner: Davy Cools  
 * Scrum Master: Jens Peeters  
 * Developer: Hector Brasfalean  
-* Product Owner: Davy Cools  
 * Tester: Cédric De Rudder  
-* Designer: Kenneth De Cock  
+* UX/UI Designer: Kenneth De Cock  
