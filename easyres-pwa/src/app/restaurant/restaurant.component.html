@@ -5,8 +5,10 @@
 <div class="main-content">
     <div class="input-search-restaurant">
         <input type="text" placeholder="Zoek">
+        <a href=""><svg class="icon icon-search"><use xlink:href="#icon-search"></use></svg></a>
     </div>
-    <p style="justify-self: end;">Sorteer </p>
+   
+    <p>Sorteer </p>
     <div class="dropdown">
             <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Aanbevolen
@@ -25,8 +27,8 @@
                     </h5>
                     <h6 class="card-subtitle mb-2 text-muted">Italiaans</h6>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <button class="btn-danger btn">Reserveer</button>&nbsp;&nbsp;
-                    <button class="btn-outline-danger btn">Meer info</button>
+                    <button class="btn-danger btn button-reserve">Reserveer</button>
+                    <button class="btn-outline-danger btn button-more-info">Meer info</button>
                 </div>
             </div>
     </div>
@@ -36,8 +38,8 @@
                     <h5 class="card-title">{{restaurant.naam}}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">{{restaurant.type}}</h6>
                     <p class="card-text">{{restaurant.beschrijving}}</p>
-                    <button class="btn-danger btn">Reserveer</button>&nbsp;&nbsp;
-                    <button class="btn-outline-danger btn">Meer info</button>
+                    <button class="btn-danger btn button-reserve">Reserveer</button>
+                    <button class="btn-outline-danger btn button-more-info">Meer info</button>
                 </div>
             </div>
     </div>

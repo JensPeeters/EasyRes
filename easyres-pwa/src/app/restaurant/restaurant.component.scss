@@ -4,7 +4,7 @@
     text-align: center;
 }
 .wrapper-header-image:before{
-    content: '';
+    content: "";
   background-color: #000;
   opacity: 0.5;
   width: 100%;
@@ -32,18 +32,28 @@
     grid-template-columns: 33% 33% 33%;
     margin: auto;
 }
+.button-search{
+    width: 30%;
+    margin-top: 0px;
+    margin-bottom:5px;
+}
+.icon-search{
+    padding-bottom: 2px;
+}
 input{
+    width: 92%;
+    padding: 5px;
     border : none;
-    width: 100%;
     border-radius: 5px;
     height: 100%;
 }
 input::placeholder{
-    padding-left: 15px;
+    padding-left: 5px;
 }
 .input-search-restaurant{
     display: inline-block;
     height: 35px;
+    width: 100%;
     border-radius: 5px;
     border: 1px solid grey;
 }
@@ -71,6 +81,9 @@ input::placeholder{
     border-radius: 3px;
     font-size: 15px;
 }
+.button-more-info{
+    margin-left: 10px;
+}
 .restaurant-advertentie-template{
     padding-top: 10px;
     grid-column-start: 2;
@@ -79,4 +92,77 @@ input::placeholder{
 p{
     margin-top: 7px;
     margin-bottom: 7px;
+    justify-self: end;
+}
+@media screen and (max-width: 1200px){
+    input{
+        width: 90%;
+    }
+}
+@media screen and (max-width: 910px){
+    input{
+        width: 87%;
+    }
+}
+@media screen and (max-width: 740px){
+    p{
+        justify-self: start;
+    }
+    .main-content{
+        grid-template-columns: 50% 50%;
+    }
+    .restaurant-template, .restaurant-advertentie-template{
+        padding-top: 10px;
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+    .input-search-restaurant{
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+    .button-more-info,.button-reserve{
+        width: 100%;
+    }
+    .button-more-info{
+        margin-top: 10px;
+        margin-left: 0px;
+    }
+    input{
+        width: 95%;
+    }
+}
+@media screen and (max-width: 680px){
+    input{
+        width: 94%;
+    }
+}
+@media screen and (max-width: 560px){
+    input{
+        width: 92%;
+    }
+}
+@media screen and (max-width: 430px){
+    p{
+        font-size: 14px;
+    }
+    .dropdown-toggle{
+        font-size: 14px;
+    }
+    .header-image-text{
+        font-size: 20px;
+    }
+    input{
+        width: 90%;
+    }
+}
+@media screen and (max-width: 330px){
+    p{
+        font-size: 11px;
+    }
+    input{
+        width: 87%;
+    }
+    .dropdown-toggle{
+        font-size: 11px;
+    }
 }

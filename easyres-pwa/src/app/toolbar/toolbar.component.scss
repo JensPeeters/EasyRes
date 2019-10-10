@@ -1,15 +1,18 @@
-$sizeLogoNavbar : 50px;
 $letterGrootteButtonLogin: 18px;
 $letterGrootteNavbar : 16px;
 $letterTypeNavbar : Roboto;
 $boldWeight : bold;
 img{
-    width: $sizeLogoNavbar;
-    height: $sizeLogoNavbar;
+    width: 50px;
+    height: 50px;
 }
 nav{
-    height: 55px;
-    box-shadow: 10px 10px 10px grey;
+
+    box-shadow: 0 4px 4px -2px black;
+    z-index: 3;
+}
+.navbar-collapse, .collapse, .show{
+    z-index: 3;
 }
 .nav-link{
     font-weight: $boldWeight;
@@ -18,4 +21,10 @@ nav{
 button{
     font-size: $letterGrootteButtonLogin;
     font-weight: $boldWeight;
+}
+@media screen and (max-width: 574px){
+    img{
+        width: 40px;
+        height: 40px;
+    }
 }
