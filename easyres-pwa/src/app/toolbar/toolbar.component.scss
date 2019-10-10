@@ -1,4 +1,21 @@
+$sizeLogoNavbar : 50px;
+$letterGrootteButtonLogin: 18px;
+$letterGrootteNavbar : 16px;
+$letterTypeNavbar : Roboto;
+$boldWeight : bold;
 img{
-    width: 75px;
-    height: 75px;
+    width: $sizeLogoNavbar;
+    height: $sizeLogoNavbar;
+}
+nav{
+    height: 55px;
+    box-shadow: 10px 10px 10px grey;
+}
+.nav-link{
+    font-weight: $boldWeight;
+    font-size: $letterGrootteNavbar;
+}
+button{
+    font-size: $letterGrootteButtonLogin;
+    font-weight: $boldWeight;
 }

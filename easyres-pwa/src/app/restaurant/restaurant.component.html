@@ -1,0 +1,45 @@
+<div class="wrapper-header-image">   
+    <img src="../../assets/img/bottle-coffee-cuisine-511763.jpg" alt="restaurant-header-image" style="width: 100%;height: 350px;">
+    <p class="header-image-text">Ambachtelijk kiezen van restaurants</p>
+</div>
+<div class="main-content">
+    <div class="input-search-restaurant">
+        <input type="text" placeholder="Zoek">
+    </div>
+    <p style="justify-self: end;">Sorteer </p>
+    <div class="dropdown">
+            <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Aanbevolen
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">In de buurt</a>
+                <a class="dropdown-item" href="#">Beste rating</a>
+            </div>
+    </div>
+    <div class="restaurant-advertentie-template">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        Villa belvedere
+                        <span class="advert">Advertentie</span>
+                    </h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Italiaans</h6>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <button class="btn-danger btn">Reserveer</button>&nbsp;&nbsp;
+                    <button class="btn-outline-danger btn">Meer info</button>
+                </div>
+            </div>
+    </div>
+    <div class="restaurant-template" *ngFor="let restaurant of Restaurants">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{restaurant.naam}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{restaurant.type}}</h6>
+                    <p class="card-text">{{restaurant.beschrijving}}</p>
+                    <button class="btn-danger btn">Reserveer</button>&nbsp;&nbsp;
+                    <button class="btn-outline-danger btn">Meer info</button>
+                </div>
+            </div>
+    </div>
+</div>
+

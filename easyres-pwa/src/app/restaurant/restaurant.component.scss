@@ -1,0 +1,82 @@
+.wrapper-header-image{
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+.wrapper-header-image:before{
+    content: '';
+  background-color: #000;
+  opacity: 0.5;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.header-image-text{
+    position: absolute;
+    color: white;
+    top: 42%;
+    left: 30%;
+    right: 30%;
+    z-index: 2;
+    font-size: 30px;
+    font-weight: bold;
+}
+.main-content{
+    padding-top: 30px;
+    width: 60%;
+    display: grid;
+    gap: 1%;
+    grid-template-columns: 33% 33% 33%;
+    margin: auto;
+}
+input{
+    border : none;
+    width: 100%;
+    border-radius: 5px;
+    height: 100%;
+}
+input::placeholder{
+    padding-left: 15px;
+}
+.input-search-restaurant{
+    display: inline-block;
+    height: 35px;
+    border-radius: 5px;
+    border: 1px solid grey;
+}
+.dropdown-toggle{
+    width: 100% !important;
+    color: black;
+    background-color: white;
+    border: 1px solid grey;
+}
+.dropdown-menu{
+    width: 100%;
+}
+.card{
+    width: 100% !important;
+}
+.restaurant-template{
+    padding-top: 10px;
+    grid-column-start: 2;
+   grid-column-end: 4;
+}
+.advert{
+    border: 2px solid green;
+    color: green;
+    padding: 3px;
+    border-radius: 3px;
+    font-size: 15px;
+}
+.restaurant-advertentie-template{
+    padding-top: 10px;
+    grid-column-start: 2;
+   grid-column-end: 4;
+}
+p{
+    margin-top: 7px;
+    margin-bottom: 7px;
+}

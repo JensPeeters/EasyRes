@@ -18,5 +18,6 @@ namespace easyres_api.Model
         public Openingsuren Openingsuren { get; set; }
         public string Beschrijving { get; set; }
         public string LogoImage { get; set; }
+        public string Type { get; set; }
     }
 }

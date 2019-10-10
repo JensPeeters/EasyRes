@@ -15,6 +15,7 @@ namespace easyres_api.Model
             //Are there already books present ?
             if (context.Restaurants.Count() == 0)
             {
+                
                 Openingsuren openingsuren = new Openingsuren()
                 {
                     Maandag = "16:00 - 23:00",
@@ -112,7 +113,8 @@ namespace easyres_api.Model
                       Locatie = adres,
                       LogoImage = "",
                       Menu = menu,
-                      Naam = "Bij Kenneth"
+                      Naam = "Bij Kenneth",
+                      Type = "Italiaans"
                     }
                 };
                 foreach (Restaurant restaurant in restaurants)
