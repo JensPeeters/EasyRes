@@ -9,12 +9,14 @@ import { environment } from '../environments/environment';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { RestaurantService } from './services/restaurant.service';
+import { RestaurantInfoComponent } from './restaurant-info/restaurant-info.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolbarComponent,
-    RestaurantComponent
+    RestaurantComponent,
+    RestaurantInfoComponent
   ],
   imports: [
     BrowserModule,

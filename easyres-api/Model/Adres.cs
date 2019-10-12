@@ -11,10 +11,10 @@ namespace easyres_api.Model
         [Key]
         public int ID { get; set; }
         public string Straat { get; set; }
-        public string Stad { get; set; }
+        public string Gemeente { get; set; }
         public string Land { get; set; }
         public int Straatnummer { get; set; }
-        public string Bijvoegsel { get; set; }
+        public string Bus { get; set; }
         public int Postcode { get; set; }
     }
 }

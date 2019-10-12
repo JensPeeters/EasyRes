@@ -21,16 +21,26 @@ namespace easyres_api.Controllers
         }
 
         [HttpGet]
-        public List<Restaurant> GetCourses()
+        public List<Restaurant> GetRestaurants()
         {
-            return context.Restaurants.Include(a => a.Menu)
+            return context.Restaurants.ToList();
+        }
+
+        [Route("{id}")]
+        [HttpGet]
+        public ActionResult<Restaurant> GetRestaurant(long id)
+        {
+            var restaurant = context.Restaurants.Where(a => a.RestaurantId == id).Include(a => a.Menu)
                                         .Include(a => a.Openingsuren)
                                         .Include(a => a.Locatie)
                                         .Include(a => a.Menu.Desserts)
                                         .Include(a => a.Menu.Dranken)
                                         .Include(a => a.Menu.Hoofdgerechten)
                                         .Include(a => a.Menu.Voorgerechten)
-                                        .ToList();
+                                        .FirstOrDefault();
+            if (restaurant == null)
+                return NotFound();
+            return restaurant;
         }
     }
 }
