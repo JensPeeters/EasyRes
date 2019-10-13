@@ -9,6 +9,7 @@ import { environment } from '../environments/environment';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { RestaurantService } from './services/restaurant.service';
+import { MsalService }  from './services/msal.service';
 import { RestaurantInfoComponent } from './restaurant-info/restaurant-info.component';
 
 @NgModule({
@@ -24,7 +25,10 @@ import { RestaurantInfoComponent } from './restaurant-info/restaurant-info.compo
     HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [RestaurantService],
+  providers: [
+    RestaurantService,
+    MsalService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
