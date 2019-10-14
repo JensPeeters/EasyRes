@@ -1,11 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {RouterModule} from '@angular/router';
+import {HttpClientModule} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { KeukenComponent } from './keuken/keuken.component';
 import { BarComponent } from './bar/bar.component';
+import { DataService } from './data.service';
 
 @NgModule({
   declarations: [
@@ -16,9 +19,14 @@ import { BarComponent } from './bar/bar.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    RouterModule.forRoot([
+      {path: "", component: AppComponent },
+      {path: "keuken", component: KeukenComponent},
+      {path: "bar", component: BarComponent},
+    ])
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
