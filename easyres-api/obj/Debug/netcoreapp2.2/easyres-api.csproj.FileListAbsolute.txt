@@ -12,3 +12,17 @@ C:\Users\Gebruiker\Documents\GitHub\APV1920B\easyres-api\obj\Debug\netcoreapp2.2
 C:\Users\Gebruiker\Documents\GitHub\APV1920B\easyres-api\obj\Debug\netcoreapp2.2\easyres-api.RazorTargetAssemblyInfo.cache
 C:\Users\Gebruiker\Documents\GitHub\APV1920B\easyres-api\obj\Debug\netcoreapp2.2\easyres-api.dll
 C:\Users\Gebruiker\Documents\GitHub\APV1920B\easyres-api\obj\Debug\netcoreapp2.2\easyres-api.pdb
+C:\Users\Cedric De Rudder\Documents\GitHub\APV1920B\easyres-api\bin\Debug\netcoreapp2.2\easyres-api.deps.json
+C:\Users\Cedric De Rudder\Documents\GitHub\APV1920B\easyres-api\bin\Debug\netcoreapp2.2\easyres-api.runtimeconfig.json
+C:\Users\Cedric De Rudder\Documents\GitHub\APV1920B\easyres-api\bin\Debug\netcoreapp2.2\easyres-api.runtimeconfig.dev.json
+C:\Users\Cedric De Rudder\Documents\GitHub\APV1920B\easyres-api\bin\Debug\netcoreapp2.2\easyres-api.dll
+C:\Users\Cedric De Rudder\Documents\GitHub\APV1920B\easyres-api\bin\Debug\netcoreapp2.2\easyres-api.pdb
+C:\Users\Cedric De Rudder\Documents\GitHub\APV1920B\easyres-api\obj\Debug\netcoreapp2.2\easyres-api.csprojAssemblyReference.cache
+C:\Users\Cedric De Rudder\Documents\GitHub\APV1920B\easyres-api\obj\Debug\netcoreapp2.2\easyres-api.csproj.CoreCompileInputs.cache
+C:\Users\Cedric De Rudder\Documents\GitHub\APV1920B\easyres-api\obj\Debug\netcoreapp2.2\easyres-api.RazorAssemblyInfo.cache
+C:\Users\Cedric De Rudder\Documents\GitHub\APV1920B\easyres-api\obj\Debug\netcoreapp2.2\easyres-api.RazorAssemblyInfo.cs
+C:\Users\Cedric De Rudder\Documents\GitHub\APV1920B\easyres-api\obj\Debug\netcoreapp2.2\easyres-api.AssemblyInfoInputs.cache
+C:\Users\Cedric De Rudder\Documents\GitHub\APV1920B\easyres-api\obj\Debug\netcoreapp2.2\easyres-api.AssemblyInfo.cs
+C:\Users\Cedric De Rudder\Documents\GitHub\APV1920B\easyres-api\obj\Debug\netcoreapp2.2\easyres-api.RazorTargetAssemblyInfo.cache
+C:\Users\Cedric De Rudder\Documents\GitHub\APV1920B\easyres-api\obj\Debug\netcoreapp2.2\easyres-api.dll
+C:\Users\Cedric De Rudder\Documents\GitHub\APV1920B\easyres-api\obj\Debug\netcoreapp2.2\easyres-api.pdb

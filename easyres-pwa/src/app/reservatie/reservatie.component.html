@@ -1,0 +1,46 @@
+<div class="card">
+    <div class="card-body">
+        <button class="btn btn-secondary" [routerLinkActive]="['active']" [routerLink]="['/restaurant']"><i class="fas fa-arrow-alt-circle-left"></i> Terug</button>
+        <div class="heading">
+            <h3>{{restaurant.naam}}</h3>
+        </div>
+        <div class="main-form" [hidden] = "submitted">
+            <form #f="ngForm" (ngSubmit)="submit()">
+                    <div class="form-group">
+                        <div class="controls">
+                            <label for="naam">&nbsp;<i class="fa fa-user"></i>&nbsp;Naam</label>
+                            <input type="text" id="naam" name="naam" [(ngModel)]="tempReservatie.naam" required>
+                        </div>
+                        <div class="controls">
+                            <label for="email">&nbsp;<i class="fa fa-at"></i>&nbsp;E-mailadres </label>
+                            <input type="text" id="email" name="email" [(ngModel)]="tempReservatie.email" required>
+                        </div>       
+                        <div class="controls">
+                            <label for="nummer">&nbsp;<i class="fa fa-mobile"></i>&nbsp;Telefoonnummer</label>
+                            <input type="tel" id="nummer" name="nummer" [(ngModel)]="tempReservatie.nummer">
+                        </div>
+                        <div class="grid">
+                            <div class="controls">
+                                <label for="datum" class="label-date">&nbsp;<i class="fa fa-calendar"></i>&nbsp;Datum</label>
+                                <input type="date" id="datum" name="datum" [(ngModel)]="tempReservatie.datum" required>
+                            </div>
+                            <div class="controls">
+                                <label for="tijdstip" class="label-date">&nbsp;<i class="fa fa-clock"></i>&nbsp;Tijdstip</label>
+                                <input type="time" id="tijdstip" name="tijdstip" [(ngModel)]="tempReservatie.tijdstip" required>
+                            </div>
+                            <div class="controls">
+                                <label for="aantal" class="label-date">&nbsp;<i class="fa fa-users"></i>&nbsp;Aantal personen</label>
+                                <input type="number" id="aantal" name="aantal" [(ngModel)]="tempReservatie.aantal" required>
+                            </div>      
+                        </div>
+                        <div class="row justify-content-center" style="padding-top:2em; grid-column: 2;">
+                            <button type="submit" value="Reserveer" class="btn btn-warning" [disabled]="!f.form.valid">Reserveren</button>
+                        </div>
+                    </div>
+                </form>
+        </div>
+        <div class="text-align-center" [hidden] ="!submitted">
+            Uw reservatie is gelukt!
+        </div>
+    </div>
+</div>
