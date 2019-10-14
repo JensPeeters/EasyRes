@@ -4,11 +4,15 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { KeukenComponent } from './keuken/keuken.component';
+import { BarComponent } from './bar/bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    KeukenComponent,
+    BarComponent
   ],
   imports: [
     BrowserModule,
