@@ -19,7 +19,7 @@ import { RestaurantInfoComponent } from './restaurant-info/restaurant-info.compo
     AppComponent,
     ToolbarComponent,
     RestaurantComponent,
-    ReservatieComponent
+    ReservatieComponent,
     RestaurantInfoComponent
   ],
   imports: [

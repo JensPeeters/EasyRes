@@ -1,4 +1,4 @@
-<section *ngIf="!moreInfo">
+<section *ngIf="!moreInfo && !reserve">
     <div class="wrapper-header-image">   
         <img src="../../assets/img/bottle-coffee-cuisine-511763.jpg" alt="restaurant-header-image" style="width: 100%;height: 350px;">
         <p class="header-image-text">Ambachtelijk kiezen van restaurants</p>
@@ -39,7 +39,7 @@
                         <h5 class="card-title">{{restaurant.naam}}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">{{restaurant.type}}</h6>
                         <p class="card-text">{{restaurant.beschrijving}}</p>
-                        <button class="btn-danger btn button-reserve">Reserveer</button>
+                        <button class="btn-danger btn button-reserve" [routerLink]="['/reservatie', restaurant.restaurantId]">Reserveer</button>
                         <button class="btn-outline-danger btn button-more-info" (click)="getMoreInfo(restaurant)">Meer info</button>
                     </div>
                 </div>

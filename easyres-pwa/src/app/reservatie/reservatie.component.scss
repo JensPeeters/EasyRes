@@ -1,6 +1,12 @@
-.main{
+.card{
+    max-width: 750px;
+    margin: auto;
+    margin-top: 25px;
+}
+
+.main-form{
     display: grid;
-    grid-template-columns: 25% 50% 25%;
+    grid-template-columns: 15% 70% 15%;
 }
 
 .grid{
@@ -13,6 +19,8 @@ form{
     grid-column: 2;
 }
 
+
+
 h2.heading{
     text-align: center;
     padding-top: 0.2em;
@@ -24,6 +32,8 @@ label{
     margin-bottom: -0.2em;
 }
 
+
+
 .controls{
     input[type="text"],
 	input[type="email"],
@@ -32,7 +42,6 @@ label{
     input[type="tel"],
     input[type="time"],
 	textarea,
-	button,
 	select{
         width: 100%;
         justify-content: center;
@@ -40,19 +49,12 @@ label{
     margin-bottom: 1em;
 }
 
-.btn{
-    border-radius: 7px;
-    background-color: #EEC643;
-}
-
 .heading{
     padding: 10px;
     margin-bottom: 10px;
-    background-color: #841E1E;
     text-align: center;
-    color: white;
     h3{
-        font-size: 16px;
+        font-size: 22px;
     }
 }
 
@@ -67,16 +69,40 @@ input{
     margin-right: 0px;
 }
 
+.text-align-center{
+    text-align: center;
+}
+
+
+.ng-valid[required], .ng-valid.required  {
+    border-left: 5px solid #42A948;
+  }
+  
+  .ng-invalid:not(form)  {
+    border-left: 5px solid #a94442;
+  }
+
 @media screen and (max-width: 768px){
     .grid{
         display: grid;
-        grid-template-columns: 50% 50%;
+        grid-template-columns: 49% 49%;
     }
+
+    .main-form{
+        display: grid;
+        grid-template-columns: 15% 70% 15%;
+    }
+
 }
 
 @media screen and (max-width: 425px){
     .grid{
         display: grid;
         grid-template-columns: 100%;
+    }
+
+    .main-form{
+        display: grid;
+        grid-template-columns: 10% 80% 10%;
     }
 }
