@@ -1,42 +1,40 @@
-<form action="">
-        <div class="form-group">
-            <h2 class="heading">Reservatie</h2>
-            <div class="controls">
-                <label for="naam">Naam</label>
-                <input type="text" id="naam" class="floatLabel" name="naam">
-            </div>
-            <div class="controls">
-                <label for="email">E-mailadres </label>
-                <input type="text" id="email" class="floatLabel" name="email">
-            </div>       
-            <div class="controls">
-                <label for="nummer">Telefoonnummer</label>
-                <input type="tel" id="nummer" class="floatLabel" name="nummer">
-            </div>
-            <div class="grid">
-                <div class="col-1-3">
+<div class="heading">
+    <h3>Reserveren</h3>
+</div>
+<div class="main">
+    <form action="">
+            <div class="form-group">
+                <div class="controls">
+                    <label for="naam">Naam</label>
+                    <input type="text" id="naam" name="naam">
+                </div>
+                <div class="controls">
+                    <label for="email">E-mailadres </label>
+                    <input type="text" id="email" name="email">
+                </div>       
+                <div class="controls">
+                    <label for="nummer">Telefoonnummer</label>
+                    <input type="tel" id="nummer" name="nummer">
+                </div>
+                <div class="grid">
                     <div class="controls">
                         <label for="datum" class="label-date"><i class="fa fa-calendar"></i>&nbsp;&nbsp;Datum</label>
-                        <input type="date" id="datum" class="floatLabel" name="datum">
-                    </div>      
-                </div>
-                <div class="col-1-3" style="padding-left: 10px; padding-right: 10px;">
+                        <input type="date" id="datum" name="datum">
+                    </div>
                     <div class="controls">
                         <label for="tijdstip" class="label-date"><i class="fa fa-clock"></i>&nbsp;&nbsp;Tijdstip</label>
-                        <input type="time" id="tijdstip" class="floatLabel" name="tijdstip"/>
-                    </div>      
-                </div>
-                <div class="col-1-3">
+                        <input type="time" id="tijdstip" name="tijdstip"/>
+                    </div>
                     <div class="controls">
-                        <label for="aantal" class="label-date"><i class="fa fa-users"></i>&nbsp;&nbsp;Aantal</label>
-                        <input type="number" id="aantal" class="floatLabel" name="aantal"/>
+                        <label for="aantal" class="label-date"><i class="fa fa-users"></i>&nbsp;&nbsp;Aantal personen</label>
+                        <input type="number" id="aantal" name="aantal"/>
                     </div>      
                 </div>
+                <div class="grid">
+                    <div class="row justify-content-center" style="padding-top:2em; grid-column: 2;">
+                        <button type="submit" value="Reserveer" class="btn">Reserveren</button>
+                    </div>
+                </div>  
             </div>
-            <div class="grid">
-                <div class="row justify-content-center" style="width: 100%; padding-top:2em;">
-                    <button type="submit" value="Reserveer" class="col-1-4">Reserveer</button>
-                </div>
-            </div>  
-        </div>
-    </form>
+        </form>
+</div>
