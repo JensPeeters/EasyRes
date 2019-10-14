@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Reservatie } from '../services/restaurant.service'
 
 @Component({
   selector: 'app-reservatie',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReservatieComponent implements OnInit {
 
-  constructor() { }
+  tempReservatie: Reservatie;
+  finalReservatie: Reservatie;
+
+  constructor() { 
+    this.tempReservatie = new Reservatie();
+    this.finalReservatie = new Reservatie();
+  }
 
   ngOnInit() {
   }
 
+  submit() {
+    this.finalReservatie = this.tempReservatie
+  }
 }

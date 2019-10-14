@@ -15,3 +15,12 @@ export class RestaurantService {
     return this.http.get<IRestaurant[]>(`${this.urlAPI}/restaurant`);
   }
 }
+
+export class Reservatie{
+  naam: string;
+  email: string;
+  nummer: string;
+  datum: string;
+  tijdstip: string;
+  aantal: number;
+}
