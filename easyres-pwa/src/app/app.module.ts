@@ -11,6 +11,8 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { RestaurantService } from './services/restaurant.service';
 import { ReservatieComponent } from './reservatie/reservatie.component';
+import { MsalService }  from './services/msal.service';
+import { RestaurantInfoComponent } from './restaurant-info/restaurant-info.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,7 @@ import { ReservatieComponent } from './reservatie/reservatie.component';
     ToolbarComponent,
     RestaurantComponent,
     ReservatieComponent
+    RestaurantInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,10 @@ import { ReservatieComponent } from './reservatie/reservatie.component';
     FormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [RestaurantService],
+  providers: [
+    RestaurantService,
+    MsalService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

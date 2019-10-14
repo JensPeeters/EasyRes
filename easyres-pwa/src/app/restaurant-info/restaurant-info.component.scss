@@ -1,0 +1,64 @@
+img{
+    max-width: 100px;
+    position: relative;
+    float: right;
+}
+.card{
+    max-width: 750px;
+    margin: auto;
+    margin-top: 25px;
+}
+ul{
+    list-style-type: none;
+    padding: 0;
+}
+i{
+    margin-left: auto; 
+    margin-top: 5px;
+}
+button:nth-child(2){
+    width: 100%;
+    display: flex;
+    justify-self: center;
+}
+.card{
+    .card{
+        margin-left: 0;
+    } 
+}
+li{
+    p{
+        display:block;
+        margin:10px;
+        span{
+            display:block;
+            float:right;
+            width:25%;
+            margin-right:-40px;
+        }
+    }
+}
+@media only screen and (min-width: 400px){
+    img{
+        max-width: 150px;
+    }
+    li{
+        p{
+            span{
+                width:20%;
+            }
+        }
+    }
+}
+@media only screen and (min-width: 600px){
+    img{
+        max-width: 250px;
+    }
+    li{
+        p{
+            span{
+                width:10%;
+            }
+        }
+    }
+}

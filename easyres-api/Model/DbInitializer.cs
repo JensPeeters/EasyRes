@@ -28,8 +28,8 @@ namespace easyres_api.Model
                 };
                 Adres adres = new Adres()
                 {
-                    Bijvoegsel = "A",
-                    Stad = "Antwerpen",
+                    Bus = "A",
+                    Gemeente = "Antwerpen",
                     Straat = "Papegaielaan",
                     Straatnummer = 10,
                     Land = "België",
@@ -108,12 +108,12 @@ namespace easyres_api.Model
                 {
                     new Restaurant()
                     {
-                      Beschrijving = "Mooi restaurant",
+                      Beschrijving = "Villa Belvedere is trotse bezitter van het 'OSPITALITA ITALIANA' kwaliteitslabel. Uitgereikt door de Italiaanse Kamer van Koophandel voor de échte Italiaanse",
                       Openingsuren = openingsuren,
                       Locatie = adres,
-                      LogoImage = "",
+                      LogoImage = "https://via.placeholder.com/350x350.png/8b0000/fff?text=Foto van een restaurant",
                       Menu = menu,
-                      Naam = "Bij Kenneth",
+                      Naam = "Villa Belvedere",
                       Type = "Italiaans"
                     }
                 };

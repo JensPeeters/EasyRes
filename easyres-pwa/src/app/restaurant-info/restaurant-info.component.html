@@ -1,0 +1,55 @@
+<div class="card" *ngIf="restaurant">
+    <div class="card-body">
+        <div>
+            <button class="btn btn-secondary" (click)="goBack()"><i class="fas fa-arrow-alt-circle-left"></i> Terug</button>
+            <h2 class="card-title">{{restaurant.naam}}</h2>
+            <img class="card-img-top" [src]="restaurant.logoImage" alt="Restaurant image">
+            <h4 class="card-subtitle mb-2 text-muted">{{restaurant.type}}</h4>
+            <p class="card-text">{{restaurant.beschrijving}}</p>
+            <h6>Openingsuren</h6>
+            <ul class="ul">
+                <li>Maandag:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{restaurant.openingsuren.maandag}}</li>
+                <li>Dinsdag:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{restaurant.openingsuren.dinsdag}}</li>
+                <li>Woensdag:&nbsp;&nbsp;&nbsp; {{restaurant.openingsuren.woensdag}}</li>
+                <li>Donderdag:&nbsp;&nbsp; {{restaurant.openingsuren.donderdag}}</li>
+                <li>Vrijdag:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{restaurant.openingsuren.vrijdag}}</li>
+                <li>Zaterdag:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{restaurant.openingsuren.zaterdag}}</li>
+                <li>Zondag:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{restaurant.openingsuren.zondag}}</li>
+            </ul>
+            <h6>Locatie</h6>
+            <p>{{restaurant.locatie.straat}} {{restaurant.locatie.straatnummer}} {{restaurant.locatie.bus}}<br>
+                {{restaurant.locatie.postcode}} {{restaurant.locatie.gemeente}}, {{restaurant.locatie.land}}
+            </p>
+            <div id="accordion">
+                <div class="card">
+                    <div class="card-header" id="menu">
+                        <button class="btn btn-warning" data-toggle="collapse" data-target="#collapseMenu" aria-expanded="true" aria-controls="collapseMenu" (click)="collapsed = !collapsed">
+                            Menu <i *ngIf="!collapsed" class="fas fa-plus"></i> <i *ngIf="collapsed" class="fas fa-minus"></i></button>
+                    </div>
+                    <div id="collapseMenu" class="collapse hidden" aria-labelledby="menu" data-parent="#accordion">
+                        <div class="card-body">
+                            <h6>Dranken</h6>
+                            <ul>
+                                <li *ngFor="let drinken of restaurant.menu.dranken"><p>{{drinken.naam}}<span>€{{drinken.prijs.toString().replace('.',',')}}</span></p></li>
+                            </ul>
+                            <h6>Voorgerechten</h6>
+                            <ul>
+                                <li *ngFor="let voorgerecht of restaurant.menu.voorgerechten"><p>{{voorgerecht.naam}}<span>€{{voorgerecht.prijs.toString().replace('.',',')}}</span></p></li>
+                            </ul>
+                            <h6>Hoofdgerechten</h6>
+                            <ul>
+                                <li *ngFor="let hoofdgerecht of restaurant.menu.hoofdgerechten"><p>{{hoofdgerecht.naam}}<span>€{{hoofdgerecht.prijs.toString().replace('.',',')}}</span></p></li>
+                            </ul>
+                            <h6>Desserts</h6>
+                            <ul>
+                                <li *ngFor="let dessert of restaurant.menu.desserts"><p>{{dessert.naam}}<span>€{{dessert.prijs.toString().replace('.',',')}}</span></p></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div><br>
+            <button class="btn-warning btn">Reserveer</button>
+        </div>
+    </div>
+</div>
+
