@@ -24,7 +24,6 @@ export class ReservatieComponent implements OnInit {
   async ngOnInit() {
     this._Activatedroute.paramMap.subscribe(params => { 
       this.restaurantId = +params.get('id'); 
-      console.log(this.restaurantId);
     });
 
     this.ResService.GetRestaurantByID(this.restaurantId).subscribe(result => {
