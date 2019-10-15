@@ -124,12 +124,14 @@ namespace easyres_api.Model
                     new Product()
                     {
                         Naam = "Snitzel",
-                        Prijs = 25.20
+                        Prijs = 25.20,
+                        Aantal = 1
                     },
                     new Product()
                     {
                         Naam = "Lasagna",
-                        Prijs = 15.15
+                        Prijs = 15.15,
+                        Aantal = 2
                     }
                 };
 
@@ -138,12 +140,14 @@ namespace easyres_api.Model
                     new Product()
                     {
                         Naam = "Bier 33cl",
-                        Prijs = 5
+                        Prijs = 5,
+                        Aantal = 2
                     },
                     new Product()
                     {
                         Naam = "Cola 0.5l",
-                        Prijs = 1.80
+                        Prijs = 1.80,
+                        Aantal = 3
                     }
                 };
 

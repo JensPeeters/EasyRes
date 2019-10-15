@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService, IProduct } from '../data.service';
+import { DataService, IProduct, IBestelling } from '../data.service';
 
 @Component({
   selector: 'app-bar',
@@ -8,14 +8,16 @@ import { DataService, IProduct } from '../data.service';
 })
 export class BarComponent implements OnInit {
 
-  Result : IProduct;
 
-  constructor(/*private serv : DataService*/) { }
+  Bestellingen : IBestelling[];
 
-  ngOnInit() {
-    /*this.serv.GetAlleDrankbestellingen().subscribe(result => {
-      this.Result = result;
-    });*/
+  constructor(private serv : DataService) { }
+
+  async ngOnInit() {
+    this.serv.GetAlleDrankbestellingen().subscribe(result => {
+      this.Bestellingen = result;
+      console.log(this.Bestellingen);
+    });
   }
 
 }

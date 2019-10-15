@@ -20,6 +20,7 @@ import { DataService } from './data.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     RouterModule.forRoot([
       {path: "keuken", component: KeukenComponent},
       {path: "bar", component: BarComponent},

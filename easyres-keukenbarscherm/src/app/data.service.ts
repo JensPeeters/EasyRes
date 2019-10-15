@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable({
@@ -10,16 +10,25 @@ export class DataService {
   constructor(private http : HttpClient) { }
 
   GetAlleDrankbestellingen(){
-    return this.http.get<IProduct>(`http://localhost/api/bestelling/drank`)
+    return this.http.get<IBestelling[]>(`https://localhost:44315/api/bestelling/bar`)
   }
 
   GetAlleVoedingsbestellingen(){
-    return this.http.get<IProduct>(`http://localhost/api/bestelling/etenswaren`)
+    return this.http.get<IBestelling[]>(`https://localhost:44315/api/bestelling/keuken`)
   }
 }
 
-export interface IProduct {
-  ProductID
-  Naam: string;
-  Prijs: string;
-}
+  export interface IProduct {
+      productId: number;
+      naam: string;
+      prijs: number;
+      aantal: number;
+  }
+
+
+  export interface IBestelling {
+      bestellingId: number;
+      besteldeEtenswaren: IProduct[];
+      besteldeDranken: IProduct[];
+      tafelNr: number;
+  }
