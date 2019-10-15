@@ -1,42 +1,54 @@
 <h1 class="text-center">Restaurant - Keuken</h1>
 <div class="container">
-    <div class="row text-center">
-        <div class="col">
-            <h2>In behandeling</h2>
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-9">
-                            <h5 class="card-title">tafel 2 - 5 personen</h5>
-                            <p>1x pizza</p>
-                            <button type="button" class="btn btn-danger">Afwijzen</button>
-                            <button type="button" class="btn btn-success">Goedkeuren</button>
+        <div class="row text-center">
+            <div class="col">
+                <h2>In behandeling</h2>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-6" *ngFor="let bestelling of Bestellingen">
+                                <h5 class="card-title">Tafel {{bestelling.tafelNr}}</h5>
+                                <div *ngFor="let eten of bestelling.besteldeEtenswaren">
+                                    <p>{{eten.aantal}}x {{eten.naam}} -
+                                        {{eten.aantal * eten.prijs | currency:'EUR':true}}</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 text-center">
+                                <h4>11:53</h4>
+                            </div>
+                            <div class="col">
+                                <button type="button" class="btn btn-danger">Afwijzen</button>
+                            </div>
+                            <div class="col">
+                                <button type="button" class="btn btn-success">Goedkeuren</button>
+                            </div>
                         </div>
-                        <div class="col-sm-3 text-center">
-                            <p>11:53</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <h2>Behandeld</h2>
+    
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-6" *ngFor="let bestelling of Bestellingen">
+                                <h5 class="card-title">Tafel {{bestelling.tafelNr}}</h5>
+                                <div *ngFor="let eten of bestelling.besteldeEtenswaren">
+                                    <p>{{eten.aantal}}x {{eten.naam}} -
+                                        {{eten.aantal * eten.prijs | currency:'EUR':true}}</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 text-center">
+                                <h4>11:53</h4>
+                                <h3><strong>12:00</strong></h3>
+                            </div>
+                            <div class="col">
+                                <button type="button" class="btn btn-primary">Herladen</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col">
-            <h2>Behandeld</h2>
-            <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-9">
-                                <h5 class="card-title">tafel 2 - 5 personen</h5>
-                                <p>1x lasagna</p>
-                                <p>3x omelet du fromage</p>
-                                <button type="button" class="btn btn-primary">Herladen</button>
-                            </div>
-                            <div class="col-sm-3 text-center">
-                                <p>11:53</p>
-                                <p><strong>12:00</strong></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        </div>
     </div>
-</div>

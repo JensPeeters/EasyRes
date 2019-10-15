@@ -9,14 +9,13 @@ import { DataService, IProduct, IBestelling } from '../data.service';
 export class BarComponent implements OnInit {
 
 
-  Bestellingen : IBestelling[];
+  Bestellingen: IBestelling[];
 
-  constructor(private serv : DataService) { }
+  constructor(private serv: DataService) { }
 
-  async ngOnInit() {
+  ngOnInit() {
     this.serv.GetAlleDrankbestellingen().subscribe(result => {
       this.Bestellingen = result;
-      console.log(this.Bestellingen);
     });
   }
 
