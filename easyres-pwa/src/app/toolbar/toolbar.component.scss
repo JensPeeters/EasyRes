@@ -1,6 +1,6 @@
-$letterGrootteButtonLogin: 18px;
+$letterGrootteButtonLogin: 16px;
 $letterGrootteNavbar : 16px;
-$letterTypeNavbar : Roboto;
+$letterTypeNavbar: 'Roboto', sans-serif;
 $boldWeight : bold;
 img{
     width: 50px;
@@ -21,10 +21,26 @@ nav{
 button{
     font-size: $letterGrootteButtonLogin;
     font-weight: $boldWeight;
+    margin-left: 10px;
 }
 @media screen and (max-width: 574px){
     img{
         width: 40px;
         height: 40px;
+    }
+}
+.center{
+    display: inline-flex;
+    color: white;
+}
+p{
+    font-size: $letterGrootteNavbar;
+    margin: auto;
+    font-family: $letterTypeNavbar;
+    font-weight: bolder;
+}
+@media screen and (max-width: 574px){
+    .btn-danger{
+        align-content: flex-en;
     }
 }
