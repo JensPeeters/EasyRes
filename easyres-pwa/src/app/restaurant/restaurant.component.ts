@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RestaurantService, IRestaurant } from '../services/restaurant.service';
 
+
 @Component({
   selector: 'app-restaurant',
   templateUrl: './restaurant.component.html',
@@ -9,17 +10,12 @@ import { RestaurantService, IRestaurant } from '../services/restaurant.service';
 export class RestaurantComponent implements OnInit {
 
   Restaurants : IRestaurant[];
-  moreInfo: boolean = false;
-  moreInfoId: number;
+  
   constructor(private ResService : RestaurantService) { }
 
   async ngOnInit() {
     this.ResService.GetRestaurants().subscribe(restaurants => {
       this.Restaurants = restaurants;
   })
-  }
-  getMoreInfo(restaurant: IRestaurant){
-    this.moreInfoId = restaurant.restaurantId;
-    this.moreInfo = true;
   }
 }

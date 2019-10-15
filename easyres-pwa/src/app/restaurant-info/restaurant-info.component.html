@@ -1,7 +1,7 @@
 <div class="card" *ngIf="restaurant">
     <div class="card-body">
         <div>
-            <button class="btn btn-secondary" (click)="goBack()"><i class="fas fa-arrow-alt-circle-left"></i> Terug</button>
+            <button class="btn btn-secondary" (click)="goBack()" [routerLink]="['/restaurant']"><i class="fas fa-arrow-alt-circle-left"></i> Terug</button>
             <h2 class="card-title">{{restaurant.naam}}</h2>
             <img class="card-img-top" [src]="restaurant.logoImage" alt="Restaurant image">
             <h4 class="card-subtitle mb-2 text-muted">{{restaurant.type}}</h4>
@@ -48,7 +48,7 @@
                     </div>
                 </div>
             </div><br>
-            <button class="btn-warning btn">Reserveer</button>
+            <button class="btn-warning btn" [routerLink]="['/reservatie', restaurant.restaurantId]">Reserveer</button>
         </div>
     </div>
 </div>

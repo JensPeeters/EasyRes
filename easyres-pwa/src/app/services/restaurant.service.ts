@@ -67,6 +67,15 @@ export interface IOpeningsuren {
   zondag: string;
 }
 
+export class Reservatie{
+  naam: string;
+  email: string;
+  nummer: string;
+  datum: string;
+  tijdstip: string;
+  aantal: number;
+}
+
 export interface IRestaurant {
   restaurantId: number;
   naam: string;

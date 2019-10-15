@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { RestaurantService, IRestaurant } from '../services/restaurant.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-restaurant-info',
@@ -7,20 +8,21 @@ import { RestaurantService, IRestaurant } from '../services/restaurant.service';
   styleUrls: ['./restaurant-info.component.scss']
 })
 export class RestaurantInfoComponent implements OnInit {
-  @Input() inputRestaurantID: number;
-  @Output() goingBack: EventEmitter<boolean> =   new EventEmitter();
 
-  constructor(private ResService : RestaurantService) { }
+  constructor(private ResService : RestaurantService,  private route: ActivatedRoute) { }
 
   restaurant: IRestaurant;
   collapsed: boolean = false;
+  inputRestaurantID: number;
 
   async ngOnInit() {
+    this.route.paramMap.subscribe(params =>{
+      this.inputRestaurantID = Number(params.get('restaurant.restaurantId')); 
+    })
     this.ResService.GetRestaurantByID(this.inputRestaurantID).subscribe(result => {
       this.restaurant = result;
     })
   }
   goBack(){
-    this.goingBack.emit(false);
   }
 }
