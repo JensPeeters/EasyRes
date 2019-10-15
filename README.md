@@ -4,6 +4,9 @@
 #### PWA:  
 [![Build Status](https://dev.azure.com/EasyRes/EasyRes/_apis/build/status/Angular-PWA?branchName=master)](https://dev.azure.com/EasyRes/EasyRes/_build/latest?definitionId=1&branchName=master)
 
+#### KeukenBarScherm
+[![Build Status](https://dev.azure.com/EasyRes/EasyRes/_apis/build/status/Angular-KeukenBarScherm?branchName=master)](https://dev.azure.com/EasyRes/EasyRes/_build/latest?definitionId=3&branchName=master)
+
 #### API:
 [![Build Status](https://dev.azure.com/EasyRes/EasyRes/_apis/build/status/ASP.Net-API?branchName=master)](https://dev.azure.com/EasyRes/EasyRes/_build/latest?definitionId=2&branchName=master)
 
