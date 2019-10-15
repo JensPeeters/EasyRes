@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -80,7 +81,7 @@ namespace easyres_api.Model
                                 },
                                 new Product()
                                 {
-                                    Naam = "Spareribs",
+                                    Naam = "Spareribs 250g",
                                     Prijs = 34.20
                                 }
                             };
@@ -117,9 +118,53 @@ namespace easyres_api.Model
                       Type = "Italiaans"
                     }
                 };
+
+                List<Product> besteldeEtenswaren = new List<Product>()
+                {
+                    new Product()
+                    {
+                        Naam = "Snitzel",
+                        Prijs = 25.20
+                    },
+                    new Product()
+                    {
+                        Naam = "Lasagna",
+                        Prijs = 15.15
+                    }
+                };
+
+                List<Product> besteldeDranken = new List<Product>()
+                {
+                    new Product()
+                    {
+                        Naam = "Bier 33cl",
+                        Prijs = 5
+                    },
+                    new Product()
+                    {
+                        Naam = "Cola 0.5l",
+                        Prijs = 1.80
+                    }
+                };
+
+                Bestelling[] bestellingen =
+                {
+                    new Bestelling()
+                    {
+                         BesteldeDranken = besteldeDranken,
+                         BesteldeEtenswaren = besteldeEtenswaren,
+                         TafelNr = 4
+                    }
+                };
+
                 foreach (Restaurant restaurant in restaurants)
                 {
                     context.Restaurants.Add(restaurant);
+                }
+
+                foreach (Bestelling bestelling in bestellingen)
+                {
+                    context.Bestellingen.Add(bestelling);
                 }
                 context.SaveChanges();
             }
