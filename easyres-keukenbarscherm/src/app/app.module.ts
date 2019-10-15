@@ -21,9 +21,10 @@ import { DataService } from './data.service';
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot([
-      {path: "", component: AppComponent },
       {path: "keuken", component: KeukenComponent},
       {path: "bar", component: BarComponent},
+      {path: "", redirectTo:"keuken", pathMatch:"full"},
+      {path: "**", redirectTo:"keuken", pathMatch:"full"},
     ])
   ],
   providers: [DataService],

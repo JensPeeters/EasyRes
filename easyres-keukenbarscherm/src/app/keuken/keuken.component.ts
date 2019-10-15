@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService, IProduct } from '../data.service';
 
 @Component({
   selector: 'app-keuken',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class KeukenComponent implements OnInit {
 
-  constructor() { }
+  Result : IProduct;
+
+  constructor(/*private serv : DataService*/) { }
 
   ngOnInit() {
+    /*
+    this.serv.GetAlleVoedingsbestellingen().subscribe(result => {
+      this.Result = result;
+    });
+    */
   }
 
 }
