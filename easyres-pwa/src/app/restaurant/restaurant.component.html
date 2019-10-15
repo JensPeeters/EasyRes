@@ -4,11 +4,11 @@
 </div>
 <div class="main-content">
     <div class="input-search-restaurant">
-        <input type="text" placeholder="Zoek">
-        <a href=""><i class="fas fa-search"></i></a>
+        <input type="text" placeholder="Zoek" [(ngModel)]="zoeknaam" (keydown.enter)="Zoeken()">
+        <a (click)="Zoeken()"><i class="fas fa-search" style="cursor: pointer;"></i></a>
     </div>
     
-    <p>Sorteer </p>
+    <p>Sorteer op: </p>
     <div class="dropdown">
             <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Aanbevolen
@@ -25,7 +25,7 @@
                         Villa belvedere
                         <span class="advert">Advertentie</span>
                     </h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Italiaans</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Restaurant - Italiaans</h6>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     <button class="btn-danger btn button-reserve">Reserveer</button>
                     <button class="btn-outline-danger btn button-more-info">Meer info</button>
@@ -36,7 +36,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">{{restaurant.naam}}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{restaurant.type}}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">{{restaurant.soort}} - {{restaurant.type}}</h6>
                     <p class="card-text">{{restaurant.beschrijving}}</p>
                     <button class="btn-danger btn button-reserve" [routerLink]="['/reservatie', restaurant.restaurantId]">Reserveer</button>
                     <button class="btn-outline-danger btn button-more-info"  [routerLink]="['/restaurant', restaurant.restaurantId]">Meer info</button>

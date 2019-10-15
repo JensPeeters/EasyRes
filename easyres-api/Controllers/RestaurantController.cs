@@ -21,9 +21,59 @@ namespace easyres_api.Controllers
         }
 
         [HttpGet]
-        public List<Restaurant> GetRestaurants()
+        public List<Restaurant> GetRestaurants(string naam, string gemeente, string type,
+                                string sortBy, string direction = "asc",
+                                int pageSize = 10, int pageNumber = 0)
         {
-            return context.Restaurants.ToList();
+            IQueryable<Restaurant> query = context.Restaurants;
+            if (!string.IsNullOrEmpty(naam))
+            {
+                query = query.Where(b => b.Naam.ToLower().Contains(naam.ToLower().Trim()));
+            }
+            if (!string.IsNullOrEmpty(gemeente))
+                query = query.Where(b => b.Locatie.Gemeente == gemeente);
+            if (!string.IsNullOrEmpty(type))
+                query = query.Where(b => b.Type == type);
+
+            if (string.IsNullOrEmpty(sortBy)) sortBy = "default";
+            switch (sortBy.ToLower())
+            {
+                case "naam":
+                    if (direction == "asc")
+                        query = query.OrderBy(b => b.Naam);
+                    else
+                        query = query.OrderByDescending(b => b.Naam);
+                    break;
+                case "gemeente":
+                    if (direction == "asc")
+                        query = query.OrderBy(b => b.Locatie.Gemeente);
+                    else
+                        query = query.OrderByDescending(b => b.Locatie.Gemeente);
+                    break;
+                case "type":
+                    if (direction == "asc")
+                        query = query.OrderBy(b => b.Type);
+                    else
+                        query = query.OrderByDescending(b => b.Type);
+                    break;
+                case "land":
+                    if (direction == "asc")
+                        query = query.OrderBy(b => b.Locatie.Land);
+                    else
+                        query = query.OrderByDescending(b => b.Locatie.Land);
+                    break;
+                default:
+                    if (direction == "asc")
+                        query = query.OrderBy(b => b.RestaurantId);
+                    else
+                        query = query.OrderByDescending(b => b.RestaurantId);
+                    break;
+            }
+            query = query.Skip(pageNumber * pageSize);
+            if (pageSize > 25) pageSize = 25;
+            if (pageSize <= 0) pageSize = 10;
+            query = query.Take(pageSize);
+            return query.ToList();
         }
 
         [Route("{id}")]
