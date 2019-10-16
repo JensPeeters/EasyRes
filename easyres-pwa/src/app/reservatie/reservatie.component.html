@@ -9,15 +9,15 @@
                     <div class="form-group">
                         <div class="controls">
                             <label for="naam">&nbsp;<i class="fa fa-user"></i>&nbsp;Naam</label>
-                            <input type="text" id="naam" name="naam" [(ngModel)]="tempReservatie.naam" required>
+                            <input type="text" id="naam" name="naam" [(ngModel)]="tempReservatie.naam" ngModel pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$" required>
                         </div>
                         <div class="controls">
                             <label for="email">&nbsp;<i class="fa fa-at"></i>&nbsp;E-mailadres </label>
-                            <input type="text" id="email" name="email" [(ngModel)]="tempReservatie.email" required>
+                            <input type="text" id="email" name="email" [(ngModel)]="tempReservatie.email" ngModel pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$" required>
                         </div>       
                         <div class="controls">
                             <label for="nummer">&nbsp;<i class="fa fa-mobile"></i>&nbsp;Telefoonnummer</label>
-                            <input type="tel" id="nummer" name="nummer" [(ngModel)]="tempReservatie.nummer">
+                            <input type="tel" id="nummer" name="nummer" class="nummer" [(ngModel)]="tempReservatie.nummer" ngModel pattern="^((\+\d{2})|[0])\d{9}$" required>
                         </div>
                         <div class="grid">
                             <div class="controls">
@@ -30,11 +30,12 @@
                             </div>
                             <div class="controls">
                                 <label for="aantal" class="label-date">&nbsp;<i class="fa fa-users"></i>&nbsp;Aantal personen</label>
-                                <input type="number" id="aantal" name="aantal" [(ngModel)]="tempReservatie.aantal" required>
+                                <input type="number" id="aantal" name="aantal" [(ngModel)]="tempReservatie.aantal" ngModel pattern="^[0-9]*$" required>
                             </div>      
                         </div>
                         <div class="row justify-content-center" style="padding-top:2em; grid-column: 2;">
-                            <button type="submit" value="Reserveer" class="btn btn-warning" [disabled]="!f.form.valid">Reserveren</button>
+                            <button type="submit" value="Reserveer" class="btn btn-warning" [disabled]="f.form.valid">Reserveren</button>
+                            <p>NOG TERUG AANPASSEN!!!!</p>
                         </div>
                     </div>
                 </form>

@@ -7,10 +7,10 @@ import { ReservatieComponent } from './reservatie/reservatie.component';
 
 const routes: Routes = [
   {path:"restaurant", component:RestaurantComponent},
-  {path: 'restaurant/:restaurant.restaurantId', component: RestaurantInfoComponent },
+  {path:"restaurant/:restaurant.restaurantId", component: RestaurantInfoComponent },
   {path:"reservatie/:id", component:ReservatieComponent},
   {path:"", redirectTo:"restaurant", pathMatch:"full"},
-  {path:"**", redirectTo:"home", pathMatch:"full"}
+  {path:"**", redirectTo:"restaurant", pathMatch:"full"}
 ];
 
 @NgModule({
