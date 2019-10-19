@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RestaurantService, Reservatie, IRestaurant } from '../services/restaurant.service'
 import { ActivatedRoute } from '@angular/router';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-reservatie',
@@ -16,7 +17,7 @@ export class ReservatieComponent implements OnInit {
   restaurant: IRestaurant;
   submitted: boolean = false;
 
-  constructor(private ResService : RestaurantService, private _Activatedroute:ActivatedRoute) { 
+  constructor(private ResService : RestaurantService, private _Activatedroute:ActivatedRoute, private _location: Location) { 
     this.tempReservatie = new Reservatie();
     this.finalReservatie = new Reservatie();
   }
@@ -35,5 +36,8 @@ export class ReservatieComponent implements OnInit {
   submit() {
     this.finalReservatie = this.tempReservatie
     this.submitted = true;
+  }
+  GoBack(){
+    this._location.back();
   }
 }
