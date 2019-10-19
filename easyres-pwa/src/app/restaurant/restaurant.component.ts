@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { RestaurantService, IRestaurant } from '../services/restaurant.service';
-import { ThrowStmt } from '@angular/compiler';
 
 
 @Component({
@@ -18,14 +17,14 @@ export class RestaurantComponent implements OnInit {
   zoeknaam: string;
   zoekterm: string;
   sorteerKeuzes: string[] = ["Aanbevolen","Naam","Type","Soort","Gemeente","Land"];
+  types: type[] = [{naam: "Restaurant",active:true},{naam: "Taverne",active:true},{naam: "Bistro",active:true},{naam: "Trattoria",active:true}]
+
   async ngOnInit() {
     this.GetRestaurants();
   }
   Zoeken(){
     this.zoekterm = `naam=${this.zoeknaam}`;
-    this.ResService.GetRestaurants(this.zoekterm).subscribe(restaurants => {
-      this.Restaurants = restaurants;
-    })
+    this.GetRestaurants();
   }
   Sorteren(item){
     this.sorterenOp = item;
@@ -36,8 +35,24 @@ export class RestaurantComponent implements OnInit {
       this.GetRestaurants();
   }
   GetRestaurants(){
-    this.ResService.GetRestaurants().subscribe(restaurants => {
-      this.Restaurants = restaurants;
-    })
+    var temp: IRestaurant[] = [];
+    this.types.forEach(element => {
+      if(element.active){
+        this.ResService.GetRestaurants(`${this.zoekterm}&soort=${element.naam}`).subscribe(restaurants => {
+          restaurants.forEach(element => {
+            temp.push(element);
+          });
+        })
+      }
+    });
+    this.Restaurants = temp;
   }
+  ChangeTypes(type){
+    type.active = !type.active;
+    this.GetRestaurants();
+  }
+}
+export interface type{
+  naam: string;
+  active: boolean;
 }
