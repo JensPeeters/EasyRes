@@ -7,11 +7,14 @@ import { HttpClient } from '@angular/common/http';
 export class RestaurantService {
 
   urlAPI : string = "https://localhost:44315/api";
-
+  pageNumber: number = 0;
+  pageSize: number = 25;
+  sortBy: string = "Aanbevolen"
+  direction: string = "asc"
   constructor(private http : HttpClient) { }
 
-  GetRestaurants(){
-    return this.http.get<IRestaurant[]>(`${this.urlAPI}/restaurant`);
+  GetRestaurants(filter?: string){
+    return this.http.get<IRestaurant[]>(`${this.urlAPI}/restaurant?${filter}&pageSize=${this.pageSize}&sortBy=${this.sortBy}&direction=${this.direction}&pageNumber=${this.pageNumber}`);
   }
   GetRestaurantByID(id: number){
     return this.http.get<IRestaurant>(`${this.urlAPI}/restaurant/${id}`);
@@ -80,6 +83,7 @@ export interface IRestaurant {
   restaurantId: number;
   naam: string;
   type: string;
+  soort: string;
   locatie: ILocatie;
   menu: IMenu;
   openingsuren: IOpeningsuren;
