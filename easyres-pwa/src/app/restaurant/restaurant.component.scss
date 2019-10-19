@@ -30,6 +30,7 @@
     display: grid;
     gap: 1%;
     grid-template-columns: 33% 33% 33%;
+    grid-row-gap: 1em;
     margin: auto;
 }
 .button-search{
@@ -94,6 +95,84 @@ p{
     margin-bottom: 7px;
     justify-self: end;
 }
+/* Container van de types */
+.typeContainar {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: inherit;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Standaard styling input verbergen */
+  .typeContainar input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+  }
+  
+  /* On mouse-over, toevoegen grijze achtergrondkleur */
+  .typeContainar:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  /* Wanneer checkbox checked, blauwe achtergrond */
+  .typeContainar input:checked ~ .checkmark {
+    background-color: #2196F3;
+  }
+  
+  /* Checkmark/indicator (ontzichtbaar wanneer af) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Tonen checkmark wanneer checked checked */
+  .typeContainar input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style checkmark/indicator */
+  .typeContainar .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 8px;
+    height: 13px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  .typeNormal{
+    grid-column-start: 1;
+    grid-column-end: 1;
+  }
+  .typeDropdown{
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+
+
 @media screen and (max-width: 1200px){
     input{
         width: 90%;
@@ -129,6 +208,9 @@ p{
     }
     input{
         width: 95%;
+    }
+    .typeNormal{
+        display: none;
     }
 }
 @media screen and (max-width: 680px){
@@ -168,4 +250,10 @@ p{
 }
 .fa-search{
     color: black;
+}
+
+@media screen and (min-width: 740px){
+    .typeDropdown{
+        display: none;
+    }
 }
