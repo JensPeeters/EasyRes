@@ -11,11 +11,10 @@
     <p>Sorteer op: </p>
     <div class="dropdown">
             <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Aanbevolen
+                {{sorterenOp}}
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">In de buurt</a>
-                <a class="dropdown-item" href="#">Beste rating</a>
+                <a (click)="Sorteren(keuze)" class="dropdown-item" *ngFor="let keuze of sorteerKeuzes">{{keuze}}</a>
             </div>
     </div>
     <div class="restaurant-advertentie-template">
