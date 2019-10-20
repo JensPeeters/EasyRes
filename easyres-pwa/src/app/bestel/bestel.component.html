@@ -1,0 +1,84 @@
+<div class="button-top-fixed">
+  <button class="btn btn-danger" [routerLink]="['/bestel', restaurant.restaurantId,TafelNr,'producten']">Bestelde
+    producten</button>
+  <button class="btn btn-danger"
+    [routerLink]="['/bestel', restaurant.restaurantId,TafelNr,'verstuur']">Bestellen</button>
+</div>
+<div id="accordion">
+  <div class="card">
+    <div class="card-header" id="dranken">
+      <button class="btn btn-warning" data-toggle="collapse" data-target="#collapseDranken" aria-expanded="true"
+        aria-controls="collapseDranken" (click)=ChangeToFalse(buttons[0].state,buttons[0].nr)>
+        Dranken <i *ngIf="!buttons[0].state" class="fas fa-plus"></i> <i *ngIf="buttons[0].state"
+          class="fas fa-minus"></i></button>
+    </div>
+    <div id="collapseDranken" class="collapse hidden" aria-labelledby="dranken" data-parent="#accordion">
+      <div class="card-body">
+        <ul>
+          <li *ngFor="let drinken of restaurant.menu.dranken">
+            <p>{{drinken.naam}}</p>
+            <p>€{{drinken.prijs.toString().replace('.',',')}}</p>
+            <button class="btn btn-danger" (click)=AddToBar(drinken.naam,drinken.prijs)>Voeg toe</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-header" id="voorgerechten">
+      <button class="btn btn-warning" data-toggle="collapse" data-target="#collapseVoorgerechten" aria-expanded="true"
+        aria-controls="collapseVoorgerechten" (click)=ChangeToFalse(buttons[1].state,buttons[1].nr)>
+        Voorgerechten
+        <i *ngIf="!buttons[1].state" class="fas fa-plus"></i>
+        <i *ngIf="buttons[1].state" class="fas fa-minus"></i>
+      </button>
+    </div>
+    <div id="collapseVoorgerechten" class="collapse hidden" aria-labelledby="voorgerechten" data-parent="#accordion">
+      <div class="card-body">
+        <ul>
+          <li *ngFor="let voorgerecht of restaurant.menu.voorgerechten">
+            <p>{{voorgerecht.naam}}</p>
+            <p>€{{voorgerecht.prijs.toString().replace('.',',')}}</p>
+            <button class="btn btn-danger" (click)=AddToKitchen(voorgerecht.naam,voorgerecht.prijs)>Voeg toe</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-header" id="hoofdgerechten">
+      <button class="btn btn-warning" data-toggle="collapse" data-target="#collapseHoofdgerechten" aria-expanded="true"
+        aria-controls="collapseHoofdgerechten" (click)=ChangeToFalse(buttons[2].state,buttons[2].nr)>
+        Hoofdgerechten
+        <i *ngIf="!buttons[2].state" class="fas fa-plus"></i>
+        <i *ngIf="buttons[2].state" class="fas fa-minus"></i>
+      </button>
+    </div>
+    <div id="collapseHoofdgerechten" class="collapse hidden" aria-labelledby="hoofdgerechten" data-parent="#accordion">
+      <div class="card-body">
+        <ul>
+          <li *ngFor="let hoofdgerecht of restaurant.menu.hoofdgerechten">
+            <p>{{hoofdgerecht.naam}}</p>
+            <p>€{{hoofdgerecht.prijs.toString().replace('.',',')}}</p>
+            <button class="btn btn-danger" (click)=AddToKitchen(hoofdgerecht.naam,hoofdgerecht.prijs)>Voeg toe</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-header" id="desserts">
+      <button class="btn btn-warning" data-toggle="collapse" data-target="#collapseDesserts" aria-expanded="true"
+        aria-controls="collapseDesserts" (click)=ChangeToFalse(buttons[3].state,buttons[3].nr)>
+        Desserts
+        <i *ngIf="!buttons[3].state" class="fas fa-plus"></i>
+        <i *ngIf="buttons[3].state" class="fas fa-minus"></i>
+      </button>
+    </div>
+    <div id="collapseDesserts" class="collapse hidden" aria-labelledby="desserts" data-parent="#accordion">
+      <div class="card-body">
+        <ul>
+          <li *ngFor="let dessert of restaurant.menu.desserts">
+            <p>{{dessert.naam}}</p>
+            <p>€{{dessert.prijs.toString().replace('.',',')}}</p>
+            <button class="btn btn-danger" (click)=AddToKitchen(dessert.naam,dessert.prijs)>Voeg toe</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<div class="button-top-fixed">
+  <button class="btn btn-danger" [routerLink]="['../']">Menu kaart
+  </button>
+  <button class="btn btn-danger"
+    [routerLink]="['/bestel', RestaurantId,TafelNr,'verstuur']">Bestellen</button>
+</div>
+<div>
+  <hr>
+  <li>
+    <strong>Product</strong>
+    <strong>Prijs</strong>
+    <strong>Aantal</strong>
+  </li>
+  <hr>
+  <li *ngFor="let drank of bestelling.dranken">
+    <p>{{drank.naam}}</p>
+    <p>€ {{drank.prijs}}</p>
+    <p>{{drank.aantal}}</p>
+  </li>
+  <li *ngFor="let etenswaar of bestelling.etenswaren">
+    <p>{{etenswaar.naam}}</p>
+    <p>€ {{etenswaar.prijs}}</p>
+    <p>{{etenswaar.aantal}}</p>
+  </li>
+  <hr>
+  <li>
+    <strong>Tafel : <span>{{bestelling.tafelNr}}</span></strong>
+    <div></div>
+    <strong>Totaal : <span>{{bestelling.prijs}} euro</span> </strong>
+  </li>
+  <hr>
+
+
+</div>

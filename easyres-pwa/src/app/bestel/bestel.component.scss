@@ -1,0 +1,44 @@
+.btn{
+    width: 100% !important;
+}
+ul{
+    list-style: none;
+}
+div{
+    ul{
+        padding-left: 0px;
+        margin-left: 0px;
+        li{
+            margin-top: 10px;
+            display: grid;
+            justify-content: center;
+            grid-template-columns: 33% 33% 33%;
+            p{
+                //justify-self: center;
+                margin: auto;
+                text-align: center;
+            }
+            span{
+                //justify-self: center;
+                margin: auto;
+            }
+            button{
+                //justify-self: center;
+                font-size: 16px;
+                font-weight: bold;
+            }
+            
+        }
+    }
+}
+.button-top-fixed{
+    margin-top: 15px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+.btn-danger:nth-child(1), .btn-danger:nth-child(2){
+    border: 5px solid white;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
