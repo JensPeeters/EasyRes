@@ -1,6 +1,8 @@
 import { Component, OnInit} from '@angular/core';
 import { RestaurantService, IRestaurant } from '../services/restaurant.service';
 import { ActivatedRoute } from '@angular/router';
+import {Location} from '@angular/common';
+
 
 @Component({
   selector: 'app-restaurant-info',
@@ -9,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class RestaurantInfoComponent implements OnInit {
 
-  constructor(private ResService : RestaurantService,  private route: ActivatedRoute) { }
+  constructor(private ResService : RestaurantService,  private route: ActivatedRoute, private _location: Location) { }
 
   restaurant: IRestaurant;
   collapsed: boolean = false;
@@ -24,5 +26,6 @@ export class RestaurantInfoComponent implements OnInit {
     })
   }
   goBack(){
+    this._location.back();
   }
 }

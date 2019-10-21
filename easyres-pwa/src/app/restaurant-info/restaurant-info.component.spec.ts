@@ -1,6 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RestaurantInfoComponent } from './restaurant-info.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from '../app-routing.module';
+import { RestaurantComponent } from '../restaurant/restaurant.component';
+import { ReservatieComponent } from '../reservatie/reservatie.component';
 
 describe('RestaurantInfoComponent', () => {
   let component: RestaurantInfoComponent;
@@ -8,7 +13,8 @@ describe('RestaurantInfoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RestaurantInfoComponent ]
+      imports: [ FormsModule, HttpClientModule, AppRoutingModule ],
+      declarations: [ RestaurantInfoComponent, RestaurantComponent, ReservatieComponent ]
     })
     .compileComponents();
   }));
