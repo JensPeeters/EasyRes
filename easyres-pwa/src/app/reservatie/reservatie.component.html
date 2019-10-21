@@ -34,8 +34,7 @@
                             </div>      
                         </div>
                         <div class="row justify-content-center" style="padding-top:2em; grid-column: 2;">
-                            <button type="submit" value="Reserveer" class="btn btn-warning" [disabled]="f.form.valid">Reserveren</button>
-                            <p>NOG TERUG AANPASSEN!!!!</p>
+                            <button type="submit" value="Reserveer" class="btn btn-warning" [disabled]="!f.form.valid">Reserveren</button>
                         </div>
                     </div>
                 </form>

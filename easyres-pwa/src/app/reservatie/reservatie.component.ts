@@ -16,8 +16,10 @@ export class ReservatieComponent implements OnInit {
   restaurant: IRestaurant;
   submitted: boolean = false;
   verified: boolean = false;
+  today: Date;
 
   constructor(private ResService : RestaurantService, private _Activatedroute:ActivatedRoute) { 
+    this.today = new Date()
   }
 
   async ngOnInit() {
@@ -33,24 +35,26 @@ export class ReservatieComponent implements OnInit {
 
   submit() {
     this.finalReservatie = this.tempReservatie;
-    this.verify(this.finalReservatie);
-  }
-  //Tijd is checked, datum na vandaag todo
-  verify(res){
-    //if(){
-      if(this.isInTime(this.finalReservatie.tijdstip)){
-        this.submitted = true;
-      }
-    //}
-    
+    if(this.verify(this.finalReservatie)){
+      this.submitted = true;
+    }
   }
 
+
+  verify(res){
+    if(this.today < this.strToDate(res.datum)){
+      if(this.isInTime(res) && res.aantal > 0){
+        return true;
+      }
+    }
+    
+  }
+  //Controleert of dat de gereserveerde tijd een beschikbaar uur is van het restaurant
   isInTime(reservatie){
-    var uren = this.stringSplitHHmm(this.dayOfRes());
+    var uren = this.stringSplitHHmm(this.dayOfRes(reservatie.datum));
     var open = uren[0];
     var gesloten = uren[1];
-    console.log(this.stringToMinutes(reservatie));
-    if (this.stringToMinutes(open) < this.stringToMinutes(reservatie) && this.stringToMinutes(reservatie) < this.stringToMinutes(gesloten)){
+    if (this.stringToMinutes(open) < this.stringToMinutes(reservatie.tijdstip) && this.stringToMinutes(reservatie.tijdstip) < this.stringToMinutes(gesloten)){
       return true;
     }
     else{
@@ -59,10 +63,10 @@ export class ReservatieComponent implements OnInit {
   }
   
   stringSplitHHmm(str){
+    //"16:00 - 20:00" => ["16:00","20:00"]
     var strsplit = str.split(" ");
     strsplit.splice(1,1);
 
-    console.log(strsplit);
     return strsplit;
   }
 
@@ -71,12 +75,12 @@ export class ReservatieComponent implements OnInit {
     return +strsplit[0] * 60 + +strsplit[1];
   }
 
-  dayOfWeek(date){
-    return new Date(date).getDay();
+  strToDate(date){
+    return new Date(date);
   }
 
-  dayOfRes(){
-    switch (this.dayOfWeek(this.tempReservatie.datum)){
+  dayOfRes(date){
+    switch (this.strToDate(date).getDay()){
       case 1: { return this.restaurant.openingsuren.maandag}
       case 2: { return this.restaurant.openingsuren.dinsdag}
       case 3: { return this.restaurant.openingsuren.woensdag}
@@ -86,4 +90,6 @@ export class ReservatieComponent implements OnInit {
       case 7: { return this.restaurant.openingsuren.zondag}
     }
   }
+
+
 }
