@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using easyres_api.Model;
+using easyres_api.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,7 @@ namespace easyres_api.Controllers
     public class RestaurantController : ControllerBase
     {
         DatabaseContext context;
+        SendGridEmailSender emailSender = new SendGridEmailSender();
 
         public RestaurantController(DatabaseContext ctx)
         {
@@ -141,6 +143,7 @@ namespace easyres_api.Controllers
             restaurant.Reservaties.Add(finalReservatie);
             context.Restaurants.Update(restaurant);
             context.SaveChanges();
+            emailSender.SendEmailAsync(finalReservatie.Email, "Bevestiging van uw reservatie.", "Uw reservatie is gelukt!").Wait();
             return Created("", reservatie);
         }
 

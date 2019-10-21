@@ -21,7 +21,6 @@ export class RestaurantService {
   }
 
   PostReservation(restaurant: IRestaurant, reservatie: IReservatie){
-    console.log("Post request verzonden");
     return this.http.post(`${this.urlAPI}/restaurant/${restaurant.restaurantId}/reservatie`, {
       "naam": reservatie.naam,
       "email": reservatie.email,
