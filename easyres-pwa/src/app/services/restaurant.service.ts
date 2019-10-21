@@ -19,6 +19,19 @@ export class RestaurantService {
   GetRestaurantByID(id: number){
     return this.http.get<IRestaurant>(`${this.urlAPI}/restaurant/${id}`);
   }
+
+  PostReservation(restaurant: IRestaurant, reservatie: IReservatie){
+    console.log("Post request verzonden");
+    return this.http.post(`${this.urlAPI}/restaurant/${restaurant.restaurantId}/reservatie`, {
+      "naam": reservatie.naam,
+      "email": reservatie.email,
+      "telefoonNummer": reservatie.nummer,
+      "datum": reservatie.datum,
+      "tijdstip": reservatie.tijdstip,
+      "aantalPersonen": reservatie.aantal,
+      "restaurant": restaurant
+    })
+  }
 }
 
 export interface ILocatie {

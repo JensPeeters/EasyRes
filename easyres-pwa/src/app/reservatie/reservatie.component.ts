@@ -17,10 +17,10 @@ export class ReservatieComponent implements OnInit {
   restaurant: IRestaurant;
   submitted: boolean = false;
   verified: boolean = false;
-  today: Date;
+  today: Date = new Date();
 
-  constructor(private ResService : RestaurantService, private _Activatedroute:ActivatedRoute, private _location: Location) { 
-    this.today = new Date();
+  constructor(private ResService : RestaurantService, private _Activatedroute:ActivatedRoute, private _location: Location) {
+    this.today.setTime(Date.now());
   }
 
   async ngOnInit() {
@@ -32,20 +32,39 @@ export class ReservatieComponent implements OnInit {
       this.restaurant = result;
     })
 
+    
   }
 
   submit() {
     this.finalReservatie = this.tempReservatie;
+    console.log("verify: " + this.verify(this.finalReservatie))
     if(this.verify(this.finalReservatie)){
+      console.log("Verified");
       this.submitted = true;
+      this.ResService.PostReservation(this.restaurant, this.finalReservatie);
+    }
+    else{
+      console.log("Not Verified");
     }
   }
 
 
   verify(res){
-    if(this.today < this.strToDate(res.datum)){
-      if(this.isInTime(res) && res.aantal > 0){
+    if(this.isInTime(res) && res.aantal > 0){
+      if(this.today.getFullYear() < this.strToDate(res.datum).getFullYear()){
         return true;
+      }else{
+        if(this.today.getMonth() < this.strToDate(res.datum).getMonth()){
+          return true;
+        }else{
+          if(this.today.getDate() < this.strToDate(res.datum).getDate()){
+            return true;
+          }else{
+            if((this.today.getHours() * 60 + this.today.getMinutes()) < this.stringToMinutes(this.finalReservatie.tijdstip)){
+              return true;
+            }
+          }
+        }
       }
     }
     
@@ -91,7 +110,6 @@ export class ReservatieComponent implements OnInit {
       case 7: { return this.restaurant.openingsuren.zondag}
     }
   }
-
 
   GoBack(){
     this._location.back();

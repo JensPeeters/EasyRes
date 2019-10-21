@@ -254,12 +254,24 @@ namespace easyres_api.Model
                         Naam = "Yvad",
                         TelefoonNummer = "+32455661289",
                         Restaurant = restaurants[0]
+                    },
+
+                    new Reservatie()
+                    {
+                        AantalPersonen = 6,
+                        Datum = "15/14/13",
+                        Email = "johndoe@example.com",
+                        Naam = "John Doe",
+                        TelefoonNummer = "+32412345678",
+                        Restaurant = restaurants[3]
                     }
                 };
                 restaurants[0].Reservaties = reservaties;
                 foreach (Reservatie reservatie in reservaties)
                 {
                     context.Reservaties.Add(reservatie);
+                }
+
                 foreach (Bestelling bestelling in bestellingen)
                 {
                     context.Bestellingen.Add(bestelling);

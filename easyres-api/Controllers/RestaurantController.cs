@@ -127,18 +127,18 @@ namespace easyres_api.Controllers
                                                 .Include(a => a.Reservaties)
                                                 .Include(a => a.Openingsuren)
                                                 .Include(a => a.Locatie)
-                                                 .Include(a => a.Locatie)
-                                                 .SingleOrDefault(a => a.RestaurantId == reservatie.Restaurant.RestaurantId);
+                                                .Include(a => a.Locatie)
+                                                .SingleOrDefault(a => a.RestaurantId == reservatie.Restaurant.RestaurantId);
 
-            Reservatie tempReservatie = new Reservatie();
+            Reservatie finalReservatie = new Reservatie();
 
-            tempReservatie.AantalPersonen = reservatie.AantalPersonen;
-            tempReservatie.Datum = reservatie.Datum;
-            tempReservatie.Email = reservatie.Email;
-            tempReservatie.Naam = reservatie.Naam;
-            tempReservatie.Restaurant = reservatie.Restaurant;
-            tempReservatie.TelefoonNummer = reservatie.TelefoonNummer;
-            restaurant.Reservaties.Add(tempReservatie);
+            finalReservatie.AantalPersonen = reservatie.AantalPersonen;
+            finalReservatie.Datum = reservatie.Datum;
+            finalReservatie.Email = reservatie.Email;
+            finalReservatie.Naam = reservatie.Naam;
+            finalReservatie.Restaurant = reservatie.Restaurant;
+            finalReservatie.TelefoonNummer = reservatie.TelefoonNummer;
+            restaurant.Reservaties.Add(finalReservatie);
             context.Restaurants.Update(restaurant);
             context.SaveChanges();
             return Created("", reservatie);
