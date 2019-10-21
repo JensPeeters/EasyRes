@@ -1,6 +1,6 @@
 <div class="card" *ngIf="restaurant">
     <div class="card-body">
-        <button class="btn btn-secondary" [routerLinkActive]="['active']" [routerLink]="['/restaurant']"><i class="fas fa-arrow-alt-circle-left"></i> Terug</button>
+        <button class="btn btn-secondary" [routerLinkActive]="['active']" (click)="GoBack()"><i class="fas fa-arrow-alt-circle-left"></i> Terug</button>
         <div class="heading">
             <h3>{{restaurant.naam}}</h3>
         </div>

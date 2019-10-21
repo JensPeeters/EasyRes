@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -80,7 +81,7 @@ namespace easyres_api.Model
                                 },
                                 new Product()
                                 {
-                                    Naam = "Spareribs",
+                                    Naam = "Spareribs 250g",
                                     Prijs = 34.20
                                 }
                             };
@@ -114,9 +115,130 @@ namespace easyres_api.Model
                       LogoImage = "https://via.placeholder.com/350x350.png/8b0000/fff?text=Foto van een restaurant",
                       Menu = menu,
                       Naam = "Villa Belvedere",
-                      Type = "Italiaans"
+                      Type = "Italiaans",
+                      Soort = "Restaurant"
+                    },
+                    new Restaurant()
+                    {
+                      Beschrijving = "Het beste Chineese restaurant met veel verschillende smaken.",
+                      Openingsuren = openingsuren,
+                      Locatie = adres,
+                      LogoImage = "https://via.placeholder.com/350x350.png/8b0000/fff?text=Foto van een restaurant",
+                      Menu = menu,
+                      Naam = "Het hoekske",
+                      Type = "Chinees",
+                      Soort = "Restaurant"
+                    },
+                    new Restaurant()
+                    {
+                      Beschrijving = "Het beste Chineese restaurant met veel verschillende smaken. En zelfs nog meer als de anderen.",
+                      Openingsuren = openingsuren,
+                      Locatie = adres,
+                      LogoImage = "https://via.placeholder.com/350x350.png/8b0000/fff?text=Foto van een restaurant",
+                      Menu = menu,
+                      Naam = "Het restaurant china",
+                      Type = "Chinees",
+                      Soort = "Restaurant"
+                    },
+                    new Restaurant()
+                    {
+                      Beschrijving = "Japan brengt de gerechten zoals ze in Japan worden gebracht, super lekker dus.",
+                      Openingsuren = openingsuren,
+                      Locatie = adres,
+                      LogoImage = "https://via.placeholder.com/350x350.png/8b0000/fff?text=Foto van een restaurant",
+                      Menu = menu,
+                      Naam = "Het japaneeske",
+                      Type = "Japans",
+                      Soort = "Bistro"
+                    },
+                    new Restaurant()
+                    {
+                      Beschrijving = "Je denkt Afrika dus je denkt direct aan lekker eten ;)",
+                      Openingsuren = openingsuren,
+                      Locatie = adres,
+                      LogoImage = "https://via.placeholder.com/350x350.png/8b0000/fff?text=Foto van een restaurant",
+                      Menu = menu,
+                      Naam = "Het afrikaanse hoofdkwartier",
+                      Type = "Afrikaans",
+                      Soort = "Bistro"
+                    },
+                    new Restaurant()
+                    {
+                      Beschrijving = "Het beste Chineese restaurant met veel verschillende smaken. Jaja je lees het goed het beste restaurant ter wereld.",
+                      Openingsuren = openingsuren,
+                      Locatie = adres,
+                      LogoImage = "https://via.placeholder.com/350x350.png/8b0000/fff?text=Foto van een restaurant",
+                      Menu = menu,
+                      Naam = "De chinees",
+                      Type = "Chinees",
+                      Soort = "Taverne"
+                    },
+                    new Restaurant()
+                    {
+                      Beschrijving = "Veel verschillend smaken, maar echt super veel. Geloof je het niet, kom zelf proeven!",
+                      Openingsuren = openingsuren,
+                      Locatie = adres,
+                      LogoImage = "https://via.placeholder.com/350x350.png/8b0000/fff?text=Foto van een restaurant",
+                      Menu = menu,
+                      Naam = "Den bistro",
+                      Type = "Japans",
+                      Soort = "Taverne"
+                    },
+                    new Restaurant()
+                    {
+                      Beschrijving = "Het beste italiaanse restaurant met veel verschillende smaken enzovoort...",
+                      Openingsuren = openingsuren,
+                      Locatie = adres,
+                      LogoImage = "https://via.placeholder.com/350x350.png/8b0000/fff?text=Foto van een restaurant",
+                      Menu = menu,
+                      Naam = "Alles van eten",
+                      Type = "Italiaans",
+                      Soort = "Trattoria"
                     }
                 };
+
+                List<Product> besteldeEtenswaren = new List<Product>()
+                {
+                    new Product()
+                    {
+                        Naam = "Snitzel",
+                        Prijs = 25.20,
+                        Aantal = 1
+                    },
+                    new Product()
+                    {
+                        Naam = "Lasagna",
+                        Prijs = 15.15,
+                        Aantal = 2
+                    }
+                };
+
+                List<Product> besteldeDranken = new List<Product>()
+                {
+                    new Product()
+                    {
+                        Naam = "Bier 33cl",
+                        Prijs = 5,
+                        Aantal = 2
+                    },
+                    new Product()
+                    {
+                        Naam = "Cola 0.5l",
+                        Prijs = 1.80,
+                        Aantal = 3
+                    }
+                };
+
+                Bestelling[] bestellingen =
+                {
+                    new Bestelling()
+                    {
+                         BesteldeDranken = besteldeDranken,
+                         BesteldeEtenswaren = besteldeEtenswaren,
+                         TafelNr = 4
+                    }
+                };
+
                 foreach (Restaurant restaurant in restaurants)
                 {
                     context.Restaurants.Add(restaurant);
@@ -138,6 +260,9 @@ namespace easyres_api.Model
                 foreach (Reservatie reservatie in reservaties)
                 {
                     context.Reservaties.Add(reservatie);
+                foreach (Bestelling bestelling in bestellingen)
+                {
+                    context.Bestellingen.Add(bestelling);
                 }
                 context.SaveChanges();
             }

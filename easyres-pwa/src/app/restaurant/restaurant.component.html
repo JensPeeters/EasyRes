@@ -4,19 +4,35 @@
 </div>
 <div class="main-content">
     <div class="input-search-restaurant">
-        <input type="text" placeholder="Zoek">
-        <a href=""><i class="fas fa-search"></i></a>
+        <input type="text" placeholder="Zoek" [(ngModel)]="zoeknaam" (keydown.enter)="Zoeken()">
+        <a (click)="Zoeken()"><i class="fas fa-search" style="cursor: pointer;"></i></a>
     </div>
-    
-    <p>Sorteer </p>
+    <p>Sorteren op: </p>
     <div class="dropdown">
             <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Aanbevolen
+                {{sorterenOp}}
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">In de buurt</a>
-                <a class="dropdown-item" href="#">Beste rating</a>
+                <a (click)="Sorteren(keuze)" class="dropdown-item" *ngFor="let keuze of sorteerKeuzes">{{keuze}}</a>
             </div>
+    </div>
+    <div class="typeNormal">
+        <p><b>Type:</b></p>
+        <label class="typeContainar" *ngFor="let type of types">{{type.naam}}
+                <input type="checkbox" [(ngModel)]="type.active" (click)="ChangeTypes(type)">
+            <span class="checkmark"></span>
+          </label>
+    </div>
+    <div class="typeDropdown">
+        <button class="btn dropdown-toggle" type="button" data-toggle="collapse" data-target="#collapseType" aria-expanded="false" aria-controls="collapseType">
+            <b>Type</b>
+        </button><br>
+        <div class="collapse card card-body" id="collapseType">
+            <label class="typeContainar" *ngFor="let type of types">{{type.naam}}
+                <input type="checkbox" [(ngModel)]="type.active" (click)="ChangeTypes(type)">
+                <span class="checkmark"></span>
+            </label>
+        </div>
     </div>
     <div class="restaurant-advertentie-template">
             <div class="card">
@@ -25,7 +41,7 @@
                         Villa belvedere
                         <span class="advert">Advertentie</span>
                     </h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Italiaans</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Restaurant - Italiaans</h6>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     <button class="btn-danger btn button-reserve">Reserveer</button>
                     <button class="btn-outline-danger btn button-more-info">Meer info</button>
@@ -36,7 +52,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">{{restaurant.naam}}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{restaurant.type}}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">{{restaurant.soort}} - {{restaurant.type}}</h6>
                     <p class="card-text">{{restaurant.beschrijving}}</p>
                     <button class="btn-danger btn button-reserve" [routerLink]="['/reservatie', restaurant.restaurantId]">Reserveer</button>
                     <button class="btn-outline-danger btn button-more-info"  [routerLink]="['/restaurant', restaurant.restaurantId]">Meer info</button>

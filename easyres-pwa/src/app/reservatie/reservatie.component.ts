@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RestaurantService, IReservatie, IRestaurant } from '../services/restaurant.service'
 import { ActivatedRoute } from '@angular/router';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-reservatie',
@@ -18,8 +19,8 @@ export class ReservatieComponent implements OnInit {
   verified: boolean = false;
   today: Date;
 
-  constructor(private ResService : RestaurantService, private _Activatedroute:ActivatedRoute) { 
-    this.today = new Date()
+  constructor(private ResService : RestaurantService, private _Activatedroute:ActivatedRoute, private _location: Location) { 
+    this.today = new Date();
   }
 
   async ngOnInit() {
@@ -92,4 +93,7 @@ export class ReservatieComponent implements OnInit {
   }
 
 
+  GoBack(){
+    this._location.back();
+  }
 }
