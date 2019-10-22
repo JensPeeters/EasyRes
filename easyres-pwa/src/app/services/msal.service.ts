@@ -33,12 +33,12 @@ export class MsalService {
       }
     );
 
-    public login(): void{
+    public login(): void {
       this.clientApplication.authority = 'https://EasyRes.b2clogin.com/tfp/' + this.tenantConfig.tenant + '/' + this.tenantConfig.signInPolicy;
       this.authenticate();
     }
 
-    public signup(): void{
+    public signup(): void {
       this.clientApplication.authority = 'https://EasyRes.b2clogin.com/tfp/' + this.tenantConfig.tenant + '/' + this.tenantConfig.signUpPolicy;
       this.authenticate();
     }
@@ -64,15 +64,15 @@ export class MsalService {
 
     saveAccessTokenToCache(accessToken: string): void {
         sessionStorage.setItem(this.B2CTodoAccessTokenKey, accessToken);
-    };
+    }
 
     logout(): void {
         this.clientApplication.logout();
-    };
+    }
 
     isLoggedIn(): boolean {
         return this.clientApplication.getUser() != null;
-    };
+    }
 
     getUserEmail(): string{
        return this.getUser().idToken['emails'][0];
