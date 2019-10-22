@@ -1,4 +1,4 @@
-<div class="button-top-fixed">
+<div class="button-top-fixed" *ngIf="restaurant">
   <button class="btn btn-danger" [routerLink]="['/bestel', restaurant.restaurantId,TafelNr,'producten']">Bestelde
     producten</button>
   <button class="btn btn-danger"
@@ -12,7 +12,7 @@
         Dranken <i *ngIf="!buttons[0].state" class="fas fa-plus"></i> <i *ngIf="buttons[0].state"
           class="fas fa-minus"></i></button>
     </div>
-    <div id="collapseDranken" class="collapse hidden" aria-labelledby="dranken" data-parent="#accordion">
+    <div id="collapseDranken" class="collapse hidden" aria-labelledby="dranken" data-parent="#accordion" *ngIf="restaurant">
       <div class="card-body">
         <ul>
           <li *ngFor="let drinken of restaurant.menu.dranken">
@@ -31,7 +31,7 @@
         <i *ngIf="buttons[1].state" class="fas fa-minus"></i>
       </button>
     </div>
-    <div id="collapseVoorgerechten" class="collapse hidden" aria-labelledby="voorgerechten" data-parent="#accordion">
+    <div id="collapseVoorgerechten" class="collapse hidden" aria-labelledby="voorgerechten" data-parent="#accordion" *ngIf="restaurant">
       <div class="card-body">
         <ul>
           <li *ngFor="let voorgerecht of restaurant.menu.voorgerechten">
@@ -50,7 +50,7 @@
         <i *ngIf="buttons[2].state" class="fas fa-minus"></i>
       </button>
     </div>
-    <div id="collapseHoofdgerechten" class="collapse hidden" aria-labelledby="hoofdgerechten" data-parent="#accordion">
+    <div id="collapseHoofdgerechten" class="collapse hidden" aria-labelledby="hoofdgerechten" data-parent="#accordion" *ngIf="restaurant">
       <div class="card-body">
         <ul>
           <li *ngFor="let hoofdgerecht of restaurant.menu.hoofdgerechten">
@@ -69,7 +69,7 @@
         <i *ngIf="buttons[3].state" class="fas fa-minus"></i>
       </button>
     </div>
-    <div id="collapseDesserts" class="collapse hidden" aria-labelledby="desserts" data-parent="#accordion">
+    <div id="collapseDesserts" class="collapse hidden" aria-labelledby="desserts" data-parent="#accordion" *ngIf="restaurant">
       <div class="card-body">
         <ul>
           <li *ngFor="let dessert of restaurant.menu.desserts">

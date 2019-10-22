@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BestelComponent } from './bestel.component';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('BestelComponent', () => {
   let component: BestelComponent;
@@ -8,6 +10,7 @@ describe('BestelComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [RouterModule.forRoot([]), HttpClientModule],
       declarations: [ BestelComponent ]
     })
     .compileComponents();
