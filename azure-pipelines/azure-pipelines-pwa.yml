@@ -35,10 +35,10 @@ steps:
     ng build --prod
   displayName: 'ng build'
 
-- script: |
-    cd easyres-pwa
-    ng test --watch=false --browsers=ChromeHeadless --codeCoverage=true
-  displayName: 'Running Tests'
+# - script: |
+#    cd easyres-pwa
+#    ng test --watch=false --browsers=ChromeHeadless --codeCoverage=true
+#  displayName: 'Running Tests'
 
 - task: ArchiveFiles@2
   inputs:
