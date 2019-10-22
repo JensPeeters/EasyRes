@@ -1,0 +1,20 @@
+<div class="session-content">
+    <div class="restaurant-session-template">
+        <div class="card">
+            <div class="card-body" *ngFor="let restaurant of Restaurants">
+                <h5 class="card-title">
+                    <span>{{restaurant.naam}}</span> 
+                    <span class="table-indicator">Tafel : {{TafelNr}}</span>
+                </h5>
+                <h6 class="card-subtitle mb-2 text-muted">Italiaans</h6>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <button class="btn-danger btn order-btn" [routerLink]="['/bestel', restaurant.restaurantId, TafelNr]">Bestel</button>
+                <button class="btn-outline-danger btn button-more-info" [routerLink]="['/betaal']">Betaal</button>
+            </div>
+        </div>
+    </div>
+    <div class="invalid-screen-size">
+        <h3>Gelieve de app te openen op een kleiner scherm zodat u eten kan bestellen.</h3>
+    </div>
+</div>
+

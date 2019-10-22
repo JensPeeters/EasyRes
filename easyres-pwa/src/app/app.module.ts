@@ -14,6 +14,11 @@ import { RestaurantService } from './services/restaurant.service';
 import { ReservatieComponent } from './reservatie/reservatie.component';
 import { MsalService }  from './services/msal.service';
 import { RestaurantInfoComponent } from './restaurant-info/restaurant-info.component';
+import { SessieComponent } from './sessie/sessie.component';
+import { BestelComponent } from './bestel/bestel.component';
+import { VerstuurBestellingComponent } from './verstuur-bestelling/verstuur-bestelling.component';
+import { BestellingService } from './services/bestelling.service';
+import { BesteldeProductenComponent } from './bestelde-producten/bestelde-producten.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +26,11 @@ import { RestaurantInfoComponent } from './restaurant-info/restaurant-info.compo
     ToolbarComponent,
     RestaurantComponent,
     ReservatieComponent,
-    RestaurantInfoComponent
+    RestaurantInfoComponent,
+    SessieComponent,
+    BestelComponent,
+    VerstuurBestellingComponent,
+    BesteldeProductenComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +42,7 @@ import { RestaurantInfoComponent } from './restaurant-info/restaurant-info.compo
   ],
   providers: [
     RestaurantService,
+    BestellingService,
     MsalService
   ],
   bootstrap: [AppComponent]

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as Msal from 'msal';
-import { MsalService }  from '../services/msal.service';
+import { MsalService } from '../services/msal.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -9,28 +8,27 @@ import { MsalService }  from '../services/msal.service';
 })
 export class ToolbarComponent implements OnInit {
 
-  constructor(private msalService: MsalService){
-
+  constructor(private msalService: MsalService) {
   }
 
-  userfirstname(){
+  userfirstname() {
     let userfirstname = this.msalService.getUserFirstName();
     return userfirstname;
   }
 
-  login(){
+  login() {
     this.msalService.login();
   }
 
-  signup(){
+  signup() {
     this.msalService.signup();
   }
 
-  logout(){
+  logout() {
     this.msalService.logout();
   }
 
-  isUserLoggedIn(){
+  isUserLoggedIn() {
     return this.msalService.isLoggedIn();
   }
 

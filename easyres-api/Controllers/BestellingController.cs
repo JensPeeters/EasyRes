@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace easyres_api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/restaurant")]
     [ApiController]
     public class BestellingController : ControllerBase
     {
@@ -19,32 +19,46 @@ namespace easyres_api.Controllers
         {
             this.context = ctx;
         }
+        [Route("{id}/bestelling")]
         [HttpGet]
-        public List<Bestelling> GetBestellingen()
+        public List<Bestelling> GetBestellingen(long id)
         {
-            return context.Bestellingen.Include(a => a.BesteldeDranken)
-                                        .Include(a => a.BesteldeEtenswaren).ToList();
+            return context.Bestellingen.Include(a => a.Dranken)
+                                        .Include(a => a.Etenswaren)
+                                        .Where(e => e.RestaurantId == id).ToList();
         }
 
-        [Route("bar")]
-        [HttpGet]
-        public List<Bestelling> GetBestellingenBar()
+        [Route("{id}/bestelling")]
+        [HttpPost]
+        public ActionResult<Bestelling> AddBestelling([FromBody] Bestelling bestelling)
         {
-            return context.Bestellingen.Include(a => a.BesteldeDranken).ToList();
+            context.Bestellingen.Add(bestelling);
+            context.SaveChanges();
+            return Created("", bestelling);
         }
 
-        [Route("keuken")]
+        [Route("{id}/bestelling/bar")]
         [HttpGet]
-        public List<Bestelling> GetBestellingenKeuken()
+        public List<Bestelling> GetBestellingenBar(long id)
         {
-            return context.Bestellingen.Include(a => a.BesteldeEtenswaren).ToList();
+            return context.Bestellingen.Include(a => a.Dranken)
+                .Where(e => e.RestaurantId == id).ToList();
         }
 
-        [Route("{id}")]
+        [Route("{id}/bestelling/keuken")]
         [HttpGet]
-        public ActionResult<Bestelling> GetBestelling(long id)
+        public List<Bestelling> GetBestellingenKeuken(long id)
         {
-            var bestelling = context.Bestellingen.Where(a => a.BestellingId == id)
+            return context.Bestellingen.Include(a => a.Etenswaren)
+                .Where(e => e.RestaurantId == id).ToList();
+        }
+
+        [Route("{id}/bestelling/{idBestel}")]
+        [HttpGet]
+        public ActionResult<Bestelling> GetBestelling(long id,long idBestel)
+        {
+            var bestelling = context.Bestellingen.Where(a => a.BestellingId == idBestel)
+                                            .Where(a => a.RestaurantId == id)
                                         .FirstOrDefault();
             if (bestelling == null)
                 return NotFound();
