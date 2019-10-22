@@ -22,14 +22,22 @@ steps:
 
 - script: |
     npm install -g @angular/cli
-    cd easyres-pwa
-    npm install
-    ng build --prod
-  displayName: 'npm install and build'
+  displayName: 'install Angular CLI'
+
+- task: Npm@1
+  inputs:
+    command: 'install'
+    workingDir: 'easyres-pwa'
+  displayName: 'npm install'
 
 - script: |
     cd easyres-pwa
-    ng test
+    ng build --prod
+  displayName: 'ng build'
+
+- script: |
+    cd easyres-pwa
+    ng test --watch=false
   displayName: 'Running Tests'
 
 - task: ArchiveFiles@2
