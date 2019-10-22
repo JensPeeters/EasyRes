@@ -20,16 +20,8 @@ export class RestaurantService {
     return this.http.get<IRestaurant>(`${this.urlAPI}/restaurant/${id}`);
   }
 
-  PostReservation(restaurant: IRestaurant, reservatie: IReservatie){
-    return this.http.post(`${this.urlAPI}/restaurant/${restaurant.restaurantId}/reservatie`, {
-      "naam": reservatie.naam,
-      "email": reservatie.email,
-      "telefoonNummer": reservatie.nummer,
-      "datum": reservatie.datum,
-      "tijdstip": reservatie.tijdstip,
-      "aantalPersonen": reservatie.aantal,
-      "restaurant": restaurant
-    })
+  PostReservation(reservatie: IReservatie){
+    return this.http.post(`${this.urlAPI}/restaurant/${reservatie.restaurant.restaurantId}/reservatie`, reservatie)
   }
 }
 
@@ -85,10 +77,11 @@ export interface IOpeningsuren {
 export interface IReservatie{
   naam: string;
   email: string;
-  nummer: string;
+  telefoonnummer: string;
   datum: string;
   tijdstip: string;
-  aantal: number;
+  aantalpersonen: number;
+  restaurant: IRestaurant;
 }
 
 export interface IRestaurant {

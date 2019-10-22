@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RestaurantService, IReservatie, IRestaurant } from '../services/restaurant.service'
 import { ActivatedRoute } from '@angular/router';
 import {Location} from '@angular/common';
+import { isNull } from '@angular/compiler/src/output/output_ast';
+import { isNullOrUndefined } from 'util';
 
 @Component({
   selector: 'app-reservatie',
@@ -12,15 +14,17 @@ export class ReservatieComponent implements OnInit {
 
   restaurantId: number;
 
-  tempReservatie: IReservatie = {naam:null,datum:null,email:null,nummer:null,tijdstip:null,aantal:null};
+  tempReservatie: IReservatie = {naam:null,datum:null,email:null,telefoonnummer:null,tijdstip:null,aantalpersonen:null,restaurant:null};
   finalReservatie: IReservatie;
-  restaurant: IRestaurant;
   submitted: boolean = false;
   verified: boolean = false;
   today: Date = new Date();
 
   constructor(private ResService : RestaurantService, private _Activatedroute:ActivatedRoute, private _location: Location) {
     this.today.setTime(Date.now());
+    if (!isNullOrUndefined(this.tempReservatie.restaurant)){
+      console.log(this.tempReservatie.restaurant.naam)
+    }
   }
 
   async ngOnInit() {
@@ -29,7 +33,7 @@ export class ReservatieComponent implements OnInit {
     });
 
     this.ResService.GetRestaurantByID(this.restaurantId).subscribe(result => {
-      this.restaurant = result;
+      this.tempReservatie.restaurant = result;
     })
 
     
@@ -39,18 +43,14 @@ export class ReservatieComponent implements OnInit {
     this.finalReservatie = this.tempReservatie;
     console.log("verify: " + this.verify(this.finalReservatie))
     if(this.verify(this.finalReservatie)){
-      console.log("Verified");
       this.submitted = true;
-      this.ResService.PostReservation(this.restaurant, this.finalReservatie);
-    }
-    else{
-      console.log("Not Verified");
+      this.ResService.PostReservation(this.finalReservatie).subscribe();
     }
   }
 
 
   verify(res){
-    if(this.isInTime(res) && res.aantal > 0){
+    if(this.isInTime(res) && res.aantalpersonen > 0){
       if(this.today.getFullYear() < this.strToDate(res.datum).getFullYear()){
         return true;
       }else{
@@ -101,13 +101,13 @@ export class ReservatieComponent implements OnInit {
 
   dayOfRes(date){
     switch (this.strToDate(date).getDay()){
-      case 1: { return this.restaurant.openingsuren.maandag}
-      case 2: { return this.restaurant.openingsuren.dinsdag}
-      case 3: { return this.restaurant.openingsuren.woensdag}
-      case 4: { return this.restaurant.openingsuren.donderdag}
-      case 5: { return this.restaurant.openingsuren.vrijdag}
-      case 6: { return this.restaurant.openingsuren.zaterdag}
-      case 7: { return this.restaurant.openingsuren.zondag}
+      case 1: { return this.finalReservatie.restaurant.openingsuren.maandag}
+      case 2: { return this.finalReservatie.restaurant.openingsuren.dinsdag}
+      case 3: { return this.finalReservatie.restaurant.openingsuren.woensdag}
+      case 4: { return this.finalReservatie.restaurant.openingsuren.donderdag}
+      case 5: { return this.finalReservatie.restaurant.openingsuren.vrijdag}
+      case 6: { return this.finalReservatie.restaurant.openingsuren.zaterdag}
+      case 7: { return this.finalReservatie.restaurant.openingsuren.zondag}
     }
   }
 

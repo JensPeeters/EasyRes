@@ -134,16 +134,36 @@ namespace easyres_api.Controllers
 
             Reservatie finalReservatie = new Reservatie();
 
-            finalReservatie.AantalPersonen = reservatie.AantalPersonen;
-            finalReservatie.Datum = reservatie.Datum;
-            finalReservatie.Email = reservatie.Email;
             finalReservatie.Naam = reservatie.Naam;
-            finalReservatie.Restaurant = reservatie.Restaurant;
+            finalReservatie.Email = reservatie.Email;
             finalReservatie.TelefoonNummer = reservatie.TelefoonNummer;
+            finalReservatie.Datum = reservatie.Datum;
+            finalReservatie.Tijdstip = reservatie.Tijdstip;
+            finalReservatie.AantalPersonen = reservatie.AantalPersonen;
+            finalReservatie.Restaurant = reservatie.Restaurant;
             restaurant.Reservaties.Add(finalReservatie);
             context.Restaurants.Update(restaurant);
             context.SaveChanges();
-            emailSender.SendEmailAsync(finalReservatie.Email, "Bevestiging van uw reservatie.", "Uw reservatie is gelukt!").Wait();
+            string enter = "<br>";
+            string mailmsg =
+                "Beste " + reservatie.Naam +"," + 
+                enter +
+                enter +
+                "Bedankt voor uw reservering! Wij verzoeken u vriendelijk om de onderstaande" + enter +
+                "reserveringsgegevens te controleren:" +
+                enter +
+                "<ul>" +
+                "<li> Op naam van: " + reservatie.Naam + "</li>" +
+                "<li> Bij restaurant: " + reservatie.Restaurant.Naam + "</li>" +
+                "<li> Aantal personen: " + reservatie.AantalPersonen + "</li>" +
+                "<li> Gepland op: " + reservatie.Datum + " om " + reservatie.Tijdstip + "</li>" + 
+                "<li> Email adres: " + reservatie.Email + "</li>" +
+                "<li> Telefoonnummer: " + reservatie.TelefoonNummer.ToString() + "</li>" +
+                "</ul>" +
+                enter +
+                "Mogelijk gemaakt door EasyRes™";
+
+            emailSender.SendEmailAsync(finalReservatie.Email, "Bevestiging van uw reservatie.", mailmsg).Wait();
             return Created("", reservatie);
         }
 

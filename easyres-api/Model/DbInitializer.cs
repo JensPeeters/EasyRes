@@ -250,6 +250,7 @@ namespace easyres_api.Model
                     {
                         AantalPersonen = 4,
                         Datum = "12/12/12",
+                        Tijdstip = "19:00",
                         Email = "floppy@doppy.com",
                         Naam = "Yvad",
                         TelefoonNummer = "+32455661289",
@@ -260,6 +261,7 @@ namespace easyres_api.Model
                     {
                         AantalPersonen = 6,
                         Datum = "15/14/13",
+                        Tijdstip = "18:30",
                         Email = "johndoe@example.com",
                         Naam = "John Doe",
                         TelefoonNummer = "+32412345678",
