@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -20,5 +21,7 @@ namespace easyres_api.Model
         public string LogoImage { get; set; }
         public string Type { get; set; }
         public string Soort { get; set; }
+        [JsonIgnore]
+        public virtual List<Reservatie> Reservaties { get; set; }
     }
 }

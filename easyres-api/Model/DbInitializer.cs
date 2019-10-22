@@ -244,6 +244,36 @@ namespace easyres_api.Model
                     context.Restaurants.Add(restaurant);
                 }
 
+                List<Reservatie> reservaties = new List<Reservatie>()
+                {
+                    new Reservatie()
+                    {
+                        AantalPersonen = 4,
+                        Datum = "12/12/12",
+                        Tijdstip = "19:00",
+                        Email = "floppy@doppy.com",
+                        Naam = "Yvad",
+                        TelefoonNummer = "+32455661289",
+                        Restaurant = restaurants[0]
+                    },
+
+                    new Reservatie()
+                    {
+                        AantalPersonen = 6,
+                        Datum = "15/14/13",
+                        Tijdstip = "18:30",
+                        Email = "johndoe@example.com",
+                        Naam = "John Doe",
+                        TelefoonNummer = "+32412345678",
+                        Restaurant = restaurants[3]
+                    }
+                };
+                restaurants[0].Reservaties = reservaties;
+                foreach (Reservatie reservatie in reservaties)
+                {
+                    context.Reservaties.Add(reservatie);
+                }
+
                 foreach (Bestelling bestelling in bestellingen)
                 {
                     context.Bestellingen.Add(bestelling);

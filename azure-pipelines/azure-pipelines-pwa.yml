@@ -27,6 +27,11 @@ steps:
     ng build --prod
   displayName: 'npm install and build'
 
+- script: |
+    cd easyres-pwa
+    ng test
+  displayName: 'Running Tests'
+
 - task: ArchiveFiles@2
   inputs:
     rootFolderOrFile: 'easyres-pwa/dist/easyres-pwa'

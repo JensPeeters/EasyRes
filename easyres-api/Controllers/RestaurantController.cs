@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using easyres_api.Model;
+using easyres_api.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,7 @@ namespace easyres_api.Controllers
     public class RestaurantController : ControllerBase
     {
         DatabaseContext context;
+        SendGridEmailSender emailSender = new SendGridEmailSender();
 
         public RestaurantController(DatabaseContext ctx)
         {
@@ -100,5 +102,71 @@ namespace easyres_api.Controllers
                 return NotFound();
             return restaurant;
         }
+        [Route("{id}/reservatie")]
+        [HttpGet]
+        public List<Reservatie> GetRestaurantReservations(long id)
+        {
+            var restaurant = context.Restaurants.Include(a => a.Reservaties)
+                                                .Include(a => a.Menu)
+                                                .Include(a => a.Menu.Desserts)
+                                                .Include(a => a.Menu.Dranken)
+                                                .Include(a => a.Menu.Hoofdgerechten)
+                                                .Include(a => a.Menu.Voorgerechten)
+                                                .Include(a => a.Locatie)
+                                                .SingleOrDefault(a => a.RestaurantId == id);
+            return restaurant.Reservaties;
+        }
+
+        [Route("{id}/reservatie")]
+        [HttpPost]
+        public ActionResult<Reservatie> AddReservatie([FromBody] Reservatie reservatie)
+        {
+            var restaurant = context.Restaurants.Include(a => a.Menu)
+                                                .Include(a => a.Menu.Desserts)
+                                                .Include(a => a.Menu.Dranken)
+                                                .Include(a => a.Menu.Hoofdgerechten)
+                                                .Include(a => a.Menu.Voorgerechten)
+                                                .Include(a => a.Reservaties)
+                                                .Include(a => a.Openingsuren)
+                                                .Include(a => a.Locatie)
+                                                .Include(a => a.Locatie)
+                                                .SingleOrDefault(a => a.RestaurantId == reservatie.Restaurant.RestaurantId);
+
+            Reservatie finalReservatie = new Reservatie();
+
+            finalReservatie.Naam = reservatie.Naam;
+            finalReservatie.Email = reservatie.Email;
+            finalReservatie.TelefoonNummer = reservatie.TelefoonNummer;
+            finalReservatie.Datum = reservatie.Datum;
+            finalReservatie.Tijdstip = reservatie.Tijdstip;
+            finalReservatie.AantalPersonen = reservatie.AantalPersonen;
+            finalReservatie.Restaurant = reservatie.Restaurant;
+            restaurant.Reservaties.Add(finalReservatie);
+            context.Restaurants.Update(restaurant);
+            context.SaveChanges();
+            string enter = "<br>";
+            string mailmsg =
+                "Beste " + reservatie.Naam +"," + 
+                enter +
+                enter +
+                "Bedankt voor uw reservering! Wij verzoeken u vriendelijk om de onderstaande" + enter +
+                "reserveringsgegevens te controleren:" +
+                enter +
+                "<ul>" +
+                "<li> Op naam van: " + reservatie.Naam + "</li>" +
+                "<li> Bij restaurant: " + reservatie.Restaurant.Naam + "</li>" +
+                "<li> Aantal personen: " + reservatie.AantalPersonen + "</li>" +
+                "<li> Gepland op: " + reservatie.Datum + " om " + reservatie.Tijdstip + "</li>" + 
+                "<li> Email adres: " + reservatie.Email + "</li>" +
+                "<li> Telefoonnummer: " + reservatie.TelefoonNummer.ToString() + "</li>" +
+                "</ul>" +
+                enter +
+                "Mogelijk gemaakt door EasyRes™";
+
+            emailSender.SendEmailAsync(finalReservatie.Email, "Bevestiging van uw reservatie.", mailmsg).Wait();
+            return Created("", reservatie);
+        }
+
+
     }
 }

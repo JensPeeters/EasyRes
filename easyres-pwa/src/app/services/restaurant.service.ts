@@ -19,6 +19,10 @@ export class RestaurantService {
   GetRestaurantByID(id: number){
     return this.http.get<IRestaurant>(`${this.urlAPI}/restaurant/${id}`);
   }
+
+  PostReservation(reservatie: IReservatie){
+    return this.http.post(`${this.urlAPI}/restaurant/${reservatie.restaurant.restaurantId}/reservatie`, reservatie)
+  }
 }
 
 export interface ILocatie {
@@ -70,13 +74,14 @@ export interface IOpeningsuren {
   zondag: string;
 }
 
-export class Reservatie{
+export interface IReservatie{
   naam: string;
   email: string;
-  nummer: string;
+  telefoonnummer: string;
   datum: string;
   tijdstip: string;
-  aantal: number;
+  aantalpersonen: number;
+  restaurant: IRestaurant;
 }
 
 export interface IRestaurant {
