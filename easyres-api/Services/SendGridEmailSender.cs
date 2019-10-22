@@ -14,9 +14,9 @@ namespace easyres_api.Services
         {
             var apiKey = "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";
             var client = new SendGridClient(apiKey);
-            var from = new EmailAddress("EasyResAP@gmail.com", "Easy Res");
+            var from = new EmailAddress("reservaties@EasyRes.be", "Easy Res");
             var subject = emailSubject;
-            var to = new EmailAddress(userEmail, "Test");
+            var to = new EmailAddress(userEmail, "");
             var plainTextContent = message;
             var htmlContent = message;
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
