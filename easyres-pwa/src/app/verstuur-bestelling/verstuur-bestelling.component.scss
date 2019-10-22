@@ -1,0 +1,19 @@
+div li{
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    text-align: center;
+}
+span{
+    font-weight: normal;
+}
+p{
+    margin: auto;
+}
+.btn{
+    margin-top: 10px;
+    width: 100% !important;
+    border: 5px solid white;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}

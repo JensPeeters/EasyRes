@@ -1,0 +1,65 @@
+.table-indicator{
+    border: 1.5px solid #212529;
+    color: #212529;
+    padding: 3px 5px;
+    border-radius: 3px;
+    font-size: 15px;
+    margin-left: 10px;
+}
+.invalid-screen-size{
+    display: none;
+    padding-top: 10px;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    text-align: center;
+}
+.button-more-info{
+    margin-left: 10px;
+}
+.card{
+    width: 100% !important;
+}
+.session-content{
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+}
+.order-btn{
+    display: inline-block;
+}
+.restaurant-session-template{
+    padding-top: 10px;
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+@media screen and (max-width: 450px){
+   .order-btn{
+       width: 100%;
+   }
+   .button-more-info{
+       width: 100%;
+       margin-left: 0px;
+       margin-top: 10px;
+   }
+   .card-title{
+       display:grid;
+       grid-template-columns: 100%;
+   }
+   .table-indicator{
+       text-align: center;
+       margin-left: 0px;
+   }
+
+}
+@media screen and (min-width: 1000px){
+    .invalid-screen-size{
+        display: block;
+    }
+    .order-btn{
+        display: none;
+    }
+    .button-more-info{
+        margin-left: 0px;
+        width: 100%;
+        margin-top: 0px;
+    }
+}

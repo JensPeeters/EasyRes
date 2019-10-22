@@ -233,8 +233,8 @@ namespace easyres_api.Model
                 {
                     new Bestelling()
                     {
-                         BesteldeDranken = besteldeDranken,
-                         BesteldeEtenswaren = besteldeEtenswaren,
+                         Dranken = besteldeDranken,
+                         Etenswaren = besteldeEtenswaren,
                          TafelNr = 4
                     }
                 };

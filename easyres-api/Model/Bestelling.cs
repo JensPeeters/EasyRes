@@ -10,8 +10,10 @@ namespace easyres_api.Model
     {
         [Key]
         public int BestellingId { get; set; }
-        public List<Product> BesteldeEtenswaren { get; set; }
-        public List<Product> BesteldeDranken { get; set; }
+
+        public List<Product> Etenswaren { get; set; }
+        public List<Product> Dranken { get; set; }
+        public int RestaurantId { get; set; }
 
         public int TafelNr { get; set; }
     }

@@ -1,0 +1,30 @@
+<button class="btn btn-danger" [routerLink]="['/bestel', RestaurantId, TafelNr]">Maak nog een bestelling</button>
+<div>
+        <hr>
+        <li>
+          <strong>Product</strong>
+          <strong>Prijs</strong>
+          <strong>Aantal</strong>
+          <strong>Status</strong>
+        </li>
+        <hr>
+        <li *ngFor="let drank of bestelling.dranken">
+          <p>{{drank.naam}}</p>
+          <p>€ {{drank.prijs}}</p>
+          <p>{{drank.aantal}}</p>
+          <p>NOT DONE</p>
+        </li>
+        <li *ngFor="let etenswaar of bestelling.etenswaren">
+          <p>{{etenswaar.naam}}</p>
+          <p>€ {{etenswaar.prijs}}</p>
+          <p>{{etenswaar.aantal}}</p>
+          <p>NOT DONE</p>
+        </li>
+        <hr>
+        <li>
+          <strong>Tafel : <span>{{bestelling.tafelNr}}</span></strong>
+        </li>
+        <hr>
+      
+      
+      </div>
