@@ -37,7 +37,7 @@ steps:
 
 - script: |
     cd easyres-pwa
-    ng test --watch=false --codeCoverage=true
+    ng test --watch=false --browsers=ChromeHeadless --codeCoverage=true
   displayName: 'Running Tests'
 
 - task: ArchiveFiles@2
