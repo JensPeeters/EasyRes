@@ -15,6 +15,9 @@ namespace easyres_api.Model
         public List<Product> Dranken { get; set; }
         public int RestaurantId { get; set; }
 
+        public bool EtenGereed { get; set; }
+        public bool DrinkenGereed { get; set; }
+
         public int TafelNr { get; set; }
     }
 }

@@ -235,7 +235,9 @@ namespace easyres_api.Model
                     {
                          Dranken = besteldeDranken,
                          Etenswaren = besteldeEtenswaren,
-                         TafelNr = 4
+                         TafelNr = 4,
+                         EtenGereed = false,
+                         DrinkenGereed = false
                     }
                 };
 
