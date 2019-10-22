@@ -28,6 +28,7 @@ steps:
   displayName: 'npm install and build'
 
 - script: |
+    cd easyres-pwa
     ng test
   displayName: 'Running Tests'
 
