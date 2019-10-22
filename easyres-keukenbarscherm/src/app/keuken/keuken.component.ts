@@ -15,8 +15,18 @@ export class KeukenComponent implements OnInit {
   ngOnInit() {
     this.serv.GetAlleVoedingsbestellingen().subscribe(result => {
       this.Bestellingen = result;
+
+
     });
 
+  }
+
+  Back() {
+    this.serv.GetAlleVoedingsbestellingen().push({EtenGereed: false});
+  }
+
+  Done() {
+    this.serv.GetAlleVoedingsbestellingen().push({EtenGereed: true});
   }
 
 }

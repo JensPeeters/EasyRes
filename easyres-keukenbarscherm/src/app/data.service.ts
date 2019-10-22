@@ -31,4 +31,6 @@ export class DataService {
       besteldeEtenswaren: IProduct[];
       besteldeDranken: IProduct[];
       tafelNr: number;
+      Etengereed: boolean;
+      Drinkengereed: boolean;
   }
