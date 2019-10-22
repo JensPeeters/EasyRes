@@ -10,11 +10,11 @@ export class DataService {
   constructor(private http : HttpClient) { }
 
   GetAlleDrankbestellingen(){
-    return this.http.get<IBestelling[]>(`https://localhost:44315/api/bestelling/bar`)
+    return this.http.get<IBestelling[]>(`https://localhost:44315/api/restaurant/1/bestelling/bar`)
   }
 
   GetAlleVoedingsbestellingen(){
-    return this.http.get<IBestelling[]>(`https://localhost:44315/api/bestelling/keuken`)
+    return this.http.get<IBestelling[]>(`https://localhost:44315/api/restaurant/1/bestelling/keuken`)
   }
 }
 
