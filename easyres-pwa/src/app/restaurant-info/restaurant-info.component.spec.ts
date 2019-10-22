@@ -6,6 +6,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from '../app-routing.module';
 import { RestaurantComponent } from '../restaurant/restaurant.component';
 import { ReservatieComponent } from '../reservatie/reservatie.component';
+import { BesteldeProductenComponent } from '../bestelde-producten/bestelde-producten.component';
+import { VerstuurBestellingComponent } from '../verstuur-bestelling/verstuur-bestelling.component';
+import { BestelComponent } from '../bestel/bestel.component';
+import { SessieComponent } from '../sessie/sessie.component';
 
 describe('RestaurantInfoComponent', () => {
   let component: RestaurantInfoComponent;
@@ -14,7 +18,7 @@ describe('RestaurantInfoComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ FormsModule, HttpClientModule, AppRoutingModule ],
-      declarations: [ RestaurantInfoComponent, RestaurantComponent, ReservatieComponent ]
+      declarations: [ RestaurantInfoComponent, RestaurantComponent, ReservatieComponent, BesteldeProductenComponent, VerstuurBestellingComponent, BestelComponent, SessieComponent ]
     })
     .compileComponents();
   }));
