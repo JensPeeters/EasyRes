@@ -19,11 +19,11 @@ variables:
 
 steps:
 - task: DotNetCoreCLI@2
-  displayName: build
+  displayName: Build
   inputs:
     command: 'build'
     projects: 'easyres-api/easyres-api.csproj'
-    arguments: '--configuration Release'
+    arguments: '--configuration $(BuildConfiguration)'
 
 - task: DotNetCoreCLI@2
   inputs:
@@ -32,8 +32,8 @@ steps:
     arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
     zipAfterPublish: True
 
-# this code takes all the files in $(Build.ArtifactStagingDirectory) and uploads them as an artifact of your build.
 - task: PublishBuildArtifacts@1
   inputs:
-    pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
-    artifactName: 'easyres-api'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
