@@ -1,0 +1,23 @@
+<div *ngIf="reservaties">
+    <div class="empty" *ngIf="isEmpty(reservaties)">
+        <h5>U heeft nog geen reservaties</h5>
+    </div>
+    <div class="main-content" *ngIf="!isEmpty(reservaties)">
+        <div class="reservatie-template" *ngFor="let reservatie of reservaties;">
+            <div class="card">
+                <div class="card-body">
+                    <div class="reservatie-header">
+                        <h4 class="card-title">{{reservatie.restaurant.naam}}</h4>
+                        <button class="btn-outline-danger btn button-reserve big" (click)="Annuleer(reservatie.reservatieId)">Annuleren</button>
+                        <button class="btn-outline-danger btn button-reserve small" (click)="Annuleer(reservatie.reservatieId)">✕</button>
+                    </div>
+                    <div class="reservatie-info">
+                        <p class="card-text pers"><strong>Aantal Personen: </strong><br class="br-pers">{{reservatie.aantalPersonen}}</p>
+                        <p class="card-text date"><strong>Datum: </strong><br>{{reservatie.datum}}</p>
+                        <p class="card-text time"><strong>Tijdstip: </strong><br>{{reservatie.tijdstip}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

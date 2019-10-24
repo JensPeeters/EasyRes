@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { RestaurantService, IReservatie, IRestaurant } from '../services/restaurant.service'
 import { ActivatedRoute } from '@angular/router';
 import {Location} from '@angular/common';
-import { isNull } from '@angular/compiler/src/output/output_ast';
-import { isNullOrUndefined } from 'util';
 
 @Component({
   selector: 'app-reservatie',
@@ -14,7 +12,17 @@ export class ReservatieComponent implements OnInit {
 
   restaurantId: number;
 
-  tempReservatie: IReservatie = {naam:null,datum:null,email:null,telefoonnummer:null,tijdstip:null,aantalpersonen:null,restaurant:null};
+  tempReservatie: IReservatie = 
+  {
+    userid:null,
+    naam:null,
+    datum:null,
+    email:null,
+    telefoonnummer:null,
+    tijdstip:null,
+    aantalpersonen:null,
+    restaurant:null
+  };
   finalReservatie: IReservatie;
   submitted: boolean = false;
   verified: boolean = false;
@@ -22,9 +30,6 @@ export class ReservatieComponent implements OnInit {
 
   constructor(private ResService : RestaurantService, private _Activatedroute:ActivatedRoute, private _location: Location) {
     this.today.setTime(Date.now());
-    if (!isNullOrUndefined(this.tempReservatie.restaurant)){
-      console.log(this.tempReservatie.restaurant.naam)
-    }
   }
 
   async ngOnInit() {
@@ -44,6 +49,8 @@ export class ReservatieComponent implements OnInit {
     console.log("verify: " + this.verify(this.finalReservatie))
     if(this.verify(this.finalReservatie)){
       this.submitted = true;
+      //this.finalReservatie.userid = GetUserId()
+      this.finalReservatie.userid = "test"
       this.ResService.PostReservation(this.finalReservatie).subscribe();
     }
   }
