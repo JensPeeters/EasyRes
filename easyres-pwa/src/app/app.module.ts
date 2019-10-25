@@ -19,6 +19,7 @@ import { BestelComponent } from './bestel/bestel.component';
 import { VerstuurBestellingComponent } from './verstuur-bestelling/verstuur-bestelling.component';
 import { BestellingService } from './services/bestelling.service';
 import { BesteldeProductenComponent } from './bestelde-producten/bestelde-producten.component';
+import { FavorietenComponent } from './favorieten/favorieten.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { BesteldeProductenComponent } from './bestelde-producten/bestelde-produc
     SessieComponent,
     BestelComponent,
     VerstuurBestellingComponent,
-    BesteldeProductenComponent
+    BesteldeProductenComponent,
+    FavorietenComponent
   ],
   imports: [
     BrowserModule,

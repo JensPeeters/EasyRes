@@ -19,12 +19,18 @@ export class RestaurantService {
   GetRestaurantByID(id: number){
     return this.http.get<IRestaurant>(`${this.urlAPI}/restaurant/${id}`);
   }
-
+  GetFavorites(Gebruikersid: string, naam?: string){
+    return this.http.get<IGebruiker>(`${this.urlAPI}/favorieten/${Gebruikersid}?naam=${naam}`);
+  }
   PostReservation(reservatie: IReservatie){
     return this.http.post(`${this.urlAPI}/restaurant/${reservatie.restaurant.restaurantId}/reservatie`, reservatie)
   }
 }
-
+export interface IGebruiker{
+  id: number;
+  gebruikersID: string;
+  restaurants: IRestaurant[];
+}
 export interface ILocatie {
   id: number;
   straat: string;

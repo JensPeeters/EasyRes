@@ -7,6 +7,7 @@ import { SessieComponent } from './sessie/sessie.component';
 import { BestelComponent } from './bestel/bestel.component';
 import { VerstuurBestellingComponent } from './verstuur-bestelling/verstuur-bestelling.component';
 import { BesteldeProductenComponent } from './bestelde-producten/bestelde-producten.component';
+import { FavorietenComponent } from './favorieten/favorieten.component';
 
 const routes: Routes = [
   {path:"restaurant", component:RestaurantComponent, data: {animation: "restaurant"}},
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path:"bestel/:id/:TafelNr/verstuur", component: VerstuurBestellingComponent},
   {path:"bestel/:id/:TafelNr", component: BestelComponent},
   {path:"actief", component:SessieComponent},
+  {path:"favorieten", component:FavorietenComponent, data: {animation: "favorieten"}},
   {path:"", redirectTo:"restaurant", pathMatch:"full", data: {animation: 'restaurant'}},
   {path:"**", redirectTo:"restaurant", pathMatch:"full", data: {animation: 'restaurant'}}
 ];
