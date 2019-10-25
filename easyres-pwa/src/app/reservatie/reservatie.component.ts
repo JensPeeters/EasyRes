@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { RestaurantService, IReservatie, IRestaurant } from '../services/restaurant.service'
+import { RestaurantService, IReservatie } from '../services/restaurant.service'
 import { ActivatedRoute } from '@angular/router';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-reservatie',

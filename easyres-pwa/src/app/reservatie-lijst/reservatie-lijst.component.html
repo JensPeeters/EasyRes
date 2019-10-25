@@ -4,12 +4,29 @@
     </div>
     <div class="main-content" *ngIf="!isEmpty(reservaties)">
         <div class="reservatie-template" *ngFor="let reservatie of reservaties;">
+            <div class="modal" tabindex="-1" role="dialog" id="popupModal">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Reservatie verwijderen</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                            <div class="modal-body">
+                                <p>Weet u zeker dat u deze reservatie van {{reservatie.restaurant.naam}} wilt verwijderen?</p>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Behouden</button>
+                              <button type="button" class="btn btn-outline-danger" data-dismiss="modal" (click)="Annuleer(reservatie.reservatieId)">Verwijderen</button>
+                            </div>
+                    </div>
+                </div>
+            </div>
             <div class="card">
                 <div class="card-body">
                     <div class="reservatie-header">
                         <h4 class="card-title">{{reservatie.restaurant.naam}}</h4>
-                        <button class="btn-outline-danger btn button-reserve big" (click)="Annuleer(reservatie.reservatieId)">Annuleren</button>
-                        <button class="btn-outline-danger btn button-reserve small" (click)="Annuleer(reservatie.reservatieId)">✕</button>
+                        <button class="btn-outline-danger btn button-reserve big" data-toggle="modal" data-target="#popupModal">Annuleren</button>
+                        <button class="btn-outline-danger btn button-reserve small" data-toggle="modal" data-target="#popupModal">✕</button>
                     </div>
                     <div class="reservatie-info">
                         <p class="card-text pers"><strong>Aantal Personen: </strong><br class="br-pers">{{reservatie.aantalPersonen}}</p>

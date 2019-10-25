@@ -27,12 +27,12 @@ import { ReservatieLijstComponent } from './reservatie-lijst/reservatie-lijst.co
     ToolbarComponent,
     RestaurantComponent,
     ReservatieComponent,
+    ReservatieLijstComponent,
     RestaurantInfoComponent,
     SessieComponent,
     BestelComponent,
     VerstuurBestellingComponent,
-    BesteldeProductenComponent,
-    ReservatieLijstComponent
+    BesteldeProductenComponent
   ],
   imports: [
     BrowserModule,
