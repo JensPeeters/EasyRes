@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using easyres_api.Model;
+﻿using easyres_api.Model;
 using easyres_api.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace easyres_api.Controllers
 {
@@ -146,7 +143,7 @@ namespace easyres_api.Controllers
             context.SaveChanges();
             string enter = "<br>";
             string mailmsg =
-                "Beste " + reservatie.Naam +"," + 
+                "Beste " + reservatie.Naam + "," +
                 enter +
                 enter +
                 "Bedankt voor uw reservering! Wij verzoeken u vriendelijk om de onderstaande" + enter +
@@ -156,7 +153,7 @@ namespace easyres_api.Controllers
                 "<li> Op naam van: " + reservatie.Naam + "</li>" +
                 "<li> Bij restaurant: " + reservatie.Restaurant.Naam + "</li>" +
                 "<li> Aantal personen: " + reservatie.AantalPersonen + "</li>" +
-                "<li> Gepland op: " + reservatie.Datum + " om " + reservatie.Tijdstip + "</li>" + 
+                "<li> Gepland op: " + reservatie.Datum + " om " + reservatie.Tijdstip + "</li>" +
                 "<li> Email adres: " + reservatie.Email + "</li>" +
                 "<li> Telefoonnummer: " + reservatie.TelefoonNummer.ToString() + "</li>" +
                 "</ul>" +
