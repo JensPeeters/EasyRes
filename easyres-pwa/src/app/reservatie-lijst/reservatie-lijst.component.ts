@@ -10,6 +10,7 @@ export class ReservatieLijstComponent implements OnInit {
 
   reservaties: IReservatie[];
   userid: string;
+  aantal: number = 10;
 
   constructor(private ResService : RestaurantService) {
     //Nog aanpassen nadat userid beschikbaar is
@@ -20,6 +21,7 @@ export class ReservatieLijstComponent implements OnInit {
     this.ResService.GetReservationsByUserID(this.userid).subscribe(result => {
       this.reservaties = result;
     })
+    this.reservaties = this.reservaties
   }
 
   Annuleer(reservatieId){
@@ -33,6 +35,10 @@ export class ReservatieLijstComponent implements OnInit {
   isEmpty(arr){
     if (!(arr.length > 0)){return true;}
     else{return false;}
+  }
+
+  showMore(){
+    this.aantal += 10;
   }
 
 }

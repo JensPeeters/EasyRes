@@ -44,6 +44,17 @@
     padding-top: 35px;
 }
 
+.main-footer{
+    grid-column: 2;
+    display: flex;
+    justify-content: center;
+    .show-more{
+        color: #6c757d;
+        border: 0;
+        background: 0;
+    }
+}
+
 @media screen and (max-width: 768px){
     .main-content{
         grid-template-columns: 12.5% 75% 12.5%;
