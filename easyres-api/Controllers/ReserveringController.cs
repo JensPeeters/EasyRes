@@ -2,6 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using easyres_api.Model;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace easyres_api.Controllers
 {
@@ -17,9 +22,15 @@ namespace easyres_api.Controllers
         }
 
         [HttpGet]
-        public List<Reservatie> GetReserveringen()
+        public List<Reservatie> GetReserveringen(string userid)
         {
-            return context.Reservaties.ToList();
+            IQueryable<Reservatie> query = context.Reservaties.Include(a => a.Restaurant);
+            if (!string.IsNullOrEmpty(userid))
+            {
+                query = query.Where(b => b.UserId == userid);
+            }
+
+            return query.ToList();
         }
 
         [Route("{id}")]
@@ -31,6 +42,21 @@ namespace easyres_api.Controllers
             if (reservatie == null)
                 return NotFound();
             return reservatie;
+        }
+
+        [Route("{id}")]
+        [HttpDelete]
+        public ActionResult<Reservatie> DeleteReservatie(long id)
+        {
+            IQueryable<Reservatie> query = context.Reservaties;
+            var reservatie = query.Where(a => a.ReservatieId == id).FirstOrDefault();
+            
+            if (reservatie == null)
+            return NotFound();
+
+            context.Reservaties.Remove(reservatie);
+            context.SaveChanges();
+            return NoContent();
         }
     }
 }

@@ -238,6 +238,7 @@ namespace easyres_api.Model
                 {
                     new Reservatie()
                     {
+                        UserId = "test123",
                         AantalPersonen = 4,
                         Datum = "12/12/12",
                         Tijdstip = "19:00",
@@ -249,6 +250,19 @@ namespace easyres_api.Model
 
                     new Reservatie()
                     {
+                        UserId = "test",
+                        AantalPersonen = 6,
+                        Datum = "15/14/13",
+                        Tijdstip = "18:30",
+                        Email = "johndoe@example.com",
+                        Naam = "John Doe",
+                        TelefoonNummer = "+32412345678",
+                        Restaurant = restaurants[3]
+                    },
+
+                    new Reservatie()
+                    {
+                        UserId = "test",
                         AantalPersonen = 6,
                         Datum = "15/14/13",
                         Tijdstip = "18:30",

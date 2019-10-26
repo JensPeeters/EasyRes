@@ -7,11 +7,13 @@ import { SessieComponent } from './sessie/sessie.component';
 import { BestelComponent } from './bestel/bestel.component';
 import { VerstuurBestellingComponent } from './verstuur-bestelling/verstuur-bestelling.component';
 import { BesteldeProductenComponent } from './bestelde-producten/bestelde-producten.component';
+import { ReservatieLijstComponent } from './reservatie-lijst/reservatie-lijst.component';
 
 const routes: Routes = [
   {path:"restaurant", component:RestaurantComponent, data: {animation: "restaurant"}},
   {path: 'restaurant/:restaurant.restaurantId', component: RestaurantInfoComponent, data: {animation: 'restaurantInfo'} },
   {path:"reservatie/:id", component:ReservatieComponent, data: {animation: 'reservatie'}},
+  {path:"reservatie-lijst", component:ReservatieLijstComponent, data: {animation: 'reservatielijst'}},
   //{path:"betaal/:id", component:BetaalComponent},
   {path:"bestel/:id/:TafelNr/producten", component: BesteldeProductenComponent},
   {path:"bestel/:id/:TafelNr/verstuur", component: VerstuurBestellingComponent},
