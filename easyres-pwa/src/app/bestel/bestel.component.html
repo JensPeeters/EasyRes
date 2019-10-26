@@ -17,7 +17,7 @@
         <ul>
           <li *ngFor="let drinken of restaurant.menu.dranken">
             <p>{{drinken.naam}}</p>
-            <p>€{{drinken.prijs.toString().replace('.',',')}}</p>
+            <p>{{drinken.prijs | currency:'€' }}</p>
             <button class="btn btn-danger" (click)=AddToBar(drinken.naam,drinken.prijs)>Voeg toe</button>
           </li>
         </ul>
@@ -36,7 +36,7 @@
         <ul>
           <li *ngFor="let voorgerecht of restaurant.menu.voorgerechten">
             <p>{{voorgerecht.naam}}</p>
-            <p>€{{voorgerecht.prijs.toString().replace('.',',')}}</p>
+            <p>{{voorgerecht.prijs | currency:'€' }}</p>
             <button class="btn btn-danger" (click)=AddToKitchen(voorgerecht.naam,voorgerecht.prijs)>Voeg toe</button>
           </li>
         </ul>
@@ -55,7 +55,7 @@
         <ul>
           <li *ngFor="let hoofdgerecht of restaurant.menu.hoofdgerechten">
             <p>{{hoofdgerecht.naam}}</p>
-            <p>€{{hoofdgerecht.prijs.toString().replace('.',',')}}</p>
+            <p>{{hoofdgerecht.prijs | currency:'€' }}</p>
             <button class="btn btn-danger" (click)=AddToKitchen(hoofdgerecht.naam,hoofdgerecht.prijs)>Voeg toe</button>
           </li>
         </ul>
@@ -74,7 +74,7 @@
         <ul>
           <li *ngFor="let dessert of restaurant.menu.desserts">
             <p>{{dessert.naam}}</p>
-            <p>€{{dessert.prijs.toString().replace('.',',')}}</p>
+            <p>{{dessert.prijs | currency:'€' }}</p>
             <button class="btn btn-danger" (click)=AddToKitchen(dessert.naam,dessert.prijs)>Voeg toe</button>
           </li>
         </ul>

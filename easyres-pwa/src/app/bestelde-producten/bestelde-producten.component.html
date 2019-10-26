@@ -14,13 +14,15 @@
   <hr>
   <li *ngFor="let drank of bestelling.dranken">
     <p>{{drank.naam}}</p>
-    <p>€ {{drank.prijs}}</p>
+    <p>{{drank.prijs | currency:'€' }}</p>
     <p>{{drank.aantal}}</p>
+    <button class="btn btn-outline-danger">✕</button>
   </li>
   <li *ngFor="let etenswaar of bestelling.etenswaren">
     <p>{{etenswaar.naam}}</p>
-    <p>€ {{etenswaar.prijs}}</p>
+    <p>{{etenswaar.prijs | currency:'€' }}</p>
     <p>{{etenswaar.aantal}}</p>
+    <button class="btn btn-outline-danger">✕</button>
   </li>
   <hr>
   <li>

@@ -9,11 +9,26 @@
     font-size: 20px;
     font-weight: bold;
 }
+p{
+    margin: auto;
+}
+
 div li{
+    margin-bottom: 10px;
     display: grid;
-    grid-template-columns: 33% 33% 33%;
+    grid-template-columns: 30% 30% 30% 8%;
+    justify-content: center;
     text-align: center;
+  
+}
+.btn-outline-danger{
+    padding: 0px 0px;
 }
 span{
     font-weight: normal;
+}
+@media screen and (max-width: 400px){
+    div li{
+        grid-template-columns: 30% 30% 25% 8%;
+    }
 }
