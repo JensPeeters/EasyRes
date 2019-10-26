@@ -19,6 +19,19 @@ export class BesteldeProductenComponent implements OnInit {
   ngOnInit() {
   }
 
+  VerwijderDrank(naam:string){
+    this.bestelServ.Bestelling.dranken.forEach((drank, index) => {
+      if(drank.naam == naam) this.bestelServ.bestelling.dranken.splice(index,1);
+      this.bestelling = this.bestelServ.Bestelling;
+    })
+  }
+  VerwijderEtenswaar(naam:string){
+    this.bestelServ.Bestelling.etenswaren.forEach((etenswaar, index) => {
+      if(etenswaar.naam == naam) this.bestelServ.bestelling.etenswaren.splice(index,1);
+      this.bestelling = this.bestelServ.Bestelling;
+    })
+  }
+
   SendOrder(){
     this.bestelServ.PostOrder();
   }

@@ -1,8 +1,7 @@
 <div class="button-top-fixed">
   <button class="btn btn-danger" [routerLink]="['../']">Menu kaart
   </button>
-  <button class="btn btn-danger"
-    [routerLink]="['/bestel', RestaurantId,TafelNr,'verstuur']">Bestellen</button>
+  <button class="btn btn-danger" [routerLink]="['/bestel', RestaurantId,TafelNr,'verstuur']">Bestellen</button>
 </div>
 <div>
   <hr>
@@ -16,19 +15,57 @@
     <p>{{drank.naam}}</p>
     <p>{{drank.prijs | currency:'€' }}</p>
     <p>{{drank.aantal}}</p>
-    <button class="btn btn-outline-danger">✕</button>
+    <a class="btn btn-outline-danger" data-toggle="modal" href="#popupModalDrank">✕</a>
+    <div class="modal" tabindex="-1" role="dialog" id="popupModalDrank">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Drank verwijderen</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body">
+            <p>Weet u zeker dat u "{{drank.naam}}" wilt verwijderen uit de lijst?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Behouden</button>
+            <button type="button" class="btn btn-outline-danger" data-dismiss="modal"
+              (click)="VerwijderDrank(drank.naam)">Verwijderen</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </li>
   <li *ngFor="let etenswaar of bestelling.etenswaren">
     <p>{{etenswaar.naam}}</p>
     <p>{{etenswaar.prijs | currency:'€' }}</p>
     <p>{{etenswaar.aantal}}</p>
-    <button class="btn btn-outline-danger">✕</button>
+    <a class="btn btn-outline-danger" data-toggle="modal" href="#popupModalEten">✕</a>
+    <div class="modal" tabindex="-1" role="dialog" id="popupModalEten">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Etenswaar verwijderen</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body">
+            <p>Weet u zeker dat u "{{etenswaar.naam}}" wilt verwijderen uit de lijst?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Behouden</button>
+            <button type="button" class="btn btn-outline-danger" data-dismiss="modal"
+              (click)="VerwijderEtenswaar(etenswaar.naam)">Verwijderen</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </li>
   <hr>
   <li>
     <strong>Tafel : <span>{{bestelling.tafelNr}}</span></strong>
-    <div></div>
-    <strong>Totaal : <span>{{bestelling.prijs}} euro</span> </strong>
+    <strong>Totaal : </strong>
+    <span>{{bestelling.prijs | currency:'€' }}</span>
   </li>
   <hr>
 

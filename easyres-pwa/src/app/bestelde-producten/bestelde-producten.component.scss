@@ -21,8 +21,10 @@ div li{
     text-align: center;
   
 }
-.btn-outline-danger{
-    padding: 0px 0px;
+a{
+    padding: 5px 5px !important;
+    margin: auto;
+    text-align:center;
 }
 span{
     font-weight: normal;
@@ -31,4 +33,5 @@ span{
     div li{
         grid-template-columns: 30% 30% 25% 8%;
     }
+  
 }
