@@ -12,8 +12,7 @@ export class ToolbarComponent implements OnInit {
   }
 
   userfirstname() {
-    let userfirstname = this.msalService.getUserFirstName();
-    return userfirstname;
+    return this.msalService.getUserFirstName();
   }
 
   login() {
