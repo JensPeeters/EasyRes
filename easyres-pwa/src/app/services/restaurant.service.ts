@@ -13,6 +13,7 @@ export class RestaurantService {
   direction: string = "asc"
   constructor(private http : HttpClient) { }
 
+  // Restaurants
   GetRestaurants(filter?: string){
     return this.http.get<IRestaurant[]>(`${this.urlAPI}/restaurant?${filter}&pageSize=${this.pageSize}&sortBy=${this.sortBy}&direction=${this.direction}&pageNumber=${this.pageNumber}`);
   }
@@ -20,8 +21,21 @@ export class RestaurantService {
     return this.http.get<IRestaurant>(`${this.urlAPI}/restaurant/${id}`);
   }
 
+  // Reservaties
+  GetReservationsByUserID(userid: string){
+    return this.http.get<IReservatie[]>(`${this.urlAPI}/reservatie?userid=${userid}`);
+  }
+
+  GetReservationByID(id: number){
+    return this.http.get<IReservatie>(`${this.urlAPI}/reservatie/${id}`);
+  }
+
   PostReservation(reservatie: IReservatie){
-    return this.http.post(`${this.urlAPI}/restaurant/${reservatie.restaurant.restaurantId}/reservatie`, reservatie)
+    return this.http.post(`${this.urlAPI}/restaurant/${reservatie.restaurant.restaurantId}/reservatie`, reservatie);
+  }
+
+  DeleteReservationByID(id:number){
+    return this.http.delete(`${this.urlAPI}/reservatie/${id}`);
   }
 }
 
@@ -75,6 +89,7 @@ export interface IOpeningsuren {
 }
 
 export interface IReservatie{
+  userid: string;
   naam: string;
   email: string;
   telefoonnummer: string;

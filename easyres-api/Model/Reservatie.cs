@@ -11,6 +11,7 @@ namespace easyres_api.Model
     {
         [Key]
         public int ReservatieId { get; set; }
+        public string UserId { get; set; }
         public string Naam { get; set; }
         public string Email { get; set; }
         public string TelefoonNummer { get; set; }

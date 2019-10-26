@@ -134,6 +134,7 @@ namespace easyres_api.Controllers
 
             Reservatie finalReservatie = new Reservatie();
 
+            finalReservatie.UserId = reservatie.UserId;
             finalReservatie.Naam = reservatie.Naam;
             finalReservatie.Email = reservatie.Email;
             finalReservatie.TelefoonNummer = reservatie.TelefoonNummer;
