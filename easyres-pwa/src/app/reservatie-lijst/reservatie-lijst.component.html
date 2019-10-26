@@ -1,6 +1,6 @@
-<div *ngIf="reservaties">
+<div *ngIf="reservaties && MsalService.isLoggedIn()">
     <div class="empty" *ngIf="isEmpty(reservaties)">
-        <h5>U heeft nog geen reservaties</h5>
+        <h5>U heeft nog geen reservaties.</h5>
     </div>
     <div class="main-content" *ngIf="!isEmpty(reservaties)">
         <div class="reservatie-template" *ngFor="let reservatie of reservaties| slice:0:aantal;">
@@ -26,7 +26,7 @@
                     <div class="reservatie-header">
                         <h4 class="card-title">{{reservatie.restaurant.naam}}</h4>
                         <button class="btn-outline-danger btn button-reserve big" data-toggle="modal" data-target="#popupModal">Annuleren</button>
-                        <button class="btn-outline-danger btn button-reserve small" data-toggle="modal" data-target="#popupModal">✕</button>
+                        <button class="btn-outline-danger btn button-reserve small" data-toggle="modal" data-target="#popupModal"><i class="fa fa-times fa-lg"></i></button>
                     </div>
                     <div class="reservatie-info">
                         <p class="card-text pers"><strong>Aantal Personen: </strong><br class="br-pers">{{reservatie.aantalPersonen}}</p>
@@ -40,4 +40,7 @@
             <button class="btn-sm show-more" (click)="showMore()">Meer weergeven</button>
         </div>
     </div>
+</div>
+<div class="empty" *ngIf="!MsalService.isLoggedIn()">
+    <h5>Gelieve eerst in te loggen voor dat u uw reservaties wilt bekijken.</h5>
 </div>

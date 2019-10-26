@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IReservatie, RestaurantService } from '../services/restaurant.service';
+import { MsalService } from '../services/msal.service';
 
 @Component({
   selector: 'app-reservatie-lijst',
@@ -12,9 +13,10 @@ export class ReservatieLijstComponent implements OnInit {
   userid: string;
   aantal: number = 10;
 
-  constructor(private ResService : RestaurantService) {
+  constructor(private ResService : RestaurantService, private MsalService : MsalService) {
     //Nog aanpassen nadat userid beschikbaar is
-    this.userid = "test"
+    if(MsalService.isLoggedIn())
+      this.userid = MsalService.getUserObjectId();
    }
 
   async ngOnInit() {
