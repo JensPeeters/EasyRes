@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RestaurantService {
 
-  urlAPI : string = "https://localhost:44315/api";
+  urlAPI : string = "https://easyres-api.azurewebsites.net/api";
   pageNumber: number = 0;
   pageSize: number = 25;
   sortBy: string = "Aanbevolen"

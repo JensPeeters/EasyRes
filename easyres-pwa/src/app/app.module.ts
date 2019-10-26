@@ -12,7 +12,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { RestaurantService } from './services/restaurant.service';
 import { ReservatieComponent } from './reservatie/reservatie.component';
-import { MsalService }  from './services/msal.service';
+import { MsalService } from './services/msal.service';
 import { RestaurantInfoComponent } from './restaurant-info/restaurant-info.component';
 import { SessieComponent } from './sessie/sessie.component';
 import { BestelComponent } from './bestel/bestel.component';
