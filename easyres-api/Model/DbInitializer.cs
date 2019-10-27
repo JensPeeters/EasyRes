@@ -283,9 +283,27 @@ namespace easyres_api.Model
                     }
                 };
                 restaurants[0].Reservaties = reservaties;
+                List<Gebruiker> gebruikers = new List<Gebruiker>()
+                {
+                    new Gebruiker()
+                    {
+                        GebruikersID = "Davy",
+                        Restaurants = new List<Restaurant>(){restaurants[0],restaurants[1],restaurants[2]}
+                    },
+                    new Gebruiker()
+                    {
+                        GebruikersID = "cfb6e87d-aadd-4656-868b-4650e48d8f9e",
+                        Restaurants = new List<Restaurant>(){restaurants[3],restaurants[4],restaurants[5]}
+                    },
+                };
                 foreach (Reservatie reservatie in reservaties)
                 {
                     context.Reservaties.Add(reservatie);
+                }
+
+                foreach(Gebruiker gebruiker in gebruikers)
+                {
+                    context.Gebruikers.Add(gebruiker);
                 }
 
                 foreach (Bestelling bestelling in bestellingen)

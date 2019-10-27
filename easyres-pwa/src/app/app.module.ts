@@ -19,7 +19,9 @@ import { BestelComponent } from './bestel/bestel.component';
 import { VerstuurBestellingComponent } from './verstuur-bestelling/verstuur-bestelling.component';
 import { BestellingService } from './services/bestelling.service';
 import { BesteldeProductenComponent } from './bestelde-producten/bestelde-producten.component';
+import { FavorietenComponent } from './favorieten/favorieten.component';
 import { ReservatieLijstComponent } from './reservatie-lijst/reservatie-lijst.component';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { ReservatieLijstComponent } from './reservatie-lijst/reservatie-lijst.co
     SessieComponent,
     BestelComponent,
     VerstuurBestellingComponent,
-    BesteldeProductenComponent
+    BesteldeProductenComponent,
+    FavorietenComponent
   ],
   imports: [
     BrowserModule,

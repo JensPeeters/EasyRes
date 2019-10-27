@@ -2,6 +2,12 @@
     position: relative;
     display: inline-block;
     text-align: center;
+    width: 100%;
+}
+.mainImage{
+    max-width: 100%;
+    height: auto;
+    
 }
 .wrapper-header-image:before{
     content: "";
@@ -11,18 +17,19 @@
     height: 100%;
     z-index: 1;
     position: absolute;
-    top: 0;
     left: 0;
 }
 .header-image-text{
     position: absolute;
     color: white;
-    top: 42%;
+    top: 50%;
+    transform: translateY(-50%);
     left: 30%;
     right: 30%;
     z-index: 2;
     font-size: 30px;
     font-weight: bold;
+    margin-top: 0;
 }
 .main-content{
     padding-top: 30px;
@@ -37,6 +44,10 @@
     width: 30%;
     margin-top: 0px;
     margin-bottom:5px;
+}
+.button-card{
+    margin-right: 10px;
+    margin-bottom: 7px;
 }
 .icon-search{
     padding-bottom: 2px;
@@ -81,9 +92,6 @@ input::placeholder{
     padding: 3px;
     border-radius: 3px;
     font-size: 15px;
-}
-.button-more-info{
-    margin-left: 10px;
 }
 .restaurant-advertentie-template{
     padding-top: 10px;
@@ -199,18 +207,16 @@ p{
         grid-column-start: 1;
         grid-column-end: 3;
     }
-    .button-more-info,.button-reserve{
-        width: 100%;
-    }
-    .button-more-info{
-        margin-top: 10px;
-        margin-left: 0px;
-    }
     input{
         width: 95%;
     }
     .typeNormal{
         display: none;
+    }
+}
+@media screen and (max-width: 740px){
+    .main-content{
+        width: 80%;
     }
 }
 @media screen and (max-width: 680px){
@@ -231,7 +237,7 @@ p{
         font-size: 14px;
     }
     .header-image-text{
-        font-size: 20px;
+        font-size: 16px;
     }
     input{
         width: 90%;
@@ -252,7 +258,7 @@ p{
     color: black;
 }
 
-@media screen and (min-width: 740px){
+@media screen and (min-width: 880px){
     .typeDropdown{
         display: none;
     }
