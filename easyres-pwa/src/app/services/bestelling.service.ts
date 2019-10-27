@@ -13,7 +13,7 @@ export class BestellingService {
     etenswaren: []
   };
 
-  urlAPI: string = "https://localhost:44315/api";
+  urlAPI: string = "https://easyres-api.azurewebsites.net/api";
   constructor(private http: HttpClient) { }
 
   PostOrder() {

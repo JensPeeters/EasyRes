@@ -6,24 +6,40 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RestaurantService {
 
-  urlAPI : string = "https://localhost:44315/api";
+  urlAPI : string = "https://easyres-api.azurewebsites.net/api";
   pageNumber: number = 0;
   pageSize: number = 25;
   sortBy: string = "Aanbevolen"
   direction: string = "asc"
   constructor(private http : HttpClient) { }
 
+  // Restaurants
   GetRestaurants(filter?: string){
     return this.http.get<IRestaurant[]>(`${this.urlAPI}/restaurant?${filter}&pageSize=${this.pageSize}&sortBy=${this.sortBy}&direction=${this.direction}&pageNumber=${this.pageNumber}`);
   }
   GetRestaurantByID(id: number){
     return this.http.get<IRestaurant>(`${this.urlAPI}/restaurant/${id}`);
   }
+  
   GetFavorites(Gebruikersid: string, naam?: string){
     return this.http.get<IGebruiker>(`${this.urlAPI}/favorieten/${Gebruikersid}?naam=${naam}`);
   }
+
+  // Reservaties
+  GetReservationsByUserID(userid: string){
+    return this.http.get<IReservatie[]>(`${this.urlAPI}/reservatie?userid=${userid}`);
+  }
+
+  GetReservationByID(id: number){
+    return this.http.get<IReservatie>(`${this.urlAPI}/reservatie/${id}`);
+  }
+
   PostReservation(reservatie: IReservatie){
-    return this.http.post(`${this.urlAPI}/restaurant/${reservatie.restaurant.restaurantId}/reservatie`, reservatie)
+    return this.http.post(`${this.urlAPI}/restaurant/${reservatie.restaurant.restaurantId}/reservatie`, reservatie);
+  }
+
+  DeleteReservationByID(id:number){
+    return this.http.delete(`${this.urlAPI}/reservatie/${id}`);
   }
 }
 export interface IGebruiker{
@@ -81,6 +97,7 @@ export interface IOpeningsuren {
 }
 
 export interface IReservatie{
+  userid: string;
   naam: string;
   email: string;
   telefoonnummer: string;
