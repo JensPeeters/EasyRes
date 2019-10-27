@@ -4,6 +4,7 @@ import { FavorietenComponent } from './favorieten.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { MsalService } from '../services/msal.service';
 
 describe('FavorietenComponent', () => {
   let component: FavorietenComponent;
@@ -12,7 +13,8 @@ describe('FavorietenComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ FormsModule, HttpClientModule, RouterModule.forRoot([]) ],
-      declarations: [ FavorietenComponent ]
+      declarations: [ FavorietenComponent ],
+      providers: [MsalService]
     })
     .compileComponents();
   }));

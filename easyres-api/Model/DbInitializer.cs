@@ -292,7 +292,7 @@ namespace easyres_api.Model
                     },
                     new Gebruiker()
                     {
-                        GebruikersID = "Hector",
+                        GebruikersID = "cfb6e87d-aadd-4656-868b-4650e48d8f9e",
                         Restaurants = new List<Restaurant>(){restaurants[3],restaurants[4],restaurants[5]}
                     },
                 };

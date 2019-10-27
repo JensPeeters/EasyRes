@@ -43,9 +43,9 @@
                     </h5>
                     <h6 class="card-subtitle mb-2 text-muted">Restaurant - Italiaans</h6>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <button class="btn-danger btn button-reserve">Reserveer</button>
-                    <button class="btn-danger btn button-more-info">Scan tafel</button>
-                    <button class="btn-outline-danger btn button-more-info">Meer info</button>
+                    <button class="btn-danger btn button-card">Reserveer</button>
+                    <button class="btn-danger btn button-card">Scan tafel</button>
+                    <button class="btn-outline-danger btn button-card">Meer info</button>
                 </div>
             </div>
     </div>
@@ -55,9 +55,9 @@
                     <h5 class="card-title">{{restaurant.naam}}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">{{restaurant.soort}} - {{restaurant.type}}</h6>
                     <p class="card-text">{{restaurant.beschrijving}}</p>
-                    <button class="btn-danger btn button-reserve" [routerLink]="['/reservatie', restaurant.restaurantId]">Reserveer</button>
-                    <button class="btn-danger btn button-more-info"  [routerLink]="['/scan', restaurant.restaurantId]">Scan tafel</button>
-                    <button class="btn-outline-danger btn button-more-info"  [routerLink]="['/restaurant', restaurant.restaurantId]">Meer info</button>
+                    <button class="btn-danger btn button-card" [routerLink]="['/reservatie', restaurant.restaurantId]">Reserveer</button>
+                    <button class="btn-danger btn button-card" [routerLink]="['/scan', restaurant.restaurantId]">Scan tafel</button>
+                    <button class="btn-outline-danger btn button-card" [routerLink]="['/restaurant', restaurant.restaurantId]">Meer info</button>
                 </div>
             </div>
     </div>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,7 +8,7 @@ namespace easyres_api.Model
 {
     public class Gebruiker
     {
-        public int ID { get; set; }
+        [Key]
         public string GebruikersID { get; set; }
         public List<Restaurant> Restaurants { get; set; }
     }

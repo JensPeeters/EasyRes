@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class RestaurantService {
 
   urlAPI : string = "https://easyres-api.azurewebsites.net/api";
+  //urlAPI : string = "https://localhost:44315/api";
   pageNumber: number = 0;
   pageSize: number = 25;
   sortBy: string = "Aanbevolen"
@@ -20,9 +21,13 @@ export class RestaurantService {
   GetRestaurantByID(id: number){
     return this.http.get<IRestaurant>(`${this.urlAPI}/restaurant/${id}`);
   }
-  
+
+  // Favorieten
   GetFavorites(Gebruikersid: string, naam?: string){
     return this.http.get<IGebruiker>(`${this.urlAPI}/favorieten/${Gebruikersid}?naam=${naam}`);
+  }
+  DeleteFavoritesByID(Gebruikersid: string, Restaurantid: number){
+    return this.http.delete(`${this.urlAPI}/favorieten/${Gebruikersid}/${Restaurantid}`);
   }
 
   // Reservaties

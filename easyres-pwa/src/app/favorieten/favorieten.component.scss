@@ -40,6 +40,7 @@ input{
 .fa-star,.fa-slash{
     position: absolute;
     right: 1em;
+    cursor: pointer;
 }
 .fa-slash{
     opacity: 0;
@@ -47,6 +48,10 @@ input{
 .fa-slash:hover{
     color: red;
     opacity: 1;
+}
+h5{
+    margin-top: 15px;
+    text-align: center;
 }
 @media screen and (max-width: 740px){
     p{
