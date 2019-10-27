@@ -26,6 +26,10 @@ export class ReservatieLijstComponent implements OnInit {
     this.reservaties = this.reservaties
   }
 
+  isUserLoggedIn(){
+    return this.MsalService.isLoggedIn();
+  }
+
   Annuleer(reservatieId){
     this.ResService.DeleteReservationByID(reservatieId).subscribe(a => {
       this.ResService.GetReservationsByUserID(this.userid).subscribe(result => {

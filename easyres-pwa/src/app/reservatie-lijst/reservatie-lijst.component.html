@@ -1,4 +1,4 @@
-<div *ngIf="reservaties && MsalService.isLoggedIn()">
+<div *ngIf="reservaties && isUserLoggedIn()">
     <div class="empty" *ngIf="isEmpty(reservaties)">
         <h5>U heeft nog geen reservaties.</h5>
     </div>
@@ -41,6 +41,6 @@
         </div>
     </div>
 </div>
-<div class="empty" *ngIf="!MsalService.isLoggedIn()">
+<div class="empty" *ngIf="!isUserLoggedIn()">
     <h5>Gelieve eerst in te loggen voor dat u uw reservaties wilt bekijken.</h5>
 </div>
