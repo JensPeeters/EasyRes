@@ -22,10 +22,18 @@ steps:
 
 - script: |
     npm install -g @angular/cli
+  displayName: 'install Angular CLI'
+
+- task: Npm@1
+  inputs:
+    command: 'install'
+    workingDir: 'easyres-keukenbarscherm'
+  displayName: 'npm install'
+
+- script: |
     cd easyres-keukenbarscherm
-    npm install
     ng build --prod
-  displayName: 'npm install and build'
+  displayName: 'ng build'
 
 - task: ArchiveFiles@2
   inputs:
