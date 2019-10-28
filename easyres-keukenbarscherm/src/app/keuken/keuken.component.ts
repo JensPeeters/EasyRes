@@ -50,9 +50,7 @@ export class KeukenComponent implements OnInit {
     this.DoneList = [];
     this.ProcessList = [];
 
-    console.log(this.Bestellingen);
     this.Bestellingen.forEach(element => {
-      console.log(element.etenGereed);
       if(element.etenGereed){
         this.DoneList.push(element);
       }else{
