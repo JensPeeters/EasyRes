@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService, IProduct, IBestelling } from '../data.service';
+import { element } from 'protractor';
 
 
 @Component({
@@ -20,32 +21,43 @@ export class KeukenComponent implements OnInit {
   ngOnInit() {
     this.serv.GetAlleVoedingsbestellingen().subscribe(result => {
       this.Bestellingen = result;
+      this.Checklist();
     });
-
-    if (this.UpdateBestelling.Etengereed) {
-      this.ProcessList.push();
-    } 
-    
-    if (this.UpdateBestelling.Etengereed == false) {
-      this.DoneList.push();
-    } 
   }
 
   Back(bestelling: IBestelling) {
-    bestelling.Etengereed = false;
+    bestelling.etenGereed = false;
     this.serv.PutVoedingsbestelling(bestelling).subscribe(res => {
       this.serv.GetAlleVoedingsbestellingen().subscribe(result => {
         this.Bestellingen = result;
+        this.Checklist();
       });
     });
   }
 
   Done(bestelling: IBestelling) {
-    bestelling.Etengereed = true;
+    bestelling.etenGereed = true;
     this.serv.PutVoedingsbestelling(bestelling).subscribe(res => {
       this.serv.GetAlleVoedingsbestellingen().subscribe(result => {
         this.Bestellingen = result;
+        this.Checklist();
+        
       });
+    });
+  }
+
+  Checklist(){
+    this.DoneList = [];
+    this.ProcessList = [];
+
+    console.log(this.Bestellingen);
+    this.Bestellingen.forEach(element => {
+      console.log(element.etenGereed);
+      if(element.etenGereed){
+        this.DoneList.push(element);
+      }else{
+        this.ProcessList.push(element);
+      }
     });
   }
 }
