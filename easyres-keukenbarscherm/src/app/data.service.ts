@@ -9,12 +9,18 @@ export class DataService {
 
   constructor(private http : HttpClient) { }
 
+  url = "";
+
   GetAlleDrankbestellingen(){
-    return this.http.get<IBestelling[]>(`https://localhost:44315/api/bestelling/bar`)
+    return this.http.get<IBestelling[]>(`https://localhost:44315/api/restaurant/1/bestelling/bar`);
   }
 
   GetAlleVoedingsbestellingen(){
-    return this.http.get<IBestelling[]>(`https://localhost:44315/api/bestelling/keuken`)
+    return this.http.get<IBestelling[]>(`https://localhost:44315/api/restaurant/1/bestelling/keuken`);
+  }
+
+  PutVoedingsbestelling(bestelling : IBestelling){
+    return this.http.put<IBestelling>(`https://localhost:44315/api/restaurant/1/bestelling`, bestelling);
   }
 }
 
@@ -28,7 +34,9 @@ export class DataService {
 
   export interface IBestelling {
       bestellingId: number;
-      besteldeEtenswaren: IProduct[];
-      besteldeDranken: IProduct[];
+      etenswaren: IProduct[];
+      dranken: IProduct[];
       tafelNr: number;
+      etenGereed: boolean;
+      Drinkengereed: boolean;
   }
