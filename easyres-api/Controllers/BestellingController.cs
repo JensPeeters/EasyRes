@@ -73,5 +73,14 @@ namespace easyres_api.Controllers
                 return NotFound();
             return bestelling;
         }
+
+        [Route("{id}/bestelling")]
+        [HttpPut]
+
+        public ActionResult<Bestelling> UpdateBestellingen([FromBody] Bestelling bestelling, long id) {
+            context.Bestellingen.Update(bestelling);
+            context.SaveChanges();
+            return bestelling;
+        }
     }
 }

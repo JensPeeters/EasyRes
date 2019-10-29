@@ -1,26 +1,26 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ReservatieComponent } from './reservatie.component';
-import { RouterModule } from '@angular/router';
+import { FavorietenComponent } from './favorieten.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 import { MsalService } from '../services/msal.service';
 
-describe('ReservatieComponent', () => {
-  let component: ReservatieComponent;
-  let fixture: ComponentFixture<ReservatieComponent>;
+describe('FavorietenComponent', () => {
+  let component: FavorietenComponent;
+  let fixture: ComponentFixture<FavorietenComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, HttpClientModule, RouterModule.forRoot([])],
-      declarations: [ ReservatieComponent ],
+      imports: [ FormsModule, HttpClientModule, RouterModule.forRoot([]) ],
+      declarations: [ FavorietenComponent ],
       providers: [MsalService]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ReservatieComponent);
+    fixture = TestBed.createComponent(FavorietenComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
