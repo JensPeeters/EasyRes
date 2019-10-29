@@ -23,6 +23,15 @@ button{
     font-weight: $boldWeight;
     margin-left: 10px;
 }
+.icon-star{
+    margin: auto;
+    margin-left: 10px;
+    color: white;
+}
+.icon-star:hover{
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: yellow;
+}
 @media screen and (max-width: 574px){
     img{
         width: 40px;

@@ -9,17 +9,18 @@ export class MsalService {
     B2CTodoAccessTokenKey = 'b2c.access.token';
 
     tenantConfig = {
+        domain: 'https://EasyRes.b2clogin.com/tfp/',
         tenant: 'EasyRes.onmicrosoft.com',
-        // Replace this with your client id 
+        // Replace this with your client id
         clientID: '83ed179d-fbb5-41a1-8574-339c976f11c2',
         signInPolicy: 'B2C_1_signin',
         signUpPolicy: 'B2C_1_signup',
-        redirectUri: 'http://localhost:4200',
+        redirectUri: 'https://easyres-pwa.azurewebsites.net',
         b2cScopes: ['https://EasyRes.onmicrosoft.com/access-api/user_impersonation']
     };
 
     // Configure the authority for Azure AD B2C
-    authority = 'https://EasyRes.b2clogin.com/tfp/' + this.tenantConfig.tenant + '/' + this.tenantConfig.signInPolicy;
+    authority = this.tenantConfig.domain + this.tenantConfig.tenant + '/' + this.tenantConfig.signInPolicy;
 
     /*
      * B2C SignIn SignUp Policy Configuration
@@ -34,12 +35,12 @@ export class MsalService {
     );
 
     public login(): void {
-      this.clientApplication.authority = 'https://EasyRes.b2clogin.com/tfp/' + this.tenantConfig.tenant + '/' + this.tenantConfig.signInPolicy;
+      this.clientApplication.authority = this.tenantConfig.domain + this.tenantConfig.tenant + '/' + this.tenantConfig.signInPolicy;
       this.authenticate();
     }
 
     public signup(): void {
-      this.clientApplication.authority = 'https://EasyRes.b2clogin.com/tfp/' + this.tenantConfig.tenant + '/' + this.tenantConfig.signUpPolicy;
+      this.clientApplication.authority = this.tenantConfig.domain + this.tenantConfig.tenant + '/' + this.tenantConfig.signUpPolicy;
       this.authenticate();
     }
 
@@ -84,5 +85,13 @@ export class MsalService {
 
     getUserFirstName() {
         return this.getUser().idToken['given_name'];
+    }
+
+    getUserFamilyName() {
+        return this.getUser().idToken['family_name'];
+    }
+
+    getUserObjectId() {
+        return this.getUser().idToken['oid'];
     }
 }
