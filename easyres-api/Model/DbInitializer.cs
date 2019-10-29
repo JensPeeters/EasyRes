@@ -1,8 +1,5 @@
-﻿
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace easyres_api.Model
 {
@@ -16,7 +13,7 @@ namespace easyres_api.Model
             //Are there already books present ?
             if (context.Restaurants.Count() == 0)
             {
-                
+
                 Openingsuren openingsuren = new Openingsuren()
                 {
                     Maandag = "16:00 - 23:00",
@@ -36,7 +33,10 @@ namespace easyres_api.Model
                     Land = "België",
                     Postcode = 2000
                 };
-                List<Product> desserts = new List<Product>()
+
+                Menu menu = new Menu()
+                {
+                    Desserts = new List<Product>()
                         {
                                 new Product()
                                 {
@@ -53,8 +53,8 @@ namespace easyres_api.Model
                                     Naam = "Crème brûlée",
                                     Prijs = 10.20
                                 }
-                            };
-                List<Product> voorgerechten = new List<Product>()
+                            },
+                    Voorgerechten = new List<Product>()
                     {
                                 new Product()
                                 {
@@ -66,8 +66,8 @@ namespace easyres_api.Model
                                     Naam = "Lookbroodjes",
                                     Prijs = 3.80
                                 }
-                            };
-                List<Product> hoofdgerechten = new List<Product>()
+                            },
+                    Hoofdgerechten = new List<Product>()
                     {
                                 new Product()
                                 {
@@ -84,8 +84,8 @@ namespace easyres_api.Model
                                     Naam = "Spareribs 250g",
                                     Prijs = 34.20
                                 }
-                            };
-                List<Product> dranken = new List<Product>()
+                            },
+                    Dranken = new List<Product>()
                     {
                                 new Product()
                                 {
@@ -97,13 +97,7 @@ namespace easyres_api.Model
                                     Naam = "Cognac 5cl",
                                     Prijs = 6.50
                                 }
-                            };
-                Menu menu = new Menu()
-                {
-                    Desserts = desserts,
-                    Voorgerechten = voorgerechten,
-                    Hoofdgerechten =hoofdgerechten,
-                    Dranken = dranken    
+                            }
                 };
                 Restaurant[] restaurants =
                 {
