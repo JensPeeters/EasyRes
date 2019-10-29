@@ -191,26 +191,23 @@ namespace easyres_api.Model
                     }
                 };
 
-                Bestelling[] bestellingen =
+                List<Product> besteldeEtenswaren = new List<Product>()
                 {
-                    new Bestelling()
+                    new Product()
                     {
-                         Dranken = new List<Product>()
-                         {
-                            new Product()
-                            {
-                                Naam = "Snitzel",
-                                Prijs = 25.20,
-                                Aantal = 1
-                            },
-                            new Product()
-                            {
+                        Naam = "Snitzel",
+                        Prijs = 25.20,
+                        Aantal = 1
+                    },
+                    new Product()
+                    {
                         Naam = "Lasagna",
                         Prijs = 15.15,
                         Aantal = 2
                     }
-                },
-                         Etenswaren = new List<Product>()
+                };
+
+                List<Product> besteldeDranken = new List<Product>()
                 {
                     new Product()
                     {
@@ -224,8 +221,17 @@ namespace easyres_api.Model
                         Prijs = 1.80,
                         Aantal = 3
                     }
-                },
-                         TafelNr = 4
+                };
+
+                Bestelling[] bestellingen =
+                {
+                    new Bestelling()
+                    {
+                         Dranken = besteldeDranken,
+                         Etenswaren = besteldeEtenswaren,
+                         TafelNr = 4,
+                         EtenGereed = false,
+                         DrinkenGereed = false
                     }
                 };
 
