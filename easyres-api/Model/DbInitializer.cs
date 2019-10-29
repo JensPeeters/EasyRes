@@ -247,10 +247,6 @@ namespace easyres_api.Model
                         Restaurants = new List<Restaurant>(){restaurants[3],restaurants[4],restaurants[5]}
                     },
                 };
-                foreach (Reservatie reservatie in reservaties)
-                {
-                    context.Reservaties.Add(reservatie);
-                }
 
                 foreach(Gebruiker gebruiker in gebruikers)
                 {
