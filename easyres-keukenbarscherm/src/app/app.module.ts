@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {RouterModule} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,13 +19,7 @@ import { DataService } from './data.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    RouterModule.forRoot([
-      {path: "keuken", component: KeukenComponent},
-      {path: "bar", component: BarComponent},
-      {path: "", redirectTo:"keuken", pathMatch:"full"},
-      {path: "**", redirectTo:"keuken", pathMatch:"full"},
-    ])
+    HttpClientModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

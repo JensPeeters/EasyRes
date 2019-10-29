@@ -7,36 +7,34 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DataService {
 
-  constructor(private http : HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  url = "";
-
-  GetAlleDrankbestellingen(){
-    return this.http.get<IBestelling[]>(`https://localhost:44315/api/restaurant/1/bestelling/bar`);
+  GetAlleDrankbestellingen() {
+    return this.http.get<IBestelling[]>(`https://easyres-api.azurewebsites.net/api/restaurant/1/bestelling/bar`);
   }
 
-  GetAlleVoedingsbestellingen(){
-    return this.http.get<IBestelling[]>(`https://localhost:44315/api/restaurant/1/bestelling/keuken`);
+  GetAlleVoedingsbestellingen() {
+    return this.http.get<IBestelling[]>(`https://easyres-api.azurewebsites.net/api/restaurant/1/bestelling/keuken`);
   }
 
-  PutVoedingsbestelling(bestelling : IBestelling){
-    return this.http.put<IBestelling>(`https://localhost:44315/api/restaurant/1/bestelling`, bestelling);
+  PutVoedingsbestelling(bestelling: IBestelling) {
+    return this.http.put<IBestelling>(`https://easyres-api.azurewebsites.net/api/restaurant/1/bestelling`, bestelling);
   }
 }
 
-  export interface IProduct {
-      productId: number;
-      naam: string;
-      prijs: number;
-      aantal: number;
+export interface IProduct {
+  productId: number;
+  naam: string;
+  prijs: number;
+  aantal: number;
   }
 
 
-  export interface IBestelling {
-      bestellingId: number;
-      etenswaren: IProduct[];
-      dranken: IProduct[];
-      tafelNr: number;
-      etenGereed: boolean;
-      Drinkengereed: boolean;
+export interface IBestelling {
+  bestellingId: number;
+  etenswaren: IProduct[];
+  dranken: IProduct[];
+  tafelNr: number;
+  etenGereed: boolean;
+  Drinkengereed: boolean;
   }

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService, IProduct, IBestelling } from '../data.service';
-import { element } from 'protractor';
-
 
 @Component({
   selector: 'app-keuken',
@@ -41,19 +39,18 @@ export class KeukenComponent implements OnInit {
       this.serv.GetAlleVoedingsbestellingen().subscribe(result => {
         this.Bestellingen = result;
         this.Checklist();
-        
       });
     });
   }
 
-  Checklist(){
+  Checklist() {
     this.DoneList = [];
     this.ProcessList = [];
 
     this.Bestellingen.forEach(element => {
-      if(element.etenGereed){
+      if (element.etenGereed) {
         this.DoneList.push(element);
-      }else{
+      } else {
         this.ProcessList.push(element);
       }
     });
