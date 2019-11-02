@@ -12,7 +12,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { RestaurantService } from './services/restaurant.service';
 import { ReservatieComponent } from './reservatie/reservatie.component';
-import { MsalService } from './services/msal.service';
+// import { MsalService } from './services/msal.service';
 import { RestaurantInfoComponent } from './restaurant-info/restaurant-info.component';
 import { SessieComponent } from './sessie/sessie.component';
 import { BestelComponent } from './bestel/bestel.component';
@@ -21,7 +21,9 @@ import { BestellingService } from './services/bestelling.service';
 import { BesteldeProductenComponent } from './bestelde-producten/bestelde-producten.component';
 import { FavorietenComponent } from './favorieten/favorieten.component';
 import { ReservatieLijstComponent } from './reservatie-lijst/reservatie-lijst.component';
+import { MsalModule } from '@azure/msal-angular';
 
+const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigator.userAgent.indexOf('Trident/') > -1;
 
 @NgModule({
   declarations: [
@@ -43,12 +45,17 @@ import { ReservatieLijstComponent } from './reservatie-lijst/reservatie-lijst.co
     HttpClientModule,
     FormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MsalModule.forRoot({
+      clientID: '83ed179d-fbb5-41a1-8574-339c976f11c2',
+      authority: 'https://EasyRes.b2clogin.com/tfp/',
+      redirectUri: 'https:localhost:4200/'
+    })
   ],
   providers: [
     RestaurantService,
     BestellingService,
-    MsalService
+    //MsalService
   ],
   bootstrap: [AppComponent]
 })
