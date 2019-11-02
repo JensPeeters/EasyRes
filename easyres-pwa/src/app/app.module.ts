@@ -21,6 +21,8 @@ import { BestellingService } from './services/bestelling.service';
 import { BesteldeProductenComponent } from './bestelde-producten/bestelde-producten.component';
 import { FavorietenComponent } from './favorieten/favorieten.component';
 import { ReservatieLijstComponent } from './reservatie-lijst/reservatie-lijst.component';
+import { MsalGuard } from './guard/msal.guard';
+
 
 @NgModule({
   declarations: [
@@ -47,7 +49,8 @@ import { ReservatieLijstComponent } from './reservatie-lijst/reservatie-lijst.co
   providers: [
     RestaurantService,
     BestellingService,
-    MsalService
+    MsalService,
+    MsalGuard
   ],
   bootstrap: [AppComponent]
 })
