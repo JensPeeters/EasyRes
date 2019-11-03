@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-
 import * as Msal from 'msal';
 
-declare var bootbox: '';
 @Injectable()
 export class MsalService {
 
@@ -27,7 +25,7 @@ export class MsalService {
      */
     clientApplication = new Msal.UserAgentApplication(
         this.tenantConfig.clientID, this.authority,
-        function (errorDesc: any, token: any, error: any, tokenType: any) {
+        function(errorDesc: any, token: any, error: any, tokenType: any) {
       },
       {
           validateAuthority: false
@@ -45,20 +43,19 @@ export class MsalService {
     }
 
     public authenticate(): void {
-        var _this = this;
-        this.clientApplication.loginPopup(this.tenantConfig.b2cScopes).then(function (idToken: any) {
-            _this.clientApplication.acquireTokenSilent(_this.tenantConfig.b2cScopes).then(
-                function (accessToken: any) {
-                    _this.saveAccessTokenToCache(accessToken);
-                }, function (error: any) {
-                    _this.clientApplication.acquireTokenPopup(_this.tenantConfig.b2cScopes).then(
-                        function (accessToken: any) {
-                            _this.saveAccessTokenToCache(accessToken);
-                        }, function (error: any) {
+        this.clientApplication.loginPopup(this.tenantConfig.b2cScopes).then(function(idToken: any) {
+            this.clientApplication.acquireTokenSilent(this.tenantConfig.b2cScopes).then(
+                function(accessToken: any) {
+                    this.saveAccessTokenToCache(accessToken);
+                }, function(error: any) {
+                    this.clientApplication.acquireTokenPopup(this.tenantConfig.b2cScopes).then(
+                        function(accessToken: any) {
+                            this.saveAccessTokenToCache(accessToken);
+                        }, function(error: any) {
                             console.log('error: ', error);
                         });
-                })
-        }, function (error: any) {
+                });
+        }, function(error: any) {
             console.log('error: ', error);
         });
     }
@@ -75,11 +72,11 @@ export class MsalService {
         return this.clientApplication.getUser() != null;
     }
 
-    getUserEmail(): string{
+    getUserEmail(): string {
        return this.getUser().idToken['emails'][0];
     }
 
-    getUser(){
+    getUser() {
       return this.clientApplication.getUser();
     }
 

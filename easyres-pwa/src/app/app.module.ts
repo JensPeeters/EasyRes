@@ -23,7 +23,6 @@ import { FavorietenComponent } from './favorieten/favorieten.component';
 import { ReservatieLijstComponent } from './reservatie-lijst/reservatie-lijst.component';
 import { MsalGuard } from './guard/msal.guard';
 
-
 @NgModule({
   declarations: [
     AppComponent,
