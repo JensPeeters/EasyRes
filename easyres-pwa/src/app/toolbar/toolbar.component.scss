@@ -32,6 +32,15 @@ button{
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: yellow;
 }
+.icon-user{
+    margin: auto;
+    margin-left: 10px;
+    color: white;
+}
+.icon-user:hover{
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: blue;
+}
 @media screen and (max-width: 574px){
     img{
         width: 40px;
