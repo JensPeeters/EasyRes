@@ -13,16 +13,16 @@ export class BestellingService {
     etenswaren: []
   };
 
-  urlAPI: string = "https://easyres-api.azurewebsites.net/api";
-  //urlAPI : string = "https://localhost:44315/api";
+  urlAPI: string = 'https://easyres-api.azurewebsites.net/api';
+  // urlAPI : string = "https://localhost:44315/api";
   constructor(private http: HttpClient) { }
 
   PostOrder() {
     this.bestelling = this.Bestelling;
-    console.log(this.bestelling.restaurantId)
+    console.log(this.bestelling.restaurantId);
     console.log(this.bestelling);
     console.log(this.Bestelling);
-    return this.http.post(`${this.urlAPI}/restaurant/${this.bestelling.restaurantId}/bestelling`, this.bestelling)
+    return this.http.post(`${this.urlAPI}/restaurant/${this.bestelling.restaurantId}/bestelling`, this.bestelling);
   }
 
   get Bestelling(): IBestelling {
@@ -33,7 +33,7 @@ export class BestellingService {
     for (let etenswaar of this.bestelling.etenswaren) {
       prijs += etenswaar.prijs * etenswaar.aantal;
     }
-    this.bestelling.prijs = prijs
+    this.bestelling.prijs = prijs;
     return this.bestelling;
   }
 }
@@ -47,7 +47,7 @@ export interface IBestelling {
 }
 
 export interface IProduct {
-  naam: string
-  prijs: number
-  aantal: number
+  naam: string;
+  prijs: number;
+  aantal: number;
 }
