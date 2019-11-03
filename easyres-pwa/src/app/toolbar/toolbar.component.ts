@@ -27,6 +27,10 @@ export class ToolbarComponent implements OnInit {
     this.msalService.logout();
   }
 
+  editProfile() {
+    this.msalService.editProfile();
+  }
+
   isUserLoggedIn() {
     return this.msalService.isLoggedIn();
   }
