@@ -3,7 +3,7 @@
     <div class="row text-center">
         <div class="col">
             <h2>In behandeling</h2>
-            <div *ngFor="let object of ProcessList">
+            <div class="list" *ngFor="let object of ProcessList">
                 <div class="card">
                     <div class="card-body">
                         <div class="col6" *ngFor="let bestelling of Bestellingen">
@@ -14,7 +14,7 @@
                                 </div>
                             </div>
                             <div>
-                                <h4 class="text-right">11:53</h4>
+                                <h4 class="text-right">{{today | date:'HHumm'}}</h4>
                                 <button type="button" (click)="Done(bestelling)" class="btn btn-success"><fa-icon [icon]="faCheck"></fa-icon> Gereed</button>
                             </div>
                         </div>
@@ -24,7 +24,7 @@
         </div>
         <div class="col">
             <h2>Behandeld</h2>
-            <div *ngFor="let object of DoneList">
+            <div class="list" *ngFor="let object of DoneList">
                 <div class="card">
                     <div class="card-body">
                         <div class="col6" *ngFor="let bestelling of Bestellingen">
@@ -36,7 +36,7 @@
                             </div>
                             <div>
                                 <h4 class="text-right">11:53</h4>
-                                <button type="button" (click)="Back(bestelling)" class="btn btn-danger"><fa-icon [icon]="faTimes"></fa-icon> Terugzetten</button>
+                                <button type="button" (click)="Back(bestelling)" class="btn btn-danger"><fa-icon [icon]="faTimes"></fa-icon> Terug</button>
                             </div>
                         </div>
                     </div>

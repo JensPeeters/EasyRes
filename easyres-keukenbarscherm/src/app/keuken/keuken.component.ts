@@ -7,6 +7,7 @@ import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './keuken.component.html',
   styleUrls: ['./keuken.component.scss']
 })
+
 export class KeukenComponent implements OnInit {
 
   faCheck = faCheck;
@@ -17,6 +18,8 @@ export class KeukenComponent implements OnInit {
 
   ProcessList: IBestelling[];
   DoneList: IBestelling[];
+
+  today: number = Date.now();
 
   constructor(private serv: DataService) { }
 
