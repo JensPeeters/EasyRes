@@ -12,13 +12,16 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { RestaurantService } from './services/restaurant.service';
 import { ReservatieComponent } from './reservatie/reservatie.component';
-import { MsalService }  from './services/msal.service';
+import { MsalService } from './services/msal.service';
 import { RestaurantInfoComponent } from './restaurant-info/restaurant-info.component';
 import { SessieComponent } from './sessie/sessie.component';
 import { BestelComponent } from './bestel/bestel.component';
 import { VerstuurBestellingComponent } from './verstuur-bestelling/verstuur-bestelling.component';
 import { BestellingService } from './services/bestelling.service';
 import { BesteldeProductenComponent } from './bestelde-producten/bestelde-producten.component';
+import { FavorietenComponent } from './favorieten/favorieten.component';
+import { ReservatieLijstComponent } from './reservatie-lijst/reservatie-lijst.component';
+import { MsalGuard } from './guard/msal.guard';
 
 @NgModule({
   declarations: [
@@ -26,11 +29,13 @@ import { BesteldeProductenComponent } from './bestelde-producten/bestelde-produc
     ToolbarComponent,
     RestaurantComponent,
     ReservatieComponent,
+    ReservatieLijstComponent,
     RestaurantInfoComponent,
     SessieComponent,
     BestelComponent,
     VerstuurBestellingComponent,
-    BesteldeProductenComponent
+    BesteldeProductenComponent,
+    FavorietenComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +48,8 @@ import { BesteldeProductenComponent } from './bestelde-producten/bestelde-produc
   providers: [
     RestaurantService,
     BestellingService,
-    MsalService
+    MsalService,
+    MsalGuard
   ],
   bootstrap: [AppComponent]
 })

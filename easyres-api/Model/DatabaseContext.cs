@@ -1,8 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace easyres_api.Model
 {
@@ -17,5 +13,6 @@ namespace easyres_api.Model
 
         public DbSet<Reservatie> Reservaties { get; set; }
         public DbSet<Bestelling> Bestellingen { get; set; }
+        public DbSet<Gebruiker> Gebruikers { get; set; }
     }
 }

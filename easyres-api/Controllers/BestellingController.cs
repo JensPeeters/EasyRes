@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using easyres_api.Model;
-using Microsoft.AspNetCore.Http;
+﻿using easyres_api.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace easyres_api.Controllers
 {
@@ -23,9 +20,10 @@ namespace easyres_api.Controllers
         [HttpGet]
         public List<Bestelling> GetBestellingen(long id)
         {
-            return context.Bestellingen.Include(a => a.Dranken)
+            var bestellingen = context.Bestellingen.Include(a => a.Dranken)
                                         .Include(a => a.Etenswaren)
                                         .Where(e => e.RestaurantId == id).ToList();
+            return bestellingen;
         }
 
         [Route("{id}/bestelling")]
@@ -33,6 +31,15 @@ namespace easyres_api.Controllers
         public ActionResult<Bestelling> AddBestelling([FromBody] Bestelling bestelling)
         {
             context.Bestellingen.Add(bestelling);
+            context.SaveChanges();
+            return Created("", bestelling);
+        }
+
+        [Route("{id}/bestelling/{bestelId}")]
+        [HttpPut]
+        public ActionResult<Bestelling> UpdateBestelling(long bestelId, [FromBody]Bestelling bestelling)
+        {
+            context.Bestellingen.Update(bestelling);
             context.SaveChanges();
             return Created("", bestelling);
         }
@@ -55,10 +62,12 @@ namespace easyres_api.Controllers
 
         [Route("{id}/bestelling/{idBestel}")]
         [HttpGet]
-        public ActionResult<Bestelling> GetBestelling(long id,long idBestel)
+        public ActionResult<Bestelling> GetBestelling(long id, long idBestel)
         {
             var bestelling = context.Bestellingen.Where(a => a.BestellingId == idBestel)
                                             .Where(a => a.RestaurantId == id)
+                                            .Include(a => a.Dranken)
+                                            .Include(a => a.Etenswaren)
                                         .FirstOrDefault();
             if (bestelling == null)
                 return NotFound();

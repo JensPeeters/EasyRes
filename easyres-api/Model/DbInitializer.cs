@@ -1,8 +1,5 @@
-﻿
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace easyres_api.Model
 {
@@ -16,7 +13,7 @@ namespace easyres_api.Model
             //Are there already books present ?
             if (context.Restaurants.Count() == 0)
             {
-                
+
                 Openingsuren openingsuren = new Openingsuren()
                 {
                     Maandag = "16:00 - 23:00",
@@ -36,7 +33,10 @@ namespace easyres_api.Model
                     Land = "België",
                     Postcode = 2000
                 };
-                List<Product> desserts = new List<Product>()
+
+                Menu menu = new Menu()
+                {
+                    Desserts = new List<Product>()
                         {
                                 new Product()
                                 {
@@ -53,8 +53,8 @@ namespace easyres_api.Model
                                     Naam = "Crème brûlée",
                                     Prijs = 10.20
                                 }
-                            };
-                List<Product> voorgerechten = new List<Product>()
+                            },
+                    Voorgerechten = new List<Product>()
                     {
                                 new Product()
                                 {
@@ -66,8 +66,8 @@ namespace easyres_api.Model
                                     Naam = "Lookbroodjes",
                                     Prijs = 3.80
                                 }
-                            };
-                List<Product> hoofdgerechten = new List<Product>()
+                            },
+                    Hoofdgerechten = new List<Product>()
                     {
                                 new Product()
                                 {
@@ -84,8 +84,8 @@ namespace easyres_api.Model
                                     Naam = "Spareribs 250g",
                                     Prijs = 34.20
                                 }
-                            };
-                List<Product> dranken = new List<Product>()
+                            },
+                    Dranken = new List<Product>()
                     {
                                 new Product()
                                 {
@@ -97,13 +97,7 @@ namespace easyres_api.Model
                                     Naam = "Cognac 5cl",
                                     Prijs = 6.50
                                 }
-                            };
-                Menu menu = new Menu()
-                {
-                    Desserts = desserts,
-                    Voorgerechten = voorgerechten,
-                    Hoofdgerechten =hoofdgerechten,
-                    Dranken = dranken    
+                            }
                 };
                 Restaurant[] restaurants =
                 {
@@ -197,89 +191,70 @@ namespace easyres_api.Model
                     }
                 };
 
-                List<Product> besteldeEtenswaren = new List<Product>()
-                {
-                    new Product()
-                    {
-                        Naam = "Snitzel",
-                        Prijs = 25.20,
-                        Aantal = 1
-                    },
-                    new Product()
-                    {
-                        Naam = "Lasagna",
-                        Prijs = 15.15,
-                        Aantal = 2
-                    }
-                };
-
-                List<Product> besteldeDranken = new List<Product>()
-                {
-                    new Product()
-                    {
-                        Naam = "Bier 33cl",
-                        Prijs = 5,
-                        Aantal = 2
-                    },
-                    new Product()
-                    {
-                        Naam = "Cola 0.5l",
-                        Prijs = 1.80,
-                        Aantal = 3
-                    }
-                };
-
                 Bestelling[] bestellingen =
                 {
                     new Bestelling()
                     {
-                         Dranken = besteldeDranken,
-                         Etenswaren = besteldeEtenswaren,
+                         Dranken = new List<Product>()
+                         {
+                            new Product()
+                            {
+                                Naam = "Bier 33cl",
+                                Prijs = 5,
+                                Aantal = 2
+                            },
+                            new Product()
+                            {
+                                Naam = "Cola 0.5l",
+                                Prijs = 1.80,
+                                Aantal = 3
+                            }
+                         },
+                         Etenswaren = new List<Product>()
+                         {
+                            new Product()
+                            {
+                                Naam = "Snitzel",
+                                Prijs = 25.20,
+                                Aantal = 1
+                            },
+                            new Product()
+                            {
+                                Naam = "Lasagna",
+                                Prijs = 15.15,
+                                Aantal = 2
+                            }
+                         },
+                         RestaurantId = 1,
                          TafelNr = 4,
                          EtenGereed = false,
                          DrinkenGereed = false
                     }
                 };
+                foreach (Bestelling bestelling in bestellingen)
+                {
+                    context.Bestellingen.Add(bestelling);
+                }
 
                 foreach (Restaurant restaurant in restaurants)
                 {
                     context.Restaurants.Add(restaurant);
                 }
-
-                List<Reservatie> reservaties = new List<Reservatie>()
+                List<Gebruiker> gebruikers = new List<Gebruiker>()
                 {
-                    new Reservatie()
+                    new Gebruiker()
                     {
-                        AantalPersonen = 4,
-                        Datum = "12/12/12",
-                        Tijdstip = "19:00",
-                        Email = "floppy@doppy.com",
-                        Naam = "Yvad",
-                        TelefoonNummer = "+32455661289",
-                        Restaurant = restaurants[0]
+                        GebruikersID = "cfb6e87d-aadd-4656-868b-4650e48d8f9e",
+                        Restaurants = new List<Restaurant>(){restaurants[3],restaurants[4],restaurants[5]}
                     },
-
-                    new Reservatie()
-                    {
-                        AantalPersonen = 6,
-                        Datum = "15/14/13",
-                        Tijdstip = "18:30",
-                        Email = "johndoe@example.com",
-                        Naam = "John Doe",
-                        TelefoonNummer = "+32412345678",
-                        Restaurant = restaurants[3]
-                    }
                 };
-                restaurants[0].Reservaties = reservaties;
-                foreach (Reservatie reservatie in reservaties)
+
+                foreach(Gebruiker gebruiker in gebruikers)
                 {
-                    context.Reservaties.Add(reservatie);
+                    context.Gebruikers.Add(gebruiker);
                 }
 
-                foreach (Bestelling bestelling in bestellingen)
-                {
-                    context.Bestellingen.Add(bestelling);
-                }
+
                 context.SaveChanges();
             }
         }

@@ -1,0 +1,24 @@
+<div class="main-content" *ngIf="Restaurants">
+    <h3>Mijn favorieten</h3>
+    <div class="input-search-restaurant">
+        <input type="text" placeholder="Zoek in favorieten" [(ngModel)]="zoeknaam" (keydown.enter)="Zoeken()">
+        <a (click)="Zoeken()"><i class="fas fa-search" style="cursor: pointer;"></i></a>
+    </div>
+    <div class="empty" *ngIf="IsEmpty(Restaurants)">
+        <h5>U heeft nog geen favoriete restaurants.</h5>
+    </div>
+    <div class="restaurant-template" *ngFor="let restaurant of Restaurants;">
+        <div class="card">
+            <div class="card-body">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-slash fa-rotate-90" (click)="RemoveRestaurant(restaurant)"></i>
+                <h5 class="card-title">{{restaurant.naam}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{restaurant.soort}} - {{restaurant.type}}</h6>
+                <p class="card-text">{{restaurant.beschrijving}}</p>
+                <button class="btn-danger btn button-reserve" [routerLink]="['/reservatie', restaurant.restaurantId]">Reserveer</button>
+                <button class="btn-danger btn button-more-info"  [routerLink]="['/scan', restaurant.restaurantId]">Scan tafel</button>
+                <button class="btn-outline-danger btn button-more-info"  [routerLink]="['/restaurant', restaurant.restaurantId]">Meer info</button>
+            </div>
+        </div>
+    </div>
+</div>

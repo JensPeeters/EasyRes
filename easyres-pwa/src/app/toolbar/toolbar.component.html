@@ -9,10 +9,7 @@
                     <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/restaurant']">Restaurants</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/Tab1']">Favorieten</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/tab2']">Reservaties</a>
+                    <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/reservatie-lijst']">Reservaties</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/actief']">Sessies</a>
@@ -21,12 +18,14 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <div class="center" *ngIf="!isUserLoggedIn()">
-                        <button class="btn btn-secondary" (click)="login()">Login</button>
-                        <button class="btn btn-secondary" (click)="signup()">Sign Up</button>
+                        <button class="btn btn-danger" (click)="login()">Login</button>
+                        <button class="btn btn-danger" (click)="signup()">Sign Up</button>
                       </div>
                     
                       <div class="center" *ngIf="isUserLoggedIn()">
                         <p>Welkom {{userfirstname()}}</p>
+                        <a class="icon-star" [routerLink]="['/favorieten']"><i class="far fa-star"></i></a>
+                        <a class="icon-user" (click)="editProfile()"><i class="far fa-user"></i></a>
                         <button class="btn btn-danger" (click)="logout()">Logout</button>
                       </div>
                 </li>
