@@ -1,15 +1,16 @@
 import { TestBed, async, inject } from '@angular/core/testing';
 
 import { MsalGuard } from './msal.guard';
+import { MsalService } from '../services/msal.service';
 
 describe('MsalGuard', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [MsalGuard]
+      providers: [MsalGuard, MsalService]
     });
   });
 
-  it('should ...', inject([MsalGuard], (guard: MsalGuard) => {
+  it('should be created', inject([MsalGuard], (guard: MsalGuard) => {
     expect(guard).toBeTruthy();
   }));
 });
