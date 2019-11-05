@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService, IBestelling } from '../data.service';
+import { isEmptyExpression } from '@angular/compiler';
 
 @Component({
   selector: 'app-keuken',
@@ -58,7 +59,8 @@ export class KeukenComponent implements OnInit {
     this.Bestellingen.forEach(element => {
       if (element.etenGereed) {
         this.DoneList.push(element);
-      } else {
+      } 
+      else if (element.etenswaren.length != 0) {
         this.ProcessList.push(element);
       }
     });

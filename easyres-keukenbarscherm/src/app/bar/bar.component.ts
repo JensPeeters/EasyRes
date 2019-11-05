@@ -51,12 +51,12 @@ export class BarComponent implements OnInit {
     this.ProcessList = [];
 
     this.Bestellingen.forEach(element => {
-      if (element.drinkenGereed) {
+      if (element.drinkenGereed && element.dranken != null) {
         this.DoneList.push(element);
-      } else {
+      }
+      else if (element.dranken.length != 0) {
         this.ProcessList.push(element);
       }
     });
   }
-
 }
