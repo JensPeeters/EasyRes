@@ -7,18 +7,22 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DataService {
 
-  constructor(private http: HttpClient) { }
+  url: string;
+
+  constructor(private http: HttpClient) {
+    this.url = "https://easyres-api.azurewebsites.net/api/restaurant/1/bestelling";
+   }
 
   GetAlleDrankbestellingen() {
-    return this.http.get<IBestelling[]>(`https://easyres-api.azurewebsites.net/api/restaurant/1/bestelling/bar`);
+    return this.http.get<IBestelling[]>(this.url+`/bar`);
   }
 
   GetAlleVoedingsbestellingen() {
-    return this.http.get<IBestelling[]>(`https://easyres-api.azurewebsites.net/api/restaurant/1/bestelling/keuken`);
+    return this.http.get<IBestelling[]>(this.url+`/keuken`);
   }
 
   Putbestelling(bestelling: IBestelling) {
-    return this.http.put<IBestelling>(`https://easyres-api.azurewebsites.net/api/restaurant/1/bestelling`, bestelling);
+    return this.http.put<IBestelling>(this.url, bestelling);
   }
 }
 
