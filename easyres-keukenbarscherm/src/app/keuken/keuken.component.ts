@@ -23,6 +23,9 @@ export class KeukenComponent implements OnInit {
     this.serv.GetAlleVoedingsbestellingen().subscribe(result => {
       this.Bestellingen = result;
       this.Checklist();
+      console.log(this.Bestellingen);
+      console.log(this.DoneList);
+      console.log(this.ProcessList);
     });
   }
 
@@ -32,6 +35,7 @@ export class KeukenComponent implements OnInit {
       this.serv.GetAlleVoedingsbestellingen().subscribe(result => {
         this.Bestellingen = result;
         this.Checklist();
+        console.log(bestelling);
       });
     });
   }
@@ -42,6 +46,7 @@ export class KeukenComponent implements OnInit {
       this.serv.GetAlleVoedingsbestellingen().subscribe(result => {
         this.Bestellingen = result;
         this.Checklist();
+        console.log(bestelling);
       });
     });
   }
