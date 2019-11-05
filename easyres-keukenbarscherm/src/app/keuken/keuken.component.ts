@@ -35,7 +35,7 @@ export class KeukenComponent implements OnInit {
       this.serv.GetAlleVoedingsbestellingen().subscribe(result => {
         this.Bestellingen = result;
         this.Checklist();
-        console.log(bestelling);
+        //console.log(bestelling);
       });
     });
   }
@@ -46,7 +46,7 @@ export class KeukenComponent implements OnInit {
       this.serv.GetAlleVoedingsbestellingen().subscribe(result => {
         this.Bestellingen = result;
         this.Checklist();
-        console.log(bestelling);
+        //console.log(bestelling);
       });
     });
   }
