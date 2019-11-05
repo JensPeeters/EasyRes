@@ -3,6 +3,7 @@ import { RestaurantService, IRestaurant } from '../services/restaurant.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgForOf } from '@angular/common';
 import { BestellingService, IProduct } from '../services/bestelling.service';
+import { MsalService } from '../services/msal.service';
 
 @Component({
   selector: 'app-bestel',
@@ -12,6 +13,7 @@ import { BestellingService, IProduct } from '../services/bestelling.service';
 export class BestelComponent implements OnInit {
   besteldProduct : IProduct;
   restaurant : IRestaurant;
+  UserId : string;
   TafelNr : number ;
   buttons = [
     {
@@ -37,21 +39,27 @@ export class BestelComponent implements OnInit {
   ];
 
   constructor(private resServ:RestaurantService, private route: ActivatedRoute,
-    private bestelServ :BestellingService) { }
+    private bestelServ :BestellingService, private msalService: MsalService) { }
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
       this.resServ.GetRestaurantByID(Number(id)).subscribe(restaurant => {
         this.restaurant = restaurant;
-        this.bestelServ.Bestelling.restaurantId = Number(id);
+        this.bestelServ.Bestelling.restaurant.restaurantId = Number(id);
       });
     this.bestelServ.bestelling.tafelNr = Number(this.route.snapshot.paramMap.get('TafelNr'));
     console.log(Number(this.route.snapshot.paramMap.get('TafelNr')));
     this.TafelNr = this.bestelServ.bestelling.tafelNr;
+    if(this.msalService.isLoggedIn()){
+      this.GetUserObjectId();
+    }
+  }
+  GetUserObjectId(){
+    this.UserId = this.msalService.getUserObjectId();
   }
 
   SendOrder(){
-    this.bestelServ.PostOrder();
+    this.bestelServ.PostOrder(this.UserId, this.restaurant.restaurantId);
   }
 
   ChangeToFalse(state : boolean, buttonNumber : number){

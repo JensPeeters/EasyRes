@@ -92,14 +92,15 @@ namespace easyres_api.Controllers
             return bestelling;
         }
 
-        [Route("gebruiker/{idGebruiker}")]
+        [Route("gebruiker/{idGebruiker}/{idRes}")]
         [HttpGet]
-        public List<Bestelling> GetBestellingenGebruiker(string idGebruiker)
+        public List<Bestelling> GetBestellingenGebruiker(string idGebruiker, long idRes)
         {
             return context.Bestellingen
                 .Include(a => a.Dranken)
                 .Include(a => a.Etenswaren)
-                .Where(e => e.Gebruiker.GebruikersID == idGebruiker).ToList();
+                .Where(e => e.Gebruiker.GebruikersID == idGebruiker)
+                .Where(e => e.Restaurant.RestaurantId == idRes).ToList();
         }
     }
 }
