@@ -27,7 +27,7 @@ export class BarComponent implements OnInit {
   }
 
   Back(bestelling: IBestelling) {
-    bestelling.etenGereed = false;
+    bestelling.drinkenGereed = false;
     this.serv.Putbestelling(bestelling).subscribe(res => {
       this.serv.GetAlleDrankbestellingen().subscribe(result => {
         this.Bestellingen = result;
@@ -37,7 +37,7 @@ export class BarComponent implements OnInit {
   }
 
   Done(bestelling: IBestelling) {
-    bestelling.etenGereed = true;
+    bestelling.drinkenGereed = true;
     this.serv.Putbestelling(bestelling).subscribe(res => {
       this.serv.GetAlleDrankbestellingen().subscribe(result => {
         this.Bestellingen = result;
@@ -51,7 +51,7 @@ export class BarComponent implements OnInit {
     this.ProcessList = [];
 
     this.Bestellingen.forEach(element => {
-      if (element.etenGereed) {
+      if (element.drinkenGereed) {
         this.DoneList.push(element);
       } else {
         this.ProcessList.push(element);

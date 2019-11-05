@@ -1,53 +1,49 @@
 <h1 class="text-center">Restaurant - Bar</h1>
 <div class="container">
-    <div class="row text-center">
-        <div class="col">
-            <h2>In behandeling</h2>
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-6" *ngFor="let bestelling of Bestellingen">
-                            <h5 class="card-title">Tafel {{bestelling.tafelNr}}</h5>
-                            <div *ngFor="let drank of bestelling.dranken">
-                                <p>{{drank.aantal}}x {{drank.naam}} -
-                                    {{drank.aantal * drank.prijs | currency:'EUR':true}}</p>
+        <div class="row text-center">
+            <div class="col">
+                <h2>In behandeling</h2>
+                <div class="list" *ngFor="let bestelling of ProcessList">
+                    <div class="card">
+                        <div class="card-body col6">
+                            <div>
+                                <h5 class="card-title">Tafel {{bestelling.tafelNr}}</h5>
+                                <div *ngFor="let drank of bestelling.dranken">
+                                    <p>{{drank.aantal}}x {{drank.naam}}</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-6 text-center">
-                            <h4>11:53</h4>
-                        </div>
-                        <div class="col">
-                            <button type="button" class="btn btn-danger">Afwijzen</button>
-                        </div>
-                        <div class="col">
-                            <button type="button" class="btn btn-success">Goedkeuren</button>
+                            <div>
+                                <h4 class="text-right">11:53</h4>
+                                <button type="button" (click)="Done(bestelling)" class="btn btn-success"><i
+                                        class="fas fa-check"></i> Gereed</button>
+                                <button type="button" (click)="Done(bestelling)" class="btn btn-danger"><i
+                                        class="fas fa-times"></i> Annuleren</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col">
-            <h2>Behandeld</h2>
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-6" *ngFor="let bestelling of Bestellingen">
-                            <h5 class="card-title">Tafel {{bestelling.tafelNr}}</h5>
-                            <div *ngFor="let drank of bestelling.dranken">
-                                <p>{{drank.aantal}}x {{drank.naam}} -
-                                    {{drank.aantal * drank.prijs | currency:'EUR':true}}</p>
+            <div class="col">
+                <h2>Behandeld</h2>
+                <div class="list" *ngFor="let bestelling of DoneList">
+                    <div class="card">
+                        <div class="card-body col6">
+                            <div>
+                                <h5 class="card-title">Tafel {{bestelling.tafelNr}}</h5>
+                                <div *ngFor="let drank of bestelling.dranken">
+                                    <p>{{drank.aantal}}x {{drank.naam}}
+                                        <!--  - {{eten.aantal * eten.prijs | currency:'EUR':true}} -->
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-6 text-center">
-                            <h4>11:53</h4>
-                            <h3><strong>12:00</strong></h3>
-                        </div>
-                        <div class="col">
-                            <button type="button" class="btn btn-primary">Herladen</button>
+                            <div>
+                                <h4 class="text-right">{{today | date:'HH:mm'}}</h4>
+                                <button type="button" (click)="Back(bestelling)" class="btn btn-primary"><i
+                                        class="fas fa-undo-alt"></i> Terug</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>

@@ -38,7 +38,8 @@ export interface IBestelling {
   bestellingId: number;
   etenswaren: IProduct[];
   dranken: IProduct[];
-  tafelNr: number;
+  restaurantId: number;
   etenGereed: boolean;
-  Drinkengereed: boolean;
+  drinkenGereed: boolean;
+  tafelNr: number;
   }
