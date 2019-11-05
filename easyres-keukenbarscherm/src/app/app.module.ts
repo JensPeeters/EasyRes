@@ -8,18 +8,20 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { KeukenComponent } from './keuken/keuken.component';
 import { BarComponent } from './bar/bar.component';
 import { DataService } from './data.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolbarComponent,
     KeukenComponent,
-    BarComponent
+    BarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

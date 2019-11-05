@@ -1,18 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService, IProduct, IBestelling } from '../data.service';
+import { DataService, IBestelling } from '../data.service';
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-keuken',
   templateUrl: './keuken.component.html',
   styleUrls: ['./keuken.component.scss']
 })
+
 export class KeukenComponent implements OnInit {
+
+  faCheck = faCheck;
+  faTimes = faTimes;
 
   Bestellingen: IBestelling[];
   UpdateBestelling: IBestelling;
 
   ProcessList: IBestelling[];
   DoneList: IBestelling[];
+
+  today: number = Date.now();
 
   constructor(private serv: DataService) { }
 
