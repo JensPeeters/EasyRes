@@ -20,5 +20,7 @@ namespace easyres_api.Model
         public string Soort { get; set; }
         [JsonIgnore]
         public virtual List<Reservatie> Reservaties { get; set; }
+        [JsonIgnore]
+        public virtual List<Bestelling> Bestellingen { get; set; }
     }
 }

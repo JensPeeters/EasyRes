@@ -13,16 +13,16 @@ export class BestellingService {
     etenswaren: []
   };
 
-  urlAPI: string = 'https://easyres-api.azurewebsites.net/api';
-  // urlAPI : string = "https://localhost:44315/api";
+  //urlAPI: string = 'https://easyres-api.azurewebsites.net/api';
+  urlAPI : string = "https://localhost:44315/api";
   constructor(private http: HttpClient) { }
 
   PostOrder() {
     this.bestelling = this.Bestelling;
-    console.log(this.bestelling.restaurantId);
-    console.log(this.bestelling);
-    console.log(this.Bestelling);
-    return this.http.post(`${this.urlAPI}/restaurant/${this.bestelling.restaurantId}/bestelling`, this.bestelling);
+    return this.http.post(`${this.urlAPI}/bestelling/restaurant/${this.bestelling.restaurantId}`, this.bestelling);
+  }
+  GetOrdersForUser(UserId:string){
+    return this.http.get<IBestelling[]>(`${this.urlAPI}/bestelling/gebruiker/${UserId}`);
   }
 
   get Bestelling(): IBestelling {

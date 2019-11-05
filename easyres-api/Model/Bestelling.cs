@@ -10,7 +10,8 @@ namespace easyres_api.Model
 
         public List<Product> Etenswaren { get; set; }
         public List<Product> Dranken { get; set; }
-        public int RestaurantId { get; set; }
+        public Restaurant Restaurant { get; set; }
+        public Gebruiker Gebruiker { get; set; }
 
         public bool EtenGereed { get; set; }
         public bool DrinkenGereed { get; set; }

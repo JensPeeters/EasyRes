@@ -11,5 +11,7 @@ namespace easyres_api.Model
         [Key]
         public string GebruikersID { get; set; }
         public List<Restaurant> Restaurants { get; set; }
+        public List<Bestelling> Bestellingen { get; set; }
+        
     }
 }

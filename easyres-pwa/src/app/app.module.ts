@@ -22,6 +22,8 @@ import { BesteldeProductenComponent } from './bestelde-producten/bestelde-produc
 import { FavorietenComponent } from './favorieten/favorieten.component';
 import { ReservatieLijstComponent } from './reservatie-lijst/reservatie-lijst.component';
 import { MsalGuard } from './guard/msal.guard';
+import { BestelOptiesComponent } from './bestel-opties/bestel-opties.component';
+import { BestellingenComponent } from './bestellingen/bestellingen.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { MsalGuard } from './guard/msal.guard';
     BestelComponent,
     VerstuurBestellingComponent,
     BesteldeProductenComponent,
-    FavorietenComponent
+    FavorietenComponent,
+    BestelOptiesComponent,
+    BestellingenComponent
   ],
   imports: [
     BrowserModule,
