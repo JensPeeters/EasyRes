@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService, IBestelling } from '../data.service';
-import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-keuken',
@@ -9,9 +8,6 @@ import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 })
 
 export class KeukenComponent implements OnInit {
-
-  faCheck = faCheck;
-  faTimes = faTimes;
 
   Bestellingen: IBestelling[];
   UpdateBestelling: IBestelling;
