@@ -28,7 +28,7 @@ export class BarComponent implements OnInit {
 
   Back(bestelling: IBestelling) {
     bestelling.etenGereed = false;
-    this.serv.PutVoedingsbestelling(bestelling).subscribe(res => {
+    this.serv.Putbestelling(bestelling).subscribe(res => {
       this.serv.GetAlleDrankbestellingen().subscribe(result => {
         this.Bestellingen = result;
         this.Checklist();
@@ -38,7 +38,7 @@ export class BarComponent implements OnInit {
 
   Done(bestelling: IBestelling) {
     bestelling.etenGereed = true;
-    this.serv.PutVoedingsbestelling(bestelling).subscribe(res => {
+    this.serv.Putbestelling(bestelling).subscribe(res => {
       this.serv.GetAlleDrankbestellingen().subscribe(result => {
         this.Bestellingen = result;
         this.Checklist();

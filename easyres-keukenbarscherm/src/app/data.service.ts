@@ -17,7 +17,7 @@ export class DataService {
     return this.http.get<IBestelling[]>(`https://easyres-api.azurewebsites.net/api/restaurant/1/bestelling/keuken`);
   }
 
-  PutVoedingsbestelling(bestelling: IBestelling) {
+  Putbestelling(bestelling: IBestelling) {
     return this.http.put<IBestelling>(`https://easyres-api.azurewebsites.net/api/restaurant/1/bestelling`, bestelling);
   }
 }
