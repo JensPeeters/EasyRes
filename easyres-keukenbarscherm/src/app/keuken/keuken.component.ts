@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService, IBestelling } from '../data.service';
-import { isEmptyExpression } from '@angular/compiler';
+
 
 @Component({
   selector: 'app-keuken',
@@ -16,7 +16,7 @@ export class KeukenComponent implements OnInit {
   ProcessList: IBestelling[];
   DoneList: IBestelling[];
 
-  today: number = Date.now();
+  today = new Date();
 
   constructor(private serv: DataService) { }
 
@@ -24,6 +24,9 @@ export class KeukenComponent implements OnInit {
     this.serv.GetAlleVoedingsbestellingen().subscribe(result => {
       this.Bestellingen = result;
       this.Checklist();
+      setInterval(() => {
+        this.today = new Date();
+     }, 1000);
       console.log(this.Bestellingen);
       console.log(this.DoneList);
       console.log(this.ProcessList);
@@ -43,6 +46,8 @@ export class KeukenComponent implements OnInit {
 
   Done(bestelling: IBestelling) {
     bestelling.etenGereed = true;
+    bestelling.finaleTijd = this.today;
+    this.today = bestelling.finaleTijd;
     this.serv.Putbestelling(bestelling).subscribe(res => {
       this.serv.GetAlleVoedingsbestellingen().subscribe(result => {
         this.Bestellingen = result;

@@ -10,7 +10,7 @@ export class DataService {
   url: string;
 
   constructor(private http: HttpClient) {
-    this.url = "https://easyres-api.azurewebsites.net/api/restaurant/1/bestelling";
+    this.url = "https://localhost:44315/api/bestelling/restaurant/2";
    }
 
   GetAlleDrankbestellingen() {
@@ -41,5 +41,7 @@ export interface IBestelling {
   restaurantId: number;
   etenGereed: boolean;
   drinkenGereed: boolean;
+  huidigeTijd: string;
+  finaleTijd : Date;
   tafelNr: number;
   }
