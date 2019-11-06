@@ -18,12 +18,21 @@ namespace easyres_api.Model
             get
             {
                 double tempPrijs = 0;
-                foreach (Product product in Etenswaren.Concat(Dranken))
-                {
-                    tempPrijs += product.Prijs * product.Aantal;
-                }
+                if (Dranken != null)
+                    tempPrijs = BerekenTotaal(tempPrijs,Dranken);
+                if (Etenswaren != null)
+                    tempPrijs = BerekenTotaal(tempPrijs, Etenswaren);
                 return tempPrijs;
             }
+        }
+
+        private double BerekenTotaal(double tempPrijs, List<Product> productenLijst)
+        {
+            foreach (Product product in productenLijst)
+            {
+                tempPrijs += product.Prijs * product.Aantal;
+            }
+            return tempPrijs;
         }
 
         public bool EtenGereed { get; set; }
