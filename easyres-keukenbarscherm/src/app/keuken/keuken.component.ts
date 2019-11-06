@@ -16,7 +16,7 @@ export class KeukenComponent implements OnInit {
   ProcessList: IBestelling[];
   DoneList: IBestelling[];
 
-  today = new Date();
+  today: number = Date.now();
 
   constructor(private serv: DataService) { }
 
@@ -24,6 +24,9 @@ export class KeukenComponent implements OnInit {
     this.serv.GetAlleVoedingsbestellingen().subscribe(result => {
       this.Bestellingen = result;
       this.Checklist();
+      console.log(this.Bestellingen);
+      console.log(this.DoneList);
+      console.log(this.ProcessList);
     });
   }
 
@@ -33,6 +36,7 @@ export class KeukenComponent implements OnInit {
       this.serv.GetAlleVoedingsbestellingen().subscribe(result => {
         this.Bestellingen = result;
         this.Checklist();
+        //console.log(bestelling);
       });
     });
   }
@@ -43,7 +47,7 @@ export class KeukenComponent implements OnInit {
       this.serv.GetAlleVoedingsbestellingen().subscribe(result => {
         this.Bestellingen = result;
         this.Checklist();
-        this.today = new Date();
+        //console.log(bestelling);
       });
     });
   }
