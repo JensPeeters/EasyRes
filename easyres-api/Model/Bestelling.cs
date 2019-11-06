@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 
 namespace easyres_api.Model
 {
@@ -37,7 +37,8 @@ namespace easyres_api.Model
 
         public bool EtenGereed { get; set; }
         public bool DrinkenGereed { get; set; }
-
+        public string HuidigeTijd { get; set; }
+        public string FinaleTijd { get; set; }
         public int TafelNr { get; set; }
     }
 }

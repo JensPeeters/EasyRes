@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace easyres_api.Model
@@ -228,7 +229,8 @@ namespace easyres_api.Model
                          Restaurant = restaurants[0],
                          TafelNr = 4,
                          EtenGereed = false,
-                         DrinkenGereed = false
+                         DrinkenGereed = false,
+                         HuidigeTijd = DateTime.Now.ToString("HH:mm:ss tt")
                     }
                 };
                 foreach (Bestelling bestelling in bestellingen)
