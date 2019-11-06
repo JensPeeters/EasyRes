@@ -225,7 +225,7 @@ namespace easyres_api.Model
                                 Aantal = 2
                             }
                          },
-                         RestaurantId = 1,
+                         Restaurant = restaurants[0],
                          TafelNr = 4,
                          EtenGereed = false,
                          DrinkenGereed = false
@@ -247,14 +247,17 @@ namespace easyres_api.Model
                         GebruikersID = "cfb6e87d-aadd-4656-868b-4650e48d8f9e",
                         Restaurants = new List<Restaurant>(){restaurants[3],restaurants[4],restaurants[5]}
                     },
+                    new Gebruiker()
+                    {
+                        GebruikersID = "dcc3cdca-1005-493b-a8e5-2351a8d4f89c",
+                        Restaurants = new List<Restaurant>(){restaurants[3],restaurants[4],restaurants[5]},
+                        Bestellingen = new List<Bestelling>(){bestellingen[0]}
+                    },
                 };
-
                 foreach(Gebruiker gebruiker in gebruikers)
                 {
                     context.Gebruikers.Add(gebruiker);
                 }
-
-
                 context.SaveChanges();
             }
         }
