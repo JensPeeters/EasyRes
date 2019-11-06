@@ -26,6 +26,8 @@
                         <p>Welkom {{userfirstname()}}</p>
                         <a class="icon-star" [routerLink]="['/favorieten']"><i class="far fa-star"></i></a>
                         <a class="icon-user" (click)="editProfile()"><i class="far fa-user"></i></a>
+                        <!-- ngIf moet nog checken ofdat de user een restaurantsuitbater is-->
+                        <a *ngIf="true" class="icon-cog" [routerLink]="['/controlepaneel']"><i class="fa fa-cog"></i></a>
                         <button class="btn btn-danger" (click)="logout()">Logout</button>
                       </div>
                 </li>

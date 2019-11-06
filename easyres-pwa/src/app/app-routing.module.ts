@@ -10,6 +10,7 @@ import { BesteldeProductenComponent } from './bestelde-producten/bestelde-produc
 import { FavorietenComponent } from './favorieten/favorieten.component';
 import { ReservatieLijstComponent } from './reservatie-lijst/reservatie-lijst.component';
 import { MsalGuard } from './guard/msal.guard';
+import { ControlePaneelComponent } from './controle-paneel/controle-paneel.component';
 
 const routes: Routes = [
   {path: 'restaurant', component: RestaurantComponent, data: {animation: 'restaurant'}},
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path: 'bestel/:id/:TafelNr', component: BestelComponent},
   {path: 'actief', component: SessieComponent, canActivate: [MsalGuard]},
   {path: 'favorieten', component: FavorietenComponent, canActivate: [MsalGuard], data: {animation: 'favorieten'}},
+  {path: 'controlepaneel', component: ControlePaneelComponent},
   {path: '', redirectTo: 'restaurant', pathMatch: 'full', data: {animation: 'restaurant'}},
   {path: '**', redirectTo: 'restaurant', pathMatch: 'full', data: {animation: 'restaurant'}}
 ];
