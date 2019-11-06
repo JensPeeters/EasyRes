@@ -12,6 +12,8 @@ import { VerstuurBestellingComponent } from '../verstuur-bestelling/verstuur-bes
 import { BestelComponent } from '../bestel/bestel.component';
 import { SessieComponent } from '../sessie/sessie.component';
 import { FavorietenComponent } from '../favorieten/favorieten.component';
+import { BestellingenComponent } from '../bestellingen/bestellingen.component';
+import { BestelOptiesComponent } from '../bestel-opties/bestel-opties.component';
 
 describe('RestaurantInfoComponent', () => {
   let component: RestaurantInfoComponent;
@@ -20,7 +22,12 @@ describe('RestaurantInfoComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ FormsModule, HttpClientModule, AppRoutingModule ],
-      declarations: [ RestaurantInfoComponent, RestaurantComponent, ReservatieComponent, BesteldeProductenComponent, VerstuurBestellingComponent, BestelComponent, SessieComponent, FavorietenComponent, ReservatieLijstComponent ]
+      declarations: [ RestaurantInfoComponent, RestaurantComponent, 
+        ReservatieComponent, BesteldeProductenComponent, 
+        VerstuurBestellingComponent, BestelComponent, 
+        SessieComponent, FavorietenComponent, 
+        ReservatieLijstComponent, BestellingenComponent, 
+        BestelOptiesComponent  ]
 
     })
     .compileComponents();

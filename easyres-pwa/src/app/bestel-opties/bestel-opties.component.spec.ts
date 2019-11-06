@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BestelOptiesComponent } from './bestel-opties.component';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 describe('BestelOptiesComponent', () => {
   let component: BestelOptiesComponent;
@@ -8,7 +10,8 @@ describe('BestelOptiesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BestelOptiesComponent ]
+      declarations: [ BestelOptiesComponent ],
+      imports: [RouterModule.forRoot([])]
     })
     .compileComponents();
   }));
