@@ -10,7 +10,7 @@ export class DataService {
   url: string;
 
   constructor(private http: HttpClient) {
-    this.url = "https://localhost:44315/api/bestelling/restaurant/2";
+    this.url = "https://easyres-api.azurewebsites.net/api/bestelling/restaurant/2";
    }
 
   GetAlleDrankbestellingen() {
