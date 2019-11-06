@@ -1,0 +1,27 @@
+<div *ngIf="Bestellingen">
+  <div id="accordion" *ngFor="let bestelling of Bestellingen; let id = index">
+    <div class="card">
+      <div class="card-header" id="menu">
+        <button class="btn btn-warning" data-toggle="collapse" [attr.data-target]="'#bestelling'+id" aria-expanded="true"
+          aria-controls="collapseMenu" (click)="collapseBestellingen()">
+          Bestelling #{{id+1}}<i *ngIf="!collapsed" class="fas fa-plus"></i> <i *ngIf="collapsed" class="fas fa-minus"></i></button>
+      </div>
+      <div [attr.id]="'bestelling' + id" class="collapse hidden" aria-labelledby="menu" data-parent="#accordion">
+        <div class="card-body">
+          <h6>Bestelde dranken</h6>
+          <ul>
+            <li *ngFor="let drank of bestelling.dranken">
+              <p>{{drank.aantal}}{{drank.naam}}<span>{{drank.prijs | currency:'€'}}</span></p>
+            </li>
+          </ul>
+          <h6>Bestelde gerechten</h6>
+          <ul>
+            <li *ngFor="let etenswaar of bestelling.etenswaren">
+              <p>{{etenswaar.aantal}}{{etenswaar.naam}}<span>{{etenswaar.prijs | currency:'€'}}</span></p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
