@@ -3,7 +3,7 @@
     <div class="card">
       <div class="card-header" id="menu">
         <button class="btn btn-warning" data-toggle="collapse" [attr.data-target]="'#bestelling'+id" aria-expanded="true"
-          aria-controls="collapseMenu" (click)="collapsed = !collapsed">
+          aria-controls="collapseMenu" (click)="collapseBestellingen()">
           Bestelling #{{id+1}}<i *ngIf="!collapsed" class="fas fa-plus"></i> <i *ngIf="collapsed" class="fas fa-minus"></i></button>
       </div>
       <div [attr.id]="'bestelling' + id" class="collapse hidden" aria-labelledby="menu" data-parent="#accordion">

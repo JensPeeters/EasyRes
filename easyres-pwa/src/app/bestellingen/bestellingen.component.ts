@@ -12,6 +12,7 @@ export class BestellingenComponent implements OnInit {
   UserId : string;
   RestaurantId : number;
   Bestellingen : IBestelling[];
+  collapsed: boolean = false;
 
   constructor(private msalService: MsalService, private bestelServ :BestellingService,
     private route: ActivatedRoute) { }
@@ -29,6 +30,9 @@ export class BestellingenComponent implements OnInit {
   }
   GetUserObjectId(){
     this.UserId = this.msalService.getUserObjectId();
+  }
+  collapseBestellingen(){
+    this.collapsed != this.collapsed;
   }
 
 }
