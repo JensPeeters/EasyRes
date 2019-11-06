@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService, IProduct, IBestelling } from '../data.service';
+import { DataService, IBestelling } from '../data.service';
 
 @Component({
   selector: 'app-bar',
   templateUrl: './bar.component.html',
   styleUrls: ['./bar.component.scss']
 })
+
 export class BarComponent implements OnInit {
 
   Bestellingen: IBestelling[];
@@ -14,8 +15,7 @@ export class BarComponent implements OnInit {
   ProcessList: IBestelling[];
   DoneList: IBestelling[];
 
-  today: number = Date.now();
-
+  today = new Date();
 
   constructor(private serv: DataService) { }
 
@@ -23,6 +23,9 @@ export class BarComponent implements OnInit {
     this.serv.GetAlleDrankbestellingen().subscribe(result => {
       this.Bestellingen = result;
       this.Checklist();
+      setInterval(() => {
+        this.today = new Date();
+     }, 1000);
     });
   }
 
@@ -38,6 +41,8 @@ export class BarComponent implements OnInit {
 
   Done(bestelling: IBestelling) {
     bestelling.drinkenGereed = true;
+    bestelling.finaleTijd = this.today;
+    this.today = bestelling.finaleTijd;
     this.serv.Putbestelling(bestelling).subscribe(res => {
       this.serv.GetAlleDrankbestellingen().subscribe(result => {
         this.Bestellingen = result;
