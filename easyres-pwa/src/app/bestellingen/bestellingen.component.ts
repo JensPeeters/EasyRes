@@ -12,6 +12,7 @@ export class BestellingenComponent implements OnInit {
   UserId : string;
   RestaurantId : number;
   Bestellingen : IBestelling[];
+  TafelNr : number;
   collapsed: boolean = false;
 
   constructor(private msalService: MsalService, private bestelServ :BestellingService,
@@ -22,10 +23,10 @@ export class BestellingenComponent implements OnInit {
     if(this.msalService.isLoggedIn()){
       this.GetUserObjectId();
     }
-    this.RestaurantId = Number(this.route.snapshot.paramMap.get('id'))
+    this.RestaurantId = Number(this.route.snapshot.paramMap.get('id'));
+    this.TafelNr = Number(this.route.snapshot.paramMap.get('TafelNr'));
     this.bestelServ.GetOrdersForUser(this.UserId,this.RestaurantId).subscribe( res => {
       this.Bestellingen = res;
-      console.log(res);
     });
   }
   GetUserObjectId(){

@@ -45,10 +45,8 @@ export class BestelComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
       this.resServ.GetRestaurantByID(Number(id)).subscribe(restaurant => {
         this.restaurant = restaurant;
-        this.bestelServ.Bestelling.restaurant.restaurantId = Number(id);
       });
     this.bestelServ.bestelling.tafelNr = Number(this.route.snapshot.paramMap.get('TafelNr'));
-    console.log(Number(this.route.snapshot.paramMap.get('TafelNr')));
     this.TafelNr = this.bestelServ.bestelling.tafelNr;
     if(this.msalService.isLoggedIn()){
       this.GetUserObjectId();
@@ -81,7 +79,6 @@ export class BestelComponent implements OnInit {
     };
     if(this.bestelServ.bestelling.etenswaren.find(e => e.naam == this.besteldProduct.naam) != null){
       this.bestelServ.bestelling.etenswaren.find(e => e.naam == this.besteldProduct.naam).aantal++;
-      console.log(this.bestelServ.bestelling.etenswaren);
     }else{
       this.bestelServ.bestelling.etenswaren.push(this.besteldProduct);
     }
@@ -96,7 +93,6 @@ export class BestelComponent implements OnInit {
     
     if(this.bestelServ.bestelling.dranken.find(e => e.naam == this.besteldProduct.naam) != null){
       this.bestelServ.bestelling.dranken.find(e => e.naam == this.besteldProduct.naam).aantal++;
-      console.log(this.bestelServ.bestelling.dranken);
     }else{
       this.bestelServ.bestelling.dranken.push(this.besteldProduct);
     }
