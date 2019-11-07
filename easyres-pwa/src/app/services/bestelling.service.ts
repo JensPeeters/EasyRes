@@ -19,9 +19,7 @@ export class BestellingService {
 
   PostOrder(UserId: string, ResId : number) {
     this.bestelling = this.Bestelling;
-    console.log(UserId);
-    console.log(this.bestelling);
-    return this.http.post(`${this.urlAPI}/bestelling/restaurant/${ResId}/${UserId}`, this.bestelling);
+    return this.http.post<IBestelling>(`${this.urlAPI}/bestelling/restaurant/${ResId}/${UserId}`, this.bestelling);
   }
   GetOrdersForUser(UserId: string, RestaurantId: number) {
     return this.http.get<IBestelling[]>(`${this.urlAPI}/bestelling/gebruiker/${UserId}/${RestaurantId}`);

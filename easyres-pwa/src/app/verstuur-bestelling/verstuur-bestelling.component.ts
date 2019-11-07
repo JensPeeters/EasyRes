@@ -9,28 +9,27 @@ import { MsalService } from '../services/msal.service';
   styleUrls: ['./verstuur-bestelling.component.scss']
 })
 export class VerstuurBestellingComponent implements OnInit {
-  UserId : string;
-  TafelNr : number;
-  RestaurantId : number;
-  bestelling : IBestelling;
-  constructor(private route: ActivatedRoute, private bestelServ :BestellingService,
-    private msalService: MsalService) { 
+  UserId: string;
+  TafelNr: number;
+  RestaurantId: number;
+  bestelling: IBestelling;
+  constructor(private route: ActivatedRoute, private bestelServ: BestellingService,
+    private msalService: MsalService) {
     this.TafelNr = Number(this.route.snapshot.paramMap.get('TafelNr'));
     this.RestaurantId = Number(this.route.snapshot.paramMap.get('id'));
-    this.bestelling = this.bestelServ.Bestelling;
 
-    if(this.msalService.isLoggedIn()){
+    if (this.msalService.isLoggedIn()) {
       this.GetUserObjectId();
     }
   }
-  
+
   ngOnInit() {
     this.bestelServ.PostOrder(this.UserId, this.RestaurantId).subscribe(res => {
-      console.log(res);
+      this.bestelling = res;
     });
   }
 
-  GetUserObjectId(){
+  GetUserObjectId() {
     this.UserId = this.msalService.getUserObjectId();
   }
 
