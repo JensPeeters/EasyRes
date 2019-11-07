@@ -22,13 +22,10 @@
             <hr>
             <h6>Bestelde gerechten</h6>
             <hr>
-            <li>
-              <strong> Aantal:</strong><strong>Naam:</strong><strong>Prijs:</strong>
-            </li>
             <li *ngFor="let etenswaar of bestelling.etenswaren">
-              <p>{{etenswaar.aantal}}</p>
-              <p>{{etenswaar.naam}}</p>
-              <span>{{etenswaar.prijs | currency:'€'}}</span>
+              <span><strong> Aantal:</strong>{{etenswaar.aantal}}</span>
+              <span><strong>Naam:</strong>{{etenswaar.naam}}</span>
+              <span><strong>Prijs:</strong>{{etenswaar.prijs | currency:'€'}}</span>
             </li>
           </ul>
         </div>
