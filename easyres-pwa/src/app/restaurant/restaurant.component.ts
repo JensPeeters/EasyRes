@@ -22,7 +22,9 @@ export class RestaurantComponent implements OnInit {
   UserId: string;
 
   async ngOnInit() {
-    this.GetUserObjectId();
+    if(this.isUserLoggedIn()){
+      this.GetUserObjectId();
+    }
     await this.GetRestaurants();
   }
   Zoeken(){
@@ -48,7 +50,9 @@ export class RestaurantComponent implements OnInit {
       }
     }
     this.Restaurants = temp;
-    await this.CheckFavorites();
+    if(this.isUserLoggedIn()){
+      await this.CheckFavorites();
+    }
   }
   ChangeTypes(type){
     type.active = !type.active;
@@ -85,6 +89,14 @@ export class RestaurantComponent implements OnInit {
       this.RestaurantsFavoriteBooleans.push(false);
     });
   }
+  async ngDoCheck() 
+  {
+    if(this.UserId == null && this.isUserLoggedIn()){
+        this.GetUserObjectId();
+        await this.CheckFavorites();
+    }
+  }
+  
 }
 export interface type{
   naam: string;
