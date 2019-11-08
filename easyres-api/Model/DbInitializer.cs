@@ -247,12 +247,10 @@ namespace easyres_api.Model
                     new Gebruiker()
                     {
                         GebruikersID = "cfb6e87d-aadd-4656-868b-4650e48d8f9e",
-                        Restaurants = new List<Restaurant>(){restaurants[3],restaurants[4],restaurants[5]}
                     },
                     new Gebruiker()
                     {
                         GebruikersID = "dcc3cdca-1005-493b-a8e5-2351a8d4f89c",
-                        Restaurants = new List<Restaurant>(){restaurants[3],restaurants[4],restaurants[5]},
                         Bestellingen = new List<Bestelling>(){bestellingen[0]}
                     },
                 };

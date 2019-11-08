@@ -103,6 +103,12 @@ p{
     margin-bottom: 7px;
     justify-self: end;
 }
+.fa-star{
+    position: absolute;
+    right: 10px;
+    margin-top: 5px;
+    cursor: pointer;
+}
 /* Container van de types */
 .typeContainar {
     display: block;

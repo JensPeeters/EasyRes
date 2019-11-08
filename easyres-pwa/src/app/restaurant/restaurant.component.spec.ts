@@ -4,6 +4,7 @@ import { RestaurantComponent } from './restaurant.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { MsalService } from '../services/msal.service';
 
 describe('RestaurantComponent', () => {
   let component: RestaurantComponent;
@@ -12,7 +13,8 @@ describe('RestaurantComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule, RouterModule.forRoot([]), HttpClientModule],
-      declarations: [ RestaurantComponent ]
+      declarations: [ RestaurantComponent ],
+      providers: [MsalService]
     })
     .compileComponents();
   }));

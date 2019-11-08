@@ -12,10 +12,8 @@ export class SessieComponent implements OnInit {
   TafelNr : number = 4;
   constructor(private resServ : RestaurantService) { }
 
-  ngOnInit() {
-    this.resServ.GetRestaurants().subscribe(restaurants => {
-      this.Restaurants = restaurants;
-    });
+  async ngOnInit() {
+    this.Restaurants = await this.resServ.GetRestaurants();
   }
 
 }
