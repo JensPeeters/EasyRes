@@ -49,9 +49,13 @@
                 </div>
             </div>
     </div>
-    <div class="restaurant-template" *ngFor="let restaurant of Restaurants;">
+    <div class="restaurant-template" *ngFor="let restaurant of Restaurants; let i = index">
             <div class="card">
                 <div class="card-body">
+                    <div *ngIf="isUserLoggedIn()" (click)="AddDeleteFavorites(restaurant.restaurantId,i)">
+                        <i *ngIf="!RestaurantsFavoriteBooleans[i]" class="far fa-star"></i>
+                        <i *ngIf="RestaurantsFavoriteBooleans[i]" class="fas fa-star"></i>
+                    </div>
                     <h5 class="card-title">{{restaurant.naam}}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">{{restaurant.soort}} - {{restaurant.type}}</h6>
                     <p class="card-text">{{restaurant.beschrijving}}</p>
