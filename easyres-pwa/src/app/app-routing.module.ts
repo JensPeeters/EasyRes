@@ -26,7 +26,7 @@ const routes: Routes = [
   {path: 'bestel/:id/:TafelNr/verstuur', component: VerstuurBestellingComponent},
   {path: 'bestel/:id/:TafelNr/menu', component: BestelComponent},
   {path: 'bestel/:id/:TafelNr', component: BestelOptiesComponent},
-  {path: 'actief', component: SessieComponent, canActivate: [MsalGuard]},
+  {path: 'sessie', component: SessieComponent, canActivate: [MsalGuard]},
   {path: 'favorieten', component: FavorietenComponent, canActivate: [MsalGuard], data: {animation: 'favorieten'}},
   {path: '', redirectTo: 'restaurant', pathMatch: 'full', data: {animation: 'restaurant'}},
   {path: '**', redirectTo: 'restaurant', pathMatch: 'full', data: {animation: 'restaurant'}}

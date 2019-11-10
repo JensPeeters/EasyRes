@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +26,7 @@ import { MsalGuard } from './guard/msal.guard';
 import { BestelOptiesComponent } from './bestel-opties/bestel-opties.component';
 import { BestellingenComponent } from './bestellingen/bestellingen.component';
 import { ScanComponent } from './scan/scan.component';
+import { SessionService } from './services/session.service';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,7 @@ import { ScanComponent } from './scan/scan.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ZXingScannerModule,
     HttpClientModule,
     FormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
@@ -54,6 +57,7 @@ import { ScanComponent } from './scan/scan.component';
   providers: [
     RestaurantService,
     BestellingService,
+    SessionService,
     MsalService,
     MsalGuard
   ],
