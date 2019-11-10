@@ -34,7 +34,60 @@ namespace easyres_api.Model
                     Land = "België",
                     Postcode = 2000
                 };
-
+                Adres adres1 = new Adres()
+                {
+                    Bus = "A",
+                    Gemeente = "Sint-Niklaas",
+                    Straat = "Papegaielaan",
+                    Straatnummer = 10,
+                    Land = "België",
+                    Postcode = 2000
+                };
+                Adres adres2 = new Adres()
+                {
+                    Bus = "A",
+                    Gemeente = "Sint-Gillis-Waas",
+                    Straat = "Papegaielaan",
+                    Straatnummer = 10,
+                    Land = "België",
+                    Postcode = 2000
+                };
+                Adres adres3 = new Adres()
+                {
+                    Bus = "A",
+                    Gemeente = "Amsterdam",
+                    Straat = "Papegaielaan",
+                    Straatnummer = 10,
+                    Land = "Nederland",
+                    Postcode = 2000
+                };
+                Adres adres4 = new Adres()
+                {
+                    Bus = "A",
+                    Gemeente = "Rotterdam",
+                    Straat = "Papegaielaan",
+                    Straatnummer = 10,
+                    Land = "Nederland",
+                    Postcode = 2000
+                };
+                Adres adres5 = new Adres()
+                {
+                    Bus = "A",
+                    Gemeente = "Den Haag",
+                    Straat = "Papegaielaan",
+                    Straatnummer = 10,
+                    Land = "Nederland",
+                    Postcode = 2000
+                };
+                Adres adres6 = new Adres()
+                {
+                    Bus = "A",
+                    Gemeente = "Groningen",
+                    Straat = "Papegaielaan",
+                    Straatnummer = 10,
+                    Land = "Nederland",
+                    Postcode = 2000
+                };
                 Menu menu = new Menu()
                 {
                     Desserts = new List<Product>()
@@ -117,7 +170,7 @@ namespace easyres_api.Model
                     {
                       Beschrijving = "Het beste Chineese restaurant met veel verschillende smaken.",
                       Openingsuren = openingsuren,
-                      Locatie = adres,
+                      Locatie = adres1,
                       LogoImage = "https://via.placeholder.com/350x350.png/8b0000/fff?text=Foto van een restaurant",
                       Menu = menu,
                       Naam = "Het hoekske",
@@ -128,7 +181,7 @@ namespace easyres_api.Model
                     {
                       Beschrijving = "Het beste Chineese restaurant met veel verschillende smaken. En zelfs nog meer als de anderen.",
                       Openingsuren = openingsuren,
-                      Locatie = adres,
+                      Locatie = adres2,
                       LogoImage = "https://via.placeholder.com/350x350.png/8b0000/fff?text=Foto van een restaurant",
                       Menu = menu,
                       Naam = "Het restaurant china",
@@ -139,7 +192,7 @@ namespace easyres_api.Model
                     {
                       Beschrijving = "Japan brengt de gerechten zoals ze in Japan worden gebracht, super lekker dus.",
                       Openingsuren = openingsuren,
-                      Locatie = adres,
+                      Locatie = adres3,
                       LogoImage = "https://via.placeholder.com/350x350.png/8b0000/fff?text=Foto van een restaurant",
                       Menu = menu,
                       Naam = "Het japaneeske",
@@ -150,7 +203,7 @@ namespace easyres_api.Model
                     {
                       Beschrijving = "Je denkt Afrika dus je denkt direct aan lekker eten ;)",
                       Openingsuren = openingsuren,
-                      Locatie = adres,
+                      Locatie = adres4,
                       LogoImage = "https://via.placeholder.com/350x350.png/8b0000/fff?text=Foto van een restaurant",
                       Menu = menu,
                       Naam = "Het afrikaanse hoofdkwartier",
@@ -161,7 +214,7 @@ namespace easyres_api.Model
                     {
                       Beschrijving = "Het beste Chineese restaurant met veel verschillende smaken. Jaja je lees het goed het beste restaurant ter wereld.",
                       Openingsuren = openingsuren,
-                      Locatie = adres,
+                      Locatie = adres5,
                       LogoImage = "https://via.placeholder.com/350x350.png/8b0000/fff?text=Foto van een restaurant",
                       Menu = menu,
                       Naam = "De chinees",
@@ -172,7 +225,7 @@ namespace easyres_api.Model
                     {
                       Beschrijving = "Veel verschillend smaken, maar echt super veel. Geloof je het niet, kom zelf proeven!",
                       Openingsuren = openingsuren,
-                      Locatie = adres,
+                      Locatie = adres6,
                       LogoImage = "https://via.placeholder.com/350x350.png/8b0000/fff?text=Foto van een restaurant",
                       Menu = menu,
                       Naam = "Den bistro",
@@ -183,7 +236,7 @@ namespace easyres_api.Model
                     {
                       Beschrijving = "Het beste italiaanse restaurant met veel verschillende smaken enzovoort...",
                       Openingsuren = openingsuren,
-                      Locatie = adres,
+                      Locatie = adres1,
                       LogoImage = "https://via.placeholder.com/350x350.png/8b0000/fff?text=Foto van een restaurant",
                       Menu = menu,
                       Naam = "Alles van eten",
