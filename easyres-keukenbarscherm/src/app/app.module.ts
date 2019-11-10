@@ -14,12 +14,12 @@ import { DataService } from './data.service';
     AppComponent,
     ToolbarComponent,
     KeukenComponent,
-    BarComponent
+    BarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

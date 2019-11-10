@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,7 +22,11 @@ import { BestellingService } from './services/bestelling.service';
 import { BesteldeProductenComponent } from './bestelde-producten/bestelde-producten.component';
 import { FavorietenComponent } from './favorieten/favorieten.component';
 import { ReservatieLijstComponent } from './reservatie-lijst/reservatie-lijst.component';
-
+import { MsalGuard } from './guard/msal.guard';
+import { BestelOptiesComponent } from './bestel-opties/bestel-opties.component';
+import { BestellingenComponent } from './bestellingen/bestellingen.component';
+import { ScanComponent } from './scan/scan.component';
+import { SessionService } from './services/session.service';
 
 @NgModule({
   declarations: [
@@ -35,11 +40,15 @@ import { ReservatieLijstComponent } from './reservatie-lijst/reservatie-lijst.co
     BestelComponent,
     VerstuurBestellingComponent,
     BesteldeProductenComponent,
-    FavorietenComponent
+    FavorietenComponent,
+    BestelOptiesComponent,
+    BestellingenComponent,
+    ScanComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ZXingScannerModule,
     HttpClientModule,
     FormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
@@ -48,7 +57,9 @@ import { ReservatieLijstComponent } from './reservatie-lijst/reservatie-lijst.co
   providers: [
     RestaurantService,
     BestellingService,
-    MsalService
+    SessionService,
+    MsalService,
+    MsalGuard
   ],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace easyres_api.Model
@@ -225,10 +226,11 @@ namespace easyres_api.Model
                                 Aantal = 2
                             }
                          },
-                         RestaurantId = 1,
+                         Restaurant = restaurants[0],
                          TafelNr = 4,
                          EtenGereed = false,
-                         DrinkenGereed = false
+                         DrinkenGereed = false,
+                         HuidigeTijd = DateTime.Now.ToString("HH:mm:ss tt")
                     }
                 };
                 foreach (Bestelling bestelling in bestellingen)
@@ -245,16 +247,20 @@ namespace easyres_api.Model
                     new Gebruiker()
                     {
                         GebruikersID = "cfb6e87d-aadd-4656-868b-4650e48d8f9e",
-                        Restaurants = new List<Restaurant>(){restaurants[3],restaurants[4],restaurants[5]}
+                        Bestellingen = new List<Bestelling>(),
+                        Sessies = new List<Sessie>()
+                    },
+                    new Gebruiker()
+                    {
+                        GebruikersID = "dcc3cdca-1005-493b-a8e5-2351a8d4f89c",
+                        Bestellingen = new List<Bestelling>(){bestellingen[0]},
+                        Sessies = new List<Sessie>()
                     },
                 };
-
                 foreach(Gebruiker gebruiker in gebruikers)
                 {
                     context.Gebruikers.Add(gebruiker);
                 }
-
-
                 context.SaveChanges();
             }
         }

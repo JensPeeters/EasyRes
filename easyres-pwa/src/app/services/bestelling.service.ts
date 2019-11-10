@@ -1,28 +1,28 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { IRestaurant } from './restaurant.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BestellingService {
-  bestelling: IBestelling = {
+  bestelling = {
     prijs: 0,
     tafelNr: 0,
-    restaurantId: 0,
     dranken: [],
     etenswaren: []
   };
 
-  urlAPI: string = "https://easyres-api.azurewebsites.net/api";
-  //urlAPI : string = "https://localhost:44315/api";
+  urlAPI: string = 'https://easyres-api.azurewebsites.net/api';
+  //urlAPI: string = "https://localhost:44315/api";
   constructor(private http: HttpClient) { }
 
-  PostOrder() {
+  PostOrder(UserId: string, ResId : number) {
     this.bestelling = this.Bestelling;
-    console.log(this.bestelling.restaurantId)
-    console.log(this.bestelling);
-    console.log(this.Bestelling);
-    return this.http.post(`${this.urlAPI}/restaurant/${this.bestelling.restaurantId}/bestelling`, this.bestelling)
+    return this.http.post<IBestelling>(`${this.urlAPI}/bestelling/restaurant/${ResId}/${UserId}`, this.bestelling);
+  }
+  GetOrdersForUser(UserId: string, RestaurantId: number) {
+    return this.http.get<IBestelling[]>(`${this.urlAPI}/bestelling/gebruiker/${UserId}/${RestaurantId}`);
   }
 
   get Bestelling(): IBestelling {
@@ -33,21 +33,33 @@ export class BestellingService {
     for (let etenswaar of this.bestelling.etenswaren) {
       prijs += etenswaar.prijs * etenswaar.aantal;
     }
-    this.bestelling.prijs = prijs
-    return this.bestelling;
+    this.bestelling.prijs = prijs;
+    return <IBestelling>this.bestelling;
   }
 }
 
 export interface IBestelling {
   prijs: number;
   tafelNr: number;
-  restaurantId: number;
+  restaurant: IRestaurant;
   dranken: IProduct[];
   etenswaren: IProduct[];
+  bestellingId: number;
+}
+export interface IRestaurant {
+  restaurantId: number;
+  naam: string;
+  locatie: any;
+  menu: any;
+  openingsuren: any;
+  beschrijving: string;
+  logoImage: string;
+  type: string;
+  soort: string;
 }
 
 export interface IProduct {
-  naam: string
-  prijs: number
-  aantal: number
+  naam: string;
+  prijs: number;
+  aantal: number;
 }

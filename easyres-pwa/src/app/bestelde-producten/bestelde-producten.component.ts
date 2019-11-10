@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BestellingService, IBestelling } from '../services/bestelling.service';
+import { MsalService } from '../services/msal.service';
+import { RestaurantComponent } from '../restaurant/restaurant.component';
 
 @Component({
   selector: 'app-bestelde-producten',
@@ -11,12 +13,21 @@ export class BesteldeProductenComponent implements OnInit {
   TafelNr : number;
   RestaurantId : number;
   bestelling : IBestelling;
-  constructor(private route: ActivatedRoute, private bestelServ :BestellingService) { 
+  UserId : string;
+
+  constructor(private route: ActivatedRoute, private bestelServ :BestellingService,
+    private msalService: MsalService) { 
     this.TafelNr = Number(this.route.snapshot.paramMap.get('TafelNr'));
     this.RestaurantId = Number(this.route.snapshot.paramMap.get('id'));
     this.bestelling = this.bestelServ.Bestelling;
   }
   ngOnInit() {
+    if(this.msalService.isLoggedIn()){
+      this.GetUserObjectId();
+    }
+  }
+  GetUserObjectId(){
+    this.UserId = this.msalService.getUserObjectId();
   }
 
   VerwijderDrank(naam:string){
@@ -33,7 +44,7 @@ export class BesteldeProductenComponent implements OnInit {
   }
 
   SendOrder(){
-    this.bestelServ.PostOrder();
+    this.bestelServ.PostOrder(this.UserId, this.RestaurantId);
   }
 
 }

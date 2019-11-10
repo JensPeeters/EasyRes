@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ToolbarComponent implements OnInit {
 
+  today = new Date();
+  
   constructor() { }
 
   ngOnInit() {
+    setInterval(() => {
+      this.today = new Date();
+   }, 1000);
   }
 
 }

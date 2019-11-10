@@ -1,5 +1,5 @@
 <button class="btn btn-danger" [routerLink]="['/bestel', RestaurantId, TafelNr]">Maak nog een bestelling</button>
-<div>
+<div *ngIf="bestelling">
         <hr>
         <li>
           <strong>Product</strong>

@@ -3,27 +3,21 @@
     <div class="row text-center">
         <div class="col">
             <h2>In behandeling</h2>
-            <div *ngFor="let object of ProcessList">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-6" *ngFor="let bestelling of Bestellingen">
+            <div class="list" *ngFor="let bestelling of ProcessList">
+                <div class="card">
+                    <div class="card-body col6">
+                        <div>
                             <h5 class="card-title">Tafel {{bestelling.tafelNr}}</h5>
                             <div *ngFor="let eten of bestelling.etenswaren">
-                                <p>{{eten.aantal}}x {{eten.naam}} -
-                                    {{eten.aantal * eten.prijs | currency:'EUR':true}}</p>
-                            </div>
-                            <div class="col-sm-6 text-center">
-                                <h4>11:53</h4>
-                            </div>
-                            <div class="col">
-                                <button type="button" (click)="Back(bestelling)"
-                                    class="btn btn-danger">Terugzetten</button>
-                            </div>
-                            <div class="col">
-                                <button type="button" (click)="Done(bestelling)" class="btn btn-success">Gereed</button>
+                                <p>{{eten.aantal}}x {{eten.naam}}</p>
                             </div>
                         </div>
+                        <div>
+                            <h4 class="text-right">{{bestelling.huidigeTijd}}</h4>
+                            <button type="button" (click)="Done(bestelling)" class="btn btn-success"><i
+                                    class="fas fa-check"></i> Gereed</button>
+                            <button type="button" (click)="Done(bestelling)" class="btn btn-danger"><i
+                                    class="fas fa-times"></i> Annuleren</button>
                         </div>
                     </div>
                 </div>
@@ -31,31 +25,25 @@
         </div>
         <div class="col">
             <h2>Behandeld</h2>
-            <div *ngFor="let object of DoneList">
+            <div class="list" *ngFor="let bestelling of DoneList">
                 <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-6" *ngFor="let bestelling of Bestellingen">
-                                <h5 class="card-title">Tafel {{bestelling.tafelNr}}</h5>
-                                <div *ngFor="let eten of bestelling.etenswaren">
-                                    <p>{{eten.aantal}}x {{eten.naam}} -
-                                        {{eten.aantal * eten.prijs | currency:'EUR':true}}</p>
-                                </div>
-                                <div class="col-sm-6 text-center">
-                                    <h4>11:53</h4>
-                                </div>
-                                <div class="col">
-                                    <button type="button" (click)="Back(bestelling)"
-                                        class="btn btn-danger">Terugzetten</button>
-                                </div>
-                                <div class="col">
-                                    <button type="button" (click)="Done(bestelling)" class="btn btn-success">Gereed</button>
-                                </div>
+                    <div class="card-body col6">
+                        <div>
+                            <h5 class="card-title">Tafel {{bestelling.tafelNr}}</h5>
+                            <div *ngFor="let eten of bestelling.etenswaren">
+                                <p>{{eten.aantal}}x {{eten.naam}}
+                                    <!--  - {{eten.aantal * eten.prijs | currency:'EUR':true}} -->
+                                </p>
                             </div>
-                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-right">{{bestelling.finaleTijd | date:'HH:mm'}}</h4>
+                            <button type="button" (click)="Back(bestelling)" class="btn btn-primary"><i
+                                    class="fas fa-undo-alt"></i> Terug</button>
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
     </div>
 </div>
