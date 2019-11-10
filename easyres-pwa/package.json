@@ -22,6 +22,7 @@
     "@angular/router": "~8.2.9",
     "@angular/service-worker": "~8.2.9",
     "@azure/msal-angular": "^0.1.4",
+    "ng2-completer": "^3.0.3",
     "@zxing/ngx-scanner": "^2.0.1",
     "angular2-qrscanner": "^1.0.7",
     "rxjs": "~6.4.0",
