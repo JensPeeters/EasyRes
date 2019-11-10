@@ -25,6 +25,8 @@ import { MsalGuard } from './guard/msal.guard';
 import { BestelOptiesComponent } from './bestel-opties/bestel-opties.component';
 import { BestellingenComponent } from './bestellingen/bestellingen.component';
 
+import { Ng2CompleterModule } from 'ng2-completer';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +49,8 @@ import { BestellingenComponent } from './bestellingen/bestellingen.component';
     HttpClientModule,
     FormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    Ng2CompleterModule
   ],
   providers: [
     RestaurantService,

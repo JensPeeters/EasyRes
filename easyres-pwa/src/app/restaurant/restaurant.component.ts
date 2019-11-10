@@ -21,6 +21,16 @@ export class RestaurantComponent implements OnInit {
   types: type[] = [{naam: "Restaurant",active:true},{naam: "Taverne",active:true},{naam: "Bistro",active:true},{naam: "Trattoria",active:true}]
   UserId: string;
 
+  filter: string = "";
+  landen: string[] = ["België","Nederland"];
+  gemeentes: string[] = [];
+  GemeentesBelgie: string[] = ["Sint-Niklaas","Antwerpen","Sint-Gillis-Waas"];
+  GemeentesNederland: string[] = ["Amsterdam","Rotterdam","Den Haag","Groningen"];
+  filters: filters[] = [
+    {naam: "Land", value: "", active: false},
+    {naam: "Gemeente", value: "", active: false}
+  ];
+  
   async ngOnInit() {
     if(this.isUserLoggedIn()){
       this.GetUserObjectId();
@@ -43,7 +53,7 @@ export class RestaurantComponent implements OnInit {
     var temp: IRestaurant[] = [];
     for(var element of this.types){
       if (element.active) {
-        var tempRestaurants = await this.ResService.GetRestaurants(`${this.zoekterm}&soort=${element.naam}`);
+        var tempRestaurants = await this.ResService.GetRestaurants(`${this.zoekterm}&soort=${element.naam}&${this.filter}`);
         tempRestaurants.forEach(element => {
           temp.push(element);
         });
@@ -57,6 +67,33 @@ export class RestaurantComponent implements OnInit {
   ChangeTypes(type){
     type.active = !type.active;
     this.GetRestaurants();
+  }
+  ChangeFilter(filter){
+    filter.active = !filter.active;
+  }
+  async ApplyFilters(){
+    this.filter = "";
+    for(var element of this.filters){
+      if (element.active && element.value != "") {
+        this.filter += `&${element.naam.toLowerCase()}=${element.value}`
+      }
+    }
+    console.log(this.filter);
+    await this.GetRestaurants()
+  }
+  ChangeLocation(filterGiven:filters){
+    if(filterGiven.naam == "Land"){
+      return this.landen;
+    }
+    else if(filterGiven.naam == "Gemeente"){
+      if(this.filters[0].value == "België"){
+        return this.GemeentesBelgie;
+      }
+      else if (this.filters[0].value == "Nederland"){
+        return this.GemeentesNederland;
+      }
+    }
+    return [""];
   }
   isUserLoggedIn() {
     return this.msalService.isLoggedIn();
@@ -96,9 +133,14 @@ export class RestaurantComponent implements OnInit {
         await this.CheckFavorites();
     }
   }
-  
+
 }
 export interface type{
   naam: string;
+  active: boolean;
+}
+export interface filters{
+  naam: string;
+  value: string;
   active: boolean;
 }
