@@ -15,6 +15,7 @@ import { SessieComponent } from '../sessie/sessie.component';
 import { FavorietenComponent } from '../favorieten/favorieten.component';
 import { BestellingenComponent } from '../bestellingen/bestellingen.component';
 import { BestelOptiesComponent } from '../bestel-opties/bestel-opties.component';
+import { Ng2CompleterModule } from 'ng2-completer';
 import { ScanComponent } from '../scan/scan.component';
 
 describe('RestaurantInfoComponent', () => {
@@ -23,7 +24,7 @@ describe('RestaurantInfoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ FormsModule, HttpClientModule, AppRoutingModule,ZXingScannerModule ],
+      imports: [ FormsModule, HttpClientModule, AppRoutingModule, Ng2CompleterModule, ZXingScannerModule ],
       declarations: [ RestaurantInfoComponent, RestaurantComponent, 
         ReservatieComponent, BesteldeProductenComponent, 
         VerstuurBestellingComponent, BestelComponent, 

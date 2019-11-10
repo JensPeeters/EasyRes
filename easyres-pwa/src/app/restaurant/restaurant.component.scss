@@ -37,8 +37,22 @@
     display: grid;
     gap: 1%;
     grid-template-columns: 33% 33% 33%;
+    grid-template-areas:
+          "left center right"
+          "left scan scan"
+          "left content content";
     grid-row-gap: 1em;
     margin: auto;
+    margin-bottom: 50px;
+}
+.content{
+    grid-area: content;
+}
+.left{
+    grid-area: left;
+}
+.right{
+    grid-area: right;
 }
 .button-search{
     width: 30%;
@@ -46,14 +60,13 @@
     margin-bottom:5px;
 }
 .button-card{
-    margin-bottom: 7px;
     margin-right: 10px;
 }
 .button-scan{
-    grid-column-start: 2;
-    grid-column-end: 4;
     margin-bottom: 7px;
     height: 50px;
+    grid-area: scan;
+    width: 100%;
 }
 .icon-search{
     padding-bottom: 2px;
@@ -89,8 +102,6 @@ input::placeholder{
 }
 .restaurant-template{
     padding-top: 10px;
-    grid-column-start: 2;
-    grid-column-end: 4;
 }
 .advert{
     border: 2px solid green;
@@ -100,10 +111,7 @@ input::placeholder{
     font-size: 15px;
 }
 .restaurant-advertentie-template{
-    margin-top: -140px;
     padding-top: 10px;
-    grid-column-start: 2;
-    grid-column-end: 4;
 }
 p{
     margin-top: 7px;
@@ -115,6 +123,16 @@ p{
     right: 10px;
     margin-top: 5px;
     cursor: pointer;
+}
+.filterInput{
+    margin-bottom: 10px;
+    margin-left: 50px;
+    margin-right: 10px;
+    max-width: 200px !important;
+}
+.filterCheckbox{
+    margin-top: 14px;
+    margin-bottom: -6px;
 }
 /* Container van de types */
 .typeContainar {
@@ -185,14 +203,11 @@ p{
     transform: rotate(45deg);
   }
   .typeNormal{
-    grid-column-start: 1;
-    grid-column-end: 1;
+      margin-top: 65px;
   }
-  .typeDropdown{
-    grid-column-start: 1;
-    grid-column-end: 3;
-  }
-
+.right{
+    max-width: 200px;
+}
 
 @media screen and (max-width: 1200px){
     input{
@@ -205,38 +220,49 @@ p{
     }
 }
 @media screen and (max-width: 880px){
-    .restaurant-advertentie-template{
-        margin-top: 0px;
+    .button-scan{
+        margin-top: 15px;
     }
     p{
         justify-self: start;
-        grid-column-start: 1;
     }
     .main-content{
-        grid-template-columns: 50% 50%;
+        display: block;
+        width: 80%;
     }
     .restaurant-template, .restaurant-advertentie-template{
         padding-top: 10px;
-        grid-column-start: 1;
-        grid-column-end: 3;
-    }
-    .button-scan{
-        grid-column-start: 1;
-        grid-column-end: 3;
-    }
-    .input-search-restaurant{
-        grid-column-start: 1;
-        grid-column-end: 3;
-    }
-    .dropdown{
-        grid-column-start: 2;
-        grid-column-end: 3;
     }
     input{
-        width: 95%;
+        width: 87%;
     }
     .typeNormal{
         display: none;
+    }
+    .center{
+        display: inline-block;
+        margin-right: 25px;
+    }
+    .right{
+        display: inline-block;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+    .left{
+        max-width: 200px;
+        margin-right: 25px;
+    }
+    .dropdowns{
+        display: flex;
+        max-width: 100% !important;
+    }
+    .allDropdown{
+        width: 50%;
+        margin: 0;
+        min-width: 200px;
+    }
+    .typeDropdown{
+        margin-right: 25px;
     }
 }
 @media screen and (max-width: 740px){
@@ -244,14 +270,25 @@ p{
         width: 80%;
     }
 }
-@media screen and (max-width: 680px){
-    input{
-        width: 94%;
+@media screen and (max-width: 580px){
+    .dropdowns{
+        display: block;
+    }
+    .allDropdown{
+        width: 100%;
+        max-width: 320px;
+        margin-bottom: 15px;
+    }
+    .typeDropdown{
+        margin-right: 0px;
+    }
+    .left{
+        display: block;
     }
 }
-@media screen and (max-width: 560px){
+@media screen and (max-width: 680px){
     input{
-        width: 92%;
+        width: 86%;
     }
 }
 @media screen and (max-width: 430px){
@@ -264,16 +301,10 @@ p{
     .header-image-text{
         font-size: 16px;
     }
-    input{
-        width: 90%;
-    }
 }
 @media screen and (max-width: 330px){
     p{
         font-size: 11px;
-    }
-    input{
-        width: 87%;
     }
     .dropdown-toggle{
         font-size: 11px;
@@ -284,7 +315,7 @@ p{
 }
 
 @media screen and (min-width: 880px){
-    .typeDropdown{
+    .dropdowns{
         display: none;
     }
 }

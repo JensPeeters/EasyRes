@@ -28,6 +28,8 @@ import { BestellingenComponent } from './bestellingen/bestellingen.component';
 import { ScanComponent } from './scan/scan.component';
 import { SessionService } from './services/session.service';
 
+import { Ng2CompleterModule } from 'ng2-completer';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +54,8 @@ import { SessionService } from './services/session.service';
     HttpClientModule,
     FormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    Ng2CompleterModule
   ],
   providers: [
     RestaurantService,
