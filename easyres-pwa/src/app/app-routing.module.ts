@@ -13,13 +13,14 @@ import { MsalGuard } from './guard/msal.guard';
 import { BestelOptiesComponent } from './bestel-opties/bestel-opties.component';
 import { BestellingService } from './services/bestelling.service';
 import { BestellingenComponent } from './bestellingen/bestellingen.component';
+import { ScanComponent } from './scan/scan.component';
 
 const routes: Routes = [
   {path: 'restaurant', component: RestaurantComponent, data: {animation: 'restaurant'}},
   {path: 'restaurant/:restaurant.restaurantId', component: RestaurantInfoComponent, data: {animation: 'restaurantInfo'} },
   {path: 'reservatie/:id', component: ReservatieComponent, canActivate: [MsalGuard], data: {animation: 'reservatie'}},
   {path: 'reservatie-lijst', component: ReservatieLijstComponent, canActivate: [MsalGuard], data: {animation: 'reservatielijst'}},
-  // {path:"betaal/:id", component:BetaalComponent},
+  {path: 'scan', component: ScanComponent},
   {path: 'bestel/:id/:TafelNr/bestellingen', component: BestellingenComponent},
   {path: 'bestel/:id/:TafelNr/producten', component: BesteldeProductenComponent},
   {path: 'bestel/:id/:TafelNr/verstuur', component: VerstuurBestellingComponent},
