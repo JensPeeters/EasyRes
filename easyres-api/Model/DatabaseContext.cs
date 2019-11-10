@@ -14,6 +14,5 @@ namespace easyres_api.Model
         public DbSet<Reservatie> Reservaties { get; set; }
         public DbSet<Bestelling> Bestellingen { get; set; }
         public DbSet<Gebruiker> Gebruikers { get; set; }
-        public DbSet<Sessie> Sessies { get; set; }
     }
 }

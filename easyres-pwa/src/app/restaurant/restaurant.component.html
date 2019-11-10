@@ -1,6 +1,6 @@
-<div class="wrapper-header-image">
-  <img src="../../assets/img/restaurant.jpg" alt="restaurant-header-image" class="mainImage">
-  <p class="header-image-text">Ambachtelijk kiezen van restaurants</p>
+<div class="wrapper-header-image">   
+    <img src="../../assets/img/restaurant.jpg" alt="restaurant-header-image" class="mainImage">
+    <p class="header-image-text">Ambachtelijk kiezen van restaurants</p>
 </div>
 <div class="main-content">
     <div class="input-search-restaurant left">
@@ -43,16 +43,7 @@
                 <button class="btn btn-primary" (click)="ApplyFilters()">Toepassen</button>
             </div>
         </div>
-        <h5 class="card-title">{{restaurant.naam}}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">{{restaurant.soort}} - {{restaurant.type}}</h6>
-        <p class="card-text">{{restaurant.beschrijving}}</p>
-        <button class="btn-danger btn button-card"
-          [routerLink]="['/reservatie', restaurant.restaurantId]">Reserveer</button>
-        <button class="btn-outline-danger btn button-card" [routerLink]="['/restaurant', restaurant.restaurantId]">Meer
-          info</button>
-      </div>
     </div>
-    <button class="btn-danger btn button-scan" [routerLink]="['/scan']">Scan tafel</button>
     <div class="dropdowns">
         <div class="allDropdown typeDropdown">
             <button class="btn dropdown-toggle" type="button" data-toggle="collapse" data-target="#collapseType" aria-expanded="false" aria-controls="collapseType">
