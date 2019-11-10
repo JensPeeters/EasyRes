@@ -22,5 +22,7 @@ namespace easyres_api.Model
         public List<Reservatie> Reservaties { get; set; }
         [JsonIgnore]
         public List<Bestelling> Bestellingen { get; set; }
+        [JsonIgnore]
+        public List<Sessie> Sessies { get; set; }
     }
 }
