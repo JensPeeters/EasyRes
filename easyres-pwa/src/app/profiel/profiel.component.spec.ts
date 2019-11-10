@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProfielComponent } from './profiel.component';
+import { MsalService } from '../services/msal.service';
 
 describe('ProfielComponent', () => {
   let component: ProfielComponent;
@@ -8,7 +9,8 @@ describe('ProfielComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProfielComponent ]
+      declarations: [ ProfielComponent ],
+      providers: [MsalService]
     })
     .compileComponents();
   }));

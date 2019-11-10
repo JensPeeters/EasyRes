@@ -4,87 +4,55 @@
     margin-top: 25px;
 }
 
-.main-form{
+.heading{
+    margin: 10px;
+    text-align: center;
+    font-size: 22px;
+    text-decoration: underline;
+}
+
+.main{
     display: grid;
     grid-template-columns: 15% 70% 15%;
 }
 
-.grid{
-    display: grid;
-    grid-template-columns: 33% 33% 33%;
-    gap: 1%;
-}
-
-form{
+.group{
     grid-column: 2;
 }
 
-h3.heading{
-    text-align: center;
-    padding-top: 0.2em;
-	padding-bottom: 3px;
-	margin-bottom: 20px;
-}
-
-label{
-    margin-bottom: -0.2em;
+.namegrid{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 1%;
 }
 
 .controls{
-    input[type="text"],
-	input[type="email"],
-    input[type="number"],
-    input[type="date"],
-    input[type="tel"],
-    input[type="time"],
-	textarea,
-	select{
-        width: 100%;
-        justify-content: center;
-    }
-    margin-bottom: 1em;
+    width: 100%;
+    justify-content: center;
 }
 
-.heading{
-    padding: 10px;
+.identifier{
+    margin-bottom: -0.2em;
+}
+
+.info{
+    margin-left: 15px;
+    font-weight: bold;
+}
+
+button{
     margin-bottom: 10px;
-    text-align: center;
-    h3{
-        font-size: 22px;
-    }
-}
-
-input{
-    border: 1px solid gray;
-    border-radius: 5px;
-    padding: 9px;
-}
-
-.row{
-    margin-left: 0px;
-    margin-right: 0px;
 }
 
 @media screen and (max-width: 768px){
-    .grid{
-        display: grid;
-        grid-template-columns: 49% 49%;
-    }
-
-    .main-form{
+    .main{
         display: grid;
         grid-template-columns: 15% 70% 15%;
     }
-
 }
 
 @media screen and (max-width: 475px){
-    .grid{
-        display: grid;
-        grid-template-columns: 100%;
-    }
-
-    .main-form{
+    .main{
         display: grid;
         grid-template-columns: 10% 80% 10%;
     }

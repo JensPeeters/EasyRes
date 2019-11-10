@@ -22,6 +22,10 @@ export class ProfielComponent implements OnInit {
     return this.msalService.getUserEmail();
   }
 
+  editprofile() {
+    return this.msalService.editProfile();
+  }
+
   ngOnInit() {
   }
 
