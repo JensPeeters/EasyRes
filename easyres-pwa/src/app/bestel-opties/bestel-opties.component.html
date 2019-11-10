@@ -1,0 +1,5 @@
+<div *ngIf="RestaurantId">
+    <button class="btn btn-danger" [routerLink]="['/bestel', RestaurantId,TafelNr,'bestellingen']">Bestellingen</button>
+    <button class="btn btn-danger"
+    [routerLink]="['/bestel', RestaurantId,TafelNr,'menu']">Maak een bestelling</button>
+</div>

@@ -4,6 +4,7 @@ import { VerstuurBestellingComponent } from './verstuur-bestelling.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MsalService } from '../services/msal.service';
 
 describe('VerstuurBestellingComponent', () => {
   let component: VerstuurBestellingComponent;
@@ -12,7 +13,8 @@ describe('VerstuurBestellingComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterModule.forRoot([]), HttpClientModule],
-      declarations: [ VerstuurBestellingComponent ]
+      declarations: [ VerstuurBestellingComponent ],
+      providers: [MsalService]
     })
     .compileComponents();
   }));
