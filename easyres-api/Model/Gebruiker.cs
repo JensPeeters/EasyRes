@@ -14,6 +14,8 @@ namespace easyres_api.Model
         public List<Restaurant> Restaurants { get; set; }
         [JsonIgnore]
         public List<Bestelling> Bestellingen { get; set; }
-        
+        [JsonIgnore]
+        public List<Sessie> Sessies { get; set; }
+
     }
 }
