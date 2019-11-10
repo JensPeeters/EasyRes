@@ -24,6 +24,7 @@ import { ReservatieLijstComponent } from './reservatie-lijst/reservatie-lijst.co
 import { MsalGuard } from './guard/msal.guard';
 import { BestelOptiesComponent } from './bestel-opties/bestel-opties.component';
 import { BestellingenComponent } from './bestellingen/bestellingen.component';
+import { ProfielComponent } from './profiel/profiel.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { BestellingenComponent } from './bestellingen/bestellingen.component';
     BesteldeProductenComponent,
     FavorietenComponent,
     BestelOptiesComponent,
-    BestellingenComponent
+    BestellingenComponent,
+    ProfielComponent
   ],
   imports: [
     BrowserModule,

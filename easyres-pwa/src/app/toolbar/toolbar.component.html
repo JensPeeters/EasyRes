@@ -25,7 +25,7 @@
                       <div class="center" *ngIf="isUserLoggedIn()">
                         <p>Welkom {{userfirstname()}}</p>
                         <a class="icon-star" [routerLink]="['/favorieten']"><i class="far fa-star"></i></a>
-                        <a class="icon-user" (click)="editProfile()"><i class="far fa-user"></i></a>
+                        <a class="icon-user" [routerLink]="['/profiel']"><i class="far fa-user"></i></a>
                         <button class="btn btn-danger" (click)="logout()">Logout</button>
                       </div>
                 </li>

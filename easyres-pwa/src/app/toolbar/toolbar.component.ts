@@ -11,10 +11,6 @@ export class ToolbarComponent implements OnInit {
   constructor(private msalService: MsalService) {
   }
 
-  userfirstname() {
-    return this.msalService.getUserFirstName();
-  }
-
   login() {
     this.msalService.login();
   }
@@ -27,15 +23,14 @@ export class ToolbarComponent implements OnInit {
     this.msalService.logout();
   }
 
-  editProfile() {
-    this.msalService.editProfile();
-  }
-
   isUserLoggedIn() {
     return this.msalService.isLoggedIn();
   }
 
-  ngOnInit() {
+  userfirstname() {
+    return this.msalService.getUserFirstName();
   }
 
+  ngOnInit() {
+  }
 }
