@@ -87,16 +87,16 @@ export class MsalService {
         this.clientApplication.logout();
     }
 
+    getUser() {
+        return this.clientApplication.getUser();
+    }
+
     isLoggedIn(): boolean {
         return this.clientApplication.getUser() != null;
     }
 
-    getUserEmail(): string {
-       return this.getUser().idToken['emails'][0];
-    }
-
-    getUser() {
-      return this.clientApplication.getUser();
+    getUserObjectId() {
+        return this.getUser().idToken['oid'];
     }
 
     getUserFirstName() {
@@ -107,7 +107,7 @@ export class MsalService {
         return this.getUser().idToken['family_name'];
     }
 
-    getUserObjectId() {
-        return this.getUser().idToken['oid'];
+    getUserEmail(): string {
+        return this.getUser().idToken['emails'][0];
     }
 }

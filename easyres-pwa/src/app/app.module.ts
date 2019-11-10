@@ -25,9 +25,9 @@ import { ReservatieLijstComponent } from './reservatie-lijst/reservatie-lijst.co
 import { MsalGuard } from './guard/msal.guard';
 import { BestelOptiesComponent } from './bestel-opties/bestel-opties.component';
 import { BestellingenComponent } from './bestellingen/bestellingen.component';
+import { ProfielComponent } from './profiel/profiel.component';
 import { ScanComponent } from './scan/scan.component';
 import { SessionService } from './services/session.service';
-
 import { Ng2CompleterModule } from 'ng2-completer';
 
 @NgModule({
@@ -45,6 +45,7 @@ import { Ng2CompleterModule } from 'ng2-completer';
     FavorietenComponent,
     BestelOptiesComponent,
     BestellingenComponent,
+    ProfielComponent,
     ScanComponent
   ],
   imports: [
