@@ -39,6 +39,7 @@
     grid-template-columns: 33% 33% 33%;
     grid-template-areas:
           "left center right"
+          "left scan scan"
           "left content content";
     grid-row-gap: 1em;
     margin: auto;
@@ -59,14 +60,13 @@
     margin-bottom:5px;
 }
 .button-card{
-    margin-bottom: 7px;
     margin-right: 10px;
 }
 .button-scan{
-    grid-column-start: 2;
-    grid-column-end: 4;
     margin-bottom: 7px;
     height: 50px;
+    grid-area: scan;
+    width: 100%;
 }
 .icon-search{
     padding-bottom: 2px;
@@ -111,7 +111,6 @@ input::placeholder{
     font-size: 15px;
 }
 .restaurant-advertentie-template{
-    margin-top: -140px;
     padding-top: 10px;
 }
 p{
@@ -222,15 +221,10 @@ p{
 }
 @media screen and (max-width: 880px){
     .button-scan{
-        grid-column-start: 1;
-        grid-column-end: 3;
-    }
-    .restaurant-advertentie-template{
-        margin-top: 0px;
+        margin-top: 15px;
     }
     p{
         justify-self: start;
-        grid-column-start: 1;
     }
     .main-content{
         display: block;
@@ -238,10 +232,6 @@ p{
     }
     .restaurant-template, .restaurant-advertentie-template{
         padding-top: 10px;
-    }
-    .dropdown{
-        grid-column-start: 2;
-        grid-column-end: 3;
     }
     input{
         width: 87%;
