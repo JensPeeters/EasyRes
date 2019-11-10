@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { MsalService } from '../services/msal.service';
+import { Ng2CompleterModule } from 'ng2-completer';
 
 describe('RestaurantComponent', () => {
   let component: RestaurantComponent;
@@ -12,7 +13,7 @@ describe('RestaurantComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, RouterModule.forRoot([]), HttpClientModule],
+      imports: [FormsModule, RouterModule.forRoot([]), HttpClientModule, Ng2CompleterModule],
       declarations: [ RestaurantComponent ],
       providers: [MsalService]
     })
