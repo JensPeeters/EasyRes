@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { RestaurantService, IRestaurant } from '../services/restaurant.service';
+import { IRestaurant } from '../services/restaurant.service';
+import { SessionService, ISessie } from '../services/session.service';
+import { MsalService } from '../services/msal.service';
 
 @Component({
   selector: 'app-sessie',
@@ -8,12 +10,19 @@ import { RestaurantService, IRestaurant } from '../services/restaurant.service';
 })
 export class SessieComponent implements OnInit {
 
-  Restaurants : IRestaurant[];
+  Sessies : ISessie[];
   TafelNr : number = 4;
-  constructor(private resServ : RestaurantService) { }
+  UserId: string;
+
+  constructor(private sessieServ : SessionService, private msalService: MsalService) { }
 
   async ngOnInit() {
-    this.Restaurants = await this.resServ.GetRestaurants();
+    if(this.msalService.isLoggedIn()){
+      this.GetUserId();
+    }
+    this.Sessies = await this.sessieServ.GetSessions(this.UserId).toPromise();
   }
-
+  GetUserId(){
+    this.UserId = this.msalService.getUserObjectId();
+  }
 }

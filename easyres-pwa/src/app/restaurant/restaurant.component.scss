@@ -46,8 +46,14 @@
     margin-bottom:5px;
 }
 .button-card{
-    margin-right: 10px;
     margin-bottom: 7px;
+    margin-right: 10px;
+}
+.button-scan{
+    grid-column-start: 2;
+    grid-column-end: 4;
+    margin-bottom: 7px;
+    height: 50px;
 }
 .icon-search{
     padding-bottom: 2px;
@@ -94,6 +100,7 @@ input::placeholder{
     font-size: 15px;
 }
 .restaurant-advertentie-template{
+    margin-top: -140px;
     padding-top: 10px;
     grid-column-start: 2;
     grid-column-end: 4;
@@ -198,8 +205,12 @@ p{
     }
 }
 @media screen and (max-width: 880px){
+    .restaurant-advertentie-template{
+        margin-top: 0px;
+    }
     p{
         justify-self: start;
+        grid-column-start: 1;
     }
     .main-content{
         grid-template-columns: 50% 50%;
@@ -209,8 +220,16 @@ p{
         grid-column-start: 1;
         grid-column-end: 3;
     }
+    .button-scan{
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
     .input-search-restaurant{
         grid-column-start: 1;
+        grid-column-end: 3;
+    }
+    .dropdown{
+        grid-column-start: 2;
         grid-column-end: 3;
     }
     input{

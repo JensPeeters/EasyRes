@@ -1,14 +1,14 @@
 <div class="session-content">
     <div class="restaurant-session-template">
-        <div class="card" *ngFor="let restaurant of Restaurants">
+        <div class="card" *ngFor="let sessie of Sessies">
             <div class="card-body" >
                 <h5 class="card-title">
-                    <span>{{restaurant.naam}}</span> 
-                    <span class="table-indicator">Tafel : {{TafelNr}}</span>
+                    <span>{{sessie.restaurant.naam}}</span> 
+                    <span class="table-indicator">Tafel : {{sessie.tafelNr}}</span>
                 </h5>
-                <h6 class="card-subtitle mb-2 text-muted">Italiaans</h6>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <button class="btn-danger btn order-btn" [routerLink]="['/bestel', restaurant.restaurantId, TafelNr]">Bestellingen</button>
+                <h6 class="card-subtitle mb-2 text-muted">{{sessie.restaurant.soort}}</h6>
+                <p class="card-text">{{sessie.restaurant.beschrijving}}</p>
+                <button class="btn-danger btn order-btn" [routerLink]="['/bestel', sessie.restaurant.restaurantId, sessie.tafelNr]">Bestellingen</button>
                 <button class="btn-outline-danger btn button-more-info" [routerLink]="['/betaal']">Betaal</button>
             </div>
         </div>

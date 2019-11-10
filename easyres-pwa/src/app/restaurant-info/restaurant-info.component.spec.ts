@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 import { RestaurantInfoComponent } from './restaurant-info.component';
 import { FormsModule } from '@angular/forms';
@@ -14,6 +15,7 @@ import { SessieComponent } from '../sessie/sessie.component';
 import { FavorietenComponent } from '../favorieten/favorieten.component';
 import { BestellingenComponent } from '../bestellingen/bestellingen.component';
 import { BestelOptiesComponent } from '../bestel-opties/bestel-opties.component';
+import { ScanComponent } from '../scan/scan.component';
 
 describe('RestaurantInfoComponent', () => {
   let component: RestaurantInfoComponent;
@@ -21,13 +23,13 @@ describe('RestaurantInfoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ FormsModule, HttpClientModule, AppRoutingModule ],
+      imports: [ FormsModule, HttpClientModule, AppRoutingModule,ZXingScannerModule ],
       declarations: [ RestaurantInfoComponent, RestaurantComponent, 
         ReservatieComponent, BesteldeProductenComponent, 
         VerstuurBestellingComponent, BestelComponent, 
         SessieComponent, FavorietenComponent, 
         ReservatieLijstComponent, BestellingenComponent, 
-        BestelOptiesComponent  ]
+        BestelOptiesComponent,ScanComponent  ]
 
     })
     .compileComponents();
