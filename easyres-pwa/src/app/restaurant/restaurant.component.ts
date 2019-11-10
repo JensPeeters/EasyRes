@@ -78,7 +78,6 @@ export class RestaurantComponent implements OnInit {
         this.filter += `&${element.naam.toLowerCase()}=${element.value}`
       }
     }
-    console.log(this.filter);
     await this.GetRestaurants()
   }
   ChangeLocation(filterGiven:filters){
