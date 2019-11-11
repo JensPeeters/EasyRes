@@ -1,14 +1,11 @@
 import { Injectable } from '@angular/core';
 import * as Msal from 'msal';
-import { HttpClient } from '@angular/common/http';
+import { UserService } from './user.service';
 
 @Injectable()
 export class MsalService {
 
-    constructor(private http: HttpClient) { }
-
-    //urlAPI = 'https://easyres-api.azurewebsites.net/api';
-     urlAPI = 'https://localhost:44315/api';
+    constructor(private userService: UserService) {}
 
     B2CTodoAccessTokenKey = 'b2c.access.token';
 
@@ -88,9 +85,7 @@ export class MsalService {
         sessionStorage.setItem(this.B2CTodoAccessTokenKey, accessToken);
         if (this.isNew()) {
             console.log('new user');
-            var UserId = this.getUserObjectId();
-            console.log(UserId);
-            this.http.post(`${this.urlAPI}/user/${UserId}`, null);
+            this.userService.saveUserInDb(this.getUserObjectId());
         } else {
             console.log('no new user');
         }
