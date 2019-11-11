@@ -13,7 +13,7 @@ export class ProfielComponent implements OnInit {
   isUserLoggedIn() {
     return this.msalService.isLoggedIn();
   }
-  
+
   userfirstname() {
     return this.msalService.getUserFirstName();
   }

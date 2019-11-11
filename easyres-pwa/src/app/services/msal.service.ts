@@ -1,8 +1,14 @@
 import { Injectable } from '@angular/core';
 import * as Msal from 'msal';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class MsalService {
+
+    constructor(private http: HttpClient) { }
+
+    //urlAPI = 'https://easyres-api.azurewebsites.net/api';
+     urlAPI = 'https://localhost:44315/api';
 
     B2CTodoAccessTokenKey = 'b2c.access.token';
 
@@ -32,7 +38,6 @@ export class MsalService {
           validateAuthority: false
         }
     );
-
 
     public login(): void {
       this.clientApplication.authority = this.tenantConfig.domain + this.tenantConfig.signInPolicy;
@@ -81,6 +86,14 @@ export class MsalService {
 
     saveAccessTokenToCache(accessToken: string): void {
         sessionStorage.setItem(this.B2CTodoAccessTokenKey, accessToken);
+        if (this.isNew()) {
+            console.log('new user');
+            var UserId = this.getUserObjectId();
+            console.log(UserId);
+            this.http.post(`${this.urlAPI}/user/${UserId}`, null);
+        } else {
+            console.log('no new user');
+        }
     }
 
     logout(): void {
@@ -92,7 +105,14 @@ export class MsalService {
     }
 
     isLoggedIn(): boolean {
-        return this.clientApplication.getUser() != null;
+        return this.getUser() != null;
+    }
+
+    isNew() {
+        if (this.getUser().idToken['newUser']) {
+            return true;
+        }
+        return false;
     }
 
     getUserObjectId() {
