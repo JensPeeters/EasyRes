@@ -33,10 +33,10 @@ namespace easyres_api.Model
                     Land = "België",
                     Postcode = 2000
                 };
-                ICollection<int> tafels = new List<int>()
-                {
-                    5,5,5,5,5,5,5
-                };
+                //ICollection<int> tafels = new List<int>()
+                //{
+                //    5,5,5,5,5,5,5
+                //};
                 Menu menu = new Menu()
                 {
                     Desserts = new List<Product>()

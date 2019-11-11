@@ -11,6 +11,7 @@ export class ControlePaneelComponent implements OnInit {
 
   currentSettingsRestaurant: IRestaurant;
   updatedSettingsRestaurant: IRestaurant;
+  soorten: string[] = ["Restaurant","Taverne","Bistro","Trattoria"]
   restaurantId: number = 1;
 
   constructor(private ResService : RestaurantService, private MsalService: MsalService) {
@@ -27,6 +28,10 @@ export class ControlePaneelComponent implements OnInit {
   submit(){
     console.log(this.updatedSettingsRestaurant);
     this.ResService.PutRestaurant(this.updatedSettingsRestaurant).subscribe();
+  }
+
+  restaurantSoort(soort){
+    this.updatedSettingsRestaurant.soort = soort;
   }
 
   append(arr){

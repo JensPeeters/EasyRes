@@ -53,8 +53,8 @@ a{
 
 .itemgrid{
     display: grid;
-    grid-template-columns: 45% 45%;
-    gap: 10%;
+    grid-template-columns: 35% 35% 15%;
+    gap: 10% 5%;
     .itemnaam{
         grid-column: 1/2;
     }
@@ -64,5 +64,10 @@ a{
             width: 100%;
             justify-content: center;
         }
+    }
+    .itemremove{
+        grid-column: 3/4;
+        justify-self: center;
+        align-self: end;
     }
 }
