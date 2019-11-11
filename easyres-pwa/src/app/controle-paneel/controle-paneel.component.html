@@ -4,8 +4,19 @@
             <h5 class="card-title">{{currentSettingsRestaurant.naam}}</h5>
             <div class="item">
                 <label for="aantal">&nbsp;<i class="fa fa-user"></i>&nbsp;Aantal zitplaatsen</label>
-                <input type="number" id="aantal" name="aantal">
-                <input type="number" id="tafels" name="tafels">
+                <div id="aantaltafel">
+                    <div class="aantal">
+                        <label>Aantal personen per tafel&nbsp;&nbsp;</label><br>
+                        <input type="number" id="aantal" name="aantal">
+                    </div>
+                    <div class="tafels">
+                        <label>Aantal tafels in het restaurant&nbsp;&nbsp;</label><br>
+                        <input type="number" id="tafels" name="tafels">
+                    </div>
+                    <div class="totaalplaatsen">
+                        Totaal aantal zitplaatsen: 2
+                    </div>
+                </div>
             </div>
             <div class="item">
                 <label for="type">&nbsp;<i class="fa fa-user"></i>&nbsp;Type van het restaurant</label>
@@ -14,6 +25,14 @@
             <div class="item">
                 <label for="soort">&nbsp;<i class="fa fa-user"></i>&nbsp;Categorie waaronder het restaurant valt</label>
                 <input type="text" id="soort" name="soort" placeholder="{{currentSettingsRestaurant.soort}}">
+            </div>
+            <div class="item">
+                <label for="beschrijvingkort">&nbsp;<i class="fa fa-user"></i>&nbsp;Korte Beschrijving over het restaurant</label>
+                <input type="text" id="beschrijvingkort" name="beschrijvingkort" placeholder="{{currentSettingsRestaurant.beschrijving}}">
+            </div>
+            <div class="item">
+                <label for="beschrijvinglang">&nbsp;<i class="fa fa-user"></i>&nbsp;Lange Beschrijving over het restaurant</label>
+                <input type="text" id="beschrijvinglang" name="beschrijvinglang" placeholder="{{currentSettingsRestaurant.beschrijving}}">
             </div>
             <div class="coll locatie">
                 <a data-toggle="collapse" href="#collapseLocatie" aria-expanded="false" aria-controls="collapseLocatie">
@@ -42,21 +61,44 @@
                     </div>
                 </div>
             </div>
-            
-            <!--
+            <div class="coll openingsuren">
+                <a data-toggle="collapse" href="#collapseOpeningsuren" aria-expanded="false" aria-controls="collapseOpeningsuren">
+                    <label for="openingsuren">&nbsp;<i class="fa fa-user"></i>&nbsp;Openingsuren van het restaurant ...&nbsp;</label>
+                </a>
+                <div class="collapse" id="collapseOpeningsuren">
+                    <div class="item">
+                        <label for="maandag">&nbsp;<i class="fa fa-user"></i>&nbsp;Maandag</label>
+                        <input type="text" id="maandag" name="maandag" placeholder="{{currentSettingsRestaurant.openingsuren.maandag}}">
+                    </div>
+                    <div class="item">
+                        <label for="dinsdag">&nbsp;<i class="fa fa-user"></i>&nbsp;Dinsdag</label>
+                        <input type="text" id="dinsdag" name="dinsdag" placeholder="{{currentSettingsRestaurant.openingsuren.dinsdag}}">
+                    </div>
+                    <div class="item">
+                        <label for="woensdag">&nbsp;<i class="fa fa-user"></i>&nbsp;Woensdag</label>
+                        <input type="text" id="woensdag" name="woensdag" placeholder="{{currentSettingsRestaurant.openingsuren.woensdag}}">
+                    </div>
+                    <div class="item">
+                        <label for="donderdag">&nbsp;<i class="fa fa-user"></i>&nbsp;Donderdag</label>
+                        <input type="text" id="donderdag" name="donderdag" placeholder="{{currentSettingsRestaurant.openingsuren.donderdag}}">
+                    </div>
+                    <div class="item">
+                        <label for="vrijdag">&nbsp;<i class="fa fa-user"></i>&nbsp;Vrijdag</label>
+                        <input type="text" id="vrijdag" name="vrijdag" placeholder="{{currentSettingsRestaurant.openingsuren.vrijdag}}">
+                    </div>
+                    <div class="item">
+                        <label for="zaterdag">&nbsp;<i class="fa fa-user"></i>&nbsp;Zaterdag</label>
+                        <input type="text" id="zaterdag" name="zaterdag" placeholder="{{currentSettingsRestaurant.openingsuren.zaterdag}}">
+                    </div>
+                    <div class="item">
+                        <label for="zondag">&nbsp;<i class="fa fa-user"></i>&nbsp;Zondag</label>
+                        <input type="text" id="zondag" name="zondag" placeholder="{{currentSettingsRestaurant.openingsuren.zondag}}">
+                    </div>
+                </div>
+            </div>
 
-                <div class="item">
-                    <label for="openingsuren">&nbsp;<i class="fa fa-user"></i>&nbsp;Openingsuren van het restaurant</label>
-                    <input type="text" id="openingsuren" name="openingsuren" [(ngModel)]="">
-                </div>
-                <div class="item">
-                    <label for="kortbeschrijving">&nbsp;<i class="fa fa-user"></i>&nbsp;Korte beschrijving over het restuarant</label>
-                    <input type="text" id="kortbeschrijving" name="kortbeschrijving" [(ngModel)]="">
-                </div>
-                <div class="item">
-                    <label for="langbeschrijving">&nbsp;<i class="fa fa-user"></i>&nbsp;Lange beschrijving over het restuarant</label>
-                    <input type="text" id="langbeschrijving" name="langbeschrijving" [(ngModel)]="">
-                </div>
+
+            <!--
             -->
         </div>
     </div>

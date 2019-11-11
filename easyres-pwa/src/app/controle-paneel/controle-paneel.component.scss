@@ -22,7 +22,6 @@ a{
 .item{
     input[type="text"],
 	input[type="email"],
-    input[type="number"],
     input[type="date"],
     input[type="tel"],
     input[type="time"],
@@ -36,5 +35,13 @@ a{
 .coll{
     .item{
         margin-left: 1em;
+    }
+}
+#aantaltafel{
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    text-align: center;
+    .aantal.tafels{
+        grid-row: 2;
     }
 }

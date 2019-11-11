@@ -14,7 +14,8 @@ namespace easyres_api.Model
         [Required]
         public Menu Menu { get; set; }
         public Openingsuren Openingsuren { get; set; }
-        public string Beschrijving { get; set; }
+        public string BeschrijvingKort { get; set; }
+        public string BeschrijvingLang { get; set; }
         public string LogoImage { get; set; }
         public string Type { get; set; }
         public string Soort { get; set; }
