@@ -45,3 +45,24 @@ a{
         grid-row: 2;
     }
 }
+
+.opslaan{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.itemgrid{
+    display: grid;
+    grid-template-columns: 45% 45%;
+    gap: 10%;
+    .itemnaam{
+        grid-column: 1/2;
+    }
+    .itemprijs{
+        grid-column: 2/3;
+        input[type="number"]{
+            width: 100%;
+            justify-content: center;
+        }
+    }
+}

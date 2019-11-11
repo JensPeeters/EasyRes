@@ -10,11 +10,13 @@ import { MsalService } from '../services/msal.service';
 export class ControlePaneelComponent implements OnInit {
 
   currentSettingsRestaurant: IRestaurant;
+  updatedSettingsRestaurant: IRestaurant;
   restaurantId: number = 1;
 
   constructor(private ResService : RestaurantService, private MsalService: MsalService) {
     ResService.GetRestaurantByID(this.restaurantId).subscribe(res => {
       this.currentSettingsRestaurant = res;
+      this.updatedSettingsRestaurant = res;
       console.log(this.currentSettingsRestaurant);
     })
    }
@@ -22,4 +24,11 @@ export class ControlePaneelComponent implements OnInit {
   ngOnInit() {
   }
 
+  printValue(){
+    console.log(this.updatedSettingsRestaurant);
+  }
+
+  append(arr){
+    arr.push({aantal: 0, naam: "", prijs:0})
+  }
 }
