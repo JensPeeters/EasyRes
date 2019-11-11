@@ -33,7 +33,10 @@ namespace easyres_api.Model
                     Land = "België",
                     Postcode = 2000
                 };
-
+                ICollection<int> tafels = new List<int>()
+                {
+                    5,5,5,5,5,5,5
+                };
                 Menu menu = new Menu()
                 {
                     Desserts = new List<Product>()
@@ -103,7 +106,7 @@ namespace easyres_api.Model
                 {
                     new Restaurant()
                     {
-                      BeschrijvingKort = "Villa Belvedere is trotse bezitter van het 'OSPITALITA ITALIANA' kwaliteitslabel. Uitgereikt door de Italiaanse Kamer van Koophandel voor de échte Italiaanse",
+                      KorteBeschrijving = "Villa Belvedere is trotse bezitter van het 'OSPITALITA ITALIANA' kwaliteitslabel. Uitgereikt door de Italiaanse Kamer van Koophandel voor de échte Italiaanse",
                       Openingsuren = openingsuren,
                       Locatie = adres,
                       LogoImage = "https://via.placeholder.com/350x350.png/8b0000/fff?text=Foto van een restaurant",
@@ -114,7 +117,7 @@ namespace easyres_api.Model
                     },
                     new Restaurant()
                     {
-                      BeschrijvingKort = "Het beste Chineese restaurant met veel verschillende smaken.",
+                      KorteBeschrijving = "Het beste Chineese restaurant met veel verschillende smaken.",
                       Openingsuren = openingsuren,
                       Locatie = adres,
                       LogoImage = "https://via.placeholder.com/350x350.png/8b0000/fff?text=Foto van een restaurant",
@@ -125,7 +128,7 @@ namespace easyres_api.Model
                     },
                     new Restaurant()
                     {
-                      BeschrijvingKort = "Het beste Chineese restaurant met veel verschillende smaken. En zelfs nog meer als de anderen.",
+                      KorteBeschrijving = "Het beste Chineese restaurant met veel verschillende smaken. En zelfs nog meer als de anderen.",
                       Openingsuren = openingsuren,
                       Locatie = adres,
                       LogoImage = "https://via.placeholder.com/350x350.png/8b0000/fff?text=Foto van een restaurant",
@@ -136,7 +139,7 @@ namespace easyres_api.Model
                     },
                     new Restaurant()
                     {
-                      BeschrijvingKort = "Japan brengt de gerechten zoals ze in Japan worden gebracht, super lekker dus.",
+                      KorteBeschrijving = "Japan brengt de gerechten zoals ze in Japan worden gebracht, super lekker dus.",
                       Openingsuren = openingsuren,
                       Locatie = adres,
                       LogoImage = "https://via.placeholder.com/350x350.png/8b0000/fff?text=Foto van een restaurant",
@@ -147,7 +150,7 @@ namespace easyres_api.Model
                     },
                     new Restaurant()
                     {
-                      BeschrijvingKort = "Je denkt Afrika dus je denkt direct aan lekker eten ;)",
+                      KorteBeschrijving = "Je denkt Afrika dus je denkt direct aan lekker eten ;)",
                       Openingsuren = openingsuren,
                       Locatie = adres,
                       LogoImage = "https://via.placeholder.com/350x350.png/8b0000/fff?text=Foto van een restaurant",
@@ -158,7 +161,7 @@ namespace easyres_api.Model
                     },
                     new Restaurant()
                     {
-                      BeschrijvingKort = "Het beste Chineese restaurant met veel verschillende smaken. Jaja je lees het goed het beste restaurant ter wereld.",
+                      KorteBeschrijving = "Het beste Chineese restaurant met veel verschillende smaken. Jaja je lees het goed het beste restaurant ter wereld.",
                       Openingsuren = openingsuren,
                       Locatie = adres,
                       LogoImage = "https://via.placeholder.com/350x350.png/8b0000/fff?text=Foto van een restaurant",
@@ -169,7 +172,7 @@ namespace easyres_api.Model
                     },
                     new Restaurant()
                     {
-                      BeschrijvingKort = "Veel verschillend smaken, maar echt super veel. Geloof je het niet, kom zelf proeven!",
+                      KorteBeschrijving = "Veel verschillend smaken, maar echt super veel. Geloof je het niet, kom zelf proeven!",
                       Openingsuren = openingsuren,
                       Locatie = adres,
                       LogoImage = "https://via.placeholder.com/350x350.png/8b0000/fff?text=Foto van een restaurant",
@@ -180,7 +183,7 @@ namespace easyres_api.Model
                     },
                     new Restaurant()
                     {
-                      BeschrijvingKort = "Het beste italiaanse restaurant met veel verschillende smaken enzovoort...",
+                      KorteBeschrijving = "Het beste italiaanse restaurant met veel verschillende smaken enzovoort...",
                       Openingsuren = openingsuren,
                       Locatie = adres,
                       LogoImage = "https://via.placeholder.com/350x350.png/8b0000/fff?text=Foto van een restaurant",

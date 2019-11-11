@@ -24,8 +24,9 @@ export class ControlePaneelComponent implements OnInit {
   ngOnInit() {
   }
 
-  printValue(){
+  submit(){
     console.log(this.updatedSettingsRestaurant);
+    this.ResService.PutRestaurant(this.updatedSettingsRestaurant).subscribe();
   }
 
   append(arr){

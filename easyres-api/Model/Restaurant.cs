@@ -14,8 +14,10 @@ namespace easyres_api.Model
         [Required]
         public Menu Menu { get; set; }
         public Openingsuren Openingsuren { get; set; }
-        public string BeschrijvingKort { get; set; }
-        public string BeschrijvingLang { get; set; }
+        public string KorteBeschrijving { get; set; }
+        public string LangeBeschrijving { get; set; }
+        // Het getal is het aantal personen aan 1 tafel en de lengte van de array is het aantal tafels
+        public ICollection<int> Tafels { get; set; }
         public string LogoImage { get; set; }
         public string Type { get; set; }
         public string Soort { get; set; }

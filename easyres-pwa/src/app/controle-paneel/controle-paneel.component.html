@@ -20,23 +20,23 @@
             </div>
             <div class="item">
                 <label for="type">&nbsp;<i class="fa fa-user"></i>&nbsp;Type van het restaurant</label>
-                <input type="text" id="type" name="type" placeholder="{{currentSettingsRestaurant.type}}">
+                <input type="text" id="type" name="type" placeholder="{{currentSettingsRestaurant.type}}" [(ngModel)]="updatedSettingsRestaurant.type">
             </div>
             <div class="item">
                 <label for="soort">&nbsp;<i class="fa fa-user"></i>&nbsp;Categorie waaronder het restaurant valt</label>
-                <input type="text" id="soort" name="soort" placeholder="{{currentSettingsRestaurant.soort}}">
+                <input type="text" id="soort" name="soort" placeholder="{{currentSettingsRestaurant.soort}}" [(ngModel)]="updatedSettingsRestaurant.soort">
             </div>
             <div class="item">
                 <label for="beschrijvingkort">&nbsp;<i class="fa fa-comment"></i>&nbsp;Korte Beschrijving over het restaurant</label>
-                <input type="text" id="beschrijvingkort" name="beschrijvingkort" placeholder="{{currentSettingsRestaurant.beschrijving}}">
+                <input type="text" id="beschrijvingkort" name="beschrijvingkort" placeholder="{{currentSettingsRestaurant.korteBeschrijving}}" [(ngModel)]="updatedSettingsRestaurant.korteBeschrijving">
             </div>
             <div class="item">
                 <label for="beschrijvinglang">&nbsp;<i class="fa fa-comment"></i>&nbsp;Lange Beschrijving over het restaurant</label>
-                <input type="text" id="beschrijvinglang" name="beschrijvinglang" placeholder="{{currentSettingsRestaurant.beschrijving}}">
+                <input type="text" id="beschrijvinglang" name="beschrijvinglang" placeholder="{{currentSettingsRestaurant.langeBeschrijving}}" [(ngModel)]="updatedSettingsRestaurant.langeBeschrijving">
             </div>
             <div class="item">
                     <label for="fotourl">&nbsp;<i class="fa fa-user"></i>&nbsp;Foto van het restaurant</label>
-                    <input type="text" id="fotourl" name="fotourl" placeholder="{{currentSettingsRestaurant.logoImage}}">
+                    <input type="text" id="fotourl" name="fotourl" placeholder="{{currentSettingsRestaurant.logoImage}}" [(ngModel)]="updatedSettingsRestaurant.logoImage">
                 </div>
             <div class="coll locatie">
                 <a data-toggle="collapse" href="#collapseLocatie" aria-expanded="false" aria-controls="collapseLocatie">
@@ -45,23 +45,23 @@
                 <div class="collapse" id="collapseLocatie">
                     <div class="item">
                         <label for="gemeente">Gemeente</label>
-                        <input type="text" id="gemeente" name="gemeente" placeholder="{{currentSettingsRestaurant.locatie.gemeente}}">
+                        <input type="text" id="gemeente" name="gemeente" placeholder="{{currentSettingsRestaurant.locatie.gemeente}}" [(ngModel)]="updatedSettingsRestaurant.locatie.gemeente">
                     </div>
                     <div class="item">
                             <label for="postcode">Postcode</label>
-                            <input type="text" id="postcode" name="postcode" placeholder="{{currentSettingsRestaurant.locatie.postcode}}">
+                            <input type="text" id="postcode" name="postcode" placeholder="{{currentSettingsRestaurant.locatie.postcode}}" [(ngModel)]="updatedSettingsRestaurant.locatie.postcode">
                         </div>
                     <div class="item">
                         <label for="straat">Straat</label>
-                        <input type="text" id="straat" name="straat" placeholder="{{currentSettingsRestaurant.locatie.straat}}">
+                        <input type="text" id="straat" name="straat" placeholder="{{currentSettingsRestaurant.locatie.straat}}" [(ngModel)]="updatedSettingsRestaurant.locatie.straat">
                     </div>
                     <div class="item">
                         <label for="straatnummer">Straatnummer</label>
-                        <input type="text" id="straatnummer" name="straatnummer" placeholder="{{currentSettingsRestaurant.locatie.straatnummer}}">
+                        <input type="text" id="straatnummer" name="straatnummer" placeholder="{{currentSettingsRestaurant.locatie.straatnummer}}" [(ngModel)]="updatedSettingsRestaurant.locatie.straatnummer">
                     </div>
                     <div class="item">
                         <label for="bus">Bus</label>
-                        <input type="text" id="bus" name="bus" placeholder="{{currentSettingsRestaurant.locatie.bus}}">
+                        <input type="text" id="bus" name="bus" placeholder="{{currentSettingsRestaurant.locatie.bus}}" [(ngModel)]="updatedSettingsRestaurant.locatie.bus">
                     </div>
                 </div>
             </div>
@@ -72,31 +72,31 @@
                 <div class="collapse" id="collapseOpeningsuren">
                     <div class="item">
                         <label for="maandag">Maandag</label>
-                        <input type="text" id="maandag" name="maandag" placeholder="{{currentSettingsRestaurant.openingsuren.maandag}}">
+                        <input type="text" id="maandag" name="maandag" placeholder="{{currentSettingsRestaurant.openingsuren.maandag}}" [(ngModel)]="updatedSettingsRestaurant.openingsuren.maandag">
                     </div>
                     <div class="item">
                         <label for="dinsdag">Dinsdag</label>
-                        <input type="text" id="dinsdag" name="dinsdag" placeholder="{{currentSettingsRestaurant.openingsuren.dinsdag}}">
+                        <input type="text" id="dinsdag" name="dinsdag" placeholder="{{currentSettingsRestaurant.openingsuren.dinsdag}}" [(ngModel)]="updatedSettingsRestaurant.openingsuren.dinsdag">
                     </div>
                     <div class="item">
                         <label for="woensdag">Woensdag</label>
-                        <input type="text" id="woensdag" name="woensdag" placeholder="{{currentSettingsRestaurant.openingsuren.woensdag}}">
+                        <input type="text" id="woensdag" name="woensdag" placeholder="{{currentSettingsRestaurant.openingsuren.woensdag}}" [(ngModel)]="updatedSettingsRestaurant.openingsuren.woensdag">
                     </div>
                     <div class="item">
                         <label for="donderdag">Donderdag</label>
-                        <input type="text" id="donderdag" name="donderdag" placeholder="{{currentSettingsRestaurant.openingsuren.donderdag}}">
+                        <input type="text" id="donderdag" name="donderdag" placeholder="{{currentSettingsRestaurant.openingsuren.donderdag}}" [(ngModel)]="updatedSettingsRestaurant.openingsuren.donderdag">
                     </div>
                     <div class="item">
                         <label for="vrijdag">Vrijdag</label>
-                        <input type="text" id="vrijdag" name="vrijdag" placeholder="{{currentSettingsRestaurant.openingsuren.vrijdag}}">
+                        <input type="text" id="vrijdag" name="vrijdag" placeholder="{{currentSettingsRestaurant.openingsuren.vrijdag}}" [(ngModel)]="updatedSettingsRestaurant.openingsuren.vrijdag">
                     </div>
                     <div class="item">
                         <label for="zaterdag">Zaterdag</label>
-                        <input type="text" id="zaterdag" name="zaterdag" placeholder="{{currentSettingsRestaurant.openingsuren.zaterdag}}">
+                        <input type="text" id="zaterdag" name="zaterdag" placeholder="{{currentSettingsRestaurant.openingsuren.zaterdag}}" [(ngModel)]="updatedSettingsRestaurant.openingsuren.zaterdag">
                     </div>
                     <div class="item">
                         <label for="zondag">Zondag</label>
-                        <input type="text" id="zondag" name="zondag" placeholder="{{currentSettingsRestaurant.openingsuren.zondag}}">
+                        <input type="text" id="zondag" name="zondag" placeholder="{{currentSettingsRestaurant.openingsuren.zondag}}" [(ngModel)]="updatedSettingsRestaurant.openingsuren.zondag">
                     </div>
                 </div>
             </div>
@@ -183,7 +183,7 @@
                 </div>
             </div>
             <div class="opslaan">
-                <button class="btn btn-outline-danger" (click)="printValue()">Opslaan</button>
+                <button class="btn btn-outline-danger" (click)="submit()">Opslaan</button>
             </div>
         </div>
     </div>
