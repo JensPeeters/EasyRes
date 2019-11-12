@@ -24,17 +24,6 @@ namespace easyres_api.Controllers
         public ActionResult<Sessie> CreateSession(string userId, int restaurantId, int tafelNr)
         {
             var gebruiker = context.Gebruikers.Include(a => a.Sessies).FirstOrDefault(a => a.GebruikersID == userId);
-            if(gebruiker == null)
-            {
-                gebruiker = new Gebruiker()
-                {
-                    Bestellingen = new List<Bestelling>(),
-                    Sessies = new List<Sessie>(),
-                    GebruikersID = userId,
-                    Restaurants = new List<Restaurant>()
-                };
-                context.Gebruikers.Add(gebruiker);
-            }
             var restaurant = context.Restaurants.FirstOrDefault(a => a.RestaurantId == restaurantId);
             var sessie = new Sessie()
             {
