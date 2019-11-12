@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { MsalService } from './services/msal.service';
 import { HttpClientModule } from '@angular/common/http';
+import { GoogleAnalyticsService } from './services/google-analytics.service';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -16,7 +17,7 @@ describe('AppComponent', () => {
         AppComponent,
         ToolbarComponent
       ],
-      providers: [MsalService]
+      providers: [MsalService, GoogleAnalyticsService]
     }).compileComponents();
   }));
 

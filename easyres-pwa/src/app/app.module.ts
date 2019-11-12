@@ -30,6 +30,7 @@ import { ScanComponent } from './scan/scan.component';
 import { SessionService } from './services/session.service';
 import { Ng2CompleterModule } from 'ng2-completer';
 import { UserService } from './services/user.service';
+import { GoogleAnalyticsService } from './services/google-analytics.service';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { UserService } from './services/user.service';
     SessionService,
     MsalService,
     MsalGuard,
-    UserService
+    UserService,
+    GoogleAnalyticsService
   ],
   bootstrap: [AppComponent]
 })

@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { MsalService } from '../services/msal.service';
 import { Ng2CompleterModule } from 'ng2-completer';
+import { GoogleAnalyticsService } from '../services/google-analytics.service';
 
 describe('RestaurantComponent', () => {
   let component: RestaurantComponent;
@@ -15,7 +16,7 @@ describe('RestaurantComponent', () => {
     TestBed.configureTestingModule({
       imports: [FormsModule, RouterModule.forRoot([]), HttpClientModule, Ng2CompleterModule],
       declarations: [ RestaurantComponent ],
-      providers: [MsalService]
+      providers: [MsalService, GoogleAnalyticsService]
     })
     .compileComponents();
   }));

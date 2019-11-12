@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RestaurantService, IRestaurant } from '../services/restaurant.service';
 import { MsalService } from '../services/msal.service';
+import { GoogleAnalyticsService } from '../services/google-analytics.service';
 
 
 @Component({
@@ -13,7 +14,11 @@ export class RestaurantComponent implements OnInit {
   Restaurants : IRestaurant[];
   sorterenOp: string = "Aanbevolen";
   
-  constructor(private ResService : RestaurantService, private msalService: MsalService) { }
+  constructor(private ResService : RestaurantService, private msalService: MsalService, private analytics: GoogleAnalyticsService) { }
+
+  SendEvent(buttonNaam: string) {
+    this.analytics.eventEmitter("userPage", buttonNaam, "userLabel", 1);
+  }
 
   zoeknaam: string;
   zoekterm: string;
