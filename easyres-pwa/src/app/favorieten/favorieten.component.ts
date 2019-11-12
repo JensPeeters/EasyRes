@@ -23,7 +23,7 @@ export class FavorietenComponent implements OnInit {
 
   async GetRestaurants(){
     var tempGebruiker = await this.ResService.GetFavorites(this.UserId,this.zoeknaam);
-    this.Restaurants = tempGebruiker.restaurants;
+    this.Restaurants = tempGebruiker.favorieten;
   }
 
   Zoeken(){
