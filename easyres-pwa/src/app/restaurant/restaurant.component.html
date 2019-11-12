@@ -86,7 +86,8 @@
             </div>
         </div>
     </div>
-    <button class="btn-danger btn button-scan" [routerLink]="['/scan']"><i class="fas fa-qrcode fa-lg mr-2"></i>Scan tafel</button>
+    <button class="btn-danger btn button-scan" [routerLink]="['/scan']" (click)="SendEvent('Scan')">
+        <i class="fas fa-qrcode fa-lg mr-2"></i>Scan tafel</button>
     <div class="content">
         <div class="restaurant-advertentie-template">
             <div class="card">
@@ -98,8 +99,10 @@
                     <h6 class="card-subtitle mb-2 text-muted">Restaurant - Italiaans</h6>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                         card's content.</p>
-                    <button class="btn-danger btn button-card">Reserveer</button>
-                    <button class="btn-outline-danger btn button-card">Meer info</button>
+                    <button class="btn-danger btn button-card"
+                        [routerLink]="['/reservatie', 2]" (click)="SendEvent('Reserveer')">Reserveer</button>
+                    <button class="btn-outline-danger btn button-card"
+                        [routerLink]="['/restaurant', 2]" (click)="SendEvent('Meer info')">Meer info</button>
                 </div>
             </div>
         </div>
@@ -114,9 +117,9 @@
                     <h6 class="card-subtitle mb-2 text-muted">{{restaurant.soort}} - {{restaurant.type}}</h6>
                     <p class="card-text">{{restaurant.beschrijving}}</p>
                     <button class="btn-danger btn button-card"
-                        [routerLink]="['/reservatie', restaurant.restaurantId]">Reserveer</button>
+                        [routerLink]="['/reservatie', restaurant.restaurantId]" (click)="SendEvent('Reserveer')">Reserveer</button>
                     <button class="btn-outline-danger btn button-card"
-                        [routerLink]="['/restaurant', restaurant.restaurantId]">Meer info</button>
+                        [routerLink]="['/restaurant', restaurant.restaurantId]" (click)="SendEvent('Meer info')">Meer info</button>
                 </div>
             </div>
         </div>
