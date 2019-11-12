@@ -49,9 +49,11 @@ export class ReservatieComponent implements OnInit {
       this.restaurantId = +params.get('id');
     });
 
-    this.ResService.GetRestaurantByID(this.restaurantId).subscribe(result => {
-      this.tempReservatie.restaurant = result;
-    });
+    if (this.restaurantId != null) {
+      this.ResService.GetRestaurantByID(this.restaurantId).subscribe(result => {
+        this.tempReservatie.restaurant = result;
+      });
+    }
 
     if (this.MsalService.isLoggedIn()) {
       this.tempReservatie.naam = this.MsalService.getUserFirstName() + ' ' + this.MsalService.getUserFamilyName();
