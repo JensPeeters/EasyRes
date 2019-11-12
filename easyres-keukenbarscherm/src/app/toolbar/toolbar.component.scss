@@ -1,4 +1,36 @@
+$letterGrootteButtonLogin: 16px;
+$letterGrootteNavbar : 16px;
+$letterTypeNavbar: 'Roboto', sans-serif;
+$boldWeight : bold;
 .white{
-    color: white;
-    font-size: 25px;
-  }
+  color: white;
+  font-size: 25px;
+  margin-left: 10px;
+}
+nav{
+
+  box-shadow: 0 4px 4px -2px black;
+  z-index: 3;
+}
+.navbar-collapse, .collapse, .show{
+  z-index: 3;
+}
+.nav-link{
+  font-weight: $boldWeight;
+  font-size: $letterGrootteNavbar;
+}
+button{
+  font-size: $letterGrootteButtonLogin;
+  font-weight: $boldWeight;
+  margin-left: 10px;
+}
+.center{
+  display: inline-flex;
+  color: white;
+}
+p{
+  font-size: $letterGrootteNavbar;
+  margin: auto;
+  font-family: $letterTypeNavbar;
+  font-weight: bolder;
+}

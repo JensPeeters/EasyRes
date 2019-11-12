@@ -20,7 +20,10 @@ export class RestaurantService {
     .toPromise();
   }
   GetRestaurantByID(id: number) {
-    return this.http.get<IRestaurant>(`${this.urlAPI}/restaurant/${id}`);
+    if (id != 0){
+      return this.http.get<IRestaurant>(`${this.urlAPI}/restaurant/${id}`);
+    }
+
   }
 
   // Favorieten

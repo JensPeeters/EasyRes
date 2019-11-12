@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import * as Msal from 'msal';
+import { UserService } from './user.service';
 
 @Injectable()
 export class MsalService {
+
+    constructor(private userService: UserService) {}
 
     B2CTodoAccessTokenKey = 'b2c.access.token';
 
@@ -32,7 +35,6 @@ export class MsalService {
           validateAuthority: false
         }
     );
-
 
     public login(): void {
       this.clientApplication.authority = this.tenantConfig.domain + this.tenantConfig.signInPolicy;
@@ -81,6 +83,9 @@ export class MsalService {
 
     saveAccessTokenToCache(accessToken: string): void {
         sessionStorage.setItem(this.B2CTodoAccessTokenKey, accessToken);
+        if (this.isNew()) {
+            this.userService.saveUserInDb(this.getUserObjectId()).subscribe();
+        }
     }
 
     logout(): void {
@@ -92,7 +97,14 @@ export class MsalService {
     }
 
     isLoggedIn(): boolean {
-        return this.clientApplication.getUser() != null;
+        return this.getUser() != null;
+    }
+
+    isNew() {
+        if (this.getUser().idToken['newUser']) {
+            return true;
+        }
+        return false;
     }
 
     getUserObjectId() {
