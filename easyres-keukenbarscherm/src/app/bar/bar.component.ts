@@ -14,6 +14,7 @@ export class BarComponent implements OnInit {
 
   ProcessList: IBestelling[];
   DoneList: IBestelling[];
+  CancelList: IBestelling[];
 
   today = new Date();
 
@@ -51,15 +52,29 @@ export class BarComponent implements OnInit {
     });
   }
 
+  Cancel(bestelling: IBestelling) {
+    bestelling.drinkenStatus = false;
+    this.serv.Putbestelling(bestelling).subscribe(res => {
+      this.serv.GetAlleDrankbestellingen().subscribe(result => {
+        this.Bestellingen = result;
+        this.Checklist();
+      });
+    });
+  }
+
   Checklist() {
     this.DoneList = [];
     this.ProcessList = [];
+    this.CancelList = [];
 
     this.Bestellingen.forEach(element => {
-      if (element.drinkenGereed) {
+      if (element.drinkenGereed && element.dranken != null) {
         this.DoneList.push(element);
       }
-      else if (element.dranken.length != 0) {
+      else if (element.drinkenStatus == false){
+        this.CancelList.push(element);
+      }
+      else if (element.dranken.length != 0 && element.drinkenGereed == false) {
         this.ProcessList.push(element);
       }
     });
