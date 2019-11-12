@@ -7,15 +7,12 @@ using System.Threading.Tasks;
 
 namespace easyres_api.Model
 {
-    public class Gebruiker
+    public class Gebruiker : User
     {
-        [Key]
-        public string GebruikersID { get; set; }
         public List<Restaurant> Favorieten { get; set; }
         [JsonIgnore]
         public List<Bestelling> Bestellingen { get; set; }
         [JsonIgnore]
         public List<Sessie> Sessies { get; set; }
-
     }
 }
