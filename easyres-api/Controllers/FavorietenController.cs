@@ -23,11 +23,11 @@ namespace easyres_api.Controllers
         [HttpGet]
         public ActionResult<Gebruiker> GetFavorieteRestaurants(string gebruikersId, string naam)
         {
-            var favorieten = context.Gebruikers.Include(a => a.Restaurants)
+            var favorieten = context.Gebruikers.Include(a => a.Favorieten)
                                                .Where(a => a.GebruikersID == gebruikersId)
                                                .FirstOrDefault();
             if (!string.IsNullOrEmpty(naam))
-                favorieten.Restaurants = favorieten.Restaurants.Where(b => b.Naam.ToLower()
+                favorieten.Favorieten = favorieten.Favorieten.Where(b => b.Naam.ToLower()
                                                            .Contains(naam.ToLower().Trim())).ToList();
             if (favorieten == null)
                 return NotFound();
@@ -37,14 +37,14 @@ namespace easyres_api.Controllers
         [HttpPost]
         public ActionResult<Gebruiker> AddFavorieteRestaurant(string gebruikersId, long restaurantId)
         {
-            var gebruiker = context.Gebruikers.Include(a => a.Restaurants)
+            var gebruiker = context.Gebruikers.Include(a => a.Favorieten)
                                                .Where(a => a.GebruikersID == gebruikersId)
                                                .FirstOrDefault();
             var restaurant = context.Restaurants.Where(a => a.RestaurantId == restaurantId)
                                                 .FirstOrDefault();
             if (gebruiker == null)
                 return NotFound();
-            gebruiker.Restaurants.Add(restaurant);
+            gebruiker.Favorieten.Add(restaurant);
             context.SaveChanges();
             return Created("", restaurant);
         }
@@ -52,14 +52,14 @@ namespace easyres_api.Controllers
         [HttpDelete]
         public ActionResult<Gebruiker> DeleteReservatie(string gebruikersId, long restaurantId)
         {
-            var query = context.Gebruikers.Include(a => a.Restaurants)
+            var query = context.Gebruikers.Include(a => a.Favorieten)
                                                .Where(a => a.GebruikersID == gebruikersId)
                                                .FirstOrDefault();
-            var favorieten = query.Restaurants.Where(a => a.RestaurantId == restaurantId).FirstOrDefault();
+            var favorieten = query.Favorieten.Where(a => a.RestaurantId == restaurantId).FirstOrDefault();
 
             if (favorieten == null)
                 return NotFound();
-            query.Restaurants.Remove(favorieten);
+            query.Favorieten.Remove(favorieten);
             context.Gebruikers.Update(query);
             context.SaveChanges();
             return NoContent();

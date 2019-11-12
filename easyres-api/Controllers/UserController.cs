@@ -31,7 +31,7 @@ namespace easyres_api.Controllers
                     Bestellingen = new List<Bestelling>(),
                     Sessies = new List<Sessie>(),
                     GebruikersID = userId,
-                    Restaurants = new List<Restaurant>()
+                    Favorieten = new List<Restaurant>()
                 };
                 context.Gebruikers.Add(gebruiker);
                 context.SaveChanges();
