@@ -283,7 +283,7 @@ namespace easyres_api.Model
                          TafelNr = 4,
                          EtenGereed = false,
                          DrinkenGereed = false,
-                         HuidigeTijd = DateTime.Now.ToString("HH:mm:ss tt")
+                         HuidigeTijd = DateTime.Now
                     }
                 };
                 foreach (Bestelling bestelling in bestellingen)
