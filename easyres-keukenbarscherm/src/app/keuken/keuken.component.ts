@@ -41,8 +41,8 @@ export class KeukenComponent implements OnInit {
 
   Done(bestelling: IBestelling) {
     bestelling.etenGereed = true;
-    bestelling.finaleTijd = this.today;
-    this.today = bestelling.finaleTijd;
+    bestelling.eetTijdKlaar = this.today;
+    this.today = bestelling.eetTijdKlaar;
     this.serv.Putbestelling(bestelling).subscribe(res => {
       this.serv.GetAlleVoedingsbestellingen().subscribe(result => {
         this.Bestellingen = result;

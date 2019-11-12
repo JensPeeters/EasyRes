@@ -14,7 +14,7 @@
                         </div>
                         <div>
                             <h4 class="text-right">
-                                <span *ngIf="bestelling.finaleTijd"><i class="fas fa-undo-alt"></i></span>
+                                <span *ngIf="bestelling.eetTijdKlaar"><i class="fas fa-undo-alt"></i></span>
                                 {{bestelling.huidigeTijd | date:'HH:mm'}}</h4>
                             <button type="button" (click)="Done(bestelling)" class="btn btn-success"><i
                                     class="fas fa-check"></i> Gereed</button>
@@ -39,8 +39,9 @@
                             </div>
                         </div>
                         <div>
-                            <h4 class="text-right">{{bestelling.huidigeTijd | date:'HH:mm'}} <br>
-                                {{bestelling.finaleTijd | date:'HH:mm'}}</h4>
+                            <h4 class="text-right">
+                                <i class="far fa-calendar-alt"></i> {{bestelling.huidigeTijd | date:'HH:mm'}} <br>
+                                <i class="fas fa-check"></i> {{bestelling.eetTijdKlaar | date:'HH:mm'}}</h4>
                             <button type="button" (click)="Back(bestelling)" class="btn btn-primary"><i
                                     class="fas fa-undo-alt"></i> Terug</button>
                         </div>

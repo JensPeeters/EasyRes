@@ -41,8 +41,8 @@ export class BarComponent implements OnInit {
 
   Done(bestelling: IBestelling) {
     bestelling.drinkenGereed = true;
-    bestelling.finaleTijd = this.today;
-    this.today = bestelling.finaleTijd;
+    bestelling.drinkTijdKlaar = this.today;
+    this.today = bestelling.drinkTijdKlaar;
     this.serv.Putbestelling(bestelling).subscribe(res => {
       this.serv.GetAlleDrankbestellingen().subscribe(result => {
         this.Bestellingen = result;
@@ -56,7 +56,7 @@ export class BarComponent implements OnInit {
     this.ProcessList = [];
 
     this.Bestellingen.forEach(element => {
-      if (element.drinkenGereed && element.dranken != null) {
+      if (element.drinkenGereed) {
         this.DoneList.push(element);
       }
       else if (element.dranken.length != 0) {

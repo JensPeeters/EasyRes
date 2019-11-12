@@ -43,7 +43,8 @@ export interface IBestelling {
   etenGereed: boolean;
   drinkenGereed: boolean;
   huidigeTijd: string;
-  finaleTijd : Date;
+  eetTijdKlaar: Date;
+  drinkTijdKlaar: Date;
   tafelNr: number;
   }
  
