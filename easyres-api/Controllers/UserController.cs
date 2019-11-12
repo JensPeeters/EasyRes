@@ -19,25 +19,54 @@ namespace easyres_api.Controllers
             this.context = ctx;
         }
 
-        [Route("{userId}")]
+        [Route("{userType}/{userId}")]
         [HttpPost]
-        public ActionResult<Sessie> CreateUser(string userId)
+        public ActionResult<User> CreateUser(string userType, string userId)
         {
-            var gebruiker = context.Gebruikers.FirstOrDefault(a => a.GebruikersID == userId);
-            if (gebruiker == null)
+            if (userType == "gebruiker")
             {
-                gebruiker = new Gebruiker()
+                var gebruiker = context.Gebruikers.FirstOrDefault(a => a.GebruikersID == userId);
+                if (gebruiker == null)
                 {
-                    Bestellingen = new List<Bestelling>(),
-                    Sessies = new List<Sessie>(),
-                    GebruikersID = userId,
-                    Favorieten = new List<Restaurant>()
-                };
-                context.Gebruikers.Add(gebruiker);
-                context.SaveChanges();
-                return Created("", gebruiker);
+                    gebruiker = new Gebruiker()
+                    {
+                        Bestellingen = new List<Bestelling>(),
+                        Sessies = new List<Sessie>(),
+                        GebruikersID = userId,
+                        Favorieten = new List<Restaurant>()
+                    };
+                    context.Gebruikers.Add(gebruiker);
+                    context.SaveChanges();
+                    return Created("", gebruiker);
+                }
+                else
+                {
+                    return NotFound();
+                }
             }
-            return NotFound(); 
+            else if (userType == "uitbater")
+            {
+                var uitbater = context.Uitbaters.FirstOrDefault(a => a.GebruikersID == userId);
+                if (uitbater == null)
+                {
+                    uitbater = new Uitbater()
+                    {
+                        GebruikersID = userId,
+                        RestaurantId = 0
+                    };
+                    context.Uitbaters.Add(uitbater);
+                    context.SaveChanges();
+                    return Created("", uitbater);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            else
+            {
+                return NotFound();
+            }
         }
     }
 }
