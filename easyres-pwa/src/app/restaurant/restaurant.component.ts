@@ -112,7 +112,7 @@ export class RestaurantComponent implements OnInit {
   FavoriteRestaurants: IRestaurant[] = []
   async GetUserFavorites(){
     var tempGebruiker = await this.ResService.GetFavorites(this.UserId,"");
-    this.FavoriteRestaurants = tempGebruiker.restaurants;
+    this.FavoriteRestaurants = tempGebruiker.favorieten;
   }
   RestaurantsFavoriteBooleans: boolean[] = [];
   async CheckFavorites(){
