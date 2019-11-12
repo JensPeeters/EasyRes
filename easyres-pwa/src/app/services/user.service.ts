@@ -8,11 +8,10 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  //urlAPI = 'https://easyres-api.azurewebsites.net/api';
-  urlAPI = 'https://localhost:44315/api';
+  urlAPI = 'https://easyres-api.azurewebsites.net/api';
+  // urlAPI = 'https://localhost:44315/api';
 
   saveUserInDb(UserId) {
-    //console.log(UserId);
     return this.http.post(`${this.urlAPI}/user/${UserId}`, null);
   }
 }

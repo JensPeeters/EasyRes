@@ -295,25 +295,6 @@ namespace easyres_api.Model
                 {
                     context.Restaurants.Add(restaurant);
                 }
-                List<Gebruiker> gebruikers = new List<Gebruiker>()
-                {
-                    new Gebruiker()
-                    {
-                        GebruikersID = "cfb6e87d-aadd-4656-868b-4650e48d8f9e",
-                        Bestellingen = new List<Bestelling>(),
-                        Sessies = new List<Sessie>()
-                    },
-                    new Gebruiker()
-                    {
-                        GebruikersID = "dcc3cdca-1005-493b-a8e5-2351a8d4f89c",
-                        Bestellingen = new List<Bestelling>(){bestellingen[0]},
-                        Sessies = new List<Sessie>()
-                    },
-                };
-                foreach(Gebruiker gebruiker in gebruikers)
-                {
-                    context.Gebruikers.Add(gebruiker);
-                }
                 context.SaveChanges();
             }
         }

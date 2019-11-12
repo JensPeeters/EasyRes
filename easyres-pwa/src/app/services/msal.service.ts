@@ -84,10 +84,7 @@ export class MsalService {
     saveAccessTokenToCache(accessToken: string): void {
         sessionStorage.setItem(this.B2CTodoAccessTokenKey, accessToken);
         if (this.isNew()) {
-            console.log('new user');
-            this.userService.saveUserInDb(this.getUserObjectId());
-        } else {
-            console.log('no new user');
+            this.userService.saveUserInDb(this.getUserObjectId()).subscribe();
         }
     }
 
