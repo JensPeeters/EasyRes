@@ -40,6 +40,8 @@ namespace easyres_api.Model
         public DateTime HuidigeTijd { get; set; }
         public string EetTijdKlaar { get; set; }
         public string DrinkTijdKlaar { get; set; }
+        public bool EtenStatus { get; set; }
+        public bool DrinkenStatus{ get; set; }
         public int TafelNr { get; set; }
     }
 }
