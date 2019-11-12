@@ -1,9 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 
 import { MsalService } from './msal.service';
+import { UserService } from './user.service';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('MsalService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  beforeEach(() => TestBed.configureTestingModule({
+    imports: [ HttpClientModule ],
+    providers: [ UserService, MsalService ]
+  }));
 
   it('should be created', () => {
     const service: MsalService = TestBed.get(MsalService);
