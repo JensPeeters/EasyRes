@@ -92,20 +92,6 @@ namespace easyres_api.Controllers
             return bestelling;
         }
 
-        [Route("restaurant/{idRes}")]
-        [HttpDelete]
-        public ActionResult<Bestelling> DeleteBestellingen([FromBody] Bestelling bestelling, long idRes) {
-            var deletebestelling = context.Bestellingen.Find(idRes);
-            if (deletebestelling == null)
-                return NotFound();
-
-            context.Bestellingen.Remove(deletebestelling);
-            context.SaveChanges();
-            return NoContent();
-        }
-
-
-
         [Route("gebruiker/{idGebruiker}/{idRes}")]
         [HttpGet]
         public List<Bestelling> GetBestellingenGebruiker(string idGebruiker, long idRes)
