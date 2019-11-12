@@ -13,6 +13,7 @@
                             </div>
                         </div>
                         <div>
+                            <span *ngIf="bestelling.finaleTijd != null"><i class="fas fa-undo-alt"></i></span>
                             <h4 class="text-right">{{bestelling.huidigeTijd | date:'HH:mm'}}</h4>
                             <button type="button" (click)="Done(bestelling)" class="btn btn-success"><i
                                     class="fas fa-check"></i> Gereed</button>
