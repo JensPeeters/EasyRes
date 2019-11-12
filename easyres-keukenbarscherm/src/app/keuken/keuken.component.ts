@@ -14,6 +14,7 @@ export class KeukenComponent implements OnInit {
 
   ProcessList: IBestelling[];
   DoneList: IBestelling[];
+  CancelList: IBestelling[];
 
   today = new Date();
 
@@ -41,10 +42,20 @@ export class KeukenComponent implements OnInit {
 
   Done(bestelling: IBestelling) {
     bestelling.etenGereed = true;
-    bestelling.finaleTijd = this.today;
-    this.today = bestelling.finaleTijd;
+    bestelling.eetTijdKlaar = this.today;
+    this.today = bestelling.eetTijdKlaar;
     this.serv.Putbestelling(bestelling).subscribe(res => {
       this.serv.GetAlleVoedingsbestellingen().subscribe(result => {
+        this.Bestellingen = result;
+        this.Checklist();
+      });
+    });
+  }
+
+  Cancel(bestelling: IBestelling) {
+    bestelling.etenStatus = false;
+    this.serv.Putbestelling(bestelling).subscribe(res => {
+      this.serv.GetAlleDrankbestellingen().subscribe(result => {
         this.Bestellingen = result;
         this.Checklist();
       });
@@ -54,11 +65,15 @@ export class KeukenComponent implements OnInit {
   Checklist() {
     this.DoneList = [];
     this.ProcessList = [];
+    this.CancelList = [];
 
     this.Bestellingen.forEach(element => {
       if (element.etenGereed) {
         this.DoneList.push(element);
-      } 
+      }
+      else if (element.etenStatus == false){
+        this.CancelList.push(element);
+      }
       else if (element.etenswaren.length != 0) {
         this.ProcessList.push(element);
       }
