@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MsalService } from '../services/msal.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -7,11 +8,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ToolbarComponent implements OnInit {
 
-  today: number = Date.now();
-  
-  constructor() { }
+  today = new Date();
+
+  constructor(private msalService: MsalService) { }
+
+  login() {
+    this.msalService.login();
+  }
+
+  signup() {
+    this.msalService.signup();
+  }
+
+  logout() {
+    this.msalService.logout();
+  }
+
+  isUserLoggedIn() {
+    return this.msalService.isLoggedIn();
+  }
+
+  userfirstname() {
+    return this.msalService.getUserFirstName();
+  }
 
   ngOnInit() {
+    setInterval(() => {
+      this.today = new Date();
+   }, 1000);
   }
 
 }

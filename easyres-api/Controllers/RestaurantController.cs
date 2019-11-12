@@ -20,7 +20,7 @@ namespace easyres_api.Controllers
         }
 
         [HttpGet]
-        public List<Restaurant> GetRestaurants(string naam, string gemeente, string type, string soort,
+        public List<Restaurant> GetRestaurants(string naam, string gemeente, string land, string type, string soort,
                                 string sortBy, string direction = "asc",
                                 int pageSize = 10, int pageNumber = 0)
         {
@@ -29,8 +29,10 @@ namespace easyres_api.Controllers
             {
                 query = query.Where(b => b.Naam.ToLower().Contains(naam.ToLower().Trim()));
             }
+            if (!string.IsNullOrEmpty(land))
+                query = query.Where(b => b.Locatie.Land.ToLower().Contains(land.ToLower().Trim()));
             if (!string.IsNullOrEmpty(gemeente))
-                query = query.Where(b => b.Locatie.Gemeente == gemeente);
+                query = query.Where(b => b.Locatie.Gemeente.ToLower().Contains(gemeente.ToLower().Trim()));
             if (!string.IsNullOrEmpty(type))
                 query = query.Where(b => b.Type == type);
             if (!string.IsNullOrEmpty(soort))

@@ -15,16 +15,15 @@ export class FavorietenComponent implements OnInit {
   zoeknaam: string = "";
   UserId: string = "";
 
-  ngOnInit() {
+  async ngOnInit() {
     if(this.msalService.isLoggedIn())
       this.getUserObjectId();
-    this.GetRestaurants();
+    await this.GetRestaurants();
   }
 
-  GetRestaurants(){
-    this.ResService.GetFavorites(this.UserId,this.zoeknaam).subscribe(gebruiker => {
-      this.Restaurants = gebruiker.restaurants;
-    });
+  async GetRestaurants(){
+    var tempGebruiker = await this.ResService.GetFavorites(this.UserId,this.zoeknaam);
+    this.Restaurants = tempGebruiker.restaurants;
   }
 
   Zoeken(){

@@ -6,8 +6,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RestaurantService {
 
-  //urlAPI: string = 'https://easyres-api.azurewebsites.net/api';
-  urlAPI : string = 'https://localhost:44315/api';
+  urlAPI: string = 'https://easyres-api.azurewebsites.net/api';
+  //urlAPI : string = 'https://localhost:44315/api';
   pageNumber: number = 0;
   pageSize: number = 25;
   sortBy: string = 'Aanbevolen';
@@ -16,7 +16,8 @@ export class RestaurantService {
 
   // Restaurants
   GetRestaurants(filter?: string) {
-    return this.http.get<IRestaurant[]>(`${this.urlAPI}/restaurant?${filter}&pageSize=${this.pageSize}&sortBy=${this.sortBy}&direction=${this.direction}&pageNumber=${this.pageNumber}`);
+    return this.http.get<IRestaurant[]>(`${this.urlAPI}/restaurant?${filter}&pageSize=${this.pageSize}&sortBy=${this.sortBy}&direction=${this.direction}&pageNumber=${this.pageNumber}`)
+    .toPromise();
   }
   GetRestaurantByID(id: number) {
     return this.http.get<IRestaurant>(`${this.urlAPI}/restaurant/${id}`);
@@ -27,10 +28,14 @@ export class RestaurantService {
 
   // Favorieten
   GetFavorites(Gebruikersid: string, naam?: string){
-    return this.http.get<IGebruiker>(`${this.urlAPI}/favorieten/${Gebruikersid}?naam=${naam}`);
+    return this.http.get<IGebruiker>(`${this.urlAPI}/favorieten/${Gebruikersid}?naam=${naam}`)
+    .toPromise();
   }
   DeleteFavoritesByID(Gebruikersid: string, Restaurantid: number){
     return this.http.delete(`${this.urlAPI}/favorieten/${Gebruikersid}/${Restaurantid}`);
+  }
+  PostFavorite(Gebruikersid: string, Restaurantid: number){ 
+    return this.http.post(`${this.urlAPI}/favorieten/${Gebruikersid}/${Restaurantid}`, null);
   }
 
   // Reservaties

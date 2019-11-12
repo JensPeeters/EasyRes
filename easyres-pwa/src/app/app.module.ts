@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +24,12 @@ import { FavorietenComponent } from './favorieten/favorieten.component';
 import { ReservatieLijstComponent } from './reservatie-lijst/reservatie-lijst.component';
 import { MsalGuard } from './guard/msal.guard';
 import { ControlePaneelComponent } from './controle-paneel/controle-paneel.component';
+import { BestelOptiesComponent } from './bestel-opties/bestel-opties.component';
+import { BestellingenComponent } from './bestellingen/bestellingen.component';
+import { ProfielComponent } from './profiel/profiel.component';
+import { ScanComponent } from './scan/scan.component';
+import { SessionService } from './services/session.service';
+import { Ng2CompleterModule } from 'ng2-completer';
 
 @NgModule({
   declarations: [
@@ -37,19 +44,26 @@ import { ControlePaneelComponent } from './controle-paneel/controle-paneel.compo
     VerstuurBestellingComponent,
     BesteldeProductenComponent,
     FavorietenComponent,
-    ControlePaneelComponent
+    ControlePaneelComponent,
+    BestelOptiesComponent,
+    BestellingenComponent,
+    ProfielComponent,
+    ScanComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ZXingScannerModule,
     HttpClientModule,
     FormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    Ng2CompleterModule
   ],
   providers: [
     RestaurantService,
     BestellingService,
+    SessionService,
     MsalService,
     MsalGuard
   ],

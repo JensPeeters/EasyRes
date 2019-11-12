@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RestaurantService, IReservatie } from '../services/restaurant.service'
+import { RestaurantService, IReservatie } from '../services/restaurant.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { MsalService } from '../services/msal.service';
@@ -13,86 +13,86 @@ export class ReservatieComponent implements OnInit {
 
   restaurantId: number;
 
-  tempReservatie: IReservatie = 
+  tempReservatie: IReservatie =
   {
-    userid:null,
-    naam:null,
-    datum:null,
-    email:null,
-    telefoonnummer:null,
-    tijdstip:null,
-    aantalpersonen:null,
-    restaurant:null
+    userid: null,
+    naam: null,
+    datum: null,
+    email: null,
+    telefoonnummer: null,
+    tijdstip: null,
+    aantalpersonen: null,
+    restaurant: null
   };
-  finalReservatie: IReservatie = 
+  finalReservatie: IReservatie =
   {
-    userid:null,
-    naam:null,
-    datum:null,
-    email:null,
-    telefoonnummer:null,
-    tijdstip:null,
-    aantalpersonen:null,
-    restaurant:null
+    userid: null,
+    naam: null,
+    datum: null,
+    email: null,
+    telefoonnummer: null,
+    tijdstip: null,
+    aantalpersonen: null,
+    restaurant: null
   };
   submitted: boolean = false;
   verified: boolean = false;
   today: Date = new Date();
 
-  constructor(private ResService : RestaurantService, private MsalService: MsalService, private _Activatedroute:ActivatedRoute, private _location: Location) {
+  constructor(private ResService : RestaurantService, private MsalService: MsalService, private _Activatedroute: ActivatedRoute, private _location: Location) {
     this.today.setTime(Date.now());
-    
+
   }
 
   async ngOnInit() {
-    this._Activatedroute.paramMap.subscribe(params => { 
-      this.restaurantId = +params.get('id'); 
+    this._Activatedroute.paramMap.subscribe(params => {
+      this.restaurantId = +params.get('id');
     });
 
     this.ResService.GetRestaurantByID(this.restaurantId).subscribe(result => {
       this.tempReservatie.restaurant = result;
-    })
+    });
 
-    if(this.MsalService.isLoggedIn()){
-      this.tempReservatie.naam = this.MsalService.getUserFirstName() + " " + this.MsalService.getUserFamilyName();
+    if (this.MsalService.isLoggedIn()) {
+      this.tempReservatie.naam = this.MsalService.getUserFirstName() + ' ' + this.MsalService.getUserFamilyName();
       this.tempReservatie.email = this.MsalService.getUserEmail();
     }
   }
 
   submit() {
     this.finalReservatie = this.tempReservatie;
-    if(this.inTime(this.finalReservatie)){
+    if (this.inTime(this.finalReservatie)) {
       this.finalReservatie.userid = this.MsalService.getUserObjectId();
       this.ResService.PostReservation(this.finalReservatie).subscribe(
-        a => {this.submitted = true;}
+        a => {this.submitted = true; }
       );
     }
   }
 
-  dayOfRes(dayOfWeek){
-    switch (dayOfWeek){
-      case 0: { return this.finalReservatie.restaurant.openingsuren.zondag}
-      case 1: { return this.finalReservatie.restaurant.openingsuren.maandag}
-      case 2: { return this.finalReservatie.restaurant.openingsuren.dinsdag}
-      case 3: { return this.finalReservatie.restaurant.openingsuren.woensdag}
-      case 4: { return this.finalReservatie.restaurant.openingsuren.donderdag}
-      case 5: { return this.finalReservatie.restaurant.openingsuren.vrijdag}
-      case 6: { return this.finalReservatie.restaurant.openingsuren.zaterdag}
+  dayOfRes(dayOfWeek) {
+    switch (dayOfWeek) {
+      case 0: { return this.finalReservatie.restaurant.openingsuren.zondag; }
+      case 1: { return this.finalReservatie.restaurant.openingsuren.maandag; }
+      case 2: { return this.finalReservatie.restaurant.openingsuren.dinsdag; }
+      case 3: { return this.finalReservatie.restaurant.openingsuren.woensdag; }
+      case 4: { return this.finalReservatie.restaurant.openingsuren.donderdag; }
+      case 5: { return this.finalReservatie.restaurant.openingsuren.vrijdag; }
+      case 6: { return this.finalReservatie.restaurant.openingsuren.zaterdag; }
     }
   }
 
-  inTime(res){
+  inTime(res) {
     var givenDate = res.datum;
     givenDate = new Date(givenDate);
     var givenTime = res.tijdstip;
-    var givenTimeSplit = givenTime.split(":")
-    var restHrs = this.dayOfRes(givenDate.getDay())
-    var restHrsSplit = restHrs.split(" ");
+    var givenTimeSplit = givenTime.split(':');
+    var restHrs = this.dayOfRes(givenDate.getDay());
+    var restHrsSplit = restHrs.split(' ');
     var restOpen = restHrsSplit[0];
-    var restOpenSplit = restOpen.split(":")
+    var restOpenSplit = restOpen.split(':');
     var restClosed = restHrsSplit[2];
-    var restClosedSplit = restClosed.split(":")
-    
+    var restClosedSplit = restClosed.split(':');
+
     // Genereert een Date object van de reservatie.
     var resDate = new Date(givenDate.getFullYear(), givenDate.getMonth(), givenDate.getDate(), givenTimeSplit[0], givenTimeSplit[1]);
     // Genereert een Date object vanaf wanneer het restaurant open is.
@@ -100,14 +100,14 @@ export class ReservatieComponent implements OnInit {
     // Genereert een Date object vanaf wanneer het restaurant gesloten is.
     var restClosedDate = new Date(givenDate.getFullYear(), givenDate.getMonth(), givenDate.getDate(), +restClosedSplit[0], +restClosedSplit[1]);
 
-    if(resDate > restOpenDate && resDate < restClosedDate && res.aantalpersonen>0){
+    if (resDate > restOpenDate && resDate < restClosedDate && res.aantalpersonen > 0) {
       return true;
-    } else{
+    } else {
       return false;
     }
   }
 
-  GoBack(){
+  GoBack() {
     this._location.back();
   }
 }

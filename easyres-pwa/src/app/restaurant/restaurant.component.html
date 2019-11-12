@@ -1,40 +1,94 @@
-<div class="wrapper-header-image">   
+<div class="wrapper-header-image">
     <img src="../../assets/img/restaurant.jpg" alt="restaurant-header-image" class="mainImage">
     <p class="header-image-text">Ambachtelijk kiezen van restaurants</p>
 </div>
 <div class="main-content">
-    <div class="input-search-restaurant">
+    <div class="input-search-restaurant left">
         <input type="text" placeholder="Zoek" [(ngModel)]="zoeknaam" (keydown.enter)="Zoeken()">
         <a (click)="Zoeken()"><i class="fas fa-search" style="cursor: pointer;"></i></a>
     </div>
-    <p>Sorteren op: </p>
-    <div class="dropdown">
-            <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{sorterenOp}}
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a (click)="Sorteren(keuze)" class="dropdown-item" *ngFor="let keuze of sorteerKeuzes">{{keuze}}</a>
-            </div>
-    </div>
-    <div class="typeNormal">
-        <p><b>Type:</b></p>
-        <label class="typeContainar" *ngFor="let type of types">{{type.naam}}
-                <input type="checkbox" [(ngModel)]="type.active" (click)="ChangeTypes(type)">
-            <span class="checkmark"></span>
-          </label>
-    </div>
-    <div class="typeDropdown">
-        <button class="btn dropdown-toggle" type="button" data-toggle="collapse" data-target="#collapseType" aria-expanded="false" aria-controls="collapseType">
-            <b>Type</b>
-        </button><br>
-        <div class="collapse card card-body" id="collapseType">
-            <label class="typeContainar" *ngFor="let type of types">{{type.naam}}
-                <input type="checkbox" [(ngModel)]="type.active" (click)="ChangeTypes(type)">
-                <span class="checkmark"></span>
-            </label>
+    <p class="center">Sorteren op: </p>
+    <div class="dropdown right">
+        <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            {{sorterenOp}}
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a (click)="Sorteren(keuze)" class="dropdown-item" *ngFor="let keuze of sorteerKeuzes">{{keuze}}</a>
         </div>
     </div>
-    <div class="restaurant-advertentie-template">
+    <div class="left">
+        <div class="typeNormal">
+            <div>
+                <p><b>Type:</b></p>
+                <label class="typeContainar" *ngFor="let type of types">{{type.naam}}
+                    <input type="checkbox" [(ngModel)]="type.active" (click)="ChangeTypes(type)">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div>
+                <p><b>Filters:</b></p>
+                <div *ngFor="let filter of filters">
+                    {{filter.naam}}
+                    <div class="filterCheckbox">
+                        <label class="typeContainar">
+                            <input type="checkbox" [(ngModel)]="filter.active" (click)="ChangeFilter(filter)">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="filterInput">
+                        <!-- attributen: https://www.npmjs.com/package/ng2-completer -->
+                        <ng2-completer [disableInput]="!filter.active" [inputClass]="'form-control'"
+                            [(ngModel)]="filter.value" placeholder="{{filter.naam}}"
+                            [datasource]="ChangeLocation(filter)" [minSearchLength]="1"></ng2-completer>
+                    </div>
+                </div>
+                <button class="btn btn-primary" (click)="ApplyFilters()">Toepassen</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="dropdowns">
+        <div class="allDropdown typeDropdown">
+            <button class="btn dropdown-toggle" type="button" data-toggle="collapse" data-target="#collapseType"
+                aria-expanded="false" aria-controls="collapseType">
+                <b>Type</b>
+            </button><br>
+            <div class="collapse card card-body" id="collapseType">
+                <label class="typeContainar" *ngFor="let type of types">{{type.naam}}
+                    <input type="checkbox" [(ngModel)]="type.active" (click)="ChangeTypes(type)">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </div>
+        <div class="allDropdown">
+            <button class="btn dropdown-toggle" type="button" data-toggle="collapse" data-target="#collapseFilter"
+                aria-expanded="false" aria-controls="collapseFilter">
+                <b>Filters</b>
+            </button><br>
+            <div class="collapse card card-body" id="collapseFilter">
+                <div *ngFor="let filter of filters">
+                    {{filter.naam}}
+                    <div class="filterCheckbox">
+                        <label class="typeContainar">
+                            <input type="checkbox" [(ngModel)]="filter.active" (click)="ChangeFilter(filter)">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="filterInput">
+                        <!-- attributen: https://www.npmjs.com/package/ng2-completer -->
+                        <ng2-completer [disableInput]="!filter.active" [inputClass]="'form-control'"
+                            [(ngModel)]="filter.value" placeholder="{{filter.naam}}"
+                            [datasource]="ChangeLocation(filter)" [minSearchLength]="1"></ng2-completer>
+                    </div>
+                </div><br>
+                <button class="btn btn-primary" (click)="ApplyFilters()">Toepassen</button>
+            </div>
+        </div>
+    </div>
+    <button class="btn-danger btn button-scan" [routerLink]="['/scan']"><i class="fas fa-qrcode fa-lg mr-2"></i>Scan tafel</button>
+    <div class="content">
+        <div class="restaurant-advertentie-template">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">
@@ -42,23 +96,29 @@
                         <span class="advert">Advertentie</span>
                     </h5>
                     <h6 class="card-subtitle mb-2 text-muted">Restaurant - Italiaans</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
                     <button class="btn-danger btn button-card">Reserveer</button>
-                    <button class="btn-danger btn button-card">Scan tafel</button>
                     <button class="btn-outline-danger btn button-card">Meer info</button>
                 </div>
             </div>
-    </div>
-    <div class="restaurant-template" *ngFor="let restaurant of Restaurants;">
+        </div>
+        <div class="restaurant-template" *ngFor="let restaurant of Restaurants; let i = index">
             <div class="card">
                 <div class="card-body">
+                    <div *ngIf="isUserLoggedIn()" (click)="AddDeleteFavorites(restaurant.restaurantId,i)">
+                        <i *ngIf="!RestaurantsFavoriteBooleans[i]" class="far fa-star"></i>
+                        <i *ngIf="RestaurantsFavoriteBooleans[i]" class="fas fa-star"></i>
+                    </div>
                     <h5 class="card-title">{{restaurant.naam}}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">{{restaurant.soort}} - {{restaurant.type}}</h6>
                     <p class="card-text">{{restaurant.korteBeschrijving}}</p>
-                    <button class="btn-danger btn button-card" [routerLink]="['/reservatie', restaurant.restaurantId]">Reserveer</button>
-                    <button class="btn-danger btn button-card" [routerLink]="['/scan', restaurant.restaurantId]">Scan tafel</button>
-                    <button class="btn-outline-danger btn button-card" [routerLink]="['/restaurant', restaurant.restaurantId]">Meer info</button>
+                    <button class="btn-danger btn button-card"
+                        [routerLink]="['/reservatie', restaurant.restaurantId]">Reserveer</button>
+                    <button class="btn-outline-danger btn button-card"
+                        [routerLink]="['/restaurant', restaurant.restaurantId]">Meer info</button>
                 </div>
             </div>
+        </div>
     </div>
 </div>

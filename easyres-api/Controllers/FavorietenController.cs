@@ -33,7 +33,21 @@ namespace easyres_api.Controllers
                 return NotFound();
             return favorieten;
         }
-
+        [Route("{gebruikersId}/{restaurantId}")]
+        [HttpPost]
+        public ActionResult<Gebruiker> AddFavorieteRestaurant(string gebruikersId, long restaurantId)
+        {
+            var gebruiker = context.Gebruikers.Include(a => a.Restaurants)
+                                               .Where(a => a.GebruikersID == gebruikersId)
+                                               .FirstOrDefault();
+            var restaurant = context.Restaurants.Where(a => a.RestaurantId == restaurantId)
+                                                .FirstOrDefault();
+            if (gebruiker == null)
+                return NotFound();
+            gebruiker.Restaurants.Add(restaurant);
+            context.SaveChanges();
+            return Created("", restaurant);
+        }
         [Route("{gebruikersId}/{restaurantId}")]
         [HttpDelete]
         public ActionResult<Gebruiker> DeleteReservatie(string gebruikersId, long restaurantId)

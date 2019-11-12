@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BestellingService, IBestelling } from '../services/bestelling.service';
 import { ActivatedRoute } from '@angular/router';
+import { MsalService } from '../services/msal.service';
 
 @Component({
   selector: 'app-verstuur-bestelling',
@@ -8,20 +9,28 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./verstuur-bestelling.component.scss']
 })
 export class VerstuurBestellingComponent implements OnInit {
-
-  TafelNr : number;
-  RestaurantId : number;
-  bestelling : IBestelling;
-  constructor(private route: ActivatedRoute, private bestelServ :BestellingService) { 
+  UserId: string;
+  TafelNr: number;
+  RestaurantId: number;
+  bestelling: IBestelling;
+  constructor(private route: ActivatedRoute, private bestelServ: BestellingService,
+    private msalService: MsalService) {
     this.TafelNr = Number(this.route.snapshot.paramMap.get('TafelNr'));
     this.RestaurantId = Number(this.route.snapshot.paramMap.get('id'));
-    this.bestelling = this.bestelServ.Bestelling;
+
+    if (this.msalService.isLoggedIn()) {
+      this.GetUserObjectId();
+    }
   }
-  
+
   ngOnInit() {
-    this.bestelServ.PostOrder().subscribe(res => {
-      console.log(res);
+    this.bestelServ.PostOrder(this.UserId, this.RestaurantId).subscribe(res => {
+      this.bestelling = res;
     });
+  }
+
+  GetUserObjectId() {
+    this.UserId = this.msalService.getUserObjectId();
   }
 
 }

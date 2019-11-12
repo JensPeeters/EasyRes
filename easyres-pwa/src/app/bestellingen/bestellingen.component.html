@@ -1,0 +1,35 @@
+<button class="btn btn-danger" [routerLink]="['/bestel', RestaurantId,TafelNr,'menu']">Maak een bestelling</button>
+<div *ngIf="Bestellingen">
+  <div id="accordion" *ngFor="let bestelling of Bestellingen; let id = index">
+    <div class="card">
+      <div class="card-header" id="menu">
+        <button class="btn btn-warning" data-toggle="collapse" [attr.data-target]="'#bestelling'+id"
+          aria-expanded="true" aria-controls="collapseMenu" (click)="collapseBestellingen()">
+          Bestelling #{{id+1}} >></button>
+      </div>
+      <div [attr.id]="'bestelling' + id" class="collapse hidden" aria-labelledby="menu" data-parent="#accordion">
+        <div class="card-body">
+          <ul *ngIf="bestelling.dranken.length != 0">
+            <h6>Bestelde dranken</h6>
+            <hr>
+            <li *ngFor="let drank of bestelling.dranken">
+              <span><strong> Aantal: </strong>{{drank.aantal}}</span>
+              <span><strong>Naam: </strong>{{drank.naam}}</span>
+              <span><strong>Prijs: </strong>{{drank.prijs | currency:'€'}}</span>
+            </li>
+          </ul>
+          <ul *ngIf="bestelling.etenswaren.length != 0">
+            <hr>
+            <h6>Bestelde gerechten</h6>
+            <hr>
+            <li *ngFor="let etenswaar of bestelling.etenswaren">
+              <span><strong> Aantal:</strong>{{etenswaar.aantal}}</span>
+              <span><strong>Naam:</strong>{{etenswaar.naam}}</span>
+              <span><strong>Prijs:</strong>{{etenswaar.prijs | currency:'€'}}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
