@@ -4,6 +4,7 @@ import { ToolbarComponent } from './toolbar.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MsalService } from '../services/msal.service';
 import { HttpClientModule } from '@angular/common/http';
+import { GoogleAnalyticsService } from '../services/google-analytics.service';
 
 describe('ToolbarComponent', () => {
   let component: ToolbarComponent;
@@ -13,7 +14,7 @@ describe('ToolbarComponent', () => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, HttpClientModule],
       declarations: [ ToolbarComponent ],
-      providers: [MsalService]
+      providers: [MsalService, GoogleAnalyticsService]
     })
     .compileComponents();
   }));
