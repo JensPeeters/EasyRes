@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MsalService } from '../services/msal.service';
+import { GoogleAnalyticsService } from '../services/google-analytics.service';
 
 describe('BesteldeProductenComponent', () => {
   let component: BesteldeProductenComponent;
@@ -14,7 +15,7 @@ describe('BesteldeProductenComponent', () => {
     TestBed.configureTestingModule({
       imports: [RouterModule.forRoot([]), HttpClientModule],
       declarations: [ BesteldeProductenComponent ],
-      providers: [MsalService]
+      providers: [MsalService, GoogleAnalyticsService]
     })
     .compileComponents();
   }));

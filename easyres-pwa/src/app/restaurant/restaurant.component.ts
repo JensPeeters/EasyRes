@@ -17,7 +17,7 @@ export class RestaurantComponent implements OnInit {
   constructor(private ResService : RestaurantService, private msalService: MsalService, private analytics: GoogleAnalyticsService) { }
 
   SendEvent(buttonNaam: string) {
-    this.analytics.eventEmitter("userPage", buttonNaam, "userLabel", 1);
+    this.analytics.eventEmitter("restaurantLijst", buttonNaam, buttonNaam, 1);
   }
 
   zoeknaam: string;
@@ -45,6 +45,7 @@ export class RestaurantComponent implements OnInit {
   Zoeken(){
     this.zoekterm = `naam=${this.zoeknaam}`;
     this.GetRestaurants();
+    this.SendEvent("Zoeken: " + this.zoekterm);
   }
   Sorteren(item){
     this.sorterenOp = item;
@@ -53,6 +54,7 @@ export class RestaurantComponent implements OnInit {
       this.Zoeken();
     else
       this.GetRestaurants();
+    this.SendEvent("Sorteren op: " + this.sorterenOp);
   }
   async GetRestaurants(){
     var temp: IRestaurant[] = [];
@@ -72,6 +74,7 @@ export class RestaurantComponent implements OnInit {
   ChangeTypes(type){
     type.active = !type.active;
     this.GetRestaurants();
+    this.SendEvent("Aanpassen types");
   }
   ChangeFilter(filter){
     filter.active = !filter.active;
@@ -83,7 +86,8 @@ export class RestaurantComponent implements OnInit {
         this.filter += `&${element.naam.toLowerCase()}=${element.value}`
       }
     }
-    await this.GetRestaurants()
+    await this.GetRestaurants();
+    this.SendEvent("Sorteren op locatie: " + this.filters[0].value + ", " + this.filters[1].value);
   }
   ChangeLocation(filterGiven:filters){
     if(filterGiven.naam == "Land"){
@@ -108,9 +112,11 @@ export class RestaurantComponent implements OnInit {
   AddDeleteFavorites(Restaurantid: number, index){
     if(this.RestaurantsFavoriteBooleans[index]){
       this.ResService.DeleteFavoritesByID(this.UserId, Restaurantid).subscribe();
+      this.SendEvent("Verwijderen uit favorieten: " + Restaurantid);
     }
     else{
       this.ResService.PostFavorite(this.UserId,Restaurantid).subscribe();
+      this.SendEvent("Toevoegen aan favorieten: " + Restaurantid);
     }
     this.RestaurantsFavoriteBooleans[index] = !this.RestaurantsFavoriteBooleans[index];
   }

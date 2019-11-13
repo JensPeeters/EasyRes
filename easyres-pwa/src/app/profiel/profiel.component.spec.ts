@@ -4,6 +4,7 @@ import { ProfielComponent } from './profiel.component';
 import { MsalService } from '../services/msal.service';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { GoogleAnalyticsService } from '../services/google-analytics.service';
 
 describe('ProfielComponent', () => {
   let component: ProfielComponent;
@@ -13,7 +14,7 @@ describe('ProfielComponent', () => {
     TestBed.configureTestingModule({
       imports: [ HttpClientModule, RouterModule.forRoot([])],
       declarations: [ ProfielComponent ],
-      providers: [MsalService]
+      providers: [MsalService, GoogleAnalyticsService]
     })
     .compileComponents();
   }));
