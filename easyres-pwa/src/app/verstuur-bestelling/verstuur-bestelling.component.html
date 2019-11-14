@@ -1,4 +1,8 @@
 <button class="btn btn-danger" [routerLink]="['/bestel', RestaurantId, TafelNr, 'bestellingen']">Mijn bestellingen</button>
+<div *ngIf="bestellingFailed">
+  <h5>Het is ons niet gelukt de bestelling te plaatsen. Gelieve dit opnieuw te proberen.</h5>
+  <button class="btn btn-danger" (click)="ngOnInit()">Probeer opnieuw</button>
+</div>
 <div *ngIf="bestelling">
         <hr>
         <li>
