@@ -23,6 +23,7 @@ export class VerstuurBestellingComponent implements OnInit {
     }
   }
   bestellingFailed:boolean = false;
+  bestellingLoading:boolean = true;
 
   ngOnInit() {
     this.bestellingFailed = false;
@@ -30,6 +31,7 @@ export class VerstuurBestellingComponent implements OnInit {
       res => {
         this.bestelling=res;
         this.bestelServ.ClearBestelling();
+        this.bestellingLoading = false;
       } ,
       err => {
         this.bestellingFailed = true;
