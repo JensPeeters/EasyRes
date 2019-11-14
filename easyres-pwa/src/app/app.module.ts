@@ -23,7 +23,6 @@ import { BesteldeProductenComponent } from './bestelde-producten/bestelde-produc
 import { FavorietenComponent } from './favorieten/favorieten.component';
 import { ReservatieLijstComponent } from './reservatie-lijst/reservatie-lijst.component';
 import { MsalGuard } from './guard/msal.guard';
-import { BestelOptiesComponent } from './bestel-opties/bestel-opties.component';
 import { BestellingenComponent } from './bestellingen/bestellingen.component';
 import { ProfielComponent } from './profiel/profiel.component';
 import { ScanComponent } from './scan/scan.component';
@@ -45,7 +44,6 @@ import { GoogleAnalyticsService } from './services/google-analytics.service';
     VerstuurBestellingComponent,
     BesteldeProductenComponent,
     FavorietenComponent,
-    BestelOptiesComponent,
     BestellingenComponent,
     ProfielComponent,
     ScanComponent
