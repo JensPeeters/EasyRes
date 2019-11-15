@@ -22,11 +22,22 @@ export class VerstuurBestellingComponent implements OnInit {
       this.GetUserObjectId();
     }
   }
+  bestellingFailed:boolean = false;
+  bestellingLoading:boolean = true;
 
   ngOnInit() {
-    this.bestelServ.PostOrder(this.UserId, this.RestaurantId).subscribe(res => {
-      this.bestelling = res;
-    });
+    this.bestellingFailed = false;
+    this.bestelServ.PostOrder(this.UserId, this.RestaurantId).subscribe(
+      res => {
+        this.bestelling=res;
+        this.bestelServ.ClearBestelling();
+        this.bestellingLoading = false;
+      } ,
+      err => {
+        this.bestellingFailed = true;
+        console.log(err)},
+      () => {}
+    )
   }
 
   GetUserObjectId() {

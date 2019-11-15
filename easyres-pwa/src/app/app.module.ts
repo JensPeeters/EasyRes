@@ -23,12 +23,13 @@ import { BesteldeProductenComponent } from './bestelde-producten/bestelde-produc
 import { FavorietenComponent } from './favorieten/favorieten.component';
 import { ReservatieLijstComponent } from './reservatie-lijst/reservatie-lijst.component';
 import { MsalGuard } from './guard/msal.guard';
-import { BestelOptiesComponent } from './bestel-opties/bestel-opties.component';
 import { BestellingenComponent } from './bestellingen/bestellingen.component';
 import { ProfielComponent } from './profiel/profiel.component';
 import { ScanComponent } from './scan/scan.component';
 import { SessionService } from './services/session.service';
 import { Ng2CompleterModule } from 'ng2-completer';
+import { UserService } from './services/user.service';
+import { GoogleAnalyticsService } from './services/google-analytics.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,6 @@ import { Ng2CompleterModule } from 'ng2-completer';
     VerstuurBestellingComponent,
     BesteldeProductenComponent,
     FavorietenComponent,
-    BestelOptiesComponent,
     BestellingenComponent,
     ProfielComponent,
     ScanComponent
@@ -63,7 +63,9 @@ import { Ng2CompleterModule } from 'ng2-completer';
     BestellingService,
     SessionService,
     MsalService,
-    MsalGuard
+    MsalGuard,
+    UserService,
+    GoogleAnalyticsService
   ],
   bootstrap: [AppComponent]
 })

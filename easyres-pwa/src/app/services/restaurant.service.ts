@@ -20,21 +20,21 @@ export class RestaurantService {
     .toPromise();
   }
   GetRestaurantByID(id: number) {
-    if (id != 0){
+    if (id != 0) {
       return this.http.get<IRestaurant>(`${this.urlAPI}/restaurant/${id}`);
     }
 
   }
 
   // Favorieten
-  GetFavorites(Gebruikersid: string, naam?: string){
+  GetFavorites(Gebruikersid: string, naam?: string) {
     return this.http.get<IGebruiker>(`${this.urlAPI}/favorieten/${Gebruikersid}?naam=${naam}`)
     .toPromise();
   }
-  DeleteFavoritesByID(Gebruikersid: string, Restaurantid: number){
+  DeleteFavoritesByID(Gebruikersid: string, Restaurantid: number) {
     return this.http.delete(`${this.urlAPI}/favorieten/${Gebruikersid}/${Restaurantid}`);
   }
-  PostFavorite(Gebruikersid: string, Restaurantid: number){ 
+  PostFavorite(Gebruikersid: string, Restaurantid: number) {
     return this.http.post(`${this.urlAPI}/favorieten/${Gebruikersid}/${Restaurantid}`, null);
   }
 
@@ -58,7 +58,7 @@ export class RestaurantService {
 export interface IGebruiker {
   id: number;
   gebruikersID: string;
-  restaurants: IRestaurant[];
+  favorieten: IRestaurant[];
 }
 export interface ILocatie {
   id: number;

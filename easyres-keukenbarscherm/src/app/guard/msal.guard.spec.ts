@@ -1,11 +1,13 @@
 import { TestBed, async, inject } from '@angular/core/testing';
 
 import { MsalGuard } from './msal.guard';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('MsalGuard', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [MsalGuard]
+      imports: [ HttpClientModule ],
+      providers: [ MsalGuard ]
     });
   });
 

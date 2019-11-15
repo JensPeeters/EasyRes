@@ -12,6 +12,6 @@ export class UserService {
   //urlAPI = 'https://localhost:44315/api';
 
   saveUserInDb(UserId) {
-    return this.http.post(`${this.urlAPI}/user/gebruiker/${UserId}`, null);
+    return this.http.post(`${this.urlAPI}/user/uitbater/${UserId}`, null);
   }
 }

@@ -4,6 +4,7 @@ import { ReservatieLijstComponent } from './reservatie-lijst.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { MsalService } from '../services/msal.service';
+import { GoogleAnalyticsService } from '../services/google-analytics.service';
 
 describe('ReservatieLijstComponent', () => {
   let component: ReservatieLijstComponent;
@@ -13,7 +14,7 @@ describe('ReservatieLijstComponent', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule, RouterModule.forRoot([])],
       declarations: [ ReservatieLijstComponent ],
-      providers: [MsalService]
+      providers: [MsalService, GoogleAnalyticsService]
     })
     .compileComponents();
   }));

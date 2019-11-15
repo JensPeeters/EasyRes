@@ -1,15 +1,15 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MsalService } from './msal.service';
+import { UserService } from './user.service';
 import { HttpClientModule } from '@angular/common/http';
 
-describe('MsalService', () => {
+describe('UserService', () => {
   beforeEach(() => TestBed.configureTestingModule({
-    imports: [ HttpClientModule ]
+    imports: [HttpClientModule]
   }));
 
   it('should be created', () => {
-    const service: MsalService = TestBed.get(MsalService);
+    const service: UserService = TestBed.get(UserService);
     expect(service).toBeTruthy();
   });
 });

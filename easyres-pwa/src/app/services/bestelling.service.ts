@@ -24,7 +24,14 @@ export class BestellingService {
   GetOrdersForUser(UserId: string, RestaurantId: number) {
     return this.http.get<IBestelling[]>(`${this.urlAPI}/bestelling/gebruiker/${UserId}/${RestaurantId}`);
   }
-
+  ClearBestelling(){
+    this. bestelling = {
+      prijs: 0,
+      tafelNr: 0,
+      dranken: [],
+      etenswaren: []
+    };
+  }
   get Bestelling(): IBestelling {
     let prijs = 0;
     for (let drank of this.bestelling.dranken) {
