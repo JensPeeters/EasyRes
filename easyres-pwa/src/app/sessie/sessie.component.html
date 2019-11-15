@@ -8,7 +8,7 @@
                 </h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{sessie.restaurant.soort}}</h6>
                 <p class="card-text">{{sessie.restaurant.beschrijving}}</p>
-                <button class="btn-danger btn order-btn" [routerLink]="['/bestel', sessie.restaurant.restaurantId, sessie.tafelNr]">Bestellingen</button>
+                <button class="btn-danger btn order-btn" [routerLink]="['/bestel', sessie.restaurant.restaurantId, sessie.tafelNr, 'bestellingen']">Bestellingen</button>
                 <button class="btn-outline-danger btn button-more-info" [routerLink]="['/betaal']">Betaal</button>
             </div>
         </div>

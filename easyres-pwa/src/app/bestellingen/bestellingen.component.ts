@@ -18,6 +18,8 @@ export class BestellingenComponent implements OnInit {
   constructor(private msalService: MsalService, private bestelServ :BestellingService,
     private route: ActivatedRoute) { }
 
+  bestellingLoading: boolean = true;
+
   ngOnInit() {
 
     if(this.msalService.isLoggedIn()){
@@ -27,6 +29,7 @@ export class BestellingenComponent implements OnInit {
     this.TafelNr = Number(this.route.snapshot.paramMap.get('TafelNr'));
     this.bestelServ.GetOrdersForUser(this.UserId,this.RestaurantId).subscribe( res => {
       this.Bestellingen = res;
+      this.bestellingLoading = false;
     });
   }
   GetUserObjectId(){
