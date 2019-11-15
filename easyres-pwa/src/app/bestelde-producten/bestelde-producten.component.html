@@ -2,7 +2,7 @@
   <button class="btn btn-danger" [routerLink]="['/bestel', RestaurantId,TafelNr,'menu']">Menu kaart
   </button>
   <button class="btn btn-danger" [routerLink]="['/bestel', RestaurantId,TafelNr,'verstuur']"
-   (click)="SendEvent('Bestelling plaatsen')" [disabled]="bestelling.dranken.length == 0 && bestelling.etenswaren == 0"
+   (click)="SendEvent('Bestelling plaatsen')" [disabled]="bestelling.dranken.length == 0 && bestelling.etenswaren.length == 0"
    >Bestellen</button>
 </div>
 <div>
