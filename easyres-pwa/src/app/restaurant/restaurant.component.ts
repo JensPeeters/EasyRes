@@ -12,6 +12,7 @@ import { GoogleAnalyticsService } from '../services/google-analytics.service';
 export class RestaurantComponent implements OnInit {
 
   Restaurants : IRestaurant[];
+  Advertentie : IRestaurant;
   sorterenOp: string = "Aanbevolen";
   
   constructor(private ResService : RestaurantService, private msalService: MsalService, private analytics: GoogleAnalyticsService) { }
@@ -42,6 +43,19 @@ export class RestaurantComponent implements OnInit {
     }
     await this.GetRestaurants();
   }
+
+  GetAdvertisement(){
+    for(var element of this.types){
+      if (element.active) {
+        this.ResService.GetAdvertisement(`${element.naam}`).subscribe( res => {
+          this.Advertentie = res;
+          console.log(this.Advertentie);
+        });
+        break;
+      }
+    }
+  }
+
   Zoeken(){
     this.zoekterm = `naam=${this.zoeknaam}`;
     this.GetRestaurants();
@@ -66,6 +80,7 @@ export class RestaurantComponent implements OnInit {
         });
       }
     }
+    this.GetAdvertisement();
     this.Restaurants = temp;
     if(this.isUserLoggedIn()){
       await this.CheckFavorites();

@@ -164,7 +164,8 @@ namespace easyres_api.Model
                       Menu = menu,
                       Naam = "Villa Belvedere",
                       Type = "Italiaans",
-                      Soort = "Restaurant"
+                      Soort = "Restaurant",
+                      IsAdvertentie = true
                     },
                     new Restaurant()
                     {
@@ -175,7 +176,8 @@ namespace easyres_api.Model
                       Menu = menu,
                       Naam = "Het hoekske",
                       Type = "Chinees",
-                      Soort = "Restaurant"
+                      Soort = "Restaurant",
+                      IsAdvertentie = false
                     },
                     new Restaurant()
                     {
@@ -186,7 +188,8 @@ namespace easyres_api.Model
                       Menu = menu,
                       Naam = "Het restaurant china",
                       Type = "Chinees",
-                      Soort = "Restaurant"
+                      Soort = "Restaurant",
+                      IsAdvertentie = false
                     },
                     new Restaurant()
                     {
@@ -197,7 +200,8 @@ namespace easyres_api.Model
                       Menu = menu,
                       Naam = "Het japaneeske",
                       Type = "Japans",
-                      Soort = "Bistro"
+                      Soort = "Bistro",
+                      IsAdvertentie = true
                     },
                     new Restaurant()
                     {
@@ -208,7 +212,8 @@ namespace easyres_api.Model
                       Menu = menu,
                       Naam = "Het afrikaanse hoofdkwartier",
                       Type = "Afrikaans",
-                      Soort = "Bistro"
+                      Soort = "Bistro",
+                      IsAdvertentie = false
                     },
                     new Restaurant()
                     {
@@ -219,7 +224,8 @@ namespace easyres_api.Model
                       Menu = menu,
                       Naam = "De chinees",
                       Type = "Chinees",
-                      Soort = "Taverne"
+                      Soort = "Taverne",
+                      IsAdvertentie = true
                     },
                     new Restaurant()
                     {
@@ -230,7 +236,8 @@ namespace easyres_api.Model
                       Menu = menu,
                       Naam = "Den bistro",
                       Type = "Japans",
-                      Soort = "Taverne"
+                      Soort = "Taverne",
+                      IsAdvertentie = false
                     },
                     new Restaurant()
                     {
@@ -241,7 +248,8 @@ namespace easyres_api.Model
                       Menu = menu,
                       Naam = "Alles van eten",
                       Type = "Italiaans",
-                      Soort = "Trattoria"
+                      Soort = "Trattoria",
+                      IsAdvertentie = true
                     }
                 };
 

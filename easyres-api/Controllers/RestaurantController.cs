@@ -85,9 +85,71 @@ namespace easyres_api.Controllers
             return query.ToList();
         }
 
+        [Route("advertentie")]
+        [HttpGet]
+        public ActionResult<List<Restaurant>> GetGeadverteerdeRestaurant()
+        {
+            var geadverteerdeRestaurants = context.Restaurants
+                                        .Include(a => a.Menu)
+                                        .Include(a => a.Openingsuren)
+                                        .Include(a => a.Locatie)
+                                        .Include(a => a.Menu.Desserts)
+                                        .Include(a => a.Menu.Dranken)
+                                        .Include(a => a.Menu.Hoofdgerechten)
+                                        .Include(a => a.Menu.Voorgerechten)
+                                        .Where(a => a.IsAdvertentie == true).ToList();
+            if (geadverteerdeRestaurants == null)
+                return NotFound();
+            return geadverteerdeRestaurants;
+        }
+
+        [Route("advertentie/{soort}")]
+        [HttpGet]
+        public ActionResult<Restaurant> GetGeadverteerdeRestaurantBySoort(string soort)
+        {
+            var geadverteerdRestaurant = context.Restaurants
+                                        .Include(a => a.Menu)
+                                        .Include(a => a.Openingsuren)
+                                        .Include(a => a.Locatie)
+                                        .Include(a => a.Menu.Desserts)
+                                        .Include(a => a.Menu.Dranken)
+                                        .Include(a => a.Menu.Hoofdgerechten)
+                                        .Include(a => a.Menu.Voorgerechten)
+                                        .Where(a => a.IsAdvertentie == true)
+                                        .FirstOrDefault(a => a.Soort == soort);
+            if (geadverteerdRestaurant == null)
+                return NotFound();
+            return geadverteerdRestaurant;
+        }
+
+        [Route("advertentie")]
+        [HttpPut]
+        public ActionResult<Restaurant> UpdateGeadverteerdeRestaurantBySoort([FromBody] Restaurant restaurant)
+        {
+            var oudeAdvertentie = context.Restaurants
+                .Where(a => a.IsAdvertentie == true)
+                .FirstOrDefault(a => a.Soort == restaurant.Soort);
+            if(oudeAdvertentie != null)
+            {
+                oudeAdvertentie.IsAdvertentie = false;
+            }
+            restaurant.IsAdvertentie = true;
+            try
+            {
+                context.Restaurants.Update(restaurant);
+                context.SaveChanges();
+            }
+            catch (System.Exception e)
+            {
+
+                throw new System.Exception(e.Message);
+            }
+            return Ok(restaurant);
+        }
+
         [Route("{id}")]
         [HttpGet]
-        public ActionResult<Restaurant> GetRestaurant(long id)
+        public ActionResult<Restaurant> GetAdvertentie(long id)
         {
             var restaurant = context.Restaurants.Where(a => a.RestaurantId == id).Include(a => a.Menu)
                                         .Include(a => a.Openingsuren)
@@ -101,6 +163,7 @@ namespace easyres_api.Controllers
                 return NotFound();
             return restaurant;
         }
+
         [Route("{id}/reservatie")]
         [HttpGet]
         public List<Reservatie> GetRestaurantReservations(long id)
