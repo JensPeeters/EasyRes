@@ -54,6 +54,12 @@ export class RestaurantService {
   DeleteReservationByID(id: number) {
     return this.http.delete(`${this.urlAPI}/reservatie/${id}`);
   }
+
+  // Advertentie
+  GetAdvertisement(soort: string){
+    return this.http.get<IRestaurant>(`${this.urlAPI}/restaurant/advertentie/${soort}`);
+  }
+
 }
 export interface IGebruiker {
   id: number;
@@ -130,4 +136,5 @@ export interface IRestaurant {
   openingsuren: IOpeningsuren;
   beschrijving: string;
   logoImage: string;
+  isAdvertentie: boolean;
 }
