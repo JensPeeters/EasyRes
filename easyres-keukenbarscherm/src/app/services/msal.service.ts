@@ -84,10 +84,17 @@ export class MsalService {
     });
   }
 
-  saveAccessTokenToCache(accessToken: string): void {
+  saveAccessTokenToCache(accessToken: string) {
     sessionStorage.setItem(this.B2CTodoAccessTokenKey, accessToken);
     if (this.isNew()) {
       this.userService.saveUserInDb(this.getUserObjectId()).subscribe();
+    }
+    console.log('Test');
+    if (!this.isUitbater()) {
+      console.log('Geen uitbater');
+      this.logout();
+    } else {
+      console.log('uitbater');
     }
   }
 
@@ -105,6 +112,15 @@ export class MsalService {
 
   isNew() {
     if (this.getUser().idToken['newUser']) {
+      return true;
+    }
+    return false;
+  }
+
+  isUitbater() {
+    const uitbater = this.userService.isuitbater(this.getUserObjectId());
+    console.log(uitbater);
+    if (uitbater != null) {
       return true;
     }
     return false;
