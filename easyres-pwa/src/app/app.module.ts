@@ -30,6 +30,7 @@ import { SessionService } from './services/session.service';
 import { Ng2CompleterModule } from 'ng2-completer';
 import { UserService } from './services/user.service';
 import { GoogleAnalyticsService } from './services/google-analytics.service';
+import { FactuurComponent } from './factuur/factuur.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { GoogleAnalyticsService } from './services/google-analytics.service';
     FavorietenComponent,
     BestellingenComponent,
     ProfielComponent,
-    ScanComponent
+    ScanComponent,
+    FactuurComponent
   ],
   imports: [
     BrowserModule,

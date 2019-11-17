@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MsalService } from '../services/msal.service';
-import { BestellingService, IBestelling } from '../services/bestelling.service';
+import { BestellingService } from '../services/bestelling.service';
 import { ActivatedRoute } from '@angular/router';
+import { IBestelling } from '../services/common.service';
 
 @Component({
   selector: 'app-bestellingen',

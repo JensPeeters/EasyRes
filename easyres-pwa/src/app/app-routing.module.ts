@@ -14,6 +14,7 @@ import { ReservatieLijstComponent } from './reservatie-lijst/reservatie-lijst.co
 import { BestellingenComponent } from './bestellingen/bestellingen.component';
 import { ProfielComponent } from './profiel/profiel.component';
 import { ScanComponent } from './scan/scan.component';
+import { FactuurComponent } from './factuur/factuur.component';
 
 const routes: Routes = [
   {path: 'restaurant', component: RestaurantComponent, data: {animation: 'restaurant'}},
@@ -25,6 +26,7 @@ const routes: Routes = [
   {path: 'bestel/:id/:TafelNr/producten', component: BesteldeProductenComponent, canActivate: [MsalGuard]},
   {path: 'bestel/:id/:TafelNr/verstuur', component: VerstuurBestellingComponent, canActivate: [MsalGuard]},
   {path: 'bestel/:id/:TafelNr/menu', component: BestelComponent, canActivate: [MsalGuard]},
+  {path: 'factuur/:id/:TafelNr', component: FactuurComponent, canActivate: [MsalGuard]},
   {path: 'sessie', component: SessieComponent, canActivate: [MsalGuard]},
   {path: 'favorieten', component: FavorietenComponent, canActivate: [MsalGuard], data: {animation: 'favorieten'}},
   {path: 'profiel', component: ProfielComponent, canActivate: [MsalGuard]},

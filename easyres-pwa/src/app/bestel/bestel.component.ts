@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { RestaurantService, IRestaurant } from '../services/restaurant.service';
+import { RestaurantService } from '../services/restaurant.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgForOf } from '@angular/common';
-import { BestellingService, IProduct } from '../services/bestelling.service';
+import { BestellingService } from '../services/bestelling.service';
 import { MsalService } from '../services/msal.service';
+import { IRestaurant, IProduct } from '../services/common.service';
 
 @Component({
   selector: 'app-bestel',
