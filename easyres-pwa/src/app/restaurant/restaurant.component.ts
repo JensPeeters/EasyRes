@@ -49,7 +49,6 @@ export class RestaurantComponent implements OnInit {
       if (element.active) {
         this.ResService.GetAdvertisement(`${element.naam}`).subscribe( res => {
           this.Advertentie = res;
-          console.log(this.Advertentie);
         });
         break;
       }
