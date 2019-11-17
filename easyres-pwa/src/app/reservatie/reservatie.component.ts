@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { RestaurantService, IReservatie } from '../services/restaurant.service';
+import { RestaurantService } from '../services/restaurant.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { MsalService } from '../services/msal.service';
 import { GoogleAnalyticsService } from '../services/google-analytics.service';
+import { IReservatie } from '../services/common.service';
 
 @Component({
   selector: 'app-reservatie',

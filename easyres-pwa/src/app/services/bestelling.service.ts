@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IRestaurant } from './restaurant.service';
+import { CommonService, IBestelling } from './common.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,16 +13,14 @@ export class BestellingService {
     etenswaren: []
   };
 
-  urlAPI: string = 'https://easyres-api.azurewebsites.net/api';
-  //urlAPI: string = "https://localhost:44315/api";
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private common: CommonService) { }
 
   PostOrder(UserId: string, ResId : number) {
     this.bestelling = this.Bestelling;
-    return this.http.post<IBestelling>(`${this.urlAPI}/bestelling/restaurant/${ResId}/${UserId}`, this.bestelling);
+    return this.http.post<IBestelling>(`${this.common.urlAPI}/bestelling/restaurant/${ResId}/${UserId}`, this.bestelling);
   }
   GetOrdersForUser(UserId: string, RestaurantId: number) {
-    return this.http.get<IBestelling[]>(`${this.urlAPI}/bestelling/gebruiker/${UserId}/${RestaurantId}`);
+    return this.http.get<IBestelling[]>(`${this.common.urlAPI}/bestelling/gebruiker/${UserId}/${RestaurantId}`);
   }
   ClearBestelling(){
     this. bestelling = {
@@ -43,30 +41,4 @@ export class BestellingService {
     this.bestelling.prijs = prijs;
     return <IBestelling>this.bestelling;
   }
-}
-
-export interface IBestelling {
-  prijs: number;
-  tafelNr: number;
-  restaurant: IRestaurant;
-  dranken: IProduct[];
-  etenswaren: IProduct[];
-  bestellingId: number;
-}
-export interface IRestaurant {
-  restaurantId: number;
-  naam: string;
-  locatie: any;
-  menu: any;
-  openingsuren: any;
-  beschrijving: string;
-  logoImage: string;
-  type: string;
-  soort: string;
-}
-
-export interface IProduct {
-  naam: string;
-  prijs: number;
-  aantal: number;
 }

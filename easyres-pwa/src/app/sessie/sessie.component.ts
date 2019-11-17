@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { IRestaurant } from '../services/restaurant.service';
-import { SessionService, ISessie } from '../services/session.service';
+import { SessionService } from '../services/session.service';
 import { MsalService } from '../services/msal.service';
+import { ISessie } from '../services/common.service';
 
 @Component({
   selector: 'app-sessie',

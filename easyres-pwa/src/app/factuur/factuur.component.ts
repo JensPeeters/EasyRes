@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MsalService } from '../services/msal.service';
 import { ActivatedRoute } from '@angular/router';
-import { FactuurService, IFactuur } from '../services/factuur.service';
+import { FactuurService } from '../services/factuur.service';
+import { IFactuur } from '../services/common.service';
 
 @Component({
   selector: 'app-factuur',
