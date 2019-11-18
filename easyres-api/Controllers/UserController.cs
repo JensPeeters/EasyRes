@@ -68,5 +68,31 @@ namespace easyres_api.Controllers
                 return NotFound();
             }
         }
+
+        [Route("isgebruiker/{userId}")]
+        [HttpGet]
+        public ActionResult<Gebruiker> IsGebruiker(string userId)
+        {
+            var gebruiker = context.Gebruikers.Where(a => a.GebruikersID == userId)
+                                              .FirstOrDefault();
+            if (gebruiker != null)
+            {
+                return gebruiker;
+            }
+            return NotFound();
+        }
+
+        [Route("isuitbater/{userId}")]
+        [HttpGet]
+        public ActionResult<Uitbater> IsUitbater(string userId)
+        {
+            var uitbater = context.Uitbaters.Where(a => a.GebruikersID == userId)
+                                            .FirstOrDefault();
+            if (uitbater != null)
+            {
+                return uitbater;
+            }
+            return NotFound();
+        }
     }
 }

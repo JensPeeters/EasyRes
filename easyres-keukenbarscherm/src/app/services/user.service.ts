@@ -14,4 +14,13 @@ export class UserService {
   saveUserInDb(UserId) {
     return this.http.post(`${this.urlAPI}/user/uitbater/${UserId}`, null);
   }
+
+  isuitbater(UserId) {
+    return this.http.get<IUitbater>(`${this.urlAPI}/user/isuitbater/${UserId}`);
+  }
+}
+
+export interface IUitbater {
+  gebruikersID: string;
+  restaurantID: number;
 }
