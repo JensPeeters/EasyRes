@@ -27,6 +27,13 @@
         </label>
       </div>
       <div>
+        <p><b>Gerechten:</b></p>
+        <label class="typeContainar" *ngFor="let gerecht of gerechten">{{gerecht.naam}}
+          <input type="checkbox" [(ngModel)]="gerecht.active" (click)="ChangeGerechten(gerecht)">
+          <span class="checkmark"></span>
+        </label>
+      </div>
+      <div>
         <p><b>Filters:</b></p>
         <div *ngFor="let filter of filters">
           {{filter.naam}}
@@ -47,8 +54,8 @@
     </div>
   </div>
 
-  <div class="dropdowns">
-    <div class="allDropdown typeDropdown">
+  <div class="dropdowns mb-3">
+    <div class="allDropdown firstDropdown">
       <button class="btn dropdown-toggle" type="button" data-toggle="collapse" data-target="#collapseType"
         aria-expanded="false" aria-controls="collapseType">
         <b>Type</b>
@@ -61,6 +68,20 @@
       </div>
     </div>
     <div class="allDropdown">
+      <button class="btn dropdown-toggle" type="button" data-toggle="collapse" data-target="#collapseGerechten"
+        aria-expanded="false" aria-controls="collapseGerechten">
+        <b>Gerechten</b>
+      </button><br>
+      <div class="collapse card card-body" id="collapseGerechten">
+        <label class="typeContainar" *ngFor="let gerecht of gerechten">{{gerecht.naam}}
+          <input type="checkbox" [(ngModel)]="gerecht.active" (click)="ChangeGerechten(gerecht)">
+          <span class="checkmark"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="dropdowns">
+    <div class="allDropdown firstDropdown">
       <button class="btn dropdown-toggle" type="button" data-toggle="collapse" data-target="#collapseFilter"
         aria-expanded="false" aria-controls="collapseFilter">
         <b>Filters</b>
@@ -83,6 +104,7 @@
         <button class="btn btn-primary" (click)="ApplyFilters()">Toepassen</button>
       </div>
     </div>
+    <div class="allDropdown"></div>
   </div>
   <button class="btn-danger btn button-scan" [routerLink]="['/scan']" (click)="SendEvent('Scan')">
     <i class="fas fa-qrcode fa-lg mr-2"></i>Scan tafel</button>

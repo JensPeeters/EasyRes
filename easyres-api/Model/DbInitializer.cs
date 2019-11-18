@@ -11,7 +11,7 @@ namespace easyres_api.Model
             //Create the db if not yet exists
             context.Database.EnsureCreated();
 
-            //Are there already books present ?
+            //Are there already restaurants present ?
             if (context.Restaurants.Count() == 0)
             {
 
@@ -165,7 +165,8 @@ namespace easyres_api.Model
                       Naam = "Villa Belvedere",
                       Type = "Italiaans",
                       Soort = "Restaurant",
-                      IsAdvertentie = true
+                      IsAdvertentie = true,
+                      Gerechten = "Pizza Pasta"
                     },
                     new Restaurant()
                     {
@@ -177,7 +178,8 @@ namespace easyres_api.Model
                       Naam = "Het hoekske",
                       Type = "Chinees",
                       Soort = "Restaurant",
-                      IsAdvertentie = false
+                      IsAdvertentie = false,
+                      Gerechten = "Pizza Pasta"
                     },
                     new Restaurant()
                     {
@@ -189,7 +191,8 @@ namespace easyres_api.Model
                       Naam = "Het restaurant china",
                       Type = "Chinees",
                       Soort = "Restaurant",
-                      IsAdvertentie = false
+                      IsAdvertentie = false,
+                      Gerechten = "Salade Stoverij"
                     },
                     new Restaurant()
                     {
@@ -201,7 +204,8 @@ namespace easyres_api.Model
                       Naam = "Het japaneeske",
                       Type = "Japans",
                       Soort = "Bistro",
-                      IsAdvertentie = true
+                      IsAdvertentie = true,
+                      Gerechten = "Salade Stoverij"
                     },
                     new Restaurant()
                     {
@@ -213,7 +217,8 @@ namespace easyres_api.Model
                       Naam = "Het afrikaanse hoofdkwartier",
                       Type = "Afrikaans",
                       Soort = "Bistro",
-                      IsAdvertentie = false
+                      IsAdvertentie = false,
+                      Gerechten = "Pizza Pasta"
                     },
                     new Restaurant()
                     {
@@ -225,7 +230,8 @@ namespace easyres_api.Model
                       Naam = "De chinees",
                       Type = "Chinees",
                       Soort = "Taverne",
-                      IsAdvertentie = true
+                      IsAdvertentie = true,
+                      Gerechten = "Pizza Pasta"
                     },
                     new Restaurant()
                     {
@@ -237,7 +243,8 @@ namespace easyres_api.Model
                       Naam = "Den bistro",
                       Type = "Japans",
                       Soort = "Taverne",
-                      IsAdvertentie = false
+                      IsAdvertentie = false,
+                      Gerechten = "Stoverij"
                     },
                     new Restaurant()
                     {
@@ -249,7 +256,8 @@ namespace easyres_api.Model
                       Naam = "Alles van eten",
                       Type = "Italiaans",
                       Soort = "Trattoria",
-                      IsAdvertentie = true
+                      IsAdvertentie = true,
+                      Gerechten = "Salade"
                     }
                 };
 
