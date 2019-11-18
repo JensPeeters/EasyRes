@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BestellingService, IBestelling } from '../services/bestelling.service';
+import { BestellingService } from '../services/bestelling.service';
 import { MsalService } from '../services/msal.service';
-import { RestaurantComponent } from '../restaurant/restaurant.component';
 import { GoogleAnalyticsService } from '../services/google-analytics.service';
+import { IBestelling } from '../services/common.service';
 
 @Component({
   selector: 'app-bestelde-producten',

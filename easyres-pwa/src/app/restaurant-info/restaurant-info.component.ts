@@ -1,8 +1,9 @@
 import { Component, OnInit} from '@angular/core';
-import { RestaurantService, IRestaurant } from '../services/restaurant.service';
+import { RestaurantService } from '../services/restaurant.service';
 import { ActivatedRoute } from '@angular/router';
 import {Location} from '@angular/common';
 import { GoogleAnalyticsService } from '../services/google-analytics.service';
+import { IRestaurant } from '../services/common.service';
 
 
 @Component({

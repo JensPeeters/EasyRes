@@ -18,6 +18,7 @@ namespace easyres_api.Model
         public string LogoImage { get; set; }
         public string Type { get; set; }
         public string Soort { get; set; }
+        public bool IsAdvertentie { get; set; }
         [JsonIgnore]
         public List<Reservatie> Reservaties { get; set; }
         [JsonIgnore]

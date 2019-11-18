@@ -10,17 +10,35 @@ h6{
 .btn{
     width: 100% !important;
 }
-.btn-danger{
-    padding-top: 20px;
-    padding-bottom: 20px;
+.button-top-fixed{
     margin-top: 15px;
-    margin-bottom: 25px;
-    font-weight: bold;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+.btn-danger, .btn-outline-danger{
+    border: 5px solid white;
+    border-radius: 10px;
     font-size: 20px;
+    font-weight: bold;
 }
 @media screen and (max-width: 500px){
     li{
         grid-template-columns: 100%;
         margin-bottom: 50px;
+    }
+}
+@media screen and (max-width: 460px){
+    .btn-danger:nth-child(1), .btn-danger:nth-child(2){
+        font-size: 16px;
+    }
+}
+@media screen and (max-width: 360px){
+    .btn-danger:nth-child(1), .btn-danger:nth-child(2){
+        font-size: 14px;
+    }
+}
+@media screen and (max-width: 325px){
+    .button-top-fixed{
+        grid-template-columns: 100%;
     }
 }
