@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { RestaurantService, IRestaurant } from '../services/restaurant.service';
+import { RestaurantService } from '../services/restaurant.service';
 import { MsalService } from '../services/msal.service';
 import { GoogleAnalyticsService } from '../services/google-analytics.service';
+import { IRestaurant } from '../services/common.service';
 
 
 @Component({
@@ -49,7 +50,6 @@ export class RestaurantComponent implements OnInit {
       if (element.active) {
         this.ResService.GetAdvertisement(`${element.naam}`).subscribe( res => {
           this.Advertentie = res;
-          console.log(this.Advertentie);
         });
         break;
       }
