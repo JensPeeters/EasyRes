@@ -71,14 +71,15 @@ namespace easyres_api.Controllers
 
         [Route("isgebruiker/{userId}")]
         [HttpGet]
-        public ActionResult<bool> IsGebruiker(string userId)
+        public ActionResult<Gebruiker> IsGebruiker(string userId)
         {
-            var gebruiker = context.Gebruikers.FirstOrDefault(a => a.GebruikersID == userId);
+            var gebruiker = context.Gebruikers.Where(a => a.GebruikersID == userId)
+                                              .FirstOrDefault();
             if (gebruiker != null)
             {
-                return true;
+                return gebruiker;
             }
-            return false;
+            return NotFound();
         }
 
         [Route("isuitbater/{userId}")]
