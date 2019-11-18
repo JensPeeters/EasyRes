@@ -37,6 +37,20 @@ namespace easyres_api.Controllers
             return factuur;
         }
 
+        [Route("{idGebruiker}")]
+        [HttpGet]
+        public ActionResult<List<Factuur>> GetFacturen(string idGebruiker)
+        {
+            Gebruiker gebruiker = context.Gebruikers.Where(a => a.GebruikersID == idGebruiker).FirstOrDefault();
+            if (gebruiker == null)
+                return NotFound();
+            List<Factuur> facturen = context.Facturen
+                                            .Where(a => a.Gebruiker == gebruiker).ToList();
+            if (facturen == null)
+                return NotFound();
+            return facturen;
+        }
+
         [Route("{idGebruiker}/{idRes}")]
         [HttpPost]
         public ActionResult<Factuur> GenerateFactuur(string idGebruiker, long idRes)

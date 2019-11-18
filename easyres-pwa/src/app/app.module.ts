@@ -31,6 +31,8 @@ import { Ng2CompleterModule } from 'ng2-completer';
 import { UserService } from './services/user.service';
 import { GoogleAnalyticsService } from './services/google-analytics.service';
 import { FactuurComponent } from './factuur/factuur.component';
+import { FacturenComponent } from './facturen/facturen.component';
+import { FacturenfactuurComponent } from './facturenfactuur/facturenfactuur.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { FactuurComponent } from './factuur/factuur.component';
     BestellingenComponent,
     ProfielComponent,
     ScanComponent,
-    FactuurComponent
+    FactuurComponent,
+    FacturenComponent,
+    FacturenfactuurComponent
   ],
   imports: [
     BrowserModule,

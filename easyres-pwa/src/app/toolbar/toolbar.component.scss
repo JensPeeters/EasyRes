@@ -23,23 +23,15 @@ button{
     font-weight: $boldWeight;
     margin-left: 10px;
 }
-.icon-star{
+.dropdown-menu{
+    width: fit-content;
+}
+.dropdown-toggle{
+    cursor: pointer;
+}
+.dropdown-item i{
     margin: auto;
-    margin-left: 10px;
-    color: white;
-}
-.icon-star:hover{
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: yellow;
-}
-.icon-user{
-    margin: auto;
-    margin-left: 10px;
-    color: white;
-}
-.icon-user:hover{
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: blue;
+    margin-right: 10px;
 }
 @media screen and (max-width: 574px){
     img{
@@ -56,6 +48,8 @@ p{
     margin: auto;
     font-family: $letterTypeNavbar;
     font-weight: bolder;
+    display: inline;
+    margin-left: 10px;
 }
 @media screen and (max-width: 574px){
     .btn-danger{
