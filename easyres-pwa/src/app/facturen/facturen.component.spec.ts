@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FacturenComponent } from './facturen.component';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+import { MsalService } from '../services/msal.service';
+import { FacturenfactuurComponent } from '../facturenfactuur/facturenfactuur.component';
 
 describe('FacturenComponent', () => {
   let component: FacturenComponent;
@@ -8,7 +12,9 @@ describe('FacturenComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FacturenComponent ]
+      declarations: [ FacturenComponent, FacturenfactuurComponent ],
+      imports: [HttpClientModule, RouterModule.forRoot([])],
+      providers: [MsalService]
     })
     .compileComponents();
   }));
