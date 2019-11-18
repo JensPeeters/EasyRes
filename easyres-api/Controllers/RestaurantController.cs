@@ -21,7 +21,7 @@ namespace easyres_api.Controllers
 
         [HttpGet]
         public List<Restaurant> GetRestaurants(string naam, string gemeente, string land, string type, string soort,
-                                string sortBy, string direction = "asc",
+                                string gerechten, string sortBy, string direction = "asc",
                                 int pageSize = 10, int pageNumber = 0)
         {
             IQueryable<Restaurant> query = context.Restaurants;
@@ -37,6 +37,15 @@ namespace easyres_api.Controllers
                 query = query.Where(b => b.Type == type);
             if (!string.IsNullOrEmpty(soort))
                 query = query.Where(b => b.Soort == soort);
+            if (!string.IsNullOrEmpty(gerechten))
+            {
+                var spliString = gerechten.Split(",");
+                foreach (string item in spliString)
+                {
+                    query = query.Where(b => b.Gerechten.ToLower().Contains(item.ToLower().Trim()));
+                }
+            }
+                
 
             if (string.IsNullOrEmpty(sortBy)) sortBy = "default";
             switch (sortBy.ToLower())

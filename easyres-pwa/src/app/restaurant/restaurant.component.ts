@@ -25,7 +25,19 @@ export class RestaurantComponent implements OnInit {
   zoeknaam: string;
   zoekterm: string;
   sorteerKeuzes: string[] = ["Aanbevolen","Naam","Type","Soort","Gemeente","Land"];
-  types: type[] = [{naam: "Restaurant",active:true},{naam: "Taverne",active:true},{naam: "Bistro",active:true},{naam: "Trattoria",active:true}]
+  types: type[] = [
+    {naam: "Restaurant",active:true},
+    {naam: "Taverne",active:true},
+    {naam: "Bistro",active:true},
+    {naam: "Trattoria",active:true}
+  ];
+  gerechten: type[] = [
+    {naam: "Pizza",active:false},
+    {naam: "Pasta",active:false},
+    {naam: "Salade",active:false},
+    {naam: "Stoverij",active:false}
+  ];
+  gerechtenOn: string = "";
   UserId: string;
 
   filter: string = "";
@@ -74,7 +86,7 @@ export class RestaurantComponent implements OnInit {
     var temp: IRestaurant[] = [];
     for(var element of this.types){
       if (element.active) {
-        var tempRestaurants = await this.ResService.GetRestaurants(`${this.zoekterm}&soort=${element.naam}&${this.filter}`);
+        var tempRestaurants = await this.ResService.GetRestaurants(`${this.zoekterm}&soort=${element.naam}&${this.filter}&${this.gerechtenOn}`);
         tempRestaurants.forEach(element => {
           temp.push(element);
         });
@@ -90,6 +102,20 @@ export class RestaurantComponent implements OnInit {
     type.active = !type.active;
     this.GetRestaurants();
     this.SendEvent("Aanpassen types");
+  }
+  ChangeGerechten(gerecht){
+    gerecht.active = !gerecht.active;
+    this.gerechtenOn = "";
+    for(var element of this.gerechten){
+      if (element.active) {
+        if(this.gerechtenOn == "")
+          this.gerechtenOn += "gerechten=" + element.naam;
+        else
+        this.gerechtenOn += "," + element.naam;
+      }
+    }
+    this.GetRestaurants();
+    this.SendEvent("Aanpassen gerechten");
   }
   ChangeFilter(filter){
     filter.active = !filter.active;

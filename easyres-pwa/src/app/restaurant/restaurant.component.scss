@@ -210,7 +210,6 @@ p{
 .right{
     max-width: 200px;
 }
-
 @media screen and (max-width: 1200px){
     input{
         width: 90%;
@@ -263,7 +262,7 @@ p{
         margin: 0;
         min-width: 200px;
     }
-    .typeDropdown{
+    .firstDropdown{
         margin-right: 25px;
     }
 }
@@ -281,7 +280,7 @@ p{
         max-width: 320px;
         margin-bottom: 15px;
     }
-    .typeDropdown{
+    .firstDropdown{
         margin-right: 0px;
     }
     .left{
