@@ -117,7 +117,7 @@
             <span class="advert">Advertentie</span>
           </h5>
           <h6 class="card-subtitle mb-2 text-muted">{{Advertentie.soort}} - {{Advertentie.type}}</h6>
-          <p class="card-text">{{Advertentie.beschrijving}}</p>
+          <p class="card-text">{{Advertentie.korteBeschrijving}}</p>
           <button class="btn-danger btn button-card" [routerLink]="['/reservatie', Advertentie.restaurantId]"
             (click)="SendEvent('Reserveer')">Reserveer</button>
           <button class="btn-outline-danger btn button-card" [routerLink]="['/restaurant', Advertentie.restaurantId]"
