@@ -219,16 +219,17 @@ namespace easyres_api.Controllers
                                                 .Include(a => a.Tafels)
                                                 .SingleOrDefault(a => a.RestaurantId == reservatie.Restaurant.RestaurantId);
 
-            Reservatie finalReservatie = new Reservatie();
-
-            finalReservatie.UserId = reservatie.UserId;
-            finalReservatie.Naam = reservatie.Naam;
-            finalReservatie.Email = reservatie.Email;
-            finalReservatie.TelefoonNummer = reservatie.TelefoonNummer;
-            finalReservatie.Datum = reservatie.Datum;
-            finalReservatie.Tijdstip = reservatie.Tijdstip;
-            finalReservatie.AantalPersonen = reservatie.AantalPersonen;
-            finalReservatie.Restaurant = reservatie.Restaurant;
+            Reservatie finalReservatie = new Reservatie
+            {
+                UserId = reservatie.UserId,
+                Naam = reservatie.Naam,
+                Email = reservatie.Email,
+                TelefoonNummer = reservatie.TelefoonNummer,
+                Datum = reservatie.Datum,
+                Tijdstip = reservatie.Tijdstip,
+                AantalPersonen = reservatie.AantalPersonen,
+                Restaurant = reservatie.Restaurant
+            };
             restaurant.Reservaties.Add(finalReservatie);
             context.Restaurants.Update(restaurant);
             context.SaveChanges();
