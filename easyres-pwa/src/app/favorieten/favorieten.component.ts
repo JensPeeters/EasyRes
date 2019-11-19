@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { RestaurantService, IRestaurant } from '../services/restaurant.service';
+import { RestaurantService } from '../services/restaurant.service';
 import { MsalService } from '../services/msal.service';
+import { IRestaurant } from '../services/common.service';
 
 @Component({
   selector: 'app-favorieten',
@@ -23,7 +24,7 @@ export class FavorietenComponent implements OnInit {
 
   async GetRestaurants(){
     var tempGebruiker = await this.ResService.GetFavorites(this.UserId,this.zoeknaam);
-    this.Restaurants = tempGebruiker.restaurants;
+    this.Restaurants = tempGebruiker.favorieten;
   }
 
   Zoeken(){

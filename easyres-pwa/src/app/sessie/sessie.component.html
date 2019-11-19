@@ -8,8 +8,29 @@
                 </h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{sessie.restaurant.soort}}</h6>
                 <p class="card-text">{{sessie.restaurant.beschrijving}}</p>
-                <button class="btn-danger btn order-btn" [routerLink]="['/bestel', sessie.restaurant.restaurantId, sessie.tafelNr]">Bestellingen</button>
-                <button class="btn-outline-danger btn button-more-info" [routerLink]="['/betaal']">Betaal</button>
+                <button class="btn-danger btn order-btn" [routerLink]="['/bestel', sessie.restaurant.restaurantId, sessie.tafelNr, 'bestellingen']">Bestellingen</button>
+                <button class="btn-outline-danger btn button-more-info" data-toggle="modal" data-target="#factuurModal">Factuur opvragen</button>
+
+                <div class="modal fade" id="factuurModal" tabindex="-1" role="dialog" aria-labelledby="factuurModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="factuureModalLabel">Factuur opvragen</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                            Weet je zeker dat je wilt afrekenen? Eenmaal opgevraagd kan dit niet meer ongedaan worden gemaakt.
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuleren</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"
+                        [routerLink]="['/factuur',sessie.restaurant.restaurantId, sessie.tafelNr]">Doorgaan</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -17,4 +38,3 @@
         <h3>Gelieve de app te openen op een kleiner scherm zodat u eten kan bestellen.</h3>
     </div>
 </div>
-

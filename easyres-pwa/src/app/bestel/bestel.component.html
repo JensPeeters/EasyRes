@@ -1,4 +1,5 @@
 <div class="button-top-fixed" *ngIf="restaurant">
+  <button class="btn btn-danger" [routerLink]="['/bestel', restaurant.restaurantId, TafelNr, 'bestellingen']">Mijn bestellingen</button>
   <button class="btn btn-danger" [routerLink]="['/bestel', restaurant.restaurantId,TafelNr,'producten']">Bestelde
     producten</button>
 </div>

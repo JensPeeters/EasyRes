@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { RestaurantService, IReservatie } from '../services/restaurant.service';
+import { RestaurantService } from '../services/restaurant.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { MsalService } from '../services/msal.service';
+import { GoogleAnalyticsService } from '../services/google-analytics.service';
+import { IReservatie } from '../services/common.service';
 
 @Component({
   selector: 'app-reservatie',
@@ -39,9 +41,14 @@ export class ReservatieComponent implements OnInit {
   verified: boolean = false;
   today: Date = new Date();
 
-  constructor(private ResService : RestaurantService, private MsalService: MsalService, private _Activatedroute: ActivatedRoute, private _location: Location) {
+  constructor(private ResService : RestaurantService, private MsalService: MsalService, 
+    private _Activatedroute: ActivatedRoute, private _location: Location, private analytics: GoogleAnalyticsService) {
     this.today.setTime(Date.now());
 
+  }
+
+  SendEvent(buttonNaam: string) {
+    this.analytics.eventEmitter("reservatie", buttonNaam, buttonNaam, 1);
   }
 
   async ngOnInit() {
@@ -49,9 +56,11 @@ export class ReservatieComponent implements OnInit {
       this.restaurantId = +params.get('id');
     });
 
-    this.ResService.GetRestaurantByID(this.restaurantId).subscribe(result => {
-      this.tempReservatie.restaurant = result;
-    });
+    if (this.restaurantId != null) {
+      this.ResService.GetRestaurantByID(this.restaurantId).subscribe(result => {
+        this.tempReservatie.restaurant = result;
+      });
+    }
 
     if (this.MsalService.isLoggedIn()) {
       this.tempReservatie.naam = this.MsalService.getUserFirstName() + ' ' + this.MsalService.getUserFamilyName();
@@ -70,6 +79,7 @@ export class ReservatieComponent implements OnInit {
         }
       );
     }
+    this.SendEvent("Aanmaken Reservatie");
   }
 
   dayOfRes(dayOfWeek) {
@@ -112,5 +122,6 @@ export class ReservatieComponent implements OnInit {
 
   GoBack() {
     this._location.back();
+    this.SendEvent("Terug naar restaurantLijst");
   }
 }

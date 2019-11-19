@@ -10,6 +10,7 @@ import { BarComponent } from './bar/bar.component';
 import { DataService } from './services/data.service';
 import { MsalService } from './services/msal.service';
 import { StartComponent } from './start/start.component';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { StartComponent } from './start/start.component';
   ],
   providers: [
     DataService,
-    MsalService
+    MsalService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

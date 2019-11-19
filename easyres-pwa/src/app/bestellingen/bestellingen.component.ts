@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MsalService } from '../services/msal.service';
-import { BestellingService, IBestelling } from '../services/bestelling.service';
+import { BestellingService } from '../services/bestelling.service';
 import { ActivatedRoute } from '@angular/router';
+import { IBestelling } from '../services/common.service';
 
 @Component({
   selector: 'app-bestellingen',
@@ -18,6 +19,8 @@ export class BestellingenComponent implements OnInit {
   constructor(private msalService: MsalService, private bestelServ :BestellingService,
     private route: ActivatedRoute) { }
 
+  bestellingLoading: boolean = true;
+
   ngOnInit() {
 
     if(this.msalService.isLoggedIn()){
@@ -27,6 +30,7 @@ export class BestellingenComponent implements OnInit {
     this.TafelNr = Number(this.route.snapshot.paramMap.get('TafelNr'));
     this.bestelServ.GetOrdersForUser(this.UserId,this.RestaurantId).subscribe( res => {
       this.Bestellingen = res;
+      this.bestellingLoading = false;
     });
   }
   GetUserObjectId(){

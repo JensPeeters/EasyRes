@@ -22,13 +22,19 @@
                         <button class="btn btn-danger" (click)="signup()">Sign Up</button>
                       </div>
                     
-                      <div class="center" *ngIf="isUserLoggedIn()">
-                        <p>Welkom {{userfirstname()}}</p>
-                        <a class="icon-star" [routerLink]="['/favorieten']"><i class="far fa-star"></i></a>
-                        <a class="icon-user" [routerLink]="['/profiel']"><i class="far fa-user"></i></a>
-                        <!-- ngIf moet nog checken ofdat de user een restaurantsuitbater is-->
-                        <a *ngIf="true" class="icon-cog" [routerLink]="['/controlepaneel']"><i class="fa fa-cog"></i></a>
-                        <button class="btn btn-danger" (click)="logout()">Logout</button>
+                      <div class="center dropdown" *ngIf="isUserLoggedIn()">
+                        <div class="dropdown-toggle mr-4" id="dropdownMenuUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <p>Welkom {{userfirstname()}}</p>
+                            <a class="icon ml-2"><i class="far fa-user"></i></a>
+                        </div>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuUser">
+                            <button class="dropdown-item ml-0" type="button" [routerLink]="['/profiel']"><i class="far fa-user"></i>Account</button>
+                            <button class="dropdown-item ml-0" type="button" [routerLink]="['/favorieten']"><i class="far fa-star"></i>Favorieten</button>
+                            <button class="dropdown-item ml-0" type="button" [routerLink]="['/facturen']"><!--<i class="far fa-file-invoice"></i>-->Facturen</button>
+                            <div class="dropdown-divider"></div>
+                            <button class="dropdown-item ml-0" (click)="logout()"><i class="far fa-sign-out"></i>Logout</button>
+                        </div>
                       </div>
                 </li>
             </ul>

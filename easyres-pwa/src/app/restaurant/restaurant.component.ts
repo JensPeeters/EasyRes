@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { RestaurantService, IRestaurant } from '../services/restaurant.service';
+import { RestaurantService } from '../services/restaurant.service';
 import { MsalService } from '../services/msal.service';
+import { GoogleAnalyticsService } from '../services/google-analytics.service';
+import { IRestaurant } from '../services/common.service';
 
 
 @Component({
@@ -11,14 +13,31 @@ import { MsalService } from '../services/msal.service';
 export class RestaurantComponent implements OnInit {
 
   Restaurants : IRestaurant[];
+  Advertentie : IRestaurant;
   sorterenOp: string = "Aanbevolen";
   
-  constructor(private ResService : RestaurantService, private msalService: MsalService) { }
+  constructor(private ResService : RestaurantService, private msalService: MsalService, private analytics: GoogleAnalyticsService) { }
+
+  SendEvent(buttonNaam: string) {
+    this.analytics.eventEmitter("restaurantLijst", buttonNaam, buttonNaam, 1);
+  }
 
   zoeknaam: string;
   zoekterm: string;
   sorteerKeuzes: string[] = ["Aanbevolen","Naam","Type","Soort","Gemeente","Land"];
-  types: type[] = [{naam: "Restaurant",active:true},{naam: "Taverne",active:true},{naam: "Bistro",active:true},{naam: "Trattoria",active:true}]
+  types: type[] = [
+    {naam: "Restaurant",active:true},
+    {naam: "Taverne",active:true},
+    {naam: "Bistro",active:true},
+    {naam: "Trattoria",active:true}
+  ];
+  gerechten: type[] = [
+    {naam: "Pizza",active:false},
+    {naam: "Pasta",active:false},
+    {naam: "Salade",active:false},
+    {naam: "Stoverij",active:false}
+  ];
+  gerechtenOn: string = "";
   UserId: string;
 
   filter: string = "";
@@ -37,9 +56,22 @@ export class RestaurantComponent implements OnInit {
     }
     await this.GetRestaurants();
   }
+
+  GetAdvertisement(){
+    for(var element of this.types){
+      if (element.active) {
+        this.ResService.GetAdvertisement(`${element.naam}`).subscribe( res => {
+          this.Advertentie = res;
+        });
+        break;
+      }
+    }
+  }
+
   Zoeken(){
     this.zoekterm = `naam=${this.zoeknaam}`;
     this.GetRestaurants();
+    this.SendEvent("Zoeken: " + this.zoekterm);
   }
   Sorteren(item){
     this.sorterenOp = item;
@@ -48,17 +80,19 @@ export class RestaurantComponent implements OnInit {
       this.Zoeken();
     else
       this.GetRestaurants();
+    this.SendEvent("Sorteren op: " + this.sorterenOp);
   }
   async GetRestaurants(){
     var temp: IRestaurant[] = [];
     for(var element of this.types){
       if (element.active) {
-        var tempRestaurants = await this.ResService.GetRestaurants(`${this.zoekterm}&soort=${element.naam}&${this.filter}`);
+        var tempRestaurants = await this.ResService.GetRestaurants(`${this.zoekterm}&soort=${element.naam}&${this.filter}&${this.gerechtenOn}`);
         tempRestaurants.forEach(element => {
           temp.push(element);
         });
       }
     }
+    this.GetAdvertisement();
     this.Restaurants = temp;
     if(this.isUserLoggedIn()){
       await this.CheckFavorites();
@@ -67,6 +101,21 @@ export class RestaurantComponent implements OnInit {
   ChangeTypes(type){
     type.active = !type.active;
     this.GetRestaurants();
+    this.SendEvent("Aanpassen types");
+  }
+  ChangeGerechten(gerecht){
+    gerecht.active = !gerecht.active;
+    this.gerechtenOn = "";
+    for(var element of this.gerechten){
+      if (element.active) {
+        if(this.gerechtenOn == "")
+          this.gerechtenOn += "gerechten=" + element.naam;
+        else
+        this.gerechtenOn += "," + element.naam;
+      }
+    }
+    this.GetRestaurants();
+    this.SendEvent("Aanpassen gerechten");
   }
   ChangeFilter(filter){
     filter.active = !filter.active;
@@ -78,7 +127,8 @@ export class RestaurantComponent implements OnInit {
         this.filter += `&${element.naam.toLowerCase()}=${element.value}`
       }
     }
-    await this.GetRestaurants()
+    await this.GetRestaurants();
+    this.SendEvent("Sorteren op locatie: " + this.filters[0].value + ", " + this.filters[1].value);
   }
   ChangeLocation(filterGiven:filters){
     if(filterGiven.naam == "Land"){
@@ -103,16 +153,18 @@ export class RestaurantComponent implements OnInit {
   AddDeleteFavorites(Restaurantid: number, index){
     if(this.RestaurantsFavoriteBooleans[index]){
       this.ResService.DeleteFavoritesByID(this.UserId, Restaurantid).subscribe();
+      this.SendEvent("Verwijderen uit favorieten: " + Restaurantid);
     }
     else{
       this.ResService.PostFavorite(this.UserId,Restaurantid).subscribe();
+      this.SendEvent("Toevoegen aan favorieten: " + Restaurantid);
     }
     this.RestaurantsFavoriteBooleans[index] = !this.RestaurantsFavoriteBooleans[index];
   }
   FavoriteRestaurants: IRestaurant[] = []
   async GetUserFavorites(){
     var tempGebruiker = await this.ResService.GetFavorites(this.UserId,"");
-    this.FavoriteRestaurants = tempGebruiker.restaurants;
+    this.FavoriteRestaurants = tempGebruiker.favorieten;
   }
   RestaurantsFavoriteBooleans: boolean[] = [];
   async CheckFavorites(){

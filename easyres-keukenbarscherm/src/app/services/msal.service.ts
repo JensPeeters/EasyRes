@@ -1,12 +1,17 @@
 import { Injectable } from '@angular/core';
 import * as Msal from 'msal';
+import { UserService, IUitbater } from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MsalService {
 
+  constructor(private userService: UserService) { }
+
   B2CTodoAccessTokenKey = 'b2c.access.token';
+
+  uitbater: IUitbater;
 
   tenantConfig = {
     domain: 'https://EasyRes.b2clogin.com/tfp/EasyRes.onmicrosoft.com/',
@@ -81,8 +86,12 @@ export class MsalService {
     });
   }
 
-  saveAccessTokenToCache(accessToken: string): void {
+  saveAccessTokenToCache(accessToken: string) {
     sessionStorage.setItem(this.B2CTodoAccessTokenKey, accessToken);
+    if (this.isNew()) {
+      this.userService.saveUserInDb(this.getUserObjectId()).subscribe();
+    }
+    this.isUitbater();
   }
 
   logout(): void {
@@ -95,6 +104,22 @@ export class MsalService {
 
   isLoggedIn(): boolean {
     return this.clientApplication.getUser() != null;
+  }
+
+  isNew() {
+    if (this.getUser().idToken['newUser']) {
+      return true;
+    }
+    return false;
+  }
+
+  isUitbater() {
+    this.userService.isuitbater(this.getUserObjectId()).subscribe(res =>{
+      this.uitbater = res;
+    },
+    err => {
+      this.logout();
+    });
   }
 
   getUserObjectId() {

@@ -10,7 +10,7 @@ import { StartComponent } from './start/start.component';
 const routes: Routes = [
   {path: 'start', component: StartComponent},
   {path: 'keuken', component: KeukenComponent, canActivate: [MsalGuard]},
-  {path: 'bar', component: BarComponent, canActivate: [MsalGuard]},
+{path: 'bar', component: BarComponent, canActivate: [MsalGuard]},
   {path: '', redirectTo: 'start', pathMatch: 'full'},
   {path: '**', redirectTo: 'start', pathMatch: 'full'},
 ];

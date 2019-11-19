@@ -31,11 +31,26 @@ div{
 .button-top-fixed{
     margin-top: 15px;
     display: grid;
-    grid-template-columns: 100%;
+    grid-template-columns: 50% 50%;
 }
 .btn-danger:nth-child(1), .btn-danger:nth-child(2){
     border: 5px solid white;
     border-radius: 10px;
     font-size: 20px;
     font-weight: bold;
+}
+@media screen and (max-width: 460px){
+    .btn-danger:nth-child(1), .btn-danger:nth-child(2){
+        font-size: 16px;
+    }
+}
+@media screen and (max-width: 360px){
+    .btn-danger:nth-child(1), .btn-danger:nth-child(2){
+        font-size: 14px;
+    }
+}
+@media screen and (max-width: 325px){
+    .button-top-fixed{
+        grid-template-columns: 100%;
+    }
 }

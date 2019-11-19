@@ -24,12 +24,16 @@ import { FavorietenComponent } from './favorieten/favorieten.component';
 import { ReservatieLijstComponent } from './reservatie-lijst/reservatie-lijst.component';
 import { MsalGuard } from './guard/msal.guard';
 import { ControlePaneelComponent } from './controle-paneel/controle-paneel.component';
-import { BestelOptiesComponent } from './bestel-opties/bestel-opties.component';
 import { BestellingenComponent } from './bestellingen/bestellingen.component';
 import { ProfielComponent } from './profiel/profiel.component';
 import { ScanComponent } from './scan/scan.component';
 import { SessionService } from './services/session.service';
 import { Ng2CompleterModule } from 'ng2-completer';
+import { UserService } from './services/user.service';
+import { GoogleAnalyticsService } from './services/google-analytics.service';
+import { FactuurComponent } from './factuur/factuur.component';
+import { FacturenComponent } from './facturen/facturen.component';
+import { FacturenfactuurComponent } from './facturenfactuur/facturenfactuur.component';
 
 @NgModule({
   declarations: [
@@ -45,10 +49,12 @@ import { Ng2CompleterModule } from 'ng2-completer';
     BesteldeProductenComponent,
     FavorietenComponent,
     ControlePaneelComponent,
-    BestelOptiesComponent,
     BestellingenComponent,
     ProfielComponent,
-    ScanComponent
+    ScanComponent,
+    FactuurComponent,
+    FacturenComponent,
+    FacturenfactuurComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +71,9 @@ import { Ng2CompleterModule } from 'ng2-completer';
     BestellingService,
     SessionService,
     MsalService,
-    MsalGuard
+    MsalGuard,
+    UserService,
+    GoogleAnalyticsService
   ],
   bootstrap: [AppComponent]
 })

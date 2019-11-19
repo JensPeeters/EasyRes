@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { BestellingService, IBestelling } from '../services/bestelling.service';
+import { BestellingService } from '../services/bestelling.service';
 import { ActivatedRoute } from '@angular/router';
 import { MsalService } from '../services/msal.service';
+import { IBestelling } from '../services/common.service';
 
 @Component({
   selector: 'app-verstuur-bestelling',
@@ -22,11 +23,22 @@ export class VerstuurBestellingComponent implements OnInit {
       this.GetUserObjectId();
     }
   }
+  bestellingFailed:boolean = false;
+  bestellingLoading:boolean = true;
 
   ngOnInit() {
-    this.bestelServ.PostOrder(this.UserId, this.RestaurantId).subscribe(res => {
-      this.bestelling = res;
-    });
+    this.bestellingFailed = false;
+    this.bestelServ.PostOrder(this.UserId, this.RestaurantId).subscribe(
+      res => {
+        this.bestelling=res;
+        this.bestelServ.ClearBestelling();
+        this.bestellingLoading = false;
+      } ,
+      err => {
+        this.bestellingFailed = true;
+        console.log(err)},
+      () => {}
+    )
   }
 
   GetUserObjectId() {

@@ -107,6 +107,8 @@ input::placeholder{
     border: 2px solid green;
     color: green;
     padding: 3px;
+    position: absolute;
+    right: 15px;
     border-radius: 3px;
     font-size: 15px;
 }
@@ -208,7 +210,6 @@ p{
 .right{
     max-width: 200px;
 }
-
 @media screen and (max-width: 1200px){
     input{
         width: 90%;
@@ -261,7 +262,7 @@ p{
         margin: 0;
         min-width: 200px;
     }
-    .typeDropdown{
+    .firstDropdown{
         margin-right: 25px;
     }
 }
@@ -279,7 +280,7 @@ p{
         max-width: 320px;
         margin-bottom: 15px;
     }
-    .typeDropdown{
+    .firstDropdown{
         margin-right: 0px;
     }
     .left{
@@ -305,6 +306,10 @@ p{
 @media screen and (max-width: 330px){
     p{
         font-size: 11px;
+    }
+    .advert{
+        position: relative;
+        right: 0px;
     }
     .dropdown-toggle{
         font-size: 11px;

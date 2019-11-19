@@ -1,0 +1,43 @@
+<div class="d-flex justify-content-center m-2" *ngIf="factuurLoading">
+    <div class="spinner-border justify-content-center" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+<div *ngIf="factuurFailed" class="failed">
+    <h5>Het is ons niet gelukt de factuur te genereren. Gelieve dit opnieuw te proberen.</h5>
+    <button class="btn btn-danger" (click)="GenerateFactuur()">Probeer opnieuw</button>
+</div>
+<div class="card" *ngIf="factuur">
+    <div class="card-body">
+        <h4 class="card-title">Factuur</h4>
+        <h5>{{factuur.restaurant.naam}}</h5>
+        <div class="producten card-text" *ngIf="factuur.producten">
+            <p class="factuurInfo">
+                Factuurnummer: {{factuur.id}} <br>
+                Factuurdatum: {{factuur.datum | date: 'd/MM/yyyy'}} - {{factuur.datum | date: 'H:mm'}} 
+            </p>
+            <table>
+                <tr>
+                    <th style="width: 10%;">Aantal</th>
+                    <th style="width: 40%;">Naam</th>
+                    <th style="width: 25%;">Prijs</th>
+                    <th style="width: 25%;">Tot.</th>
+                </tr> 
+                <tr *ngFor="let product of factuur.producten;">
+                    <td>{{product.aantal}}</td>
+                    <td>{{product.naam}}</td>
+                    <td>€ {{product.prijs | number:'.2'}} </td>
+                    <td>€ {{product.prijs*product.aantal | number:'.2'}} </td>
+                </tr>
+                <tr>
+                    <th>Totaal:</th>
+                    <td></td>
+                    <td></td>
+                    <th>€ {{factuur.totaalPrijs | number:'.2'}}</th>
+                </tr>
+            </table>
+        </div>
+        <hr>
+        <a [routerLink]="" class="btn btn-danger">Betalen</a>
+    </div>
+</div>

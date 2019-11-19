@@ -48,7 +48,7 @@
                     </div>
                 </div>
             </div><br>
-            <button class="btn-warning btn" [routerLink]="['/reservatie', restaurant.restaurantId]">Reserveer</button>
+            <button class="btn-warning btn" [routerLink]="['/reservatie', restaurant.restaurantId]" (click)="SendEvent('Reserveer')">Reserveer</button>
         </div>
     </div>
 </div>

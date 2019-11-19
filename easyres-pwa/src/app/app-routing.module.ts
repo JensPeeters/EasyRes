@@ -12,26 +12,28 @@ import { BesteldeProductenComponent } from './bestelde-producten/bestelde-produc
 import { FavorietenComponent } from './favorieten/favorieten.component';
 import { ReservatieLijstComponent } from './reservatie-lijst/reservatie-lijst.component';
 import { ControlePaneelComponent } from './controle-paneel/controle-paneel.component';
-import { BestelOptiesComponent } from './bestel-opties/bestel-opties.component';
 import { BestellingenComponent } from './bestellingen/bestellingen.component';
 import { ProfielComponent } from './profiel/profiel.component';
 import { ScanComponent } from './scan/scan.component';
+import { FactuurComponent } from './factuur/factuur.component';
+import { FacturenComponent } from './facturen/facturen.component';
 
 const routes: Routes = [
   {path: 'restaurant', component: RestaurantComponent, data: {animation: 'restaurant'}},
   {path: 'restaurant/:restaurant.restaurantId', component: RestaurantInfoComponent, data: {animation: 'restaurantInfo'} },
   {path: 'reservatie/:id', component: ReservatieComponent, canActivate: [MsalGuard], data: {animation: 'reservatie'}},
   {path: 'reservatie-lijst', component: ReservatieLijstComponent, canActivate: [MsalGuard], data: {animation: 'reservatielijst'}},
-  {path: 'scan', component: ScanComponent},
-  {path: 'bestel/:id/:TafelNr/bestellingen', component: BestellingenComponent},
-  {path: 'bestel/:id/:TafelNr/producten', component: BesteldeProductenComponent},
-  {path: 'bestel/:id/:TafelNr/verstuur', component: VerstuurBestellingComponent},
-  {path: 'bestel/:id/:TafelNr/menu', component: BestelComponent},
-  {path: 'bestel/:id/:TafelNr', component: BestelOptiesComponent},
+  {path: 'scan', component: ScanComponent, canActivate: [MsalGuard]},
+  {path: 'bestel/:id/:TafelNr/bestellingen', component: BestellingenComponent, canActivate: [MsalGuard]},
+  {path: 'bestel/:id/:TafelNr/producten', component: BesteldeProductenComponent, canActivate: [MsalGuard]},
+  {path: 'bestel/:id/:TafelNr/verstuur', component: VerstuurBestellingComponent, canActivate: [MsalGuard]},
+  {path: 'bestel/:id/:TafelNr/menu', component: BestelComponent, canActivate: [MsalGuard]},
+  {path: 'factuur/:id/:TafelNr', component: FactuurComponent, canActivate: [MsalGuard]},
   {path: 'sessie', component: SessieComponent, canActivate: [MsalGuard]},
   {path: 'favorieten', component: FavorietenComponent, canActivate: [MsalGuard], data: {animation: 'favorieten'}},
   {path: 'controlepaneel', component: ControlePaneelComponent},
   {path: 'profiel', component: ProfielComponent, canActivate: [MsalGuard]},
+  {path: 'facturen', component: FacturenComponent, canActivate: [MsalGuard]},
   {path: '', redirectTo: 'restaurant', pathMatch: 'full', data: {animation: 'restaurant'}},
   {path: '**', redirectTo: 'restaurant', pathMatch: 'full', data: {animation: 'restaurant'}}
 ];

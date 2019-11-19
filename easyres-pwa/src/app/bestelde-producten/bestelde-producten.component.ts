@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BestellingService, IBestelling } from '../services/bestelling.service';
+import { BestellingService } from '../services/bestelling.service';
 import { MsalService } from '../services/msal.service';
-import { RestaurantComponent } from '../restaurant/restaurant.component';
+import { GoogleAnalyticsService } from '../services/google-analytics.service';
+import { IBestelling } from '../services/common.service';
 
 @Component({
   selector: 'app-bestelde-producten',
@@ -16,11 +17,16 @@ export class BesteldeProductenComponent implements OnInit {
   UserId : string;
 
   constructor(private route: ActivatedRoute, private bestelServ :BestellingService,
-    private msalService: MsalService) { 
+    private msalService: MsalService, private analytics: GoogleAnalyticsService) { 
     this.TafelNr = Number(this.route.snapshot.paramMap.get('TafelNr'));
     this.RestaurantId = Number(this.route.snapshot.paramMap.get('id'));
     this.bestelling = this.bestelServ.Bestelling;
   }
+
+  SendEvent(buttonNaam: string) {
+    this.analytics.eventEmitter("Bestell", buttonNaam, buttonNaam, 1);
+  }
+
   ngOnInit() {
     if(this.msalService.isLoggedIn()){
       this.GetUserObjectId();

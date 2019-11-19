@@ -11,7 +11,7 @@ namespace easyres_api.Model
             //Create the db if not yet exists
             context.Database.EnsureCreated();
 
-            //Are there already books present ?
+            //Are there already restaurants present ?
             if (context.Restaurants.Count() == 0)
             {
 
@@ -174,14 +174,17 @@ namespace easyres_api.Model
                       Type = "Italiaans",
                       Soort = "Restaurant",
                       Tafels = new List<Tafel>()
-                {
-                    new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
-                    new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
-                    new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
-                    new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
-                    new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
-                }
-            },
+                      {
+                          new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
+                          new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
+                          new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
+                      },
+                      IsAdvertentie = true,
+                      Gerechten = "Pizza Pasta"
+                    },
+
                     new Restaurant()
                     {
                       KorteBeschrijving = "Het beste Chineese restaurant met veel verschillende smaken.",
@@ -193,13 +196,16 @@ namespace easyres_api.Model
                       Type = "Chinees",
                       Soort = "Restaurant",
                       Tafels = new List<Tafel>()
-                {
-                    new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
-                    new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
-                    new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
-                    new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
-                    new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
-                }
+                      {
+                          new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
+                          new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
+                          new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
+                      },
+                      IsAdvertentie = false,
+                      Gerechten = "Pizza Pasta"
+
                     },
                     new Restaurant()
                     {
@@ -212,13 +218,15 @@ namespace easyres_api.Model
                       Type = "Chinees",
                       Soort = "Restaurant",
                       Tafels = new List<Tafel>()
-                {
-                    new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
-                    new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
-                    new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
-                    new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
-                    new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
-                }
+                      {
+                          new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
+                          new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
+                          new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
+                      },
+                      IsAdvertentie = false,
+                      Gerechten = "Salade Stoverij"
                     },
                     new Restaurant()
                     {
@@ -231,13 +239,15 @@ namespace easyres_api.Model
                       Type = "Japans",
                       Soort = "Bistro",
                       Tafels = new List<Tafel>()
-                {
-                    new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
-                    new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
-                    new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
-                    new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
-                    new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
-                }
+                      {
+                          new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
+                          new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
+                          new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
+                      },
+                      IsAdvertentie = true,
+                      Gerechten = "Salade Stoverij"
                     },
                     new Restaurant()
                     {
@@ -250,13 +260,15 @@ namespace easyres_api.Model
                       Type = "Afrikaans",
                       Soort = "Bistro",
                       Tafels = new List<Tafel>()
-                {
-                    new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
-                    new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
-                    new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
-                    new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
-                    new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
-                }
+                      {
+                          new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
+                          new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
+                          new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
+                      },
+                      IsAdvertentie = false,
+                      Gerechten = "Pizza Pasta"
                     },
                     new Restaurant()
                     {
@@ -268,13 +280,16 @@ namespace easyres_api.Model
                       Naam = "De chinees",
                       Type = "Chinees",
                       Soort = "Taverne",
-                      Tafels = new List<Tafel>() {
-                            new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
-                            new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
-                            new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
-                            new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
-                            new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
-                        }
+                      Tafels = new List<Tafel>()
+                      {
+                          new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
+                          new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
+                          new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
+                      },
+                      IsAdvertentie = true,
+                      Gerechten = "Pizza Pasta"
                     },
                     new Restaurant()
                     {
@@ -287,13 +302,15 @@ namespace easyres_api.Model
                       Type = "Japans",
                       Soort = "Taverne",
                       Tafels = new List<Tafel>()
-                {
-                    new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
-                    new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
-                    new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
-                    new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
-                    new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
-                }
+                      {
+                          new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
+                          new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
+                          new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
+                      },
+                      IsAdvertentie = false,
+                      Gerechten = "Stoverij"
                     },
                     new Restaurant()
                     {
@@ -306,13 +323,15 @@ namespace easyres_api.Model
                       Type = "Italiaans",
                       Soort = "Trattoria",
                       Tafels = new List<Tafel>()
-                {
-                    new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
-                    new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
-                    new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
-                    new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
-                    new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
-                }
+                      {
+                          new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
+                          new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
+                          new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
+                      },
+                      IsAdvertentie = true,
+                      Gerechten = "Salade"
                     }
                 };
 
@@ -354,7 +373,9 @@ namespace easyres_api.Model
                          TafelNr = 4,
                          EtenGereed = false,
                          DrinkenGereed = false,
-                         HuidigeTijd = DateTime.Now.ToString("HH:mm:ss tt")
+                         HuidigeTijd = DateTime.Now,
+                         EtenStatus = true,
+                         DrinkenStatus = true
                     }
                 };
                 foreach (Bestelling bestelling in bestellingen)
@@ -365,25 +386,6 @@ namespace easyres_api.Model
                 foreach (Restaurant restaurant in restaurants)
                 {
                     context.Restaurants.Add(restaurant);
-                }
-                List<Gebruiker> gebruikers = new List<Gebruiker>()
-                {
-                    new Gebruiker()
-                    {
-                        GebruikersID = "cfb6e87d-aadd-4656-868b-4650e48d8f9e",
-                        Bestellingen = new List<Bestelling>(),
-                        Sessies = new List<Sessie>()
-                    },
-                    new Gebruiker()
-                    {
-                        GebruikersID = "dcc3cdca-1005-493b-a8e5-2351a8d4f89c",
-                        Bestellingen = new List<Bestelling>(){bestellingen[0]},
-                        Sessies = new List<Sessie>()
-                    },
-                };
-                foreach(Gebruiker gebruiker in gebruikers)
-                {
-                    context.Gebruikers.Add(gebruiker);
                 }
                 context.SaveChanges();
             }
