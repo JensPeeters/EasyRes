@@ -5,40 +5,12 @@ import { Injectable } from '@angular/core';
 })
 export class CommonService {
 
-  urlAPI: string = 'https://easyres-api.azurewebsites.net/api';
-  //urlAPI: string = "https://localhost:44315/api";
+  //urlAPI: string = 'https://easyres-api.azurewebsites.net/api';
+  urlAPI: string = "https://localhost:44315/api";
 
   constructor() { }
 }
 
-export interface IBestelling {
-  prijs: number;
-  tafelNr: number;
-  restaurant: IRestaurant;
-  dranken: IProduct[];
-  etenswaren: IProduct[];
-  bestellingId: number;
-}
-
-export interface IProduct {
-  naam: string;
-  prijs: number;
-  aantal: number;
-}
-
-export interface IFactuur {
-  id: number;
-  producten: IProduct[];
-  gebruiker: IGebruiker;
-  restaurant: IRestaurant;
-  betaald: boolean;
-  totaalPrijs: number;
-  datum: Date;
-}
-export interface IGebruiker {
-  gebruikersID: string;
-  favorieten: IRestaurant[];
-}
 export interface ILocatie {
   id: number;
   straat: string;
@@ -89,20 +61,9 @@ export interface IOpeningsuren {
 }
 
 export interface ITafel {
-  tafelId: number;
-  tafelnr: number;
+  tafelID: number;
+  tafelNr: number;
   zitplaatsen: number;
-}
-
-export interface IReservatie {
-  userid: string;
-  naam: string;
-  email: string;
-  telefoonnummer: string;
-  datum: string;
-  tijdstip: string;
-  aantalpersonen: number;
-  restaurant: IRestaurant;
 }
 
 export interface IRestaurant {
@@ -121,9 +82,25 @@ export interface IRestaurant {
   isAdvertentie: boolean;
 }
 
-export interface ISessie {
-  id: number;
-  gebruiker: IGebruiker;
-  restaurant: IRestaurant;
+export interface IProduct {
+  productId: number;
+  naam: string;
+  prijs: number;
+  aantal: number;
+  }
+
+
+export interface IBestelling {
+  bestellingId: number;
+  etenswaren: IProduct[];
+  dranken: IProduct[];
+  restaurantId: number;
+  etenGereed: boolean;
+  drinkenGereed: boolean;
+  huidigeTijd: string;
+  eetTijdKlaar: Date;
+  drinkTijdKlaar: Date;
   tafelNr: number;
-}
+  etenStatus: boolean;
+  drinkenStatus: boolean;
+  }

@@ -18,6 +18,10 @@
                       </div>
             </div>
             <div class="item">
+                <label for="gerechten">&nbsp;<i class="fa fa-pizza-slice"></i>&nbsp;Gerechten van het restaurant</label>
+                <input type="text" id="gerechten" name="gerechten" placeholder="{{currentSettingsRestaurant.gerechten}}" [(ngModel)]="updatedSettingsRestaurant.gerechten">
+            </div>
+            <div class="item">
                 <label for="beschrijvingkort">&nbsp;<i class="fa fa-comment"></i>&nbsp;Korte Beschrijving over het restaurant</label>
                 <input type="text" id="beschrijvingkort" name="beschrijvingkort" placeholder="{{currentSettingsRestaurant.korteBeschrijving}}" [(ngModel)]="updatedSettingsRestaurant.korteBeschrijving">
             </div>

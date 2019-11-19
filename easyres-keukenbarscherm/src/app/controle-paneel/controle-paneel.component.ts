@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { RestaurantService, IRestaurant } from '../services/restaurant.service';
+import { RestaurantService } from '../services/restaurant.service';
 import { MsalService } from '../services/msal.service';
+import { IRestaurant } from '../services/common.service';
 
 @Component({
   selector: 'app-controle-paneel',
@@ -18,7 +19,6 @@ export class ControlePaneelComponent implements OnInit {
     ResService.GetRestaurantByID(this.restaurantId).subscribe(res => {
       this.currentSettingsRestaurant = res;
       this.updatedSettingsRestaurant = res;
-      console.log(this.currentSettingsRestaurant);
     })
    }
 
@@ -27,14 +27,15 @@ export class ControlePaneelComponent implements OnInit {
 
   submit(){
     console.log(this.updatedSettingsRestaurant);
-    this.ResService.PutRestaurant(this.updatedSettingsRestaurant).subscribe(res =>{
-      console.log(res);
+    this.ResService.PutRestaurant(this.updatedSettingsRestaurant).subscribe(a => {
+      console.log(a);
+      alert("Wijzigingen opgeslagen.");
     });
   }
 
   reset(){
     this.ResService.GetRestaurantByID(this.restaurantId).subscribe(res => {
-      console.log(res);
+      this.updatedSettingsRestaurant = res;
     })
   }
 

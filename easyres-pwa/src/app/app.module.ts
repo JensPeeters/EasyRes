@@ -23,7 +23,6 @@ import { BesteldeProductenComponent } from './bestelde-producten/bestelde-produc
 import { FavorietenComponent } from './favorieten/favorieten.component';
 import { ReservatieLijstComponent } from './reservatie-lijst/reservatie-lijst.component';
 import { MsalGuard } from './guard/msal.guard';
-import { ControlePaneelComponent } from './controle-paneel/controle-paneel.component';
 import { BestellingenComponent } from './bestellingen/bestellingen.component';
 import { ProfielComponent } from './profiel/profiel.component';
 import { ScanComponent } from './scan/scan.component';
@@ -48,7 +47,6 @@ import { FacturenfactuurComponent } from './facturenfactuur/facturenfactuur.comp
     VerstuurBestellingComponent,
     BesteldeProductenComponent,
     FavorietenComponent,
-    ControlePaneelComponent,
     BestellingenComponent,
     ProfielComponent,
     ScanComponent,

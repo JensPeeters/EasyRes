@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { IBestelling } from './common.service';
 
 
 @Injectable({
@@ -26,27 +27,3 @@ export class DataService {
     return this.http.put<IBestelling>(this.url, bestelling);
   }
 }
-
-export interface IProduct {
-  productId: number;
-  naam: string;
-  prijs: number;
-  aantal: number;
-  }
-
-
-export interface IBestelling {
-  bestellingId: number;
-  etenswaren: IProduct[];
-  dranken: IProduct[];
-  restaurantId: number;
-  etenGereed: boolean;
-  drinkenGereed: boolean;
-  huidigeTijd: string;
-  eetTijdKlaar: Date;
-  drinkTijdKlaar: Date;
-  tafelNr: number;
-  etenStatus: boolean;
-  drinkenStatus: boolean;
-  }
- 
