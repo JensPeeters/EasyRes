@@ -134,7 +134,7 @@
           </div>
           <h5 class="card-title">{{restaurant.naam}}</h5>
           <h6 class="card-subtitle mb-2 text-muted">{{restaurant.soort}} - {{restaurant.type}}</h6>
-          <p class="card-text">{{restaurant.beschrijving}}</p>
+          <p class="card-text">{{restaurant.korteBeschrijving}}</p>
           <button class="btn-danger btn button-card" [routerLink]="['/reservatie', restaurant.restaurantId]"
             (click)="SendEvent('Reserveer')">Reserveer</button>
           <button class="btn-outline-danger btn button-card" [routerLink]="['/restaurant', restaurant.restaurantId]"
