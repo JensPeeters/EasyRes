@@ -8,7 +8,6 @@ export class CommonService {
   urlAPI: string = 'https://easyres-api.azurewebsites.net/api';
   //urlAPI: string = "https://localhost:44315/api";
 
-  
   constructor() { }
 }
 
