@@ -27,7 +27,15 @@ export class ControlePaneelComponent implements OnInit {
 
   submit(){
     console.log(this.updatedSettingsRestaurant);
-    this.ResService.PutRestaurant(this.updatedSettingsRestaurant).subscribe();
+    this.ResService.PutRestaurant(this.updatedSettingsRestaurant).subscribe(res =>{
+      console.log(res);
+    });
+  }
+
+  reset(){
+    this.ResService.GetRestaurantByID(this.restaurantId).subscribe(res => {
+      console.log(res);
+    })
   }
 
   restaurantSoort(soort){

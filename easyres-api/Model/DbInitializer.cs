@@ -25,10 +25,14 @@ namespace easyres_api.Model
                     Zaterdag = "16:00 - 23:00",
                     Zondag = "16:00 - 23:00"
                 };
-                //ICollection<int> tafels = new List<int>()
-                //{
-                //    5,5,5,5,5,5,5
-                //};
+                List<Tafel> tafels = new List<Tafel>()
+                {
+                    new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
+                    new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
+                    new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
+                    new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
+                    new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
+                };
                 Adres adres = new Adres()
                 {
                     Bus = "A",
@@ -168,8 +172,16 @@ namespace easyres_api.Model
                       Menu = menu,
                       Naam = "Villa Belvedere",
                       Type = "Italiaans",
-                      Soort = "Restaurant"
-                    },
+                      Soort = "Restaurant",
+                      Tafels = new List<Tafel>()
+                {
+                    new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
+                    new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
+                    new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
+                    new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
+                    new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
+                }
+            },
                     new Restaurant()
                     {
                       KorteBeschrijving = "Het beste Chineese restaurant met veel verschillende smaken.",
@@ -179,7 +191,15 @@ namespace easyres_api.Model
                       Menu = menu,
                       Naam = "Het hoekske",
                       Type = "Chinees",
-                      Soort = "Restaurant"
+                      Soort = "Restaurant",
+                      Tafels = new List<Tafel>()
+                {
+                    new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
+                    new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
+                    new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
+                    new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
+                    new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
+                }
                     },
                     new Restaurant()
                     {
@@ -190,7 +210,15 @@ namespace easyres_api.Model
                       Menu = menu,
                       Naam = "Het restaurant china",
                       Type = "Chinees",
-                      Soort = "Restaurant"
+                      Soort = "Restaurant",
+                      Tafels = new List<Tafel>()
+                {
+                    new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
+                    new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
+                    new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
+                    new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
+                    new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
+                }
                     },
                     new Restaurant()
                     {
@@ -201,7 +229,15 @@ namespace easyres_api.Model
                       Menu = menu,
                       Naam = "Het japaneeske",
                       Type = "Japans",
-                      Soort = "Bistro"
+                      Soort = "Bistro",
+                      Tafels = new List<Tafel>()
+                {
+                    new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
+                    new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
+                    new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
+                    new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
+                    new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
+                }
                     },
                     new Restaurant()
                     {
@@ -212,7 +248,15 @@ namespace easyres_api.Model
                       Menu = menu,
                       Naam = "Het afrikaanse hoofdkwartier",
                       Type = "Afrikaans",
-                      Soort = "Bistro"
+                      Soort = "Bistro",
+                      Tafels = new List<Tafel>()
+                {
+                    new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
+                    new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
+                    new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
+                    new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
+                    new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
+                }
                     },
                     new Restaurant()
                     {
@@ -223,7 +267,14 @@ namespace easyres_api.Model
                       Menu = menu,
                       Naam = "De chinees",
                       Type = "Chinees",
-                      Soort = "Taverne"
+                      Soort = "Taverne",
+                      Tafels = new List<Tafel>() {
+                            new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
+                            new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
+                            new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
+                            new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
+                            new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
+                        }
                     },
                     new Restaurant()
                     {
@@ -234,7 +285,15 @@ namespace easyres_api.Model
                       Menu = menu,
                       Naam = "Den bistro",
                       Type = "Japans",
-                      Soort = "Taverne"
+                      Soort = "Taverne",
+                      Tafels = new List<Tafel>()
+                {
+                    new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
+                    new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
+                    new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
+                    new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
+                    new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
+                }
                     },
                     new Restaurant()
                     {
@@ -245,7 +304,15 @@ namespace easyres_api.Model
                       Menu = menu,
                       Naam = "Alles van eten",
                       Type = "Italiaans",
-                      Soort = "Trattoria"
+                      Soort = "Trattoria",
+                      Tafels = new List<Tafel>()
+                {
+                    new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
+                    new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
+                    new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
+                    new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
+                    new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
+                }
                     }
                 };
 

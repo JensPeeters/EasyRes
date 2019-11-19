@@ -64,7 +64,10 @@ export class ReservatieComponent implements OnInit {
     if (this.inTime(this.finalReservatie)) {
       this.finalReservatie.userid = this.MsalService.getUserObjectId();
       this.ResService.PostReservation(this.finalReservatie).subscribe(
-        a => {this.submitted = true; }
+        a => {
+          this.submitted = true;
+          console.log("mail");
+        }
       );
     }
   }

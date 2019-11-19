@@ -39,16 +39,22 @@ a{
 }
 #aantaltafel{
     display: grid;
-    grid-template-columns: 33% 33% 33%;
-    text-align: center;
+    grid-template-columns: 27.5% 27.5% 25%;
+    gap: 10% 10%;
     .aantal.tafels{
         grid-row: 2;
     }
+    .totaalplaatsen{
+        align-self: center;
+    }
 }
 
-.opslaan{
+.buttons{
     display: flex;
     justify-content: flex-end;
+    button{
+        margin-left: 1em;
+    }
 }
 
 .itemgrid{
@@ -70,4 +76,15 @@ a{
         justify-self: center;
         align-self: end;
     }
+}
+
+.bold{
+    font-weight: bolder;
+    font-size: 1.2em;
+    padding-top: 2px;
+}
+
+.tafel{
+    justify-self: start;
+    align-self: center;
 }

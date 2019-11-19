@@ -3,29 +3,13 @@
         <div class="card-body">
             <h5 class="card-title">{{currentSettingsRestaurant.naam}}</h5>
             <div class="item">
-                <label for="aantal">&nbsp;<i class="fa fa-users"></i>&nbsp;Aantal zitplaatsen</label>
-                <div id="aantaltafel">
-                    <div class="aantal">
-                        <label>Aantal personen per tafel&nbsp;&nbsp;</label><br>
-                        <input type="number" id="aantal" name="aantal">
-                    </div>
-                    <div class="tafels">
-                        <label>Aantal tafels in het restaurant&nbsp;&nbsp;</label><br>
-                        <input type="number" id="tafels" name="tafels">
-                    </div>
-                    <div class="totaalplaatsen">
-                        Totaal aantal zitplaatsen: 2
-                    </div>
-                </div>
-            </div>
-            <div class="item">
                 <label for="type">&nbsp;<i class="fa fa-home"></i>&nbsp;Type van het restaurant</label>
                 <input type="text" id="type" name="type" placeholder="{{currentSettingsRestaurant.type}}" [(ngModel)]="updatedSettingsRestaurant.type">
             </div>
             <div class="item">
                 <label for="soort">&nbsp;<i class="fa fa-home"></i>&nbsp;Categorie waaronder het restaurant valt</label>
                 <div class="dropdown">
-                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button class="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           {{updatedSettingsRestaurant.soort}}
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -44,7 +28,29 @@
             <div class="item">
                     <label for="fotourl">&nbsp;<i class="far fa-image"></i>&nbsp;Foto van het restaurant</label>
                     <input type="text" id="fotourl" name="fotourl" placeholder="{{currentSettingsRestaurant.logoImage}}" [(ngModel)]="updatedSettingsRestaurant.logoImage">
+            </div>
+            <div class="coll tafels">
+                <a data-toggle="collapse" href="#collapseTafels" aria-expanded="false" aria-controls="collapseTafels">
+                    <label for="collapseTafels">&nbsp;<i class="fa fa-chair"></i>&nbsp;Tafels ...&nbsp;</label>
+                </a>
+                <div class="collapse" id="collapseTafels">
+                    <div class="item itemgrid" *ngFor="let tafel of updatedSettingsRestaurant.tafels; index as i">
+                        <div class="itemnaam tafel">
+                            Tafel nummer {{i+1}}
+                        </div>
+                        <div class="itemprijs">
+                            <label for="tafel">Zitplaatsen</label>
+                            <input type="number" id="tafel" name="tafel" min="0" step="1" placeholder="{{tafel.zitplaatsen}}" [(ngModel)]="updatedSettingsRestaurant.tafels[i].zitplaatsen">        
+                        </div>
+                        <div class="itemremove">
+                            <button class="btn btn-outline-danger" (click)="updatedSettingsRestaurant.tafels.splice(i,1)">Verwijderen</button>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="btn btn-outline-dark item bold" (click)="append(updatedSettingsRestaurant.tafels)">+</button>
+                    </div>
                 </div>
+            </div>
             <div class="coll locatie">
                 <a data-toggle="collapse" href="#collapseLocatie" aria-expanded="false" aria-controls="collapseLocatie">
                     <label for="locatie">&nbsp;<i class="fa fa-home"></i>&nbsp;Adres van het restaurant ...&nbsp;</label>
@@ -127,11 +133,11 @@
                                     <input type="number" id="voorgerechtp" name="voorgerechtp" min="0.00" step="0.01" placeholder="{{voorgerecht.prijs}}" [(ngModel)]="updatedSettingsRestaurant.menu.voorgerechten[i].prijs">        
                                 </div>
                                 <div class="itemremove">
-                                    <button class="btn btn-outline-secondary" (click)="updatedSettingsRestaurant.menu.voorgerechten.splice(i,1)">Verwijderen</button>
+                                    <button class="btn btn-outline-danger" (click)="updatedSettingsRestaurant.menu.voorgerechten.splice(i,1)">Verwijderen</button>
                                 </div>
                              </div>
                             <div>
-                                <button class="btn btn-outline-secondary item" (click)="append(updatedSettingsRestaurant.menu.voorgerechten)">Gerecht Toevoegen</button>
+                                <button class="btn btn-outline-dark item bold" (click)="append(updatedSettingsRestaurant.menu.voorgerechten)">+</button>
                             </div>
                         </div>
                         
@@ -151,11 +157,11 @@
                                         <input type="number" id="hoofdgerechtp" name="hoofdgerechtp" min="0.00" step="0.01" placeholder="{{hoofdgerecht.prijs}}" [(ngModel)]="updatedSettingsRestaurant.menu.hoofdgerechten[i].prijs">        
                                     </div>
                                     <div class="itemremove">
-                                        <button class="btn btn-outline-secondary" (click)="updatedSettingsRestaurant.menu.voorgerechten.splice(i,1)">Verwijderen</button>
+                                        <button class="btn btn-outline-danger" (click)="updatedSettingsRestaurant.menu.hoofdgerechten.splice(i,1)">Verwijderen</button>
                                     </div>
                                 </div>
                                 <div>
-                                    <button class="btn btn-outline-secondary item" (click)="append(updatedSettingsRestaurant.menu.hoofdgerechten)">Gerecht Toevoegen</button>
+                                    <button class="btn btn-outline-dark item bold" (click)="append(updatedSettingsRestaurant.menu.hoofdgerechten)">+</button>
                                 </div>
                             </div>
                     </div>
@@ -174,11 +180,11 @@
                                         <input type="number" id="dessertp" name="dessertp" min="0.00" step="0.01" placeholder="{{dessert.prijs}}" [(ngModel)]="updatedSettingsRestaurant.menu.desserts[i].prijs">        
                                     </div>
                                     <div class="itemremove">
-                                        <button class="btn btn-outline-secondary" (click)="updatedSettingsRestaurant.menu.voorgerechten.splice(i,1)">Verwijderen</button>
+                                        <button class="btn btn-outline-danger" (click)="updatedSettingsRestaurant.menu.desserts.splice(i,1)">Verwijderen</button>
                                     </div>
                                 </div>
                                 <div>
-                                    <button class="btn btn-outline-secondary item" (click)="append(updatedSettingsRestaurant.menu.desserts)">Dessert Toevoegen</button>
+                                    <button class="btn btn-outline-dark item bold" (click)="append(updatedSettingsRestaurant.menu.desserts)">+</button>
                                 </div>
                             </div>
                     </div>
@@ -197,18 +203,23 @@
                                         <input type="number" id="drankp" name="drankp" min="0.00" step="0.01" placeholder="{{drank.prijs}}" [(ngModel)]="updatedSettingsRestaurant.menu.dranken[i].prijs">        
                                     </div>
                                     <div class="itemremove">
-                                        <button class="btn btn-outline-secondary" (click)="updatedSettingsRestaurant.menu.voorgerechten.splice(i,1)">Verwijderen</button>
+                                        <button class="btn btn-outline-danger" (click)="updatedSettingsRestaurant.menu.dranken.splice(i,1)">Verwijderen</button>
                                     </div>
                                 </div>
                                 <div>
-                                    <button class="btn btn-outline-secondary item" (click)="append(updatedSettingsRestaurant.menu.dranken)">Drank Toevoegen</button>
+                                    <button class="btn btn-outline-dark item bold" (click)="append(updatedSettingsRestaurant.menu.dranken)">+</button>
                                 </div>
                             </div>
                     </div>
                 </div>
             </div>
-            <div class="opslaan">
-                <button class="btn btn-outline-danger" (click)="submit()">Opslaan</button>
+            <div class="buttons">
+                <div class="reset">
+                    <button class="btn btn-outline-danger" (click)="reset()">Annuleer</button>
+                </div>
+                <div class="opslaan">
+                    <button class="btn btn-success" (click)="submit()">Opslaan</button>
+                </div>
             </div>
         </div>
     </div>

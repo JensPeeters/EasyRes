@@ -91,7 +91,7 @@ namespace easyres_api.Controllers
         {
             var restaurant = context.Restaurants.Where(a => a.RestaurantId == id).Include(a => a.Menu)
                                         .Include(a => a.Openingsuren)
-                                        // .Include(a => a.Tafels)
+                                        .Include(a => a.Tafels)
                                         .Include(a => a.Locatie)
                                         .Include(a => a.Menu.Desserts)
                                         .Include(a => a.Menu.Dranken)
@@ -103,15 +103,19 @@ namespace easyres_api.Controllers
             return restaurant;
         }
 
-        
+        [Route("{id}")]
         [HttpPut]
-        public ActionResult<Restaurant> UpdateRestaurant([FromBody]Restaurant updatedRestaurant)
+        public ActionResult<Restaurant> UpdateRestaurant([FromBody]Restaurant updatedRestaurant, long id)
         {
             context.Restaurants.Update(updatedRestaurant);
             context.SaveChanges();
-            return Ok(updatedRestaurant);
+            return Created("", context.Restaurants.Include(a => a.Menu)
+                                                .Include(a => a.Reservaties)
+                                                .Include(a => a.Openingsuren)
+                                                .Include(a => a.Locatie)
+                                                .Include(a => a.Tafels)
+                                                .SingleOrDefault(a => a.RestaurantId == id));
         }
-
 
         [Route("{id}/reservatie")]
         [HttpGet]
@@ -124,7 +128,7 @@ namespace easyres_api.Controllers
                                                 .Include(a => a.Menu.Hoofdgerechten)
                                                 .Include(a => a.Menu.Voorgerechten)
                                                 .Include(a => a.Locatie)
-                                                // .Include(a => a.Tafels)
+                                                .Include(a => a.Tafels)
                                                 .SingleOrDefault(a => a.RestaurantId == id);
             return restaurant.Reservaties;
         }
@@ -141,7 +145,7 @@ namespace easyres_api.Controllers
                                                 .Include(a => a.Reservaties)
                                                 .Include(a => a.Openingsuren)
                                                 .Include(a => a.Locatie)
-                                                // .Include(a => a.Tafels)
+                                                .Include(a => a.Tafels)
                                                 .SingleOrDefault(a => a.RestaurantId == reservatie.Restaurant.RestaurantId);
 
             Reservatie finalReservatie = new Reservatie();

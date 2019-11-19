@@ -6,8 +6,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RestaurantService {
 
-  urlAPI: string = 'https://easyres-api.azurewebsites.net/api';
-  //urlAPI : string = 'https://localhost:44315/api';
+  //urlAPI: string = 'https://easyres-api.azurewebsites.net/api';
+  urlAPI : string = 'https://localhost:44315/api';
   pageNumber: number = 0;
   pageSize: number = 25;
   sortBy: string = 'Aanbevolen';
@@ -23,7 +23,7 @@ export class RestaurantService {
     return this.http.get<IRestaurant>(`${this.urlAPI}/restaurant/${id}`);
   }
   PutRestaurant(restaurant: IRestaurant) {
-    return this.http.put<IRestaurant>(`${this.urlAPI}/restaurant`, restaurant);
+    return this.http.put<IRestaurant>(`${this.urlAPI}/restaurant/${restaurant.restaurantId}`, restaurant);
   }
 
   // Favorieten
@@ -109,6 +109,12 @@ export interface IOpeningsuren {
   zondag: string;
 }
 
+export interface ITafel{
+  tafelId: number;
+  tafelNr: number;
+  zitplaatsen: number;
+}
+
 export interface IReservatie {
   userid: string;
   naam: string;
@@ -127,7 +133,7 @@ export interface IRestaurant {
   soort: string;
   locatie: ILocatie;
   menu: IMenu;
-  // tafels: number[];
+  tafels: ITafel[];
   openingsuren: IOpeningsuren;
   korteBeschrijving: string;
   langeBeschrijving: string;
