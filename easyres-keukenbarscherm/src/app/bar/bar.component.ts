@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService, IBestelling } from '../services/data.service';
+import { DataService } from '../services/data.service';
+import { IBestelling } from '../services/common.service';
 
 @Component({
   selector: 'app-bar',

@@ -22,7 +22,9 @@ export class RestaurantService {
     if (id != 0) {
       return this.http.get<IRestaurant>(`${this.common.urlAPI}/restaurant/${id}`);
     }
-
+  }
+  PutRestaurant(restaurant: IRestaurant) {
+    return this.http.put<IRestaurant>(`${this.common.urlAPI}/restaurant/${restaurant.restaurantId}`, restaurant);
   }
 
   // Favorieten

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">EasyRes</a>
+  <a class="navbar-brand" [routerLink]="['/start']">EasyRes</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
     aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -23,6 +23,7 @@
 
         <div class="center" *ngIf="isUserLoggedIn()">
           <p>Welkom {{userfirstname()}}</p>
+          <a class="icon-cog" [routerLink]="['/dashboard']"><i class="fas fa-cog cog"></i></a>
           <button class="btn btn-danger" (click)="logout()">Logout</button>
         </div>
       </li>

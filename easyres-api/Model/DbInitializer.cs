@@ -25,6 +25,14 @@ namespace easyres_api.Model
                     Zaterdag = "16:00 - 23:00",
                     Zondag = "16:00 - 23:00"
                 };
+                List<Tafel> tafels = new List<Tafel>()
+                {
+                    new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
+                    new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
+                    new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
+                    new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
+                    new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
+                };
                 Adres adres = new Adres()
                 {
                     Bus = "A",
@@ -157,7 +165,7 @@ namespace easyres_api.Model
                 {
                     new Restaurant()
                     {
-                      Beschrijving = "Villa Belvedere is trotse bezitter van het 'OSPITALITA ITALIANA' kwaliteitslabel. Uitgereikt door de Italiaanse Kamer van Koophandel voor de échte Italiaanse",
+                      KorteBeschrijving = "Villa Belvedere is trotse bezitter van het 'OSPITALITA ITALIANA' kwaliteitslabel. Uitgereikt door de Italiaanse Kamer van Koophandel voor de échte Italiaanse",
                       Openingsuren = openingsuren,
                       Locatie = adres,
                       LogoImage = "https://via.placeholder.com/350x350.png/8b0000/fff?text=Foto van een restaurant",
@@ -165,12 +173,21 @@ namespace easyres_api.Model
                       Naam = "Villa Belvedere",
                       Type = "Italiaans",
                       Soort = "Restaurant",
+                      Tafels = new List<Tafel>()
+                      {
+                          new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
+                          new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
+                          new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
+                      },
                       IsAdvertentie = true,
                       Gerechten = "Pizza Pasta"
                     },
+
                     new Restaurant()
                     {
-                      Beschrijving = "Het beste Chineese restaurant met veel verschillende smaken.",
+                      KorteBeschrijving = "Het beste Chineese restaurant met veel verschillende smaken.",
                       Openingsuren = openingsuren,
                       Locatie = adres1,
                       LogoImage = "https://via.placeholder.com/350x350.png/8b0000/fff?text=Foto van een restaurant",
@@ -178,12 +195,21 @@ namespace easyres_api.Model
                       Naam = "Het hoekske",
                       Type = "Chinees",
                       Soort = "Restaurant",
+                      Tafels = new List<Tafel>()
+                      {
+                          new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
+                          new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
+                          new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
+                      },
                       IsAdvertentie = false,
                       Gerechten = "Pizza Pasta"
+
                     },
                     new Restaurant()
                     {
-                      Beschrijving = "Het beste Chineese restaurant met veel verschillende smaken. En zelfs nog meer als de anderen.",
+                      KorteBeschrijving = "Het beste Chineese restaurant met veel verschillende smaken. En zelfs nog meer als de anderen.",
                       Openingsuren = openingsuren,
                       Locatie = adres2,
                       LogoImage = "https://via.placeholder.com/350x350.png/8b0000/fff?text=Foto van een restaurant",
@@ -191,12 +217,20 @@ namespace easyres_api.Model
                       Naam = "Het restaurant china",
                       Type = "Chinees",
                       Soort = "Restaurant",
+                      Tafels = new List<Tafel>()
+                      {
+                          new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
+                          new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
+                          new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
+                      },
                       IsAdvertentie = false,
                       Gerechten = "Salade Stoverij"
                     },
                     new Restaurant()
                     {
-                      Beschrijving = "Japan brengt de gerechten zoals ze in Japan worden gebracht, super lekker dus.",
+                      KorteBeschrijving = "Japan brengt de gerechten zoals ze in Japan worden gebracht, super lekker dus.",
                       Openingsuren = openingsuren,
                       Locatie = adres3,
                       LogoImage = "https://via.placeholder.com/350x350.png/8b0000/fff?text=Foto van een restaurant",
@@ -204,12 +238,20 @@ namespace easyres_api.Model
                       Naam = "Het japaneeske",
                       Type = "Japans",
                       Soort = "Bistro",
+                      Tafels = new List<Tafel>()
+                      {
+                          new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
+                          new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
+                          new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
+                      },
                       IsAdvertentie = true,
                       Gerechten = "Salade Stoverij"
                     },
                     new Restaurant()
                     {
-                      Beschrijving = "Je denkt Afrika dus je denkt direct aan lekker eten ;)",
+                      KorteBeschrijving = "Je denkt Afrika dus je denkt direct aan lekker eten ;)",
                       Openingsuren = openingsuren,
                       Locatie = adres4,
                       LogoImage = "https://via.placeholder.com/350x350.png/8b0000/fff?text=Foto van een restaurant",
@@ -217,12 +259,20 @@ namespace easyres_api.Model
                       Naam = "Het afrikaanse hoofdkwartier",
                       Type = "Afrikaans",
                       Soort = "Bistro",
+                      Tafels = new List<Tafel>()
+                      {
+                          new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
+                          new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
+                          new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
+                      },
                       IsAdvertentie = false,
                       Gerechten = "Pizza Pasta"
                     },
                     new Restaurant()
                     {
-                      Beschrijving = "Het beste Chineese restaurant met veel verschillende smaken. Jaja je lees het goed het beste restaurant ter wereld.",
+                      KorteBeschrijving = "Het beste Chineese restaurant met veel verschillende smaken. Jaja je lees het goed het beste restaurant ter wereld.",
                       Openingsuren = openingsuren,
                       Locatie = adres5,
                       LogoImage = "https://via.placeholder.com/350x350.png/8b0000/fff?text=Foto van een restaurant",
@@ -230,12 +280,20 @@ namespace easyres_api.Model
                       Naam = "De chinees",
                       Type = "Chinees",
                       Soort = "Taverne",
+                      Tafels = new List<Tafel>()
+                      {
+                          new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
+                          new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
+                          new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
+                      },
                       IsAdvertentie = true,
                       Gerechten = "Pizza Pasta"
                     },
                     new Restaurant()
                     {
-                      Beschrijving = "Veel verschillend smaken, maar echt super veel. Geloof je het niet, kom zelf proeven!",
+                      KorteBeschrijving = "Veel verschillend smaken, maar echt super veel. Geloof je het niet, kom zelf proeven!",
                       Openingsuren = openingsuren,
                       Locatie = adres6,
                       LogoImage = "https://via.placeholder.com/350x350.png/8b0000/fff?text=Foto van een restaurant",
@@ -243,12 +301,20 @@ namespace easyres_api.Model
                       Naam = "Den bistro",
                       Type = "Japans",
                       Soort = "Taverne",
+                      Tafels = new List<Tafel>()
+                      {
+                          new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
+                          new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
+                          new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
+                      },
                       IsAdvertentie = false,
                       Gerechten = "Stoverij"
                     },
                     new Restaurant()
                     {
-                      Beschrijving = "Het beste italiaanse restaurant met veel verschillende smaken enzovoort...",
+                      KorteBeschrijving = "Het beste italiaanse restaurant met veel verschillende smaken enzovoort...",
                       Openingsuren = openingsuren,
                       Locatie = adres1,
                       LogoImage = "https://via.placeholder.com/350x350.png/8b0000/fff?text=Foto van een restaurant",
@@ -256,6 +322,14 @@ namespace easyres_api.Model
                       Naam = "Alles van eten",
                       Type = "Italiaans",
                       Soort = "Trattoria",
+                      Tafels = new List<Tafel>()
+                      {
+                          new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
+                          new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
+                          new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
+                      },
                       IsAdvertentie = true,
                       Gerechten = "Salade"
                     }
