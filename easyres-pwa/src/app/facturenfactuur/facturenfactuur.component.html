@@ -1,18 +1,13 @@
 <div class="card" *ngIf="factuur">
     <div class="card-body">
-        <h4 class="card-title"></h4>
+        <h4 class="card-title">{{factuur.restaurant.naam}}</h4>
         <p class="card-text">
             {{ factuur.datum | date: 'd MMMM yyyy' }}
             <span class="mr-1 verticalLine"></span>
             Factuurnummer: {{factuur.id}}
         </p>
-        <div *ngFor="let product of factuur.producten">
-            <div class="d-flex" >
-                <h5 class="d-flex align-content-around flex-wrap">{{product.aantal}} x {{product.naam}}</h5>
-            </div>
-            <hr/>
-        </div>
-        <p class="float-right fullWidth">Totaalprijs: {{factuur.totaalPrijs | currency:' € '}}</p>
+        
+        <p class="float-right fullWidth">Totaalprijs: € {{factuur.totaalPrijs | number:'.2'}}</p>
         <a [routerLink]="" class="fullWidth">Bekijk bestelling >></a>
     </div>
 </div>

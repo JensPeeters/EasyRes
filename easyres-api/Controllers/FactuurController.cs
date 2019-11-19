@@ -45,6 +45,8 @@ namespace easyres_api.Controllers
             if (gebruiker == null)
                 return NotFound();
             List<Factuur> facturen = context.Facturen
+                                            .Include(a => a.Producten)
+                                            .Include(a => a.Restaurant)
                                             .Where(a => a.Gebruiker == gebruiker).ToList();
             if (facturen == null)
                 return NotFound();
