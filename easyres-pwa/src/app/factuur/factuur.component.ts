@@ -9,7 +9,7 @@ import { Action } from 'rxjs/internal/scheduler/Action';
 import { async } from 'q';
 import { ActionSequence } from 'protractor';
 
-declare var paypal;
+//declare var paypal;
 
 @Component({
   selector: 'app-factuur',
@@ -18,7 +18,7 @@ declare var paypal;
 })
 export class FactuurComponent implements OnInit {
 
-  @ViewChild('paypal', { static: true }) FacturenComponent: ElementRef;
+  //@ViewChild('paypal', { static: true }) FacturenComponent: ElementRef;
 
   constructor(private msalService: MsalService, private route: ActivatedRoute, private factuurService: FactuurService) { }
 
@@ -37,6 +37,7 @@ export class FactuurComponent implements OnInit {
       this.GenerateFactuur();
     }
 
+    /*
     paypal
       .Buttons({
         createOrder: (data, actions) => {
@@ -63,7 +64,7 @@ export class FactuurComponent implements OnInit {
         }
 
       })
-      .render(this.FacturenComponent.nativeElement);
+      .render(this.FacturenComponent.nativeElement);*/
   }
 
   GetUserObjectId() {
