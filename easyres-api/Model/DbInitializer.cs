@@ -175,11 +175,7 @@ namespace easyres_api.Model
                       Soort = "Restaurant",
                       Tafels = new List<Tafel>()
                       {
-                          new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
-                          new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
-                          new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
-                          new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
-                          new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
+                          new Tafel() { TafelNr = 1, UrenBezet = 3, Zitplaatsen = 5 }
                       },
                       IsAdvertentie = true,
                       Gerechten = "Pizza Pasta"
@@ -197,11 +193,11 @@ namespace easyres_api.Model
                       Soort = "Restaurant",
                       Tafels = new List<Tafel>()
                       {
-                          new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
-                          new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
-                          new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
-                          new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
-                          new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
+                          new Tafel() { TafelNr = 1, UrenBezet = 3, Zitplaatsen = 5 },
+                          new Tafel() { TafelNr = 2, UrenBezet = 3, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 3, UrenBezet = 3, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 4, UrenBezet = 3, Zitplaatsen = 2 },
+                          new Tafel() { TafelNr = 5, UrenBezet = 3, Zitplaatsen = 2 }
                       },
                       IsAdvertentie = false,
                       Gerechten = "Pizza Pasta"
@@ -219,11 +215,11 @@ namespace easyres_api.Model
                       Soort = "Restaurant",
                       Tafels = new List<Tafel>()
                       {
-                          new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
-                          new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
-                          new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
-                          new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
-                          new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
+                          new Tafel() { TafelNr = 1, UrenBezet = 3, Zitplaatsen = 5 },
+                          new Tafel() { TafelNr = 2, UrenBezet = 3, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 3, UrenBezet = 3, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 4, UrenBezet = 3, Zitplaatsen = 2 },
+                          new Tafel() { TafelNr = 5, UrenBezet = 3, Zitplaatsen = 2 }
                       },
                       IsAdvertentie = false,
                       Gerechten = "Salade Stoverij"
@@ -240,11 +236,11 @@ namespace easyres_api.Model
                       Soort = "Bistro",
                       Tafels = new List<Tafel>()
                       {
-                          new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
-                          new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
-                          new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
-                          new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
-                          new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
+                          new Tafel() { TafelNr = 1, UrenBezet = 3, Zitplaatsen = 5 },
+                          new Tafel() { TafelNr = 2, UrenBezet = 3, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 3, UrenBezet = 3, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 4, UrenBezet = 3, Zitplaatsen = 2 },
+                          new Tafel() { TafelNr = 5, UrenBezet = 3, Zitplaatsen = 2 }
                       },
                       IsAdvertentie = true,
                       Gerechten = "Salade Stoverij"
@@ -261,11 +257,11 @@ namespace easyres_api.Model
                       Soort = "Bistro",
                       Tafels = new List<Tafel>()
                       {
-                          new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
-                          new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
-                          new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
-                          new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
-                          new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
+                          new Tafel() { TafelNr = 1, UrenBezet = 3, Zitplaatsen = 5 },
+                          new Tafel() { TafelNr = 2, UrenBezet = 3, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 3, UrenBezet = 3, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 4, UrenBezet = 3, Zitplaatsen = 2 },
+                          new Tafel() { TafelNr = 5, UrenBezet = 3, Zitplaatsen = 2 }
                       },
                       IsAdvertentie = false,
                       Gerechten = "Pizza Pasta"
@@ -282,11 +278,11 @@ namespace easyres_api.Model
                       Soort = "Taverne",
                       Tafels = new List<Tafel>()
                       {
-                          new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
-                          new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
-                          new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
-                          new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
-                          new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
+                          new Tafel() { TafelNr = 1, UrenBezet = 3, Zitplaatsen = 5 },
+                          new Tafel() { TafelNr = 2, UrenBezet = 3, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 3, UrenBezet = 3, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 4, UrenBezet = 3, Zitplaatsen = 2 },
+                          new Tafel() { TafelNr = 5, UrenBezet = 3, Zitplaatsen = 2 }
                       },
                       IsAdvertentie = true,
                       Gerechten = "Pizza Pasta"
@@ -303,11 +299,11 @@ namespace easyres_api.Model
                       Soort = "Taverne",
                       Tafels = new List<Tafel>()
                       {
-                          new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
-                          new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
-                          new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
-                          new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
-                          new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
+                          new Tafel() { TafelNr = 1, UrenBezet = 3, Zitplaatsen = 5 },
+                          new Tafel() { TafelNr = 2, UrenBezet = 3, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 3, UrenBezet = 3, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 4, UrenBezet = 3, Zitplaatsen = 2 },
+                          new Tafel() { TafelNr = 5, UrenBezet = 3, Zitplaatsen = 2 }
                       },
                       IsAdvertentie = false,
                       Gerechten = "Stoverij"
@@ -324,11 +320,11 @@ namespace easyres_api.Model
                       Soort = "Trattoria",
                       Tafels = new List<Tafel>()
                       {
-                          new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
-                          new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
-                          new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
-                          new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
-                          new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
+                          new Tafel() { TafelNr = 1, UrenBezet = 3, Zitplaatsen = 5 },
+                          new Tafel() { TafelNr = 2, UrenBezet = 3, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 3, UrenBezet = 3, Zitplaatsen = 4 },
+                          new Tafel() { TafelNr = 4, UrenBezet = 3, Zitplaatsen = 2 },
+                          new Tafel() { TafelNr = 5, UrenBezet = 3, Zitplaatsen = 2 }
                       },
                       IsAdvertentie = true,
                       Gerechten = "Salade"
