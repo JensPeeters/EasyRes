@@ -25,14 +25,6 @@ namespace easyres_api.Model
                     Zaterdag = "16:00 - 23:00",
                     Zondag = "16:00 - 23:00"
                 };
-                List<Tafel> tafels = new List<Tafel>()
-                {
-                    new Tafel() { TafelNr = 1, Zitplaatsen = 5 },
-                    new Tafel() { TafelNr = 2, Zitplaatsen = 4 },
-                    new Tafel() { TafelNr = 3, Zitplaatsen = 4 },
-                    new Tafel() { TafelNr = 4, Zitplaatsen = 2 },
-                    new Tafel() { TafelNr = 5, Zitplaatsen = 2 }
-                };
                 Adres adres = new Adres()
                 {
                     Bus = "A",

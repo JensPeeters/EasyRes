@@ -83,9 +83,12 @@ export class ReservatieComponent implements OnInit {
 
         },
         err => {
-          this.submitted = false;
-          console.log("bezet");
-          this.bezet = true;
+          if (err.status == 409) {
+            this.submitted = false;
+            console.log("bezet");
+            this.bezet = true;
+          }
+
         });
     }
     this.SendEvent("Aanmaken Reservatie");

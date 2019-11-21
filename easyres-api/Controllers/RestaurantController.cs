@@ -217,6 +217,7 @@ namespace easyres_api.Controllers
                                                 .Include(a => a.Openingsuren)
                                                 .Include(a => a.Locatie)
                                                 .Include(a => a.Tafels)
+                                                .Include("Tafels.BezetteMomenten")
                                                 .SingleOrDefault(a => a.RestaurantId == reservatie.Restaurant.RestaurantId);
 
             
@@ -239,7 +240,13 @@ namespace easyres_api.Controllers
             var tafel = restaurant.Tafels.FirstOrDefault(a => a.TafelNr == finalReservatie.TafelNr);
             var tijdstipInt = int.Parse((finalReservatie.Tijdstip.Split(':'))[0])+tafel.UrenBezet;
             var tijdstipString = $"{tijdstipInt}:00";
-            tafel.VanTotBezet = $"{finalReservatie.Datum};{finalReservatie.Tijdstip};{tijdstipString}";
+            tafel.BezetteMomenten.Add(
+                new Tijdsmoment()
+                {
+                    Datum = finalReservatie.Datum,
+                    Tot = tijdstipString,
+                    Van = finalReservatie.Tijdstip
+                });
 
             restaurant.Reservaties.Add(finalReservatie);
             context.Restaurants.Update(restaurant);
@@ -275,21 +282,21 @@ namespace easyres_api.Controllers
             {
                 if (tafel.Zitplaatsen == reservatie.AantalPersonen)
                 {
-                    if(tafel.VanTotBezet == null)
+                    if(tafel.BezetteMomenten.Count == 0)
                     {
                         reservatie.TafelNr = tafel.TafelNr;
                         return true;
                     }
-                    var datum = tafel.VanTotBezet.Split(';')[0];
-                    var vanBezet = tafel.VanTotBezet.Split(';')[1];
-                    var totBezet = tafel.VanTotBezet.Split(';')[2];
-                    if(reservatie.Datum == datum &&
-                        gevraagdeTijdstip >= int.Parse(totBezet.Split(':')[0]) || 
-                        reservatie.Datum == datum &&
-                        gevraagdeTijdstip <= int.Parse(vanBezet.Split(':')[0]) -3)
+                    foreach (Tijdsmoment tijdstip in tafel.BezetteMomenten)
                     {
-                        reservatie.TafelNr = tafel.TafelNr;
-                        return true;
+                        if (reservatie.Datum == tijdstip.Datum &&
+                            gevraagdeTijdstip >= int.Parse(tijdstip.Tot.Split(':')[0]) ||
+                            reservatie.Datum == tijdstip.Datum &&
+                            gevraagdeTijdstip <= int.Parse(tijdstip.Van.Split(':')[0]) - tafel.UrenBezet)
+                        {
+                            reservatie.TafelNr = tafel.TafelNr;
+                            return true;
+                        }
                     }
                 }
             }
