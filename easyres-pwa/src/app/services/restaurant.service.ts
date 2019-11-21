@@ -49,7 +49,7 @@ export class RestaurantService {
   }
 
   PostReservation(reservatie: IReservatie) {
-    return this.http.post(`${this.common.urlAPI}/restaurant/${reservatie.restaurant.restaurantId}/reservatie`, reservatie);
+    return this.http.post(`${this.common.urlAPI}/restaurant/${reservatie.restaurant.restaurantId}/reservatie`, reservatie, {observe: 'response'});
   }
 
   DeleteReservationByID(id: number) {
