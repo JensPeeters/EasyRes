@@ -29,14 +29,18 @@ export class FactuurComponent implements OnInit {
   factuurFailed: boolean = false;
   factuur: IFactuur;
 
+  Facturen: IFactuur[];
+  BetaaldList: IFactuur[];
+  NietBetaaldList: IFactuur[];
+
   ngOnInit() {
     this.TafelNr = Number(this.route.snapshot.paramMap.get('TafelNr'));
     this.RestaurantId = Number(this.route.snapshot.paramMap.get('id'));
     if (this.msalService.isLoggedIn()) {
       this.GetUserObjectId();
       this.GenerateFactuur();
+      this.loadStripe();
     }
-
     /*
     paypal
       .Buttons({
@@ -67,6 +71,39 @@ export class FactuurComponent implements OnInit {
       .render(this.FacturenComponent.nativeElement);*/
   }
 
+  loadStripe() {
+    if(!window.document.getElementById('stripe-script')) {
+      var s = window.document.createElement("script");
+      s.id = "stripe-script";
+      s.type = "text/javascript";
+      s.src = "https://checkout.stripe.com/checkout.js";
+      window.document.body.appendChild(s);
+    }
+}
+
+pay(amount) {
+  this.factuur.betaald = true;
+  var handler = (<any>window).StripeCheckout.configure({
+    key: 'pk_test_0RlhLI3CtX2sYzCZFlVBNwIm00P6N37NJh',
+    locale: 'auto',
+    token: function (token: any) {
+      // You can access the token ID with `token.id`.
+      // Get the token ID to your server-side code for use.
+      console.log(token)
+      alert('Token Created!!');
+    }
+
+  });
+
+  handler.open({
+    name: 'EasyRees Factuur',
+    description: this.factuur.restaurant.naam,
+    amount: amount * 100,
+    currency: "eur",
+  });
+
+}
+
   GetUserObjectId() {
     this.UserId = this.msalService.getUserObjectId();
   }
@@ -89,6 +126,20 @@ export class FactuurComponent implements OnInit {
     this.factuurService.GetFactuur(this.UserId, this.RestaurantId).subscribe(res => {
       this.factuur = res;
       this.factuurLoading = false;
+    });
+  }
+
+  Checklist() {
+    this.BetaaldList = [];
+    this.NietBetaaldList = [];
+
+    this.Facturen.forEach(element => {
+      if (element.betaald) {
+        this.BetaaldList.push(element);
+      }
+      else if (element.betaald == false) {
+        this.NietBetaaldList.push(element);
+      }
     });
   }
 
