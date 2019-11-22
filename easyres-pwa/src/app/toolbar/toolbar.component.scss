@@ -35,6 +35,14 @@ button{
     width: 20px;
     text-align: center;
 }
+.icon-cog{
+    margin: auto;
+    margin-left: 10px;
+    color: white;
+}
+.icon-cog:hover{
+    color: rgb(231, 45, 45);
+}
 @media screen and (max-width: 574px){
     img{
         width: 40px;

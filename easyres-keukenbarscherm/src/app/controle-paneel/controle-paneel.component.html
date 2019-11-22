@@ -1,0 +1,232 @@
+<div class="main-content" *ngIf="currentSettingsRestaurant">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{currentSettingsRestaurant.naam}}</h5>
+            <div class="item">
+                <label for="type">&nbsp;<i class="fa fa-home"></i>&nbsp;Type van het restaurant</label>
+                <input type="text" id="type" name="type" placeholder="{{currentSettingsRestaurant.type}}" [(ngModel)]="updatedSettingsRestaurant.type">
+            </div>
+            <div class="item">
+                <label for="soort">&nbsp;<i class="fa fa-home"></i>&nbsp;Categorie waaronder het restaurant valt</label>
+                <div class="dropdown">
+                        <button class="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          {{updatedSettingsRestaurant.soort}}
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" (click)="restaurantSoort(soort)" *ngFor="let soort of soorten">{{soort}}</a>
+                        </div>
+                      </div>
+            </div>
+            <div class="item">
+                <label for="gerechten">&nbsp;<i class="fa fa-pizza-slice"></i>&nbsp;Gerechten van het restaurant</label>
+                <input type="text" id="gerechten" name="gerechten" placeholder="{{currentSettingsRestaurant.gerechten}}" [(ngModel)]="updatedSettingsRestaurant.gerechten">
+            </div>
+            <div class="item">
+                <label for="beschrijvingkort">&nbsp;<i class="fa fa-comment"></i>&nbsp;Korte Beschrijving over het restaurant</label>
+                <input type="text" id="beschrijvingkort" name="beschrijvingkort" placeholder="{{currentSettingsRestaurant.korteBeschrijving}}" [(ngModel)]="updatedSettingsRestaurant.korteBeschrijving">
+            </div>
+            <div class="item">
+                <label for="beschrijvinglang">&nbsp;<i class="fa fa-comment"></i>&nbsp;Lange Beschrijving over het restaurant</label>
+                <input type="text" id="beschrijvinglang" name="beschrijvinglang" placeholder="{{currentSettingsRestaurant.langeBeschrijving}}" [(ngModel)]="updatedSettingsRestaurant.langeBeschrijving">
+            </div>
+            <div class="item">
+                    <label for="fotourl">&nbsp;<i class="far fa-image"></i>&nbsp;Foto van het restaurant</label>
+                    <input type="text" id="fotourl" name="fotourl" placeholder="{{currentSettingsRestaurant.logoImage}}" [(ngModel)]="updatedSettingsRestaurant.logoImage">
+            </div>
+            <div class="coll tafels">
+                <a data-toggle="collapse" href="#collapseTafels" aria-expanded="false" aria-controls="collapseTafels">
+                    <label for="collapseTafels">&nbsp;<i class="fa fa-chair"></i>&nbsp;Tafels ...&nbsp;</label>
+                </a>
+                <div class="collapse" id="collapseTafels">
+                    <div class="item itemgrid" *ngFor="let tafel of updatedSettingsRestaurant.tafels; index as i">
+                        <div class="itemnaam tafel">
+                            Tafel nummer {{i+1}}
+                        </div>
+                        <div class="itemprijs">
+                            <label for="tafel">Zitplaatsen</label>
+                            <input type="number" id="tafel" name="tafel" min="0" step="1" placeholder="{{tafel.zitplaatsen}}" [(ngModel)]="updatedSettingsRestaurant.tafels[i].zitplaatsen">        
+                        </div>
+                        <div class="itemremove">
+                            <button class="btn btn-outline-danger" (click)="updatedSettingsRestaurant.tafels.splice(i,1)">Verwijderen</button>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="btn btn-outline-dark item bold" (click)="append(updatedSettingsRestaurant.tafels)">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="coll locatie">
+                <a data-toggle="collapse" href="#collapseLocatie" aria-expanded="false" aria-controls="collapseLocatie">
+                    <label for="locatie">&nbsp;<i class="fa fa-home"></i>&nbsp;Adres van het restaurant ...&nbsp;</label>
+                </a>
+                <div class="collapse" id="collapseLocatie">
+                    <div class="item">
+                        <label for="gemeente">Gemeente</label>
+                        <input type="text" id="gemeente" name="gemeente" placeholder="{{currentSettingsRestaurant.locatie.gemeente}}" [(ngModel)]="updatedSettingsRestaurant.locatie.gemeente">
+                    </div>
+                    <div class="item">
+                            <label for="postcode">Postcode</label>
+                            <input type="text" id="postcode" name="postcode" placeholder="{{currentSettingsRestaurant.locatie.postcode}}" [(ngModel)]="updatedSettingsRestaurant.locatie.postcode">
+                        </div>
+                    <div class="item">
+                        <label for="straat">Straat</label>
+                        <input type="text" id="straat" name="straat" placeholder="{{currentSettingsRestaurant.locatie.straat}}" [(ngModel)]="updatedSettingsRestaurant.locatie.straat">
+                    </div>
+                    <div class="item">
+                        <label for="straatnummer">Straatnummer</label>
+                        <input type="text" id="straatnummer" name="straatnummer" placeholder="{{currentSettingsRestaurant.locatie.straatnummer}}" [(ngModel)]="updatedSettingsRestaurant.locatie.straatnummer">
+                    </div>
+                    <div class="item">
+                        <label for="bus">Bus</label>
+                        <input type="text" id="bus" name="bus" placeholder="{{currentSettingsRestaurant.locatie.bus}}" [(ngModel)]="updatedSettingsRestaurant.locatie.bus">
+                    </div>
+                </div>
+            </div>
+            <div class="coll openingsuren">
+                <a data-toggle="collapse" href="#collapseOpeningsuren" aria-expanded="false" aria-controls="collapseOpeningsuren">
+                    <label for="openingsuren">&nbsp;<i class="fa fa-calendar"></i>&nbsp;Openingsuren van het restaurant ...&nbsp;</label>
+                </a>
+                <div class="collapse" id="collapseOpeningsuren">
+                    <div class="item">
+                        <label for="maandag">Maandag</label>
+                        <input type="text" id="maandag" name="maandag" placeholder="{{currentSettingsRestaurant.openingsuren.maandag}}" [(ngModel)]="updatedSettingsRestaurant.openingsuren.maandag">
+                    </div>
+                    <div class="item">
+                        <label for="dinsdag">Dinsdag</label>
+                        <input type="text" id="dinsdag" name="dinsdag" placeholder="{{currentSettingsRestaurant.openingsuren.dinsdag}}" [(ngModel)]="updatedSettingsRestaurant.openingsuren.dinsdag">
+                    </div>
+                    <div class="item">
+                        <label for="woensdag">Woensdag</label>
+                        <input type="text" id="woensdag" name="woensdag" placeholder="{{currentSettingsRestaurant.openingsuren.woensdag}}" [(ngModel)]="updatedSettingsRestaurant.openingsuren.woensdag">
+                    </div>
+                    <div class="item">
+                        <label for="donderdag">Donderdag</label>
+                        <input type="text" id="donderdag" name="donderdag" placeholder="{{currentSettingsRestaurant.openingsuren.donderdag}}" [(ngModel)]="updatedSettingsRestaurant.openingsuren.donderdag">
+                    </div>
+                    <div class="item">
+                        <label for="vrijdag">Vrijdag</label>
+                        <input type="text" id="vrijdag" name="vrijdag" placeholder="{{currentSettingsRestaurant.openingsuren.vrijdag}}" [(ngModel)]="updatedSettingsRestaurant.openingsuren.vrijdag">
+                    </div>
+                    <div class="item">
+                        <label for="zaterdag">Zaterdag</label>
+                        <input type="text" id="zaterdag" name="zaterdag" placeholder="{{currentSettingsRestaurant.openingsuren.zaterdag}}" [(ngModel)]="updatedSettingsRestaurant.openingsuren.zaterdag">
+                    </div>
+                    <div class="item">
+                        <label for="zondag">Zondag</label>
+                        <input type="text" id="zondag" name="zondag" placeholder="{{currentSettingsRestaurant.openingsuren.zondag}}" [(ngModel)]="updatedSettingsRestaurant.openingsuren.zondag">
+                    </div>
+                </div>
+            </div>
+            <div class="coll menu">
+                <a data-toggle="collapse" href="#collapseMenu" aria-expanded="false" aria-controls="collapseMenu">
+                    <label for="collapseMenu">&nbsp;<i class="fa fa-utensils"></i>&nbsp;Menu van het restaurant ...&nbsp;</label>
+                </a>
+                <div class="collapse" id="collapseMenu">
+                    <div class="coll voorgerecht item">
+                        <a data-toggle="collapse" href="#collapseVoorgerecht" aria-expanded="false" aria-controls="collapseVoorgerecht">
+                            <label for="collapseVoorgerecht">&nbsp;<i class="fa fa-utensils"></i>&nbsp;Voorgerechten ...&nbsp;</label>
+                        </a>
+                        <div class="collapse" id="collapseVoorgerecht">
+                            <div class="item itemgrid" *ngFor="let voorgerecht of updatedSettingsRestaurant.menu.voorgerechten; index as i">
+                                <div class="itemnaam">
+                                    <label for="voorgerecht">Naam van het gerecht</label>
+                                    <input type="text" id="voorgerecht" name="voorgerecht" placeholder="{{voorgerecht.naam}}" [(ngModel)]="updatedSettingsRestaurant.menu.voorgerechten[i].naam">        
+                                </div>
+                                <div class="itemprijs">
+                                    <label for="voorgerechtp">Prijs van het gerecht</label>
+                                    <input type="number" id="voorgerechtp" name="voorgerechtp" min="0.00" step="0.01" placeholder="{{voorgerecht.prijs}}" [(ngModel)]="updatedSettingsRestaurant.menu.voorgerechten[i].prijs">        
+                                </div>
+                                <div class="itemremove">
+                                    <button class="btn btn-outline-danger" (click)="updatedSettingsRestaurant.menu.voorgerechten.splice(i,1)">Verwijderen</button>
+                                </div>
+                             </div>
+                            <div>
+                                <button class="btn btn-outline-dark item bold" (click)="append(updatedSettingsRestaurant.menu.voorgerechten)">+</button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="coll hoofdgerecht item">
+                            <a data-toggle="collapse" href="#collapseHoofdgerecht" aria-expanded="false" aria-controls="collapseHoofdgerecht">
+                                <label for="collapseHoofdgerecht">&nbsp;<i class="fa fa-utensils"></i>&nbsp;Hoofdgerechten ...&nbsp;</label>
+                            </a>
+                            <div class="collapse" id="collapseHoofdgerecht">
+                                <div class="item itemgrid" *ngFor="let hoofdgerecht of updatedSettingsRestaurant.menu.hoofdgerechten; index as i">
+                                    <div class="itemnaam">
+                                        <label for="hoofdgerecht">Naam van het gerecht</label>
+                                        <input type="text" id="hoofdgerecht" name="hoofdgerecht" placeholder="{{hoofdgerecht.naam}}" [(ngModel)]="updatedSettingsRestaurant.menu.hoofdgerechten[i].naam">        
+                                    </div>
+                                    <div class="itemprijs">
+                                        <label for="hoofdgerechtp">Prijs van het gerecht</label>
+                                        <input type="number" id="hoofdgerechtp" name="hoofdgerechtp" min="0.00" step="0.01" placeholder="{{hoofdgerecht.prijs}}" [(ngModel)]="updatedSettingsRestaurant.menu.hoofdgerechten[i].prijs">        
+                                    </div>
+                                    <div class="itemremove">
+                                        <button class="btn btn-outline-danger" (click)="updatedSettingsRestaurant.menu.hoofdgerechten.splice(i,1)">Verwijderen</button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button class="btn btn-outline-dark item bold" (click)="append(updatedSettingsRestaurant.menu.hoofdgerechten)">+</button>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="coll dessert item">
+                            <a data-toggle="collapse" href="#collapseDessert" aria-expanded="false" aria-controls="collapseDessert">
+                                <label for="collapseDessert">&nbsp;<i class="fa fa-utensils"></i>&nbsp;Desserts ...&nbsp;</label>
+                            </a>
+                            <div class="collapse" id="collapseDessert">
+                                <div class="item itemgrid" *ngFor="let dessert of updatedSettingsRestaurant.menu.desserts; index as i">
+                                    <div class="itemnaam">
+                                        <label for="dessert">Naam van het dessert</label>
+                                        <input type="text" id="dessert" name="dessert" placeholder="{{dessert.naam}}" [(ngModel)]="updatedSettingsRestaurant.menu.desserts[i].naam">        
+                                    </div>
+                                    <div class="itemprijs">
+                                        <label for="dessertp">Prijs van het gerecht</label>
+                                        <input type="number" id="dessertp" name="dessertp" min="0.00" step="0.01" placeholder="{{dessert.prijs}}" [(ngModel)]="updatedSettingsRestaurant.menu.desserts[i].prijs">        
+                                    </div>
+                                    <div class="itemremove">
+                                        <button class="btn btn-outline-danger" (click)="updatedSettingsRestaurant.menu.desserts.splice(i,1)">Verwijderen</button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button class="btn btn-outline-dark item bold" (click)="append(updatedSettingsRestaurant.menu.desserts)">+</button>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="coll drank item">
+                            <a data-toggle="collapse" href="#collapseDrank" aria-expanded="false" aria-controls="collapseDrank">
+                                <label for="collapseDrank">&nbsp;<i class="fa fa-wine-glass"></i>&nbsp;Dranken ...&nbsp;</label>
+                            </a>
+                            <div class="collapse" id="collapseDrank">
+                                <div class="item itemgrid" *ngFor="let drank of updatedSettingsRestaurant.menu.dranken; index as i">
+                                    <div class="itemnaam">
+                                        <label for="drank">Naam van het drankje</label>
+                                        <input type="text" id="drank" name="drank" placeholder="{{drank.naam}}" [(ngModel)]="updatedSettingsRestaurant.menu.dranken[i].naam">        
+                                    </div>
+                                    <div class="itemprijs">
+                                        <label for="drankp">Prijs van het drankje</label>
+                                        <input type="number" id="drankp" name="drankp" min="0.00" step="0.01" placeholder="{{drank.prijs}}" [(ngModel)]="updatedSettingsRestaurant.menu.dranken[i].prijs">        
+                                    </div>
+                                    <div class="itemremove">
+                                        <button class="btn btn-outline-danger" (click)="updatedSettingsRestaurant.menu.dranken.splice(i,1)">Verwijderen</button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button class="btn btn-outline-dark item bold" (click)="append(updatedSettingsRestaurant.menu.dranken)">+</button>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="buttons">
+                <div class="reset">
+                    <button class="btn btn-outline-danger" (click)="reset()">Annuleer</button>
+                </div>
+                <div class="opslaan">
+                    <button class="btn btn-success" (click)="submit()">Opslaan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,90 @@
+.main-content{
+    margin-top: 25px;
+    display: grid;
+    grid-template-columns: 15% 70% 15%;
+}
+.card{
+    grid-column: 2;
+}
+.card-title{
+    text-align: center;
+    padding-top: 0.2em;
+	padding-bottom: 3px;
+	margin-bottom: 20px;
+}
+input{
+    padding-left: 0.2em;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+.item{
+    input[type="text"],
+	input[type="email"],
+    input[type="date"],
+    input[type="tel"],
+    input[type="time"],
+	textarea,
+	select{
+        width: 100%;
+        justify-content: center;
+    }
+    margin-bottom: 1em;
+}
+.coll{
+    .item{
+        margin-left: 1em;
+    }
+}
+#aantaltafel{
+    display: grid;
+    grid-template-columns: 27.5% 27.5% 25%;
+    gap: 10% 10%;
+    .aantal.tafels{
+        grid-row: 2;
+    }
+    .totaalplaatsen{
+        align-self: center;
+    }
+}
+
+.buttons{
+    display: flex;
+    justify-content: flex-end;
+    button{
+        margin-left: 1em;
+    }
+}
+
+.itemgrid{
+    display: grid;
+    grid-template-columns: 35% 35% 15%;
+    gap: 10% 5%;
+    .itemnaam{
+        grid-column: 1/2;
+    }
+    .itemprijs{
+        grid-column: 2/3;
+        input[type="number"]{
+            width: 100%;
+            justify-content: center;
+        }
+    }
+    .itemremove{
+        grid-column: 3/4;
+        justify-self: center;
+        align-self: end;
+    }
+}
+
+.bold{
+    font-weight: bolder;
+    font-size: 1.2em;
+    padding-top: 2px;
+}
+
+.tafel{
+    justify-self: start;
+    align-self: center;
+}

@@ -24,8 +24,8 @@
     color: white;
     top: 50%;
     transform: translateY(-50%);
-    left: 30%;
-    right: 30%;
+    left: 27.5%;
+    right: 27.5%;
     z-index: 2;
     font-size: 30px;
     font-weight: bold;
@@ -177,7 +177,7 @@ p{
   
   /* Wanneer checkbox checked, blauwe achtergrond */
   .typeContainar input:checked ~ .checkmark {
-    background-color: #2196F3;
+    background-color: #dc3545;
   }
   
   /* Checkmark/indicator (ontzichtbaar wanneer af) */
@@ -221,6 +221,10 @@ p{
     }
 }
 @media screen and (max-width: 880px){
+    .header-image-text{
+        left: 20%;
+        right: 20%; 
+    }
     .button-scan{
         margin-top: 15px;
     }
@@ -271,6 +275,11 @@ p{
         width: 80%;
     }
 }
+@media screen and (max-width: 680px){
+    input{
+        width: 86%;
+    }
+}
 @media screen and (max-width: 580px){
     .dropdowns{
         display: block;
@@ -286,10 +295,8 @@ p{
     .left{
         display: block;
     }
-}
-@media screen and (max-width: 680px){
-    input{
-        width: 86%;
+    .header-image-text{
+        font-size: 20px;
     }
 }
 @media screen and (max-width: 430px){
@@ -313,6 +320,9 @@ p{
     }
     .dropdown-toggle{
         font-size: 11px;
+    }
+    .header-image-text{
+        font-size: 14px;
     }
 }
 .fa-search{
