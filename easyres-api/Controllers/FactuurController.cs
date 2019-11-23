@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using dotNETAcademyServer.Services;
 using easyres_api.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,10 +14,12 @@ namespace easyres_api.Controllers
     [ApiController]
     public class FactuurController : ControllerBase
     {
+        PDFGenerator pdfGenerator;
         DatabaseContext context;
         public FactuurController(DatabaseContext ctx)
         {
             this.context = ctx;
+            this.pdfGenerator = new PDFGenerator();
         }
 
         [Route("{idGebruiker}/{idRes}")]
@@ -101,9 +104,9 @@ namespace easyres_api.Controllers
                 Datum = DateTime.Now,
                 Betaald = false
             };
-            
             context.Facturen.Add(factuur);
             context.SaveChanges();
+            pdfGenerator.GeneratePDF(factuur);
             return Created("", factuur);
         }
     }
