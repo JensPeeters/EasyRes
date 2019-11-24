@@ -12,11 +12,12 @@ namespace easyres_api.Controllers
     public class RestaurantController : ControllerBase
     {
         DatabaseContext context;
-        SendGridEmailSender emailSender = new SendGridEmailSender();
+        SendGridEmailSender emailSender;
 
         public RestaurantController(DatabaseContext ctx)
         {
             this.context = ctx;
+            this.emailSender = new SendGridEmailSender();
         }
 
         [HttpGet]
@@ -266,9 +267,7 @@ namespace easyres_api.Controllers
                 "<li> Gepland op: " + reservatie.Datum + " om " + reservatie.Tijdstip + "</li>" +
                 "<li> Email adres: " + reservatie.Email + "</li>" +
                 "<li> Telefoonnummer: " + reservatie.TelefoonNummer.ToString() + "</li>" +
-                "</ul>" +
-                enter +
-                "Mogelijk gemaakt door EasyRes™";
+                "</ul>";
 
             emailSender.SendEmailAsync(finalReservatie.Email, "Bevestiging van uw reservatie.", mailmsg).Wait();
             return Created("", reservatie);
