@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using dotNETAcademyServer.Services;
 using easyres_api.Model;
+using easyres_api.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,10 +17,12 @@ namespace easyres_api.Controllers
     {
         PDFGenerator pdfGenerator;
         DatabaseContext context;
+        SendGridEmailSender emailSender;
         public FactuurController(DatabaseContext ctx)
         {
             this.context = ctx;
             this.pdfGenerator = new PDFGenerator();
+            this.emailSender = new SendGridEmailSender();
         }
 
         [Route("{idGebruiker}/{idRes}")]
@@ -58,7 +61,7 @@ namespace easyres_api.Controllers
 
         [Route("{idGebruiker}/{idRes}")]
         [HttpPost]
-        public ActionResult<Factuur> GenerateFactuur(string idGebruiker, long idRes)
+        public ActionResult<Factuur> GenerateFactuur(string idGebruiker, long idRes, string mail)
         {
             Gebruiker gebruiker = context.Gebruikers.Where(a => a.GebruikersID == idGebruiker).FirstOrDefault();
             Restaurant restaurant = context.Restaurants.Where(a => a.RestaurantId == idRes).FirstOrDefault();
@@ -107,6 +110,13 @@ namespace easyres_api.Controllers
             context.Facturen.Add(factuur);
             context.SaveChanges();
             pdfGenerator.GeneratePDF(factuur);
+            if (gebruiker.GetFactuurByEmail)
+            {
+                string msg = "In bijlage vindt u de factuur van u bezoek aan " + factuur.Restaurant.Naam + ".";
+                emailSender.SendEmailAsync(mail,
+                                           "Factuur van " + factuur.Restaurant.Naam,
+                                           msg,factuur.Id).Wait();
+            }
             return Created("", factuur);
         }
     }

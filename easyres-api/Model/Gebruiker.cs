@@ -14,5 +14,6 @@ namespace easyres_api.Model
         public List<Bestelling> Bestellingen { get; set; }
         [JsonIgnore]
         public List<Sessie> Sessies { get; set; }
+        public bool GetFactuurByEmail { get; set; } = true;
     }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CommonService } from './common.service';
+import { CommonService, IGebruiker } from './common.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,5 +11,11 @@ export class UserService {
 
   saveUserInDb(UserId) {
     return this.http.post(`${this.common.urlAPI}/user/gebruiker/${UserId}`, null);
+  }
+  updateGebruiker(gebruiker: IGebruiker, userId: string){
+    return this.http.put(`${this.common.urlAPI}/user/${userId}`, gebruiker);
+  }
+  GetGerbuiker(userId: string){
+    return this.http.get<IGebruiker>(`${this.common.urlAPI}/user/isgebruiker/${userId}`);
   }
 }

@@ -1,0 +1,15 @@
+<div class="main-content">
+    <div class="card" *ngIf="isUserLoggedIn()">
+        <div class="card-body">
+            <h5 class="card-title">Instellingen</h5>
+            <div class="card-text">
+                <p class="mr-2">E-mail met factuur ontvangen:</p>
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="customSwitches"
+                        [(ngModel)]="factuur" (click)="UpdateGebruiker()">
+                    <label class="custom-control-label" for="customSwitches"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
