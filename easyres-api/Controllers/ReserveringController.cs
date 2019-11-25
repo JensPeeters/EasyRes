@@ -46,7 +46,7 @@ namespace easyres_api.Controllers
 
         [Route("{id}")]
         [HttpDelete]
-        public ActionResult<Reservatie> DeleteReservatie(long id)
+        public ActionResult<Reservatie> DeleteReservatie(long id, string user = "gebruiker")
         {
             var reservatie = context.Reservaties.Where(a => a.ReservatieId == id)
                                                 .Include(a => a.Restaurant)
@@ -59,11 +59,14 @@ namespace easyres_api.Controllers
             context.SaveChanges();
 
             string enter = "<br>";
-            string mailmsg =
+            string mailmsg;
+            if (user == "gebruiker")
+            {
+                mailmsg =
                 "Beste " + reservatie.Naam + "," +
                 enter +
                 enter +
-                "Hierbij een bevestiging van uw geannuleerde reservatie met onderstaande gegevens." + 
+                "Hierbij een bevestiging van uw geannuleerde reservatie met onderstaande gegevens." +
                 enter +
                 enter +
                 "<ul>" +
@@ -76,6 +79,33 @@ namespace easyres_api.Controllers
                 "</ul>" +
                 enter +
                 "Mogelijk gemaakt door EasyRes™";
+            }
+            else if (user == "uitbater")
+            {
+                mailmsg =
+                "Beste " + reservatie.Naam + "," +
+                enter +
+                enter +
+                "Het restaurant waarbij u een reservatie maakt heeft uw reservatie met onderstaande gegevens geannuleerd." +
+                enter +
+                "Als dit onverwachts is, gelieve contact op te nemen met het restaurant." +
+                enter +
+                enter +
+                "<ul>" +
+                "<li> Op naam van: " + reservatie.Naam + "</li>" +
+                "<li> Bij restaurant: " + reservatie.Restaurant.Naam + "</li>" +
+                "<li> Aantal personen: " + reservatie.AantalPersonen + "</li>" +
+                "<li> Gepland op: " + reservatie.Datum + " om " + reservatie.Tijdstip + "</li>" +
+                "<li> Email adres: " + reservatie.Email + "</li>" +
+                "<li> Telefoonnummer: " + reservatie.TelefoonNummer.ToString() + "</li>" +
+                "</ul>" +
+                enter +
+                "Mogelijk gemaakt door EasyRes™";
+            }
+            else
+            {
+                return NotFound();
+            }
 
             emailSender.SendEmailAsync(reservatie.Email, "Annulatie van uw reservatie.", mailmsg).Wait();
             return NoContent();

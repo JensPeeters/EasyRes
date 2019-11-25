@@ -13,14 +13,10 @@ export class ReservatieLijstComponent implements OnInit {
 
   reservaties: IReservatie[];
   restaurantid: number = 1;
-  uitbater: IUitbater;
   aantal: number = 10;
 
   constructor(private ResService : RestaurantService, private MsalService : MsalService) {
-    if(MsalService.isLoggedIn()){
-      MsalService.isUitbater();
-      MsalService.GetUitbaterRestaurantId();
-    }
+    // this.restaurantid = GetUitbaterRestaurantId
    }
 
   async ngOnInit() {
@@ -34,7 +30,7 @@ export class ReservatieLijstComponent implements OnInit {
   }
 
   Annuleer(reservatieId){
-    this.ResService.DeleteReservationByID(reservatieId).subscribe(a => {
+    this.ResService.DeleteReservationByIDasUitbater(reservatieId).subscribe(a => {
       this.ResService.GetReservationsByRestaurantID(this.restaurantid).subscribe(result => {
         this.reservaties = result;
       })

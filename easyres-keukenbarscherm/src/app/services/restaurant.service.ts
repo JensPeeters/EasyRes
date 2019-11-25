@@ -37,7 +37,7 @@ export class RestaurantService {
     return this.http.get<IReservatie>(`${this.common.urlAPI}/reservatie/${id}`);
   }
   
-  DeleteReservationByID(id: number) {
-    return this.http.delete(`${this.common.urlAPI}/reservatie/${id}`);
+  DeleteReservationByIDasUitbater(id: number) {
+    return this.http.delete(`${this.common.urlAPI}/reservatie/${id}?user=uitbater`);
   }
 }
