@@ -1,0 +1,29 @@
+.main-content{
+    padding-top: 30px;
+    width: 60%;
+    margin: auto;
+    text-align: center;
+    justify-items: center;
+}
+.card-text{
+    margin: auto;
+    width: fit-content;
+}
+.custom-control{
+    margin-top: 2px;
+}
+@media screen and (max-width: 740px){
+    .main-content{
+        width: 80%;
+    }
+}
+@media screen and (max-width: 430px){
+    p{
+        font-size: 14px;
+    }
+}
+@media screen and (min-width: 380px){
+    .card-text{
+        display: flex;
+    }
+}

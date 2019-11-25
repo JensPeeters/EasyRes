@@ -94,5 +94,29 @@ namespace easyres_api.Controllers
             }
             return NotFound();
         }
+        [Route("{userId}")]
+        [HttpPut]
+        public ActionResult<User> UpdateGebruiker(string userId, [FromBody] Gebruiker updateGebruiker)
+        {
+            Gebruiker gebruiker = context.Gebruikers.Where(a => a.GebruikersID == userId)
+                                              .FirstOrDefault();
+
+            if (gebruiker == null)
+            {
+                Uitbater uitbater = context.Uitbaters.Where(a => a.GebruikersID == userId)
+                                              .FirstOrDefault();  
+                if (uitbater == null)
+                {
+                    return NotFound($"De gebruiker is niet gevonden.");
+                }
+                else
+                {
+                    return NotFound($"Een uitbater kan deze instelling niet gebruiken.");
+                }
+            }
+            gebruiker.GetFactuurByEmail = updateGebruiker.GetFactuurByEmail;
+            context.SaveChanges();
+            return Ok(gebruiker);
+        }
     }
 }

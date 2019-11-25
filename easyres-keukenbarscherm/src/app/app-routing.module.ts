@@ -12,7 +12,7 @@ const routes: Routes = [
   {path: 'start', component: StartComponent},
   {path: 'keuken', component: KeukenComponent, canActivate: [MsalGuard]},
   {path: 'bar', component: BarComponent, canActivate: [MsalGuard]},
-  {path: 'dashboard', component: ControlePaneelComponent},
+  {path: 'dashboard', component: ControlePaneelComponent, canActivate: [MsalGuard]},
   {path: '', redirectTo: 'start', pathMatch: 'full'},
   {path: '**', redirectTo: 'start', pathMatch: 'full'},
 ];
