@@ -14,8 +14,7 @@ const routes: Routes = [
   {path: 'keuken', component: KeukenComponent, canActivate: [MsalGuard]},
   {path: 'bar', component: BarComponent, canActivate: [MsalGuard]},
   {path: 'dashboard', component: ControlePaneelComponent, canActivate: [MsalGuard]},
-  // MSALGUARD AANZETTEN !!!
-  {path: 'reservaties', component: ReservatieLijstComponent},
+  {path: 'reservaties', component: ReservatieLijstComponent, canActivate: [MsalGuard]},
   {path: '', redirectTo: 'start', pathMatch: 'full'},
   {path: '**', redirectTo: 'start', pathMatch: 'full'},
 ];
