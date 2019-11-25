@@ -1,0 +1,43 @@
+<div *ngIf="reservaties">
+    <div class="empty" *ngIf="isEmpty(reservaties)">
+        <h5>U heeft nog geen reservaties.</h5>
+    </div>
+    <div class="main-content" *ngIf="!isEmpty(reservaties)">
+        <div class="reservatie-template" *ngFor="let reservatie of reservaties| slice:0:aantal;">
+            <div class="modal" tabindex="-1" role="dialog" id="popupModal">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Reservatie verwijderen</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Weet u zeker dat u deze reservatie van {{reservatie.naam}} op {{reservatie.datum}} wilt verwijderen?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Behouden</button>
+                            <button type="button" class="btn btn-outline-danger" data-dismiss="modal" (click)="Annuleer(reservatie.reservatieId)">Verwijderen</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="reservatie-header">
+                        <h4 class="card-title">{{reservatie.naam}}</h4>
+                        <button class="btn-outline-danger btn button-reserve big" data-toggle="modal" data-target="#popupModal">Annuleren</button>
+                        <button class="btn-outline-danger btn button-reserve small" data-toggle="modal" data-target="#popupModal"><i class="fa fa-times fa-lg"></i></button>
+                    </div>
+                    <div class="reservatie-info">
+                        <p class="card-text pers"><strong>Aantal Personen: </strong><br class="br-pers">{{reservatie.aantalPersonen}}</p>
+                        <p class="card-text date"><strong>Datum: </strong><br>{{reservatie.datum}}</p>
+                        <p class="card-text time"><strong>Tijdstip: </strong><br>{{reservatie.tijdstip}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main-footer" *ngIf="aantal<reservaties.length">
+            <button class="btn-sm show-more" (click)="showMore()">Meer weergeven</button>
+        </div>
+    </div>
+</div>

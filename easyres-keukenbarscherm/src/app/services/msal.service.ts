@@ -122,6 +122,15 @@ export class MsalService {
     });
   }
 
+  GetUitbaterRestaurantId(){
+    console.log(this.getUserObjectId());
+    this.userService.isuitbater(this.getUserObjectId()).subscribe(res =>{
+      this.uitbater = res
+    });
+    console.log(this.uitbater.restaurantID);
+    return this.uitbater.restaurantID;
+  }
+
   getUserObjectId() {
     return this.getUser().idToken['oid'];
   }

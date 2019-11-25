@@ -104,3 +104,14 @@ export interface IBestelling {
   etenStatus: boolean;
   drinkenStatus: boolean;
   }
+
+export interface IReservatie {
+  userid: string;
+  naam: string;
+  email: string;
+  telefoonnummer: string;
+  datum: string;
+  tijdstip: string;
+  aantalpersonen: number;
+  restaurant: IRestaurant;
+  }
