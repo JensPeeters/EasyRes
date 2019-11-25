@@ -20,4 +20,7 @@ export class FactuurService {
     return this.http.get<IFactuur[]>(`${this.common.urlAPI}/factuur/${userId}`);
   }
 
+  GetFactuurById(userId: string, factId: number) {
+    return this.http.get<IFactuur>(`${this.common.urlAPI}/factuur/${userId}/factuur/${factId}`);
+  }
 }

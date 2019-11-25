@@ -59,6 +59,23 @@ namespace easyres_api.Controllers
             return facturen;
         }
 
+        [Route("{idGebruiker}/factuur/{idFactuur}")]
+        [HttpGet]
+        public ActionResult<Factuur> GetFactuurById(string idGebruiker, long idFactuur)
+        {
+            Gebruiker gebruiker = context.Gebruikers.Where(a => a.GebruikersID == idGebruiker).FirstOrDefault();
+            if (gebruiker == null)
+                return NotFound();
+            Factuur factuur = context.Facturen
+                                     .Include(a => a.Producten)
+                                     .Include(a => a.Restaurant)
+                                     .Where(a => a.Gebruiker == gebruiker)
+                                     .Where(a => a.Id == idFactuur).LastOrDefault();
+            if (factuur == null)
+                return NotFound();
+            return factuur;
+        }
+
         [Route("{idGebruiker}/{idRes}")]
         [HttpPost]
         public ActionResult<Factuur> GenerateFactuur(string idGebruiker, long idRes, string mail)

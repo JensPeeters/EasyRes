@@ -8,6 +8,6 @@
         </p>
         
         <p class="float-right fullWidth">Totaalprijs: € {{factuur.totaalPrijs | number:'.2'}}</p>
-        <a [routerLink]="" class="fullWidth">Bekijk bestelling >></a>
+        <a [routerLink]="['/factuurmoreinfo', factuur.id]" class="fullWidth">Bekijk bestelling >></a>
     </div>
 </div>

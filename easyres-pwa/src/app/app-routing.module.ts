@@ -17,6 +17,7 @@ import { ScanComponent } from './scan/scan.component';
 import { FactuurComponent } from './factuur/factuur.component';
 import { FacturenComponent } from './facturen/facturen.component';
 import { InstellingenComponent } from './instellingen/instellingen.component';
+import { FactuurMoreInfoComponent } from './factuur-more-info/factuur-more-info.component';
 
 const routes: Routes = [
   {path: 'restaurant', component: RestaurantComponent, data: {animation: 'restaurant'}},
@@ -34,6 +35,7 @@ const routes: Routes = [
   {path: 'profiel', component: ProfielComponent, canActivate: [MsalGuard]},
   {path: 'instellingen', component: InstellingenComponent, canActivate: [MsalGuard]},
   {path: 'facturen', component: FacturenComponent, canActivate: [MsalGuard]},
+  {path: 'factuurmoreinfo/:id', component: FactuurMoreInfoComponent, canActivate: [MsalGuard]},
   {path: '', redirectTo: 'restaurant', pathMatch: 'full', data: {animation: 'restaurant'}},
   {path: '**', redirectTo: 'restaurant', pathMatch: 'full', data: {animation: 'restaurant'}}
 ];
