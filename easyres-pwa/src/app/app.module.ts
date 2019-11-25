@@ -34,6 +34,7 @@ import { FactuurComponent } from './factuur/factuur.component';
 import { FacturenComponent } from './facturen/facturen.component';
 import { FacturenfactuurComponent } from './facturenfactuur/facturenfactuur.component';
 import { InstellingenComponent } from './instellingen/instellingen.component';
+import { FactuurMoreInfoComponent } from './factuur-more-info/factuur-more-info.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { InstellingenComponent } from './instellingen/instellingen.component';
     FactuurComponent,
     FacturenComponent,
     FacturenfactuurComponent,
-    InstellingenComponent
+    InstellingenComponent,
+    FactuurMoreInfoComponent
   ],
   imports: [
     BrowserModule,
