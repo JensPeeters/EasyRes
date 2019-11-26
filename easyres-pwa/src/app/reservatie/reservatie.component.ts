@@ -56,7 +56,7 @@ export class ReservatieComponent implements OnInit {
     this._Activatedroute.paramMap.subscribe(params => {
       this.restaurantId = +params.get('id');
     });
-
+    
     if (this.restaurantId != null) {
       this.ResService.GetRestaurantByID(this.restaurantId).subscribe(result => {
         this.tempReservatie.restaurant = result;
