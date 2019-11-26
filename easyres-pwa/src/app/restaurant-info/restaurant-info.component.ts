@@ -13,6 +13,11 @@ import { IRestaurant } from '../services/common.service';
 })
 export class RestaurantInfoComponent implements OnInit {
 
+  latitude = 51.226897;
+  longitude = 4.0893303;
+  zoom = 13;
+  mapType = 'roadmap';
+
   constructor(private ResService: RestaurantService,  private route: ActivatedRoute, private _location: Location, private analytics: GoogleAnalyticsService) { }
 
   SendEvent(buttonNaam: string) {
