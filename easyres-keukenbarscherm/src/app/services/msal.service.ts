@@ -122,6 +122,13 @@ export class MsalService {
     });
   }
 
+  GetUitbaterRestaurantId(){
+    this.userService.isuitbater(this.getUserObjectId()).subscribe(res =>{
+      this.uitbater = res;
+    });
+    return this.uitbater.restaurantId;
+  }
+
   getUserObjectId() {
     return this.getUser().idToken['oid'];
   }

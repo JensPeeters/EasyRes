@@ -6,6 +6,7 @@ import { KeukenComponent } from './keuken/keuken.component';
 import { BarComponent } from './bar/bar.component';
 import { StartComponent } from './start/start.component';
 import { ControlePaneelComponent } from './controle-paneel/controle-paneel.component';
+import { ReservatieLijstComponent } from './reservatie-lijst/reservatie-lijst.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'keuken', component: KeukenComponent, canActivate: [MsalGuard]},
   {path: 'bar', component: BarComponent, canActivate: [MsalGuard]},
   {path: 'dashboard', component: ControlePaneelComponent, canActivate: [MsalGuard]},
+  {path: 'reservaties', component: ReservatieLijstComponent, canActivate: [MsalGuard]},
   {path: '', redirectTo: 'start', pathMatch: 'full'},
   {path: '**', redirectTo: 'start', pathMatch: 'full'},
 ];

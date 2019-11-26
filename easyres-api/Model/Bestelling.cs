@@ -37,7 +37,7 @@ namespace easyres_api.Model
 
         public bool EtenGereed { get; set; }
         public bool DrinkenGereed { get; set; }
-        public DateTime HuidigeTijd { get; set; }
+        public DateTime HuidigeTijd { get; set; } = DateTime.Now;
         public string EetTijdKlaar { get; set; }
         public string DrinkTijdKlaar { get; set; }
         public bool EtenStatus { get; set; }
