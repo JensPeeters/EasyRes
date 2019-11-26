@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { IBestelling } from '../services/common.service';
+import { UserService, IUitbater } from '../services/user.service';
+import { MsalService } from '../services/msal.service';
 
 @Component({
   selector: 'app-keuken',
@@ -19,22 +21,29 @@ export class KeukenComponent implements OnInit {
 
   today = new Date();
 
-  constructor(private serv: DataService) { }
+  uitbater: IUitbater;
+
+  constructor(private serv: DataService, private MsalService : MsalService, private userService: UserService) { }
 
   ngOnInit() {
-    this.serv.GetAlleVoedingsbestellingen().subscribe(result => {
-      this.Bestellingen = result;
-      this.Checklist();
-      setInterval(() => {
-        this.today = new Date();
-     }, 1000);
-    });
+    if (this.MsalService.isLoggedIn()){
+      this.userService.isuitbater(this.MsalService.getUserObjectId()).subscribe(res =>{
+        this.uitbater = res;
+        this.serv.GetAlleVoedingsbestellingen(this.uitbater.restaurantId).subscribe(result => {
+          this.Bestellingen = result;
+          this.Checklist();
+          setInterval(() => {
+            this.today = new Date();
+         }, 1000);
+        });
+      });
+    }
   }
 
   Back(bestelling: IBestelling) {
     bestelling.etenGereed = false;
-    this.serv.Putbestelling(bestelling).subscribe(res => {
-      this.serv.GetAlleVoedingsbestellingen().subscribe(result => {
+    this.serv.Putbestelling(bestelling, this.uitbater.restaurantId).subscribe(res => {
+      this.serv.GetAlleVoedingsbestellingen(this.uitbater.restaurantId).subscribe(result => {
         this.Bestellingen = result;
         this.Checklist();
       });
@@ -45,8 +54,8 @@ export class KeukenComponent implements OnInit {
     bestelling.etenGereed = true;
     bestelling.eetTijdKlaar = this.today;
     this.today = bestelling.eetTijdKlaar;
-    this.serv.Putbestelling(bestelling).subscribe(res => {
-      this.serv.GetAlleVoedingsbestellingen().subscribe(result => {
+    this.serv.Putbestelling(bestelling, this.uitbater.restaurantId).subscribe(res => {
+      this.serv.GetAlleVoedingsbestellingen(this.uitbater.restaurantId).subscribe(result => {
         this.Bestellingen = result;
         this.Checklist();
       });
@@ -54,29 +63,31 @@ export class KeukenComponent implements OnInit {
   }
 
   Cancel(bestelling: IBestelling) {
-    bestelling.etenStatus = false;
-    this.serv.Putbestelling(bestelling).subscribe(res => {
-      this.serv.GetAlleDrankbestellingen().subscribe(result => {
+    bestelling.etenStatus = true;
+    this.serv.Putbestelling(bestelling, this.uitbater.restaurantId).subscribe(res => {
+      this.serv.GetAlleVoedingsbestellingen(this.uitbater.restaurantId).subscribe(result => {
         this.Bestellingen = result;
         this.Checklist();
       });
     });
+    
   }
 
   Checklist() {
     this.DoneList = [];
     this.ProcessList = [];
     this.CancelList = [];
-
     this.Bestellingen.forEach(element => {
-      if (element.etenGereed) {
-        this.DoneList.push(element);
+      if(!element.etenStatus && element.etenswaren != null){
+        if (element.etenGereed) {
+          this.DoneList.push(element);
+        }
+        else{
+          this.ProcessList.push(element);
+        }
       }
-      else if (element.etenStatus == false){
+      else{
         this.CancelList.push(element);
-      }
-      else if (element.etenswaren.length != 0) {
-        this.ProcessList.push(element);
       }
     });
   }

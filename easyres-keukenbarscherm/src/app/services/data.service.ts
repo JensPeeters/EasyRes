@@ -11,19 +11,19 @@ export class DataService {
   url: string;
 
   constructor(private http: HttpClient) {
-    this.url = "https://easyres-api.azurewebsites.net/api/bestelling/restaurant/2";
-    //this.url = "https://localhost:44315/api/bestelling/restaurant/2";
+    this.url = "https://easyres-api.azurewebsites.net/api";
+    //this.url = "https://localhost:44315/api";
    }
 
-  GetAlleDrankbestellingen() {
-    return this.http.get<IBestelling[]>(this.url+`/bar`);
+  GetAlleDrankbestellingen(restaurantId: number) {
+    return this.http.get<IBestelling[]>(`${this.url}/bestelling/restaurant/${restaurantId}/bar`);
   }
 
-  GetAlleVoedingsbestellingen() {
-    return this.http.get<IBestelling[]>(this.url+`/keuken`);
+  GetAlleVoedingsbestellingen(restaurantId: number) {
+    return this.http.get<IBestelling[]>(`${this.url}/bestelling/restaurant/${restaurantId}/keuken`);
   }
 
-  Putbestelling(bestelling: IBestelling) {
-    return this.http.put<IBestelling>(this.url, bestelling);
+  Putbestelling(bestelling: IBestelling, restaurantId: number) {
+    return this.http.put<IBestelling>(`${this.url}/bestelling/restaurant/${restaurantId}`, bestelling);
   }
 }
