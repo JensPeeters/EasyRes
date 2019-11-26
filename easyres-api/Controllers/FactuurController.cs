@@ -129,6 +129,7 @@ namespace easyres_api.Controllers
             pdfGenerator.GeneratePDF(factuur);
             if (gebruiker.GetFactuurByEmail)
             {
+                //Normaal stuur je de renderer niet mee
                 string msg = "In bijlage vindt u de factuur van u bezoek aan " + factuur.Restaurant.Naam + ".";
                 emailSender.SendEmailAsync(mail,
                                            "Factuur van " + factuur.Restaurant.Naam,
