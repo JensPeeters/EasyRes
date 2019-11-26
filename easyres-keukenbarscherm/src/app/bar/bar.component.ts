@@ -26,16 +26,18 @@ export class BarComponent implements OnInit {
   constructor(private serv: DataService, private MsalService : MsalService, private userService: UserService) { }
 
   ngOnInit() {
-    this.userService.isuitbater(this.MsalService.getUserObjectId()).subscribe(res =>{
-      this.uitbater = res;
-      this.serv.GetAlleDrankbestellingen(this.uitbater.restaurantId).subscribe(result => {
-        this.Bestellingen = result;
-        this.Checklist();
-        setInterval(() => {
-          this.today = new Date();
-       }, 1000);
+    if (this.MsalService.isLoggedIn()){
+      this.userService.isuitbater(this.MsalService.getUserObjectId()).subscribe(res =>{
+        this.uitbater = res;
+        this.serv.GetAlleDrankbestellingen(this.uitbater.restaurantId).subscribe(result => {
+          this.Bestellingen = result;
+          this.Checklist();
+          setInterval(() => {
+            this.today = new Date();
+         }, 1000);
+        });
       });
-    });
+    }
   }
 
   Back(bestelling: IBestelling) {

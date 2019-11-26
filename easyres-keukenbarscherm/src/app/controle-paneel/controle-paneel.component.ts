@@ -20,13 +20,15 @@ export class ControlePaneelComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.userService.isuitbater(this.MsalService.getUserObjectId()).subscribe(res =>{
-      this.restaurantId = res.restaurantId;
-      this.ResService.GetRestaurantByID(this.restaurantId).subscribe(res => {
-        this.currentSettingsRestaurant = res;
-        this.updatedSettingsRestaurant = res;
-      })
-    });
+    if (this.MsalService.isLoggedIn()){
+      this.userService.isuitbater(this.MsalService.getUserObjectId()).subscribe(res =>{
+        this.restaurantId = res.restaurantId;
+        this.ResService.GetRestaurantByID(this.restaurantId).subscribe(res => {
+          this.currentSettingsRestaurant = res;
+          this.updatedSettingsRestaurant = res;
+        })
+      });
+    }
   }
 
   submit(){
