@@ -3,6 +3,7 @@ using MigraDoc.DocumentObjectModel;
 using MigraDoc.DocumentObjectModel.Shapes;
 using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.Rendering;
+using PdfSharp.Pdf;
 
 namespace dotNETAcademyServer.Services
 {
@@ -28,7 +29,16 @@ namespace dotNETAcademyServer.Services
             this.renderer = new PdfDocumentRenderer();
             renderer.Document = document;
             renderer.RenderDocument();
-            renderer.PdfDocument.Save("./Bestellingen/factuur" + factuur.Id + ".pdf");
+            ///Deze lijn hoort normaal uitgevoerd, maar we hebben geen locatie om deze op te slagen op het moment
+            //renderer.PdfDocument.Save("./Bestellingen/factuur" + factuur.Id + ".pdf");
+        }
+        /// <summary>
+        /// Deze methode is normaal niet nodig als je het document kan opslaan
+        /// </summary>
+        /// <returns></returns>
+        public PdfDocument GetDocument()
+        {
+            return renderer.PdfDocument;
         }
         private void CreateDocument()
         {
