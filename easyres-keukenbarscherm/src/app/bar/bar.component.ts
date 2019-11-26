@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
-import { IBestelling } from '../services/common.service';
+import { IBestelling, IRestaurant } from '../services/common.service';
+import { UserService, IUitbater } from '../services/user.service';
+import { MsalService } from '../services/msal.service';
 
 @Component({
   selector: 'app-bar',
@@ -19,22 +21,27 @@ export class BarComponent implements OnInit {
 
   today = new Date();
 
-  constructor(private serv: DataService) { }
+  uitbater: IUitbater;
+
+  constructor(private serv: DataService, private MsalService : MsalService, private userService: UserService) { }
 
   ngOnInit() {
-    this.serv.GetAlleDrankbestellingen().subscribe(result => {
-      this.Bestellingen = result;
-      this.Checklist();
-      setInterval(() => {
-        this.today = new Date();
-     }, 1000);
+    this.userService.isuitbater(this.MsalService.getUserObjectId()).subscribe(res =>{
+      this.uitbater = res;
+      this.serv.GetAlleDrankbestellingen(this.uitbater.restaurantId).subscribe(result => {
+        this.Bestellingen = result;
+        this.Checklist();
+        setInterval(() => {
+          this.today = new Date();
+       }, 1000);
+      });
     });
   }
 
   Back(bestelling: IBestelling) {
     bestelling.drinkenGereed = false;
-    this.serv.Putbestelling(bestelling).subscribe(res => {
-      this.serv.GetAlleDrankbestellingen().subscribe(result => {
+    this.serv.Putbestelling(bestelling, this.uitbater.restaurantId).subscribe(res => {
+      this.serv.GetAlleDrankbestellingen(this.uitbater.restaurantId).subscribe(result => {
         this.Bestellingen = result;
         this.Checklist();
       });
@@ -45,8 +52,8 @@ export class BarComponent implements OnInit {
     bestelling.drinkenGereed = true;
     bestelling.drinkTijdKlaar = this.today;
     this.today = bestelling.drinkTijdKlaar;
-    this.serv.Putbestelling(bestelling).subscribe(res => {
-      this.serv.GetAlleDrankbestellingen().subscribe(result => {
+    this.serv.Putbestelling(bestelling, this.uitbater.restaurantId).subscribe(res => {
+      this.serv.GetAlleDrankbestellingen(this.uitbater.restaurantId).subscribe(result => {
         this.Bestellingen = result;
         this.Checklist();
       });
@@ -54,9 +61,9 @@ export class BarComponent implements OnInit {
   }
 
   Cancel(bestelling: IBestelling) {
-    bestelling.drinkenStatus = false;
-    this.serv.Putbestelling(bestelling).subscribe(res => {
-      this.serv.GetAlleDrankbestellingen().subscribe(result => {
+    bestelling.drinkenStatus = true;
+    this.serv.Putbestelling(bestelling, this.uitbater.restaurantId).subscribe(res => {
+      this.serv.GetAlleDrankbestellingen(this.uitbater.restaurantId).subscribe(result => {
         this.Bestellingen = result;
         this.Checklist();
       });
@@ -69,14 +76,16 @@ export class BarComponent implements OnInit {
     this.CancelList = [];
 
     this.Bestellingen.forEach(element => {
-      if (element.drinkenGereed && element.dranken != null) {
-        this.DoneList.push(element);
+      if(!element.drinkenStatus && element.dranken != null){
+        if (element.drinkenGereed) {
+          this.DoneList.push(element);
+        }
+        else{
+          this.ProcessList.push(element);
+        }
       }
-      else if (element.drinkenStatus == false){
+      else{
         this.CancelList.push(element);
-      }
-      else if (element.dranken.length != 0 && element.drinkenGereed == false) {
-        this.ProcessList.push(element);
       }
     });
   }
