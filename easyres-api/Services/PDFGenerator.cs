@@ -83,15 +83,15 @@ namespace dotNETAcademyServer.Services
             //Each MigraDoc document needs at least one section.
             Section section = this.document.AddSection();
 
-            // Put a logo in the header
-            Image image = section.Headers.Primary.AddImage("./Images/easyres.png");
-            image.Height = "2.5cm";
-            image.LockAspectRatio = true;
-            image.RelativeVertical = RelativeVertical.Line;
-            image.RelativeHorizontal = RelativeHorizontal.Margin;
-            image.Top = ShapePosition.Top;
-            image.Left = ShapePosition.Left;
-            image.WrapFormat.Style = WrapStyle.Through;
+            //// Put a logo in the header
+            //Image image = section.Headers.Primary.AddImage("./Images/easyres.png");
+            //image.Height = "2.5cm";
+            //image.LockAspectRatio = true;
+            //image.RelativeVertical = RelativeVertical.Line;
+            //image.RelativeHorizontal = RelativeHorizontal.Margin;
+            //image.Top = ShapePosition.Top;
+            //image.Left = ShapePosition.Left;
+            //image.WrapFormat.Style = WrapStyle.Through;
 
             // Create footer
             Paragraph paragraph = section.Footers.Primary.AddParagraph();
