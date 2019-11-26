@@ -22,5 +22,5 @@ export class UserService {
 
 export interface IUitbater {
   gebruikersID: string;
-  restaurantID: number;
+  restaurantId: number;
 }

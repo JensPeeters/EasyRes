@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RestaurantService } from '../services/restaurant.service';
 import { MsalService } from '../services/msal.service';
 import { IReservatie } from '../services/common.service';
-import { IUitbater } from '../services/user.service';
+import { IUitbater, UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-reservatie-lijst',
@@ -12,17 +12,21 @@ import { IUitbater } from '../services/user.service';
 export class ReservatieLijstComponent implements OnInit {
 
   reservaties: IReservatie[];
-  restaurantid: number = 1;
+  uitbater: IUitbater;
   aantal: number = 10;
 
-  constructor(private ResService : RestaurantService, private MsalService : MsalService) {
-    // this.restaurantid = GetUitbaterRestaurantId
+  constructor(private ResService : RestaurantService, private MsalService : MsalService, private userService: UserService) {
+    
    }
 
   async ngOnInit() {
-    this.ResService.GetReservationsByRestaurantID(this.restaurantid).subscribe(res => {
-      this.reservaties = res;
-    })
+    this.userService.isuitbater(this.MsalService.getUserObjectId()).subscribe(res =>{
+      this.uitbater = res;
+      this.ResService.GetReservationsByRestaurantID(this.uitbater.restaurantId).subscribe(res => {
+        this.reservaties = res;
+      })
+    });
+
   }
 
   isUserLoggedIn(){
@@ -31,7 +35,7 @@ export class ReservatieLijstComponent implements OnInit {
 
   Annuleer(reservatieId){
     this.ResService.DeleteReservationByIDasUitbater(reservatieId).subscribe(a => {
-      this.ResService.GetReservationsByRestaurantID(this.restaurantid).subscribe(result => {
+      this.ResService.GetReservationsByRestaurantID(this.uitbater.restaurantId).subscribe(result => {
         this.reservaties = result;
       })
     });
