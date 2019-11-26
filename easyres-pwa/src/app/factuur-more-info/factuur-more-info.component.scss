@@ -1,8 +1,14 @@
+.main-content{
+    display: grid;
+    grid-template-columns: 15% 70% 15%;
+}
 div{
     text-align: center;
 }
 .card{
     padding: 15px;
+    margin-top: 25px;
+    grid-column: 2;
 }
 .factuurInfo{
     text-align: left;

@@ -1,34 +1,36 @@
-<div class="card" *ngIf="factuur">
-    <div class="card-body">
-        <button class="btn btn-secondary" [routerLink]="['/facturen']"><i class="fas fa-arrow-alt-circle-left"></i> Terug</button>
-        <h4 class="card-title">Factuur</h4>
-        <h5>{{factuur.restaurant.naam}}</h5>
-        <div class="producten card-text" *ngIf="factuur.producten">
-            <p class="factuurInfo">
-                Factuurnummer: {{factuur.id}} <br>
-                Factuurdatum: {{factuur.datum | date: 'd/MM/yyyy'}} - {{factuur.datum | date: 'H:mm'}} 
-            </p>
-            <table>
-                <tr>
-                    <th style="width: 10%;">Aantal</th>
-                    <th style="width: 40%;">Naam</th>
-                    <th style="width: 25%;">Prijs</th>
-                    <th style="width: 25%;">Tot.</th>
-                </tr> 
-                <tr *ngFor="let product of factuur.producten;">
-                    <td>{{product.aantal}}</td>
-                    <td>{{product.naam}}</td>
-                    <td>€ {{product.prijs | number:'.2'}} </td>
-                    <td>€ {{product.prijs*product.aantal | number:'.2'}} </td>
-                </tr>
-                <tr>
-                    <th>Totaal:</th>
-                    <td></td>
-                    <td></td>
-                    <th>€ {{factuur.totaalPrijs | number:'.2'}}</th>
-                </tr>
-            </table>
+<div class="main-content">
+    <div class="card" *ngIf="factuur">
+        <div class="card-body">
+            <button class="btn btn-secondary" [routerLink]="['/facturen']"><i class="fas fa-arrow-alt-circle-left"></i> Terug</button>
+            <h4 class="card-title">Factuur</h4>
+            <h5>{{factuur.restaurant.naam}}</h5>
+            <div class="producten card-text" *ngIf="factuur.producten">
+                <p class="factuurInfo">
+                    Factuurnummer: {{factuur.id}} <br>
+                    Factuurdatum: {{factuur.datum | date: 'd/MM/yyyy'}} - {{factuur.datum | date: 'H:mm'}} 
+                </p>
+                <table>
+                    <tr>
+                        <th style="width: 10%;">Aantal</th>
+                        <th style="width: 40%;">Naam</th>
+                        <th style="width: 25%;">Prijs</th>
+                        <th style="width: 25%;">Tot.</th>
+                    </tr> 
+                    <tr *ngFor="let product of factuur.producten;">
+                        <td>{{product.aantal}}</td>
+                        <td>{{product.naam}}</td>
+                        <td>€ {{product.prijs | number:'.2'}} </td>
+                        <td>€ {{product.prijs*product.aantal | number:'.2'}} </td>
+                    </tr>
+                    <tr>
+                        <th>Totaal:</th>
+                        <td></td>
+                        <td></td>
+                        <th>€ {{factuur.totaalPrijs | number:'.2'}}</th>
+                    </tr>
+                </table>
+            </div>
+            <hr>
         </div>
-        <hr>
     </div>
 </div>
