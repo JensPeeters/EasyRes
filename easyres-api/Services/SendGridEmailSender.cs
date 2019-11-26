@@ -11,7 +11,7 @@ namespace easyres_api.Services
 {
     public class SendGridEmailSender
     {
-        public async Task SendEmailAsync(string userEmail, string emailSubject, string message, int? factuurId = null)
+        public async Task SendEmailAsync(string userEmail, string emailSubject, string message, int? factuurId = null, MemoryStream stream = null)
         {
             //De render wordt normaal niet meegestuurd
             var apiKey = "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";
@@ -30,21 +30,26 @@ namespace easyres_api.Services
 
             if (factuurId != null)
             {
-                msg.AddAttachment(AddAttachment(factuurId));
+                msg.AddAttachment(AddAttachment(factuurId, stream));
             }
             
             var response = await client.SendEmailAsync(msg);
             
         }
-        public Attachment AddAttachment(int? factuurId)
+        public Attachment AddAttachment(int? factuurId, MemoryStream stream = null)
         {
             if (factuurId == null)
                 return null;
             string fileName = "Factuur" + factuurId + ".pdf";
             /// Standaard moet je de lijn in commentaar doen en die eronder niet, ook moet er standaard het document niet worden meegestuurd
             //byte[] pdfBytes = File.ReadAllBytes("./Bestellingen/" + fileName);
-            byte[] pdfBytes = File.ReadAllBytes("factuur" + factuurId + ".pdf");
-            string pdfBase64 = Convert.ToBase64String(pdfBytes);
+            //byte[] pdfBytes = File.ReadAllBytes("factuur" + factuurId + ".pdf");
+            //string pdfBase64 = Convert.ToBase64String(pdfBytes);
+            byte[] buffer = new byte[stream.Length];
+            stream.Seek(0, SeekOrigin.Begin);
+            stream.Flush();
+            stream.Read(buffer, 0, (int)stream.Length);
+            string pdfBase64 = Convert.ToBase64String(buffer);
             var bestelling = new Attachment()
             {
                 Content = pdfBase64,
