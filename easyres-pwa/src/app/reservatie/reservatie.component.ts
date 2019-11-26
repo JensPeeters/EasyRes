@@ -16,32 +16,33 @@ export class ReservatieComponent implements OnInit {
   restaurantId: number;
 
   tempReservatie: IReservatie =
-  {
-    userid: null,
-    naam: null,
-    datum: null,
-    email: null,
-    telefoonnummer: null,
-    tijdstip: null,
-    aantalpersonen: null,
-    restaurant: null
-  };
+    {
+      userid: null,
+      naam: null,
+      datum: null,
+      email: null,
+      telefoonnummer: null,
+      tijdstip: null,
+      aantalpersonen: null,
+      restaurant: null
+    };
   finalReservatie: IReservatie =
-  {
-    userid: null,
-    naam: null,
-    datum: null,
-    email: null,
-    telefoonnummer: null,
-    tijdstip: null,
-    aantalpersonen: null,
-    restaurant: null
-  };
+    {
+      userid: null,
+      naam: null,
+      datum: null,
+      email: null,
+      telefoonnummer: null,
+      tijdstip: null,
+      aantalpersonen: null,
+      restaurant: null
+    };
   submitted: boolean = false;
+  bezet: boolean = false;
   verified: boolean = false;
   today: Date = new Date();
 
-  constructor(private ResService : RestaurantService, private MsalService: MsalService, 
+  constructor(private ResService: RestaurantService, private MsalService: MsalService,
     private _Activatedroute: ActivatedRoute, private _location: Location, private analytics: GoogleAnalyticsService) {
     this.today.setTime(Date.now());
 
@@ -74,10 +75,21 @@ export class ReservatieComponent implements OnInit {
       this.finalReservatie.userid = this.MsalService.getUserObjectId();
       this.ResService.PostReservation(this.finalReservatie).subscribe(
         a => {
+
           this.submitted = true;
+          this.bezet = false;
           console.log("mail");
-        }
-      );
+
+
+        },
+        err => {
+          if (err.status == 409) {
+            this.submitted = false;
+            console.log("bezet");
+            this.bezet = true;
+          }
+
+        });
     }
     this.SendEvent("Aanmaken Reservatie");
   }

@@ -12,11 +12,12 @@ namespace easyres_api.Controllers
     public class RestaurantController : ControllerBase
     {
         DatabaseContext context;
-        SendGridEmailSender emailSender = new SendGridEmailSender();
+        SendGridEmailSender emailSender;
 
         public RestaurantController(DatabaseContext ctx)
         {
             this.context = ctx;
+            this.emailSender = new SendGridEmailSender();
         }
 
         [HttpGet]
@@ -158,7 +159,7 @@ namespace easyres_api.Controllers
 
         [Route("{id}")]
         [HttpGet]
-        public ActionResult<Restaurant> GetAdvertentie(long id)
+        public ActionResult<Restaurant> GetRestaurant(long id)
         {
             var restaurant = context.Restaurants.Where(a => a.RestaurantId == id).Include(a => a.Menu)
                                         .Include(a => a.Openingsuren)
@@ -217,18 +218,37 @@ namespace easyres_api.Controllers
                                                 .Include(a => a.Openingsuren)
                                                 .Include(a => a.Locatie)
                                                 .Include(a => a.Tafels)
+                                                .Include("Tafels.BezetteMomenten")
                                                 .SingleOrDefault(a => a.RestaurantId == reservatie.Restaurant.RestaurantId);
 
-            Reservatie finalReservatie = new Reservatie();
+            
 
-            finalReservatie.UserId = reservatie.UserId;
-            finalReservatie.Naam = reservatie.Naam;
-            finalReservatie.Email = reservatie.Email;
-            finalReservatie.TelefoonNummer = reservatie.TelefoonNummer;
-            finalReservatie.Datum = reservatie.Datum;
-            finalReservatie.Tijdstip = reservatie.Tijdstip;
-            finalReservatie.AantalPersonen = reservatie.AantalPersonen;
-            finalReservatie.Restaurant = reservatie.Restaurant;
+            if (!CheckVoorPlaats(reservatie, restaurant))
+                return Conflict("Gekozen tijdstip is al volzet.");
+
+            Reservatie finalReservatie = new Reservatie
+            {
+                UserId = reservatie.UserId,
+                Naam = reservatie.Naam,
+                Email = reservatie.Email,
+                TelefoonNummer = reservatie.TelefoonNummer,
+                Datum = reservatie.Datum,
+                Tijdstip = reservatie.Tijdstip,
+                AantalPersonen = reservatie.AantalPersonen,
+                Restaurant = reservatie.Restaurant,
+                TafelNr = reservatie.TafelNr
+            };
+            var tafel = restaurant.Tafels.FirstOrDefault(a => a.TafelNr == finalReservatie.TafelNr);
+            var tijdstipInt = int.Parse((finalReservatie.Tijdstip.Split(':'))[0])+tafel.UrenBezet;
+            var tijdstipString = $"{tijdstipInt}:00";
+            tafel.BezetteMomenten.Add(
+                new Tijdsmoment()
+                {
+                    Datum = finalReservatie.Datum,
+                    Tot = tijdstipString,
+                    Van = finalReservatie.Tijdstip
+                });
+
             restaurant.Reservaties.Add(finalReservatie);
             context.Restaurants.Update(restaurant);
             context.SaveChanges();
@@ -247,14 +267,39 @@ namespace easyres_api.Controllers
                 "<li> Gepland op: " + reservatie.Datum + " om " + reservatie.Tijdstip + "</li>" +
                 "<li> Email adres: " + reservatie.Email + "</li>" +
                 "<li> Telefoonnummer: " + reservatie.TelefoonNummer.ToString() + "</li>" +
-                "</ul>" +
-                enter +
-                "Mogelijk gemaakt door EasyRes™";
+                "</ul>";
 
             emailSender.SendEmailAsync(finalReservatie.Email, "Bevestiging van uw reservatie.", mailmsg).Wait();
             return Created("", reservatie);
         }
 
+        private bool CheckVoorPlaats(Reservatie reservatie, Restaurant restaurant)
+        {
+            var gevraagdeTijdstip = int.Parse((reservatie.Tijdstip.Split(':'))[0]);
 
+            foreach (Tafel tafel in restaurant.Tafels)
+            {
+                if (tafel.Zitplaatsen == reservatie.AantalPersonen)
+                {
+                    if(tafel.BezetteMomenten.Count == 0)
+                    {
+                        reservatie.TafelNr = tafel.TafelNr;
+                        return true;
+                    }
+                    foreach (Tijdsmoment tijdstip in tafel.BezetteMomenten)
+                    {
+                        if (reservatie.Datum == tijdstip.Datum &&
+                            gevraagdeTijdstip >= int.Parse(tijdstip.Tot.Split(':')[0]) ||
+                            reservatie.Datum == tijdstip.Datum &&
+                            gevraagdeTijdstip <= int.Parse(tijdstip.Van.Split(':')[0]) - tafel.UrenBezet)
+                        {
+                            reservatie.TafelNr = tafel.TafelNr;
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
     }
 }

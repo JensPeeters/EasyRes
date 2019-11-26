@@ -13,6 +13,7 @@ namespace easyres_api.Model
         public string Datum { get; set; }
         public string Tijdstip { get; set; }
         public int AantalPersonen { get; set; }
+        public int TafelNr { get; set; }
         public Restaurant Restaurant { get; set; }
     }
 }

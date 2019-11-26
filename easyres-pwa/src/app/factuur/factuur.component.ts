@@ -111,7 +111,7 @@ pay(amount) {
   GenerateFactuur() {
     this.factuurFailed = false;
     this.factuurLoading = true;
-    this.factuurService.GenerateFactuur(this.UserId, this.RestaurantId).subscribe(
+    this.factuurService.GenerateFactuur(this.UserId, this.RestaurantId, this.msalService.getUserEmail()).subscribe(
       res => {
         this.GetFactuur();
       },

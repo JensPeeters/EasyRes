@@ -38,6 +38,7 @@ export interface IFactuur {
 export interface IGebruiker {
   gebruikersID: string;
   favorieten: IRestaurant[];
+  getFactuurByEmail: boolean;
 }
 export interface ILocatie {
   id: number;
