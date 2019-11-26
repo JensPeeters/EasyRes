@@ -1,4 +1,6 @@
-﻿using PdfSharp.Pdf;
+﻿using MigraDoc.DocumentObjectModel;
+using MigraDoc.Rendering;
+using PdfSharp.Pdf;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 using System;
@@ -9,7 +11,7 @@ namespace easyres_api.Services
 {
     public class SendGridEmailSender
     {
-        public async Task SendEmailAsync(string userEmail, string emailSubject, string message, int? factuurId = null, PdfDocument document = null)
+        public async Task SendEmailAsync(string userEmail, string emailSubject, string message, int? factuurId = null)
         {
             //De render wordt normaal niet meegestuurd
             var apiKey = "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";
@@ -26,21 +28,22 @@ namespace easyres_api.Services
                 "<p style='color: grey;'>Mogelijk gemaakt door EasyRes™</p>",
                 "Mogelijk gemaakt door EasyRes™");
 
-            if (factuurId != null && document != null)
+            if (factuurId != null)
             {
                 msg.AddAttachment(AddAttachment(factuurId));
             }
             
             var response = await client.SendEmailAsync(msg);
+            
         }
-        public Attachment AddAttachment(int? factuurId, PdfDocument renderer = null)
+        public Attachment AddAttachment(int? factuurId)
         {
             if (factuurId == null)
                 return null;
             string fileName = "Factuur" + factuurId + ".pdf";
             /// Standaard moet je de lijn in commentaar doen en die eronder niet, ook moet er standaard het document niet worden meegestuurd
             //byte[] pdfBytes = File.ReadAllBytes("./Bestellingen/" + fileName);
-            byte[] pdfBytes = File.ReadAllBytes(renderer.ToString());
+            byte[] pdfBytes = File.ReadAllBytes("factuur" + factuurId + ".pdf");
             string pdfBase64 = Convert.ToBase64String(pdfBytes);
             var bestelling = new Attachment()
             {
