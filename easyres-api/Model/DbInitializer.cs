@@ -362,22 +362,10 @@ namespace easyres_api.Model
                          EtenGereed = false,
                          DrinkenGereed = false,
                          HuidigeTijd = DateTime.Now,
-                         EtenStatus = true,
-                         DrinkenStatus = true
+                         EtenStatus = false,
+                         DrinkenStatus = false
                     }
                 };
-                var gebruiker = new Gebruiker()
-                {
-                    GebruikersID = "0333d8eb-1534-49b9-90a1-83ff212d6b5a",
-                };
-                var sessie = new Sessie()
-                {
-                    Restaurant = restaurants[0],
-                    Gebruiker = gebruiker
-                };
-                context.Sessies.Add(sessie);
-                gebruiker.Sessies.Add(sessie);
-                context.Gebruikers.Add(gebruiker);
                 foreach (Bestelling bestelling in bestellingen)
                 {
                     context.Bestellingen.Add(bestelling);
