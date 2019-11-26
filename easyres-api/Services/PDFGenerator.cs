@@ -30,16 +30,12 @@ namespace dotNETAcademyServer.Services
             renderer.Document = document;
             renderer.RenderDocument();
             ///Deze lijn hoort normaal uitgevoerd, maar we hebben geen locatie om deze op te slagen op het moment
-            //renderer.PdfDocument.Save("./Bestellingen/factuur" + factuur.Id + ".pdf");
+            renderer.PdfDocument.Save("factuur" + factuur.Id + ".pdf");
         }
         /// <summary>
         /// Deze methode is normaal niet nodig als je het document kan opslaan
         /// </summary>
         /// <returns></returns>
-        public PdfDocument GetDocument()
-        {
-            return renderer.PdfDocument;
-        }
         private void CreateDocument()
         {
             this.document = new Document();
