@@ -4,6 +4,7 @@ using MigraDoc.DocumentObjectModel.Shapes;
 using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.Rendering;
 using PdfSharp.Pdf;
+using System.IO;
 
 namespace dotNETAcademyServer.Services
 {
@@ -17,6 +18,7 @@ namespace dotNETAcademyServer.Services
         private Color TableBorder = Colors.Black;
         private Color TableGray = Colors.LightGray;
         private Factuur factuur;
+        MemoryStream stream;
 
         public void GeneratePDF(Factuur factuur)
         {
@@ -30,7 +32,12 @@ namespace dotNETAcademyServer.Services
             renderer.Document = document;
             renderer.RenderDocument();
             ///Deze lijn hoort normaal uitgevoerd, maar we hebben geen locatie om deze op te slagen op het moment
-            renderer.PdfDocument.Save("factuur" + factuur.Id + ".pdf");
+            stream = new MemoryStream();
+            renderer.PdfDocument.Save(stream,false);
+        }
+        public MemoryStream GetStream()
+        {
+            return stream;
         }
         /// <summary>
         /// Deze methode is normaal niet nodig als je het document kan opslaan
