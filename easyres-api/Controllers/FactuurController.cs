@@ -126,8 +126,8 @@ namespace easyres_api.Controllers
             };
             context.Facturen.Add(factuur);
             context.SaveChanges();
-            /*pdfGenerator.GeneratePDF(factuur);
-            if (gebruiker.GetFactuurByEmail)
+            pdfGenerator.GeneratePDF(factuur);
+            /*if (gebruiker.GetFactuurByEmail)
             {
                 //Normaal stuur je de renderer niet mee
                 string msg = "In bijlage vindt u de factuur van u bezoek aan " + factuur.Restaurant.Naam + ".";
