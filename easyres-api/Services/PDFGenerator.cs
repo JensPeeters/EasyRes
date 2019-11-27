@@ -26,8 +26,8 @@ namespace dotNETAcademyServer.Services
             // Create a new MigraDoc document
             CreateDocument();
             DefineStyles();
-            /*
             CreatePage();
+            /*
             FillContent();
             this.renderer = new PdfDocumentRenderer();
             renderer.Document = document;
