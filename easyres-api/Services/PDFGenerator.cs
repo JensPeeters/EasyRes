@@ -25,8 +25,8 @@ namespace dotNETAcademyServer.Services
             this.factuur = factuur;
             // Create a new MigraDoc document
             CreateDocument();
-            /*
             DefineStyles();
+            /*
             CreatePage();
             FillContent();
             this.renderer = new PdfDocumentRenderer();
