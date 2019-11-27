@@ -126,7 +126,7 @@ namespace easyres_api.Controllers
             };
             context.Facturen.Add(factuur);
             context.SaveChanges();
-            pdfGenerator.GeneratePDF(factuur);
+            /*pdfGenerator.GeneratePDF(factuur);
             if (gebruiker.GetFactuurByEmail)
             {
                 //Normaal stuur je de renderer niet mee
@@ -134,7 +134,7 @@ namespace easyres_api.Controllers
                 emailSender.SendEmailAsync(mail,
                                            "Factuur van " + factuur.Restaurant.Naam,
                                            msg,factuur.Id,pdfGenerator.GetStream()).Wait();
-            }
+            }*/
             return Created("", factuur);
         }
     }
