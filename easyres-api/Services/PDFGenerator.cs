@@ -28,12 +28,11 @@ namespace dotNETAcademyServer.Services
             DefineStyles();
             CreatePage();
             FillContent();
-            /*
             this.renderer = new PdfDocumentRenderer();
             renderer.Document = document;
             renderer.RenderDocument();
             ///Deze lijn hoort normaal uitgevoerd, maar we hebben geen locatie om deze op te slagen op het moment
-            stream = new MemoryStream();
+            /*stream = new MemoryStream();
             renderer.PdfDocument.Save(stream,false);
             */
         }
