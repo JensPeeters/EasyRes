@@ -27,8 +27,8 @@ namespace dotNETAcademyServer.Services
             CreateDocument();
             DefineStyles();
             CreatePage();
-            /*
             FillContent();
+            /*
             this.renderer = new PdfDocumentRenderer();
             renderer.Document = document;
             renderer.RenderDocument();
