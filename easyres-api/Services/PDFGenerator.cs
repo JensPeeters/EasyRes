@@ -25,6 +25,7 @@ namespace dotNETAcademyServer.Services
             this.factuur = factuur;
             // Create a new MigraDoc document
             CreateDocument();
+            /*
             DefineStyles();
             CreatePage();
             FillContent();
@@ -34,6 +35,7 @@ namespace dotNETAcademyServer.Services
             ///Deze lijn hoort normaal uitgevoerd, maar we hebben geen locatie om deze op te slagen op het moment
             stream = new MemoryStream();
             renderer.PdfDocument.Save(stream,false);
+            */
         }
         public MemoryStream GetStream()
         {

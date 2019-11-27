@@ -126,7 +126,7 @@ namespace easyres_api.Controllers
             };
             context.Facturen.Add(factuur);
             context.SaveChanges();
-            //pdfGenerator.GeneratePDF(factuur);
+            pdfGenerator.GeneratePDF(factuur);
             if (gebruiker.GetFactuurByEmail)
             {
                 //Normaal stuur je de renderer niet mee
