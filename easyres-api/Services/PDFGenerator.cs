@@ -25,12 +25,12 @@ namespace dotNETAcademyServer.Services
             this.factuur = factuur;
             // Create a new MigraDoc document
             CreateDocument();
-            DefineStyles();
+            //DefineStyles();
             CreatePage();
             FillContent();
             this.renderer = new PdfDocumentRenderer();
             renderer.Document = document;
-            //renderer.RenderDocument();
+            renderer.RenderDocument();
             stream = new MemoryStream();
             renderer.PdfDocument.Save(stream,false);
         }
