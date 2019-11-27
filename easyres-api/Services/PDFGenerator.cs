@@ -26,8 +26,14 @@ namespace dotNETAcademyServer.Services
             // Create a new MigraDoc document
             CreateDocument();
             //DefineStyles();
-            CreatePage();
-            FillContent();
+            //CreatePage();
+            //FillContent();
+            Section section = this.document.AddSection();
+            Paragraph paragraph;
+            paragraph = section.AddParagraph();
+            paragraph.Format.SpaceBefore = "1.25cm";
+            paragraph.AddFormattedText("test");
+
             this.renderer = new PdfDocumentRenderer();
             renderer.Document = document;
             renderer.RenderDocument();
@@ -113,18 +119,18 @@ namespace dotNETAcademyServer.Services
             // Add the title of the restaurant
             paragraph = section.AddParagraph();
             paragraph.Format.SpaceBefore = "1.25cm";
-            //paragraph.Style = "Titel";
+            paragraph.Style = "Titel";
             paragraph.AddFormattedText(factuur.Restaurant.Naam, TextFormat.Bold);
 
             // Add the title on top of the table
             paragraph = section.AddParagraph();
             paragraph.Format.SpaceBefore = "0.5cm";
-            //paragraph.Style = "Reference";
+            paragraph.Style = "Reference";
             paragraph.AddFormattedText("Bestellingen", TextFormat.Bold);
 
             // Create the bestelling table
             this.table = section.AddTable();
-            //this.table.Style = "Table";
+            this.table.Style = "Table";
             this.table.Borders.Color = TableBorder;
             this.table.Borders.Width = 0.25;
             this.table.Borders.Left.Width = 0.5;
