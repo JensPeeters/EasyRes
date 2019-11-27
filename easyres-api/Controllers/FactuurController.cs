@@ -131,12 +131,12 @@ namespace easyres_api.Controllers
             {
                 //Normaal stuur je de renderer niet mee
                 string msg = "In bijlage vindt u de factuur van u bezoek aan " + factuur.Restaurant.Naam + ".";
-                //emailSender.SendEmailAsync(mail,
-                //                           "Factuur van " + factuur.Restaurant.Naam,
-                //                           msg).Wait();
                 emailSender.SendEmailAsync(mail,
-                "Factuur van " + factuur.Restaurant.Naam,
-                                           msg, factuur.Id, pdfGenerator.GetStream()).Wait();
+                                           "Factuur van " + factuur.Restaurant.Naam,
+                                           msg).Wait();
+                //emailSender.SendEmailAsync(mail,
+                //"Factuur van " + factuur.Restaurant.Naam,
+                //                           msg,factuur.Id,pdfGenerator.GetStream()).Wait();
             }
             return Created("", factuur);
         }
