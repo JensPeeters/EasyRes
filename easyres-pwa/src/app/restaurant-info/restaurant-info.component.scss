@@ -41,6 +41,16 @@ li{
 agm-map {
     height: 300px;
 }
+@media screen and (max-width: 445px){
+    agm-map {
+        height: 250px;
+    }
+}
+@media screen and (max-width: 375px){
+    agm-map {
+        height: 200px;
+    }
+}
 @media only screen and (min-width: 400px){
     img{
         max-width: 150px;
