@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommonService {
 
-  urlAPI: string = 'https://easyres-api.azurewebsites.net/api';
-  //urlAPI: string = "https://localhost:44315/api";
+  urlAPI: string = environment.urlAPI;
 
   constructor() { }
 }
@@ -50,24 +50,28 @@ export interface ILocatie {
   postcode: number;
 }
 
-export interface IVoorgerechten {
+export class IVoorgerechten {
   naam: string;
   prijs: number;
+  aantal:number = 0;
 }
 
-export interface IHoofdgerechten {
+export class IHoofdgerechten {
   naam: string;
   prijs: number;
+  aantal:number = 0;
 }
 
-export interface IDranken {
+export class IDranken {
   naam: string;
   prijs: number;
+  aantal:number = 0;
 }
 
-export interface IDessert {
+export class IDessert {
   naam: string;
   prijs: number;
+  aantal:number = 0;
 }
 
 export interface IMenu {
