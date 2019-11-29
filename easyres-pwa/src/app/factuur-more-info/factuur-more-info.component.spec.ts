@@ -22,7 +22,6 @@ describe('FactuurMoreInfoComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(FactuurMoreInfoComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {

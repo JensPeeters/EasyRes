@@ -22,7 +22,6 @@ describe('FavorietenComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(FavorietenComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {

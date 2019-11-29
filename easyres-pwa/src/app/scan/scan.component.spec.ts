@@ -22,7 +22,6 @@ describe('ScanComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ScanComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {

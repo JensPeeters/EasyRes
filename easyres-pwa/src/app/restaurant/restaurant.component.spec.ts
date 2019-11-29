@@ -24,10 +24,10 @@ describe('RestaurantComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(RestaurantComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+    //fixture.detectChanges();
   });
 });
