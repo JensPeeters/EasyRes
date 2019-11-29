@@ -1,26 +1,26 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FacturenComponent } from './facturen.component';
+import { FactuurMoreInfoComponent } from './factuur-more-info.component';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
 import { MsalService } from '../services/msal.service';
-import { FacturenfactuurComponent } from './facturenfactuur/facturenfactuur.component';
+import { FactuurService } from '../services/factuur.service';
+import { RouterModule } from '@angular/router';
 
-describe('FacturenComponent', () => {
-  let component: FacturenComponent;
-  let fixture: ComponentFixture<FacturenComponent>;
+describe('FactuurMoreInfoComponent', () => {
+  let component: FactuurMoreInfoComponent;
+  let fixture: ComponentFixture<FactuurMoreInfoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FacturenComponent, FacturenfactuurComponent ],
+      declarations: [ FactuurMoreInfoComponent ],
       imports: [HttpClientModule, RouterModule.forRoot([])],
-      providers: [MsalService]
+      providers: [MsalService, FactuurService]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FacturenComponent);
+    fixture = TestBed.createComponent(FactuurMoreInfoComponent);
     component = fixture.componentInstance;
   });
 

@@ -1,25 +1,25 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FacturenfactuurComponent } from './facturenfactuur.component';
+import { ReservatieLijstComponent } from './reservatie-lijst.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { MsalService } from '../services/msal.service';
 
-describe('FacturenfactuurComponent', () => {
-  let component: FacturenfactuurComponent;
-  let fixture: ComponentFixture<FacturenfactuurComponent>;
+describe('ReservatieLijstComponent', () => {
+  let component: ReservatieLijstComponent;
+  let fixture: ComponentFixture<ReservatieLijstComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FacturenfactuurComponent ],
       imports: [HttpClientModule, RouterModule.forRoot([])],
+      declarations: [ ReservatieLijstComponent ],
       providers: [MsalService]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FacturenfactuurComponent);
+    fixture = TestBed.createComponent(ReservatieLijstComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

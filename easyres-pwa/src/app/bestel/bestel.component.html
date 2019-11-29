@@ -1,9 +1,19 @@
+<div class="d-flex justify-content-center m-2" *ngIf="menuLoading">
+  <div class="spinner-border justify-content-center" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+<div *ngIf="menuFailed" class="failed">
+  <h5>Het is ons niet gelukt het menu in te laden. Gelieve dit opnieuw te proberen.</h5>
+  <button class="btn btn-danger" (click)="GetRestaurant()">Probeer opnieuw</button>
+</div>
 <div class="button-top-fixed" *ngIf="restaurant">
-  <button class="btn btn-danger" [routerLink]="['/bestel', restaurant.restaurantId, TafelNr, 'bestellingen']">Mijn bestellingen</button>
+  <button class="btn btn-danger" [routerLink]="['/bestel', restaurant.restaurantId, TafelNr, 'bestellingen']">Mijn
+    bestellingen</button>
   <button class="btn btn-danger" [routerLink]="['/bestel', restaurant.restaurantId,TafelNr,'producten']">Bestelde
     producten</button>
 </div>
-<div id="accordion">
+<div id="accordion" *ngIf="restaurant">
   <div class="card">
     <div class="card-header" id="dranken">
       <button class="btn btn-warning" data-toggle="collapse" data-target="#collapseDranken" aria-expanded="true"
@@ -11,13 +21,17 @@
         Dranken <i *ngIf="!buttons[0].state" class="fas fa-plus"></i> <i *ngIf="buttons[0].state"
           class="fas fa-minus"></i></button>
     </div>
-    <div id="collapseDranken" class="collapse hidden" aria-labelledby="dranken" data-parent="#accordion" *ngIf="restaurant">
+    <div id="collapseDranken" class="collapse hidden" aria-labelledby="dranken" data-parent="#accordion">
       <div class="card-body">
         <ul>
           <li *ngFor="let drinken of restaurant.menu.dranken">
             <p>{{drinken.naam}}</p>
             <p>{{drinken.prijs | currency:'€' }}</p>
-            <button class="btn btn-danger" (click)=AddToBar(drinken.naam,drinken.prijs)>Voeg toe</button>
+            <div class="editProduct">
+              <a (click)="RemoveFromBar(drinken)"><i class="fas fa-minus"></i></a>
+              <p>{{drinken.aantal}}</p>
+              <a (click)=AddToBar(drinken)><i class="fas fa-plus"></i></a>
+            </div>
           </li>
         </ul>
       </div>
@@ -30,13 +44,17 @@
         <i *ngIf="buttons[1].state" class="fas fa-minus"></i>
       </button>
     </div>
-    <div id="collapseVoorgerechten" class="collapse hidden" aria-labelledby="voorgerechten" data-parent="#accordion" *ngIf="restaurant">
+    <div id="collapseVoorgerechten" class="collapse hidden" aria-labelledby="voorgerechten" data-parent="#accordion">
       <div class="card-body">
         <ul>
           <li *ngFor="let voorgerecht of restaurant.menu.voorgerechten">
             <p>{{voorgerecht.naam}}</p>
             <p>{{voorgerecht.prijs | currency:'€' }}</p>
-            <button class="btn btn-danger" (click)=AddToKitchen(voorgerecht.naam,voorgerecht.prijs)>Voeg toe</button>
+            <div class="editProduct">
+              <a (click)="RemoveFromKitchen(voorgerecht)"><i class="fas fa-minus"></i></a>
+              <p>{{voorgerecht.aantal}}</p>
+              <a (click)="AddToKitchen(voorgerecht)"><i class="fas fa-plus"></i></a>
+            </div>
           </li>
         </ul>
       </div>
@@ -49,13 +67,17 @@
         <i *ngIf="buttons[2].state" class="fas fa-minus"></i>
       </button>
     </div>
-    <div id="collapseHoofdgerechten" class="collapse hidden" aria-labelledby="hoofdgerechten" data-parent="#accordion" *ngIf="restaurant">
+    <div id="collapseHoofdgerechten" class="collapse hidden" aria-labelledby="hoofdgerechten" data-parent="#accordion">
       <div class="card-body">
         <ul>
           <li *ngFor="let hoofdgerecht of restaurant.menu.hoofdgerechten">
             <p>{{hoofdgerecht.naam}}</p>
             <p>{{hoofdgerecht.prijs | currency:'€' }}</p>
-            <button class="btn btn-danger" (click)=AddToKitchen(hoofdgerecht.naam,hoofdgerecht.prijs)>Voeg toe</button>
+            <div class="editProduct">
+              <a (click)="RemoveFromKitchen(hoofdgerecht)"><i class="fas fa-minus"></i></a>
+              <p>{{hoofdgerecht.aantal}}</p>
+              <a (click)="AddToKitchen(hoofdgerecht)"><i class="fas fa-plus"></i></a>
+            </div>
           </li>
         </ul>
       </div>
@@ -68,13 +90,17 @@
         <i *ngIf="buttons[3].state" class="fas fa-minus"></i>
       </button>
     </div>
-    <div id="collapseDesserts" class="collapse hidden" aria-labelledby="desserts" data-parent="#accordion" *ngIf="restaurant">
+    <div id="collapseDesserts" class="collapse hidden" aria-labelledby="desserts" data-parent="#accordion">
       <div class="card-body">
         <ul>
           <li *ngFor="let dessert of restaurant.menu.desserts">
             <p>{{dessert.naam}}</p>
             <p>{{dessert.prijs | currency:'€' }}</p>
-            <button class="btn btn-danger" (click)=AddToKitchen(dessert.naam,dessert.prijs)>Voeg toe</button>
+            <div class="editProduct">
+              <a (click)="RemoveFromKitchen(dessert)"><i class="fas fa-minus"></i></a>
+              <p>{{dessert.aantal}}</p>
+              <a (click)="AddToKitchen(dessert)"><i class="fas fa-plus"></i></a>
+            </div>
           </li>
         </ul>
       </div>

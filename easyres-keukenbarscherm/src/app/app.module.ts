@@ -13,6 +13,7 @@ import { MsalService } from './services/msal.service';
 import { StartComponent } from './start/start.component';
 import { UserService } from './services/user.service';
 import { ControlePaneelComponent } from './controle-paneel/controle-paneel.component';
+import { ReservatieLijstComponent } from './reservatie-lijst/reservatie-lijst.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ControlePaneelComponent } from './controle-paneel/controle-paneel.compo
     BarComponent,
     StartComponent,
     ControlePaneelComponent,
+    ReservatieLijstComponent,
   ],
   imports: [
     BrowserModule,

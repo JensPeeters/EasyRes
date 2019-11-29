@@ -23,7 +23,6 @@ describe('BesteldeProductenComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(BesteldeProductenComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {

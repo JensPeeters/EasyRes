@@ -1,26 +1,25 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
-import { ScanComponent } from './scan.component';
+import { FacturenfactuurComponent } from './facturenfactuur.component';
 import { HttpClientModule } from '@angular/common/http';
-import { MsalService } from '../services/msal.service';
 import { RouterModule } from '@angular/router';
+import { MsalService } from '../../services/msal.service';
 
-describe('ScanComponent', () => {
-  let component: ScanComponent;
-  let fixture: ComponentFixture<ScanComponent>;
+describe('FacturenfactuurComponent', () => {
+  let component: FacturenfactuurComponent;
+  let fixture: ComponentFixture<FacturenfactuurComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ZXingScannerModule, RouterModule.forRoot([]), HttpClientModule],
-      declarations: [ ScanComponent ],
+      declarations: [ FacturenfactuurComponent ],
+      imports: [HttpClientModule, RouterModule.forRoot([])],
       providers: [MsalService]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ScanComponent);
+    fixture = TestBed.createComponent(FacturenfactuurComponent);
     component = fixture.componentInstance;
   });
 

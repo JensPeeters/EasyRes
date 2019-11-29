@@ -32,7 +32,9 @@ import { UserService } from './services/user.service';
 import { GoogleAnalyticsService } from './services/google-analytics.service';
 import { FactuurComponent } from './factuur/factuur.component';
 import { FacturenComponent } from './facturen/facturen.component';
-import { FacturenfactuurComponent } from './facturenfactuur/facturenfactuur.component';
+import { FacturenfactuurComponent } from './facturen/facturenfactuur/facturenfactuur.component';
+import { InstellingenComponent } from './instellingen/instellingen.component';
+import { FactuurMoreInfoComponent } from './factuur-more-info/factuur-more-info.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { FacturenfactuurComponent } from './facturenfactuur/facturenfactuur.comp
     ScanComponent,
     FactuurComponent,
     FacturenComponent,
-    FacturenfactuurComponent
+    FacturenfactuurComponent,
+    InstellingenComponent,
+    FactuurMoreInfoComponent
   ],
   imports: [
     BrowserModule,
