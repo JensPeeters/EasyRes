@@ -25,15 +25,9 @@ namespace dotNETAcademyServer.Services
             this.factuur = factuur;
             // Create a new MigraDoc document
             CreateDocument();
-            //DefineStyles();
-            //CreatePage();
-            //FillContent();
-            Section section = this.document.AddSection();
-            Paragraph paragraph;
-            paragraph = section.AddParagraph();
-            paragraph.Format.SpaceBefore = "1.25cm";
-            paragraph.AddFormattedText("test");
-
+            DefineStyles();
+            CreatePage();
+            FillContent();
             this.renderer = new PdfDocumentRenderer();
             renderer.Document = document;
             renderer.RenderDocument();

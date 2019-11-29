@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RestaurantService } from '../services/restaurant.service';
 import { ActivatedRoute } from '@angular/router';
-import { NgForOf } from '@angular/common';
 import { BestellingService } from '../services/bestelling.service';
 import { MsalService } from '../services/msal.service';
 import { IRestaurant, IProduct } from '../services/common.service';
@@ -12,10 +11,11 @@ import { IRestaurant, IProduct } from '../services/common.service';
   styleUrls: ['./bestel.component.scss']
 })
 export class BestelComponent implements OnInit {
-  besteldProduct: IProduct;
   restaurant: IRestaurant;
   UserId: string;
   TafelNr: number;
+  menuLoading: boolean = true;
+  menuFailed: boolean = false;
   buttons = [
     {
       type: 'Dranken',
@@ -41,18 +41,31 @@ export class BestelComponent implements OnInit {
 
   constructor(private resServ: RestaurantService, private route: ActivatedRoute,
               private bestelServ: BestellingService, private msalService: MsalService) { }
-
+  restuarantId;
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id != null) {
-      this.resServ.GetRestaurantByID(Number(id)).subscribe(restaurant => {
-        this.restaurant = restaurant;
-      });
-    }
+    this.restuarantId = this.route.snapshot.paramMap.get('id');
+    this.GetRestaurant();
     this.bestelServ.bestelling.tafelNr = Number(this.route.snapshot.paramMap.get('TafelNr'));
     this.TafelNr = this.bestelServ.bestelling.tafelNr;
     if (this.msalService.isLoggedIn()) {
       this.GetUserObjectId();
+    }
+  }
+  GetRestaurant(){
+    if (this.restuarantId != null) {
+      this.menuFailed = false;
+      this.menuLoading = true;
+      this.resServ.GetRestaurantByID(Number(this.restuarantId)).subscribe(restaurant => {
+        this.restaurant = restaurant;
+        this.LoadBarProducts();
+        this.LoadKitchenProducts();
+      },
+      err => {
+        this.menuFailed = true;
+      },
+      () => {
+        this.menuLoading = false;
+      });
     }
   }
   GetUserObjectId() {
@@ -72,29 +85,83 @@ export class BestelComponent implements OnInit {
       }
     }
   }
-  AddToKitchen(product: string, kost: number) {
-    this.besteldProduct = {
-        aantal: 1,
-        naam: product,
-        prijs: kost
-      };
-    if (this.bestelServ.bestelling.etenswaren.find(e => e.naam == this.besteldProduct.naam) != null) {
-      this.bestelServ.bestelling.etenswaren.find(e => e.naam == this.besteldProduct.naam).aantal++;
+  AddToKitchen(product: IProduct) {
+    if (this.bestelServ.bestelling.etenswaren.find(e => e.naam == product.naam) != null) {
+      this.bestelServ.bestelling.etenswaren.find(e => e.naam == product.naam).aantal++;
     } else {
-      this.bestelServ.bestelling.etenswaren.push(this.besteldProduct);
+      var besteldProduct: IProduct = {
+        aantal: 1,
+        naam: product.naam,
+        prijs: product.prijs
+      };
+      this.bestelServ.bestelling.etenswaren.push(besteldProduct);
+    }
+    this.UpdateKitchenProduct(product);
+  }
+  RemoveFromKitchen(product: IProduct){
+    var tempEten = this.bestelServ.bestelling.etenswaren.find(e => e.naam == product.naam);
+    if (tempEten != null) {
+      if(tempEten.aantal <= 1){
+        const index: number = this.bestelServ.bestelling.etenswaren.indexOf(tempEten);
+        if(index != -1)
+          this.bestelServ.bestelling.etenswaren.splice(index, 1);
+      }
+      else{
+        this.bestelServ.bestelling.etenswaren.find(e => e.naam == tempEten.naam).aantal--;
+      }   
+    }
+    this.UpdateKitchenProduct(product);
+  }
+  AddToBar(product: IProduct) {
+    if (this.bestelServ.bestelling.dranken.find(e => e.naam == product.naam) != null) {
+      this.bestelServ.bestelling.dranken.find(e => e.naam == product.naam).aantal++;
+    } else {
+      var besteldProduct: IProduct = {
+        aantal: 1,
+        naam: product.naam,
+        prijs: product.prijs
+      };
+      this.bestelServ.bestelling.dranken.push(besteldProduct);
+    }
+    this.restaurant.menu.dranken.find(e => e.naam == product.naam).aantal++;
+  }
+  RemoveFromBar(product: IProduct){
+    var tempDrinken = this.bestelServ.bestelling.dranken.find(e => e.naam == product.naam);
+    if (tempDrinken != null) {
+      if(tempDrinken.aantal <= 1){
+        const index: number = this.bestelServ.bestelling.dranken.indexOf(tempDrinken);
+        if(index != -1)
+          this.bestelServ.bestelling.dranken.splice(index, 1);
+      }
+      else{
+        this.bestelServ.bestelling.dranken.find(e => e.naam == tempDrinken.naam).aantal--;
+      }   
+      this.restaurant.menu.dranken.find(e => e.naam == product.naam).aantal--;
     }
   }
-  AddToBar(product: string, kost: number) {
-    this.besteldProduct = {
-        aantal: 1,
-        naam: product,
-        prijs: kost
-      };
-
-    if (this.bestelServ.bestelling.dranken.find(e => e.naam == this.besteldProduct.naam) != null) {
-      this.bestelServ.bestelling.dranken.find(e => e.naam == this.besteldProduct.naam).aantal++;
-    } else {
-      this.bestelServ.bestelling.dranken.push(this.besteldProduct);
+  UpdateKitchenProduct(product: IProduct){
+    var tempProduct = this.bestelServ.bestelling.etenswaren.find(e => e.naam == product.naam);
+    if(tempProduct != null){
+      product.aantal = tempProduct.aantal;
     }
+    else{
+      product.aantal = 0;
+    }
+  }
+  LoadBarProducts(){
+    this.bestelServ.bestelling.dranken.forEach(element => {
+      this.restaurant.menu.dranken.find(e => e.naam == element.naam).aantal = element.aantal;
+    });
+  }
+  LoadKitchenProducts(){
+    this.bestelServ.bestelling.etenswaren.forEach(element => {
+      var tempProduct = this.restaurant.menu.voorgerechten.find(e => e.naam == element.naam);
+      if(tempProduct == null)
+        tempProduct = this.restaurant.menu.hoofdgerechten.find(e => e.naam == element.naam);
+      if(tempProduct == null)
+        tempProduct = this.restaurant.menu.desserts.find(e => e.naam == element.naam);
+      if(tempProduct != null)
+        tempProduct.aantal = element.aantal;
+    });
   }
 }
