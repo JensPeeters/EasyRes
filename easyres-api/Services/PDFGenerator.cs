@@ -4,6 +4,7 @@ using MigraDoc.DocumentObjectModel.Shapes;
 using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.Rendering;
 using PdfSharp.Pdf;
+using System.IO;
 
 namespace dotNETAcademyServer.Services
 {
@@ -17,6 +18,7 @@ namespace dotNETAcademyServer.Services
         private Color TableBorder = Colors.Black;
         private Color TableGray = Colors.LightGray;
         private Factuur factuur;
+        MemoryStream stream;
 
         public void GeneratePDF(Factuur factuur)
         {
@@ -29,17 +31,17 @@ namespace dotNETAcademyServer.Services
             this.renderer = new PdfDocumentRenderer();
             renderer.Document = document;
             renderer.RenderDocument();
-            ///Deze lijn hoort normaal uitgevoerd, maar we hebben geen locatie om deze op te slagen op het moment
-            //renderer.PdfDocument.Save("./Bestellingen/factuur" + factuur.Id + ".pdf");
+            stream = new MemoryStream();
+            renderer.PdfDocument.Save(stream,false);
+        }
+        public MemoryStream GetStream()
+        {
+            return stream;
         }
         /// <summary>
         /// Deze methode is normaal niet nodig als je het document kan opslaan
         /// </summary>
         /// <returns></returns>
-        public PdfDocument GetDocument()
-        {
-            return renderer.PdfDocument;
-        }
         private void CreateDocument()
         {
             this.document = new Document();
@@ -83,15 +85,15 @@ namespace dotNETAcademyServer.Services
             //Each MigraDoc document needs at least one section.
             Section section = this.document.AddSection();
 
-            // Put a logo in the header
-            Image image = section.Headers.Primary.AddImage("./Images/easyres.png");
-            image.Height = "2.5cm";
-            image.LockAspectRatio = true;
-            image.RelativeVertical = RelativeVertical.Line;
-            image.RelativeHorizontal = RelativeHorizontal.Margin;
-            image.Top = ShapePosition.Top;
-            image.Left = ShapePosition.Left;
-            image.WrapFormat.Style = WrapStyle.Through;
+            //// Put a logo in the header
+            //Image image = section.Headers.Primary.AddImage("./Images/easyres.png");
+            //image.Height = "2.5cm";
+            //image.LockAspectRatio = true;
+            //image.RelativeVertical = RelativeVertical.Line;
+            //image.RelativeHorizontal = RelativeHorizontal.Margin;
+            //image.Top = ShapePosition.Top;
+            //image.Left = ShapePosition.Left;
+            //image.WrapFormat.Style = WrapStyle.Through;
 
             // Create footer
             Paragraph paragraph = section.Footers.Primary.AddParagraph();

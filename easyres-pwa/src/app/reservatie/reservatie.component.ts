@@ -58,7 +58,7 @@ export class ReservatieComponent implements OnInit {
       if (this.restaurantId != null) {
         this.ResService.GetRestaurantByID(this.restaurantId).subscribe(result => {
           this.tempReservatie.restaurant = result;
-        })
+        });
       }
     });
 

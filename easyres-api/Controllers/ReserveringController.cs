@@ -76,9 +76,7 @@ namespace easyres_api.Controllers
                 "<li> Gepland op: " + reservatie.Datum + " om " + reservatie.Tijdstip + "</li>" +
                 "<li> Email adres: " + reservatie.Email + "</li>" +
                 "<li> Telefoonnummer: " + reservatie.TelefoonNummer.ToString() + "</li>" +
-                "</ul>" +
-                enter +
-                "Mogelijk gemaakt door EasyRes™";
+                "</ul>";
             }
             else if (user == "uitbater")
             {
@@ -98,9 +96,7 @@ namespace easyres_api.Controllers
                 "<li> Gepland op: " + reservatie.Datum + " om " + reservatie.Tijdstip + "</li>" +
                 "<li> Email adres: " + reservatie.Email + "</li>" +
                 "<li> Telefoonnummer: " + reservatie.TelefoonNummer.ToString() + "</li>" +
-                "</ul>" +
-                enter +
-                "Mogelijk gemaakt door EasyRes™";
+                "</ul>";
             }
             else
             {
