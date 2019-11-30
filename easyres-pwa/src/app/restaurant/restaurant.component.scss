@@ -45,6 +45,9 @@
     margin: auto;
     margin-bottom: 50px;
 }
+.center{
+    grid-area: center;
+}
 .content{
     grid-area: content;
 }
@@ -82,18 +85,18 @@ input::placeholder{
     padding-left: 5px;
 }
 .input-search-restaurant{
-    display: inline-block;
     height: 35px;
     width: 100%;
     border-radius: 5px;
     border: 1px solid grey;
 }
 .dropdown-toggle{
-    width: 100% !important;
+    width: 100%!important;
     color: black;
     background-color: white;
     border: 1px solid grey;
 }
+
 .dropdown-menu{
     width: 100%;
 }
@@ -159,6 +162,13 @@ p{
     height: 0;
     width: 0;
   }
+
+  .filteren {
+    margin-top: 30px;
+  }
+  .filteren > div {
+    margin-top: 40px;
+  }
   
   /* Custom checkbox */
   .checkmark {
@@ -204,11 +214,14 @@ p{
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
   }
-  .typeNormal{
-      margin-top: 65px;
-  }
+
 .right{
     max-width: 200px;
+    display: inline;
+}
+
+.rightaanbevolen{
+    justify-self: end;
 }
 @media screen and (max-width: 1200px){
     input{
