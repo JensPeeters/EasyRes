@@ -251,7 +251,12 @@ p{
     grid-template-areas:
           "left-footer middle-footer right-footer"
           "left-footer middle-footer right-footer"
+          "text-footer text-footer text-footer"
           "logo-footer privacy cookie";
+}
+.text-footer{
+    grid-area: text-footer;
+    width: 100%;
 }
 @media screen and (max-width: 1200px){
     input{
@@ -264,6 +269,9 @@ p{
     }
 }
 @media screen and (max-width: 880px){
+    .input-search-restaurant{
+        max-width: 320px !important;
+    }
     .header-image-text{
         left: 20%;
         right: 20%; 
@@ -282,7 +290,7 @@ p{
         padding-top: 10px;
     }
     input{
-        width: 87%;
+        width: 92%;
     }
     .filteren{
         display: none;
@@ -318,11 +326,6 @@ p{
         width: 80%;
     }
 }
-@media screen and (max-width: 680px){
-    input{
-        width: 86%;
-    }
-}
 @media screen and (max-width: 580px){
     .dropdowns{
         display: block;
@@ -352,6 +355,9 @@ p{
     .header-image-text{
         font-size: 16px;
     }
+    input{
+        width: 91%;
+    }
 }
 @media screen and (max-width: 330px){
     p{
@@ -367,11 +373,18 @@ p{
     .header-image-text{
         font-size: 14px;
     }
+    input{
+        width: 89%;
+    }
 }
 .fa-search{
     color: black;
 }
-
+@media screen and (max-width: 313px){
+ .button-card:last-child{
+     margin-top: 10px;
+ }   
+}
 @media screen and (min-width: 880px){
     .dropdowns{
         display: none;

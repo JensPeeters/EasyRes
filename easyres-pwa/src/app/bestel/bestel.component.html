@@ -51,9 +51,9 @@
             <p>{{voorgerecht.naam}}</p>
             <p>{{voorgerecht.prijs | currency:'€' }}</p>
             <div class="editProduct">
-              <a (click)="RemoveFromKitchen(voorgerecht)"><i class="fas fa-minus"></i></a>
+              <span (click)="RemoveFromKitchen(voorgerecht)"><i class="fas fa-minus"></i></span>
               <p>{{voorgerecht.aantal}}</p>
-              <a (click)="AddToKitchen(voorgerecht)"><i class="fas fa-plus"></i></a>
+              <span (click)="AddToKitchen(voorgerecht)"><i class="fas fa-plus"></i></span>
             </div>
           </li>
         </ul>
@@ -74,9 +74,9 @@
             <p>{{hoofdgerecht.naam}}</p>
             <p>{{hoofdgerecht.prijs | currency:'€' }}</p>
             <div class="editProduct">
-              <a (click)="RemoveFromKitchen(hoofdgerecht)"><i class="fas fa-minus"></i></a>
+              <span (click)="RemoveFromKitchen(hoofdgerecht)"><i class="fas fa-minus"></i></span>
               <p>{{hoofdgerecht.aantal}}</p>
-              <a (click)="AddToKitchen(hoofdgerecht)"><i class="fas fa-plus"></i></a>
+              <span (click)="AddToKitchen(hoofdgerecht)"><i class="fas fa-plus"></i></span>
             </div>
           </li>
         </ul>
@@ -97,9 +97,9 @@
             <p>{{dessert.naam}}</p>
             <p>{{dessert.prijs | currency:'€' }}</p>
             <div class="editProduct">
-              <a (click)="RemoveFromKitchen(dessert)"><i class="fas fa-minus"></i></a>
+              <span (click)="RemoveFromKitchen(dessert)"><i class="fas fa-minus"></i></span>
               <p>{{dessert.aantal}}</p>
-              <a (click)="AddToKitchen(dessert)"><i class="fas fa-plus"></i></a>
+              <span (click)="AddToKitchen(dessert)"><i class="fas fa-plus"></i></span>
             </div>
           </li>
         </ul>
