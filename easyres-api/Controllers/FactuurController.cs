@@ -76,7 +76,7 @@ namespace easyres_api.Controllers
             return factuur;
         }
 
-        [Route("{idGebruiker}/{idRes}")]
+        [Route("{idGebruiker}/{idRes}/{mail}")]
         [HttpPost]
         public ActionResult<Factuur> GenerateFactuur(string idGebruiker, long idRes, string mail)
         {
