@@ -43,7 +43,7 @@
           "left content content";
     grid-row-gap: 1em;
     margin: auto;
-    margin-bottom: 50px;
+    margin-bottom: 25px;
 }
 .center{
     grid-area: center;
@@ -222,6 +222,36 @@ p{
 
 .rightaanbevolen{
     justify-self: end;
+}
+
+.footer{
+    background-color: #333;
+    color: white;
+    box-shadow: -5px 0px 5px grey;
+    padding-bottom: 100px;
+}
+.logo-footer{
+    display: inline;
+    grid-area: logo-footer;
+}
+.middle-footer{
+    grid-area: middle-footer;
+}
+.privacy{
+    grid-area: privacy;
+}
+.content-footer{
+    font-family: Roboto;
+    width: 90%;
+    padding-top: 15px;
+    margin: auto;
+    display: grid;
+    text-align: center;
+    grid-template-columns: 33% 33% 33%;
+    grid-template-areas:
+          "left-footer middle-footer right-footer"
+          "left-footer middle-footer right-footer"
+          "logo-footer privacy cookie";
 }
 @media screen and (max-width: 1200px){
     input{
