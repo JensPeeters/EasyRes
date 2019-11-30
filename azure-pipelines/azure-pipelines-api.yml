@@ -19,6 +19,13 @@ variables:
 
 steps:
 - task: DotNetCoreCLI@2
+  inputs:
+    command: 'restore'
+    projects: 'easyres-api/easyres-api.csproj'
+    feedsToUse: 'select'
+    vstsFeed: 'e100400c-66c2-4511-a10c-e7adab119964'
+
+- task: DotNetCoreCLI@2
   displayName: Build
   inputs:
     command: 'build'
