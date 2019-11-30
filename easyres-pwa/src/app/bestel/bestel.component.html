@@ -28,9 +28,9 @@
             <p>{{drinken.naam}}</p>
             <p>{{drinken.prijs | currency:'€' }}</p>
             <div class="editProduct">
-              <a (click)="RemoveFromBar(drinken)"><i class="fas fa-minus"></i></a>
+              <span (click)="RemoveFromBar(drinken)"><i class="fas fa-minus"></i></span>
               <p>{{drinken.aantal}}</p>
-              <a (click)=AddToBar(drinken)><i class="fas fa-plus"></i></a>
+              <span (click)=AddToBar(drinken)><i class="fas fa-plus"></i></span>
             </div>
           </li>
         </ul>

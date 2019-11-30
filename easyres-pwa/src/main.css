@@ -4152,9 +4152,15 @@ input[type="button"].btn-block {
   display: inline-block;
   color: rgba(255, 255, 255, 0.5);
   text-align: center;
-  padding: 14px 16px;
+  padding: 14px 5px;
   text-decoration: none;
   font-size: 14px;
+}
+
+@media (min-width: 482px) {
+.navbaronder a {
+  padding: 12px 16px;
+}
 }
 
 .navbaronder a:hover {

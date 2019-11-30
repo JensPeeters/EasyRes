@@ -17,7 +17,8 @@
       <a (click)="Sorteren(keuze)" class="dropdown-item" *ngFor="let keuze of sorteerKeuzes">{{keuze}}</a>
     </div>
   </div>
-  <div class="left filteren">
+  <div class="left">
+    <div class="filteren">
       <div>
         <p><b>Type</b></p>
         <label class="typeContainar" *ngFor="let type of types">{{type.naam}}
@@ -51,6 +52,7 @@
         <button class="btn btn-danger" (click)="ApplyFilters()">Toepassen</button>
       </div>
     </div>
+  </div>
 
   <div class="dropdowns mb-3">
     <div class="allDropdown firstDropdown">
@@ -99,7 +101,7 @@
               placeholder="{{filter.naam}}" [datasource]="ChangeLocation(filter)" [minSearchLength]="1"></ng2-completer>
           </div>
         </div><br>
-        <button class="btn btn-primary" (click)="ApplyFilters()">Toepassen</button>
+        <button class="btn btn-danger" (click)="ApplyFilters()">Toepassen</button>
       </div>
     </div>
     <div class="allDropdown"></div>
