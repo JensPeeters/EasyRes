@@ -3,7 +3,7 @@
         <div class="card-body">
             <h1 class="card-title">Facturen</h1>
             <div class="empty" *ngIf="Facturen.length == 0">
-                <h2>U heeft nog geen facturen.</h2>
+                <h5>U heeft nog geen facturen.</h5>
             </div>
             <app-facturenfactuur class="col" *ngFor="let factuur of Facturen" [factuur]="factuur"></app-facturenfactuur>
             <h3></h3>

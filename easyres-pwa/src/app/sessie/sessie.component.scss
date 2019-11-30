@@ -4,7 +4,7 @@
     padding: 3px 5px;
     border-radius: 3px;
     font-size: 15px;
-    margin-left: 10px;
+    width: fit-content;
 }
 .invalid-screen-size{
     display: none;
@@ -23,7 +23,13 @@
 }
 .card{
     width: 100% !important;
+    margin: auto;
     margin-bottom: 20px;
+    max-width: 450px;
+}
+.card-title{    
+    display: flex;
+    flex-wrap: wrap;
 }
 .session-content{
     display: grid;
@@ -49,15 +55,13 @@
        margin-left: 0px;
        margin-top: 10px;
    }
-   .card-title{
-       display:grid;
-       grid-template-columns: 100%;
-   }
-   .table-indicator{
-       text-align: center;
-       margin-left: 0px;
-   }
-
+}
+@media screen and (max-width: 360px){
+    .table-indicator{
+        text-align: center;
+        margin-left: 0px;
+        margin-top: 10px;
+    }
 }
 @media screen and (min-width: 1000px){
     .invalid-screen-size{

@@ -3,8 +3,8 @@
         <div class="card" *ngFor="let sessie of Sessies">
             <div class="card-body" >
                 <h5 class="card-title">
-                    <span>{{sessie.restaurant.naam}}</span> 
-                    <span class="table-indicator">Tafel : {{sessie.tafelNr}}</span>
+                    <span class="mr-2">{{sessie.restaurant.naam}}</span> 
+                    <span class="table-indicator mr-1">Tafel : {{sessie.tafelNr}}</span>
                 </h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{sessie.restaurant.soort}}</h6>
                 <p class="card-text">{{sessie.restaurant.beschrijving}}</p>
@@ -35,9 +35,9 @@
         </div>
     </div>
     <div class="invalid-screen-size">
-        <h3>Gelieve de app te openen op een kleiner scherm zodat u eten kan bestellen.</h3>
+        <h5>Gelieve de app te openen op een kleiner scherm zodat u eten kan bestellen.</h5>
     </div>
 </div>
 <div class="empty" *ngIf="!Sessies">
-    <h2>U heeft nog geen sessies.</h2>
+    <h5>U heeft nog geen sessies.</h5>
 </div>
