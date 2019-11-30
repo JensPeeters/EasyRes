@@ -20,7 +20,7 @@ export class SessieComponent implements OnInit {
     if(this.msalService.isLoggedIn()){
       this.GetUserId();
     }
-    this.Sessies = await this.sessieServ.GetSessions(this.UserId).toPromise();
+    //this.Sessies = await this.sessieServ.GetSessions(this.UserId).toPromise();
   }
   GetUserId(){
     this.UserId = this.msalService.getUserObjectId();
