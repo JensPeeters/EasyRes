@@ -1,4 +1,4 @@
-<div class="session-content">
+<div class="session-content" *ngIf="Sessies">
     <div class="restaurant-session-template">
         <div class="card" *ngFor="let sessie of Sessies">
             <div class="card-body" >
@@ -37,4 +37,7 @@
     <div class="invalid-screen-size">
         <h3>Gelieve de app te openen op een kleiner scherm zodat u eten kan bestellen.</h3>
     </div>
+</div>
+<div class="empty" *ngIf="!Sessies">
+    <h2>U heeft nog geen sessies.</h2>
 </div>

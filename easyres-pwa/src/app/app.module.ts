@@ -35,6 +35,7 @@ import { FacturenComponent } from './facturen/facturen.component';
 import { FacturenfactuurComponent } from './facturen/facturenfactuur/facturenfactuur.component';
 import { InstellingenComponent } from './instellingen/instellingen.component';
 import { FactuurMoreInfoComponent } from './factuur-more-info/factuur-more-info.component';
+import { PrivacyComponent } from './privacy/privacy.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { FactuurMoreInfoComponent } from './factuur-more-info/factuur-more-info.
     FacturenComponent,
     FacturenfactuurComponent,
     InstellingenComponent,
-    FactuurMoreInfoComponent
+    FactuurMoreInfoComponent,
+    PrivacyComponent
   ],
   imports: [
     BrowserModule,
