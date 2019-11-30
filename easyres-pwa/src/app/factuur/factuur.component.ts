@@ -82,21 +82,23 @@ export class FactuurComponent implements OnInit {
 }
 
 pay(amount) {
-  this.factuur.betaald = true;
   var handler = (<any>window).StripeCheckout.configure({
     key: 'pk_test_0RlhLI3CtX2sYzCZFlVBNwIm00P6N37NJh',
     locale: 'auto',
-    token: function (token: any) {
+    token: (token: any) => {
       // You can access the token ID with `token.id`.
       // Get the token ID to your server-side code for use.
-      console.log(token)
+      //console.log(token)
+      this.factuur.betaald = true;
       alert('Token Created!!');
+    },
+    error: (error) => {
+      console.log(error);
     }
-
   });
 
   handler.open({
-    name: 'EasyRees Factuur',
+    name: 'EasyRes Factuur',
     description: this.factuur.restaurant.naam,
     amount: amount * 100,
     currency: "eur",
