@@ -30,7 +30,7 @@ steps:
   inputs:
     command: 'build'
     projects: 'easyres-api/easyres-api.csproj'
-    arguments: '--configuration $(BuildConfiguration)'
+    arguments: '--configuration Release $(BuildConfiguration)'
 
 - task: DotNetCoreCLI@2
   inputs:
