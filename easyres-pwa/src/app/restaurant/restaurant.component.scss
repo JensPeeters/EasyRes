@@ -251,7 +251,12 @@ p{
     grid-template-areas:
           "left-footer middle-footer right-footer"
           "left-footer middle-footer right-footer"
+          "text-footer text-footer text-footer"
           "logo-footer privacy cookie";
+}
+.text-footer{
+    grid-area: text-footer;
+    width: 100%;
 }
 @media screen and (max-width: 1200px){
     input{
@@ -375,7 +380,11 @@ p{
 .fa-search{
     color: black;
 }
-
+@media screen and (max-width: 313px){
+ .button-card:last-child{
+     margin-top: 10px;
+ }   
+}
 @media screen and (min-width: 880px){
     .dropdowns{
         display: none;

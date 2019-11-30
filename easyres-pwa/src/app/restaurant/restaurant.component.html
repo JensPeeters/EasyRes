@@ -3,10 +3,10 @@
   <p class="header-image-text">Bestellen is nog nooit zo gemakkelijk geweest</p>
 </div>
 <div class="main-content">
-    <div class="input-search-restaurant left">
-        <input type="text" placeholder="Zoek" [(ngModel)]="zoeknaam" (keydown.enter)="Zoeken()">
-        <a (click)="Zoeken()"><i class="fas fa-search" style="cursor: pointer;"></i></a>
-      </div>
+  <div class="input-search-restaurant left">
+    <input type="text" placeholder="Zoek" [(ngModel)]="zoeknaam" (keydown.enter)="Zoeken()">
+    <a (click)="Zoeken()"><i class="fas fa-search" style="cursor: pointer;"></i></a>
+  </div>
   <p class="center"><b>Sorteer</b></p>
   <div class="dropdown right">
     <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
@@ -146,12 +146,9 @@
 </div>
 <div class="footer">
   <div class="content-footer">
-    <div class="middle-footer">
-      <h5>EasyRes</h5>
-      <h6>Bestellen is nog nooit zo gemakkelijk geweest</h6>
-    </div>
+    <h5 class="middle-footer">EasyRes</h5>
+    <h6 class="text-footer">Bestellen is nog nooit zo gemakkelijk geweest</h6>
     <div class="logo-footer">
-      
     </div>
     <div class="privacy">
       <a href="" [routerLink]="['/privacy']">Privacybeleid</a>
