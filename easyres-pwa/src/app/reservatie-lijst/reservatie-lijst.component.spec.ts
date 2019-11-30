@@ -22,7 +22,6 @@ describe('ReservatieLijstComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ReservatieLijstComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
