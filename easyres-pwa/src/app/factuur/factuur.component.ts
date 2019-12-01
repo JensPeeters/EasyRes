@@ -92,6 +92,7 @@ pay(amount) {
       // Get the token ID to your server-side code for use.
       //console.log(token)
       this.factuur.betaald = true;
+      this.factuurService.UpdateFactuur(this.factuur).subscribe();
       this.interval = setInterval(() => {
         this.RedirectFacturen(); 
         }, 1000);

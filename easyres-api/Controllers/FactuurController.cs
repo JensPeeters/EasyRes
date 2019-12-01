@@ -141,5 +141,16 @@ namespace easyres_api.Controllers
             }*/
             return Created("", factuur);
         }
+
+        [HttpPut]
+        public ActionResult<Factuur> UpdateFactuur([FromBody] Factuur factuur)
+        {
+            Factuur UpdateFactuur  = context.Facturen.Where(a => a.Id == factuur.Id).FirstOrDefault();
+            if (UpdateFactuur == null)
+                return NotFound();
+            UpdateFactuur.Betaald = factuur.Betaald;
+            context.SaveChanges();
+            return Ok(UpdateFactuur);
+        }
     }
 }
