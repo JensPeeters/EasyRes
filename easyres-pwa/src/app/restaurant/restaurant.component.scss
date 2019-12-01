@@ -44,6 +44,7 @@
     grid-row-gap: 1em;
     margin: auto;
     margin-bottom: 25px;
+    grid-template-rows: auto 1fr;
 }
 .center{
     grid-area: center;
