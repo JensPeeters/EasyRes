@@ -10,8 +10,6 @@ export class FilterService {
   gerechtenOn: string = "";
   filter: string = "";
   sorterenOp: string = "Aanbevolen";
-  
-  noResults: boolean = false;
 
   types: type[] = [
     {naam: "Restaurant",active:true},

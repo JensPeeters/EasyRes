@@ -33,6 +33,10 @@ export class RestaurantComponent implements OnInit {
   GemeentesBelgie: string[] = ["Sint-Niklaas","Antwerpen","Sint-Gillis-Waas"];
   GemeentesNederland: string[] = ["Amsterdam","Rotterdam","Den Haag","Groningen"];
 
+  noResults: boolean = false;
+  restaurantLoading: boolean = true;
+  restaurantFailed: boolean = false;
+
   async ngOnInit() {
     if(this.isUserLoggedIn()){
       this.GetUserObjectId();
@@ -66,21 +70,31 @@ export class RestaurantComponent implements OnInit {
     this.SendEvent("Sorteren op: " + this.SorterenOp);
   }
   async GetRestaurants(){
-    this.filterService.noResults = false;
+    this.noResults = false;
+    this.restaurantFailed = false;
+    this.restaurantLoading = true;
     var temp: IRestaurant[] = [];
     for(var element of this.Types){
-      if (element.active) {
-        var tempRestaurants = await this.ResService.GetRestaurants(`${this.zoekterm}&soort=${element.naam}&${this.filterService.filter}&${this.filterService.gerechtenOn}`);
-        tempRestaurants.forEach(element => {
-          temp.push(element);
+      if (element.active && this.restaurantFailed == false) {
+        await this.ResService.GetRestaurants(`${this.zoekterm}&soort=${element.naam}&${this.filterService.filter}&${this.filterService.gerechtenOn}`)
+        .then(res => {
+          var tempRestaurants = res;
+          tempRestaurants.forEach(element => {
+            temp.push(element);
+          });
+        })
+        .catch((err) => {
+          this.restaurantFailed = true;
+          this.restaurantLoading = false;
         });
       }
     }
     this.GetAdvertisement();
     this.Restaurants = temp;
-    if(this.Restaurants.length == 0){
-      this.filterService.noResults = true;
-      console.log(this.filterService.noResults);
+    this.restaurantLoading = false;
+    if(this.Restaurants.length == 0 && this.restaurantFailed == false){
+      this.noResults = true;
+      console.log(this.noResults);
     }
     if(this.isUserLoggedIn()){
       await this.CheckFavorites();
@@ -188,8 +202,5 @@ export class RestaurantComponent implements OnInit {
   }
   set SorterenOp(sorterenOp){
     this.filterService.sorterenOp = sorterenOp;
-  }
-  get NoResults(){
-    return this.filterService.noResults;
   }
 }
