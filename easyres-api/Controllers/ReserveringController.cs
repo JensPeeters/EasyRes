@@ -33,6 +33,16 @@ namespace easyres_api.Controllers
             return query.ToList();
         }
 
+        [Route("past/{userid}")]
+        [HttpGet]
+        public List<Reservatie> GetPastReserveringen(string userid)
+        {
+            IQueryable<Reservatie> query = context.Reservaties.Include(a => a.Restaurant)
+                                                              .Where(a => a.UserId == userid);
+
+            return query.ToList();
+        }
+
         [Route("{id}")]
         [HttpGet]
         public ActionResult<Reservatie> GetReservatie(long id)
