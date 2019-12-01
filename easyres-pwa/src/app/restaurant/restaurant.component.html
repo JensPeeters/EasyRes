@@ -106,8 +106,14 @@
     </div>
     <div class="allDropdown"></div>
   </div>
-  <button class="btn-danger btn button-scan" [routerLink]="['/scan']" (click)="SendEvent('Scan')">
-    <i class="fas fa-qrcode fa-lg mr-2"></i>Scan tafel</button>
+  <div class="scan">
+      <button class="btn-danger btn button-scan" [routerLink]="['/scan']" (click)="SendEvent('Scan')">
+        <i class="fas fa-qrcode fa-lg mr-2"></i>Scan tafel</button>
+      <div class="text-center" *ngIf="NoResults">
+        <p>Geen overeenkomstige resultaten gevonden.</p>
+      </div>
+  </div>
+  
   <div class="content">
     <div class="restaurant-advertentie-template" *ngIf="Advertentie">
       <div class="card">

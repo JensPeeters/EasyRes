@@ -11,6 +11,8 @@ export class FilterService {
   filter: string = "";
   sorterenOp: string = "Aanbevolen";
   
+  noResults: boolean = false;
+
   types: type[] = [
     {naam: "Restaurant",active:true},
     {naam: "Taverne",active:true},

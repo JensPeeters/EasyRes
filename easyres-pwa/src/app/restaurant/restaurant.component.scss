@@ -58,6 +58,9 @@
 .right{
     grid-area: right;
 }
+.scan{
+    grid-area: scan;
+}
 .button-search{
     width: 30%;
     margin-top: 0px;
@@ -69,7 +72,6 @@
 .button-scan{
     margin-bottom: 7px;
     height: 50px;
-    grid-area: scan;
     width: 100%;
 }
 .icon-search{
