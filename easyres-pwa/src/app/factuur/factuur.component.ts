@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MsalService } from '../services/msal.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FactuurService } from '../services/factuur.service';
 import { IFactuur } from '../services/common.service';
 import { staticViewQueryIds } from '@angular/compiler';
@@ -20,7 +20,7 @@ export class FactuurComponent implements OnInit {
 
   //@ViewChild('paypal', { static: true }) FacturenComponent: ElementRef;
 
-  constructor(private msalService: MsalService, private route: ActivatedRoute, private factuurService: FactuurService) { }
+  constructor(private msalService: MsalService, private route: ActivatedRoute, private factuurService: FactuurService, private router: Router) { }
 
   UserId: string;
   TafelNr: number;
@@ -28,10 +28,12 @@ export class FactuurComponent implements OnInit {
   factuurLoading: boolean = true;
   factuurFailed: boolean = false;
   factuur: IFactuur;
-
+  
   Facturen: IFactuur[];
   BetaaldList: IFactuur[];
   NietBetaaldList: IFactuur[];
+
+  seconden: number = 10;
 
   ngOnInit() {
     this.TafelNr = Number(this.route.snapshot.paramMap.get('TafelNr'));
@@ -80,29 +82,41 @@ export class FactuurComponent implements OnInit {
       window.document.body.appendChild(s);
     }
 }
-
+interval;
 pay(amount) {
-  this.factuur.betaald = true;
   var handler = (<any>window).StripeCheckout.configure({
     key: 'pk_test_0RlhLI3CtX2sYzCZFlVBNwIm00P6N37NJh',
     locale: 'auto',
-    token: function (token: any) {
+    token: (token: any) => {
       // You can access the token ID with `token.id`.
       // Get the token ID to your server-side code for use.
-      console.log(token)
-      alert('Token Created!!');
+      //console.log(token)
+      this.factuur.betaald = true;
+      this.factuurService.UpdateFactuur(this.factuur).subscribe();
+      this.interval = setInterval(() => {
+        this.RedirectFacturen(); 
+        }, 1000);
     }
-
   });
 
   handler.open({
-    name: 'EasyRees Factuur',
+    name: 'EasyRes Factuur',
     description: this.factuur.restaurant.naam,
     amount: amount * 100,
     currency: "eur",
   });
 
 }
+  RedirectFacturen(){
+    if(this.seconden <= 1){
+      this.router.navigate(['/facturen']);
+      this.seconden = 10;
+      clearInterval(this.interval);
+    }
+    else{
+      this.seconden--;
+    }
+  }
 
   GetUserObjectId() {
     this.UserId = this.msalService.getUserObjectId();

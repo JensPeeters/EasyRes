@@ -106,8 +106,23 @@
     </div>
     <div class="allDropdown"></div>
   </div>
-  <button class="btn-danger btn button-scan" [routerLink]="['/scan']" (click)="SendEvent('Scan')">
-    <i class="fas fa-qrcode fa-lg mr-2"></i>Scan tafel</button>
+  <div class="scan">
+      <button class="btn-danger btn button-scan" [routerLink]="['/scan']" (click)="SendEvent('Scan')">
+        <i class="fas fa-qrcode fa-lg mr-2"></i>Scan tafel</button>
+      <div class="text-center" *ngIf="noResults">
+        <p>Geen overeenkomstige resultaten gevonden.</p>
+      </div>
+      <div class="d-flex justify-content-center m-2" *ngIf="restaurantLoading">
+          <div class="spinner-border justify-content-center" role="status">
+              <span class="sr-only">Loading...</span>
+          </div>
+      </div>
+      <div *ngIf="restaurantFailed" class="text-center">
+          <h5>Het is ons niet gelukt de resultaten te laden. Gelieve dit opnieuw te proberen.</h5>
+          <button class="btn btn-danger mt-2" (click)="GetRestaurants()">Probeer opnieuw</button>
+      </div>
+  </div>
+  
   <div class="content">
     <div class="restaurant-advertentie-template" *ngIf="Advertentie">
       <div class="card">
