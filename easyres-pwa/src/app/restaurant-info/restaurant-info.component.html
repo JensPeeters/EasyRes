@@ -20,6 +20,13 @@
             <p>{{restaurant.locatie.straat}} {{restaurant.locatie.straatnummer}} {{restaurant.locatie.bus}}<br>
                 {{restaurant.locatie.postcode}} {{restaurant.locatie.gemeente}}, {{restaurant.locatie.land}}
             </p>
+            <agm-map [latitude]='latitude' [longitude]='longitude' [mapTypeId]='mapType' [zoom]='zoom' [streetViewControl]=false>
+                <agm-marker [latitude]='latitude' [longitude]='longitude'>
+                    <agm-info-window>
+                        {{restaurant.naam}}
+                    </agm-info-window>
+                </agm-marker>
+            </agm-map>
             <div id="accordion">
                 <div class="card">
                     <div class="card-header" id="menu">

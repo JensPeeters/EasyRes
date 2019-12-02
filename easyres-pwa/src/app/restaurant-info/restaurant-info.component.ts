@@ -12,16 +12,23 @@ import { IRestaurant } from '../services/common.service';
   styleUrls: ['./restaurant-info.component.scss']
 })
 export class RestaurantInfoComponent implements OnInit {
+  restaurant: IRestaurant;
+  collapsed: boolean = false;
+  inputRestaurantID: number;
+
+  // Google Maps Variables
+  locatie: string;
+  results: any[];
+  latitude: number;
+  longitude: number;
+  zoom = 18;
+  mapType = 'roadmap';
 
   constructor(private ResService: RestaurantService,  private route: ActivatedRoute, private _location: Location, private analytics: GoogleAnalyticsService) { }
 
   SendEvent(buttonNaam: string) {
     this.analytics.eventEmitter("restaurantInfo", buttonNaam, buttonNaam, 1);
   }
-
-  restaurant: IRestaurant;
-  collapsed: boolean = false;
-  inputRestaurantID: number;
 
   async ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -30,6 +37,13 @@ export class RestaurantInfoComponent implements OnInit {
     if (this.inputRestaurantID != null) {
       this.ResService.GetRestaurantByID(this.inputRestaurantID).subscribe(result => {
         this.restaurant = result;
+        this.locatie = `${this.restaurant.locatie.straat}+${this.restaurant.locatie.straatnummer},+${this.restaurant.locatie.postcode}+${this.restaurant.locatie.gemeente},+${this.restaurant.locatie.land}`;
+        //Google Maps get
+        this.ResService.GetLocatieVoorMap(this.locatie).subscribe(res => {
+          this.results = res['results'];
+          this.latitude = this.results[0].geometry.location.lat;
+          this.longitude = this.results[0].geometry.location.lng;
+        })
       });
     }
   }
