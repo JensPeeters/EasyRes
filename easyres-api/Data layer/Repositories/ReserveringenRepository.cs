@@ -23,14 +23,16 @@ namespace Data_layer.Repositories
         {
             IQueryable<Reservatie> reservaties = _context.Reservaties.Include(a => a.Restaurant);
             if (!string.IsNullOrEmpty(userid))
-                reservaties = reservaties.Where(b => b.UserId == userid);
+                reservaties = reservaties.Where(b => b.UserId == userid)
+                                         .Where(b => DateTime.ParseExact(b.Datum, "yyyy-MM-dd", null) >= DateTime.Now);
             return reservaties.ToList();
         }
         public List<Reservatie> GetPastReserveringen(string userid)
         {
             IQueryable<Reservatie> reservaties = _context.Reservaties.Include(a => a.Restaurant);
             if (!string.IsNullOrEmpty(userid))
-                reservaties = reservaties.Where(b => b.UserId == userid);
+                reservaties = reservaties.Where(b => b.UserId == userid)
+                                         .Where(b => DateTime.ParseExact(b.Datum, "yyyy-MM-dd", null) < DateTime.Now);
             return reservaties.ToList();
         }
         public Reservatie GetReservatie(long id)
