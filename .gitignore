@@ -1,0 +1,12 @@
+
+*.lock
+easyres-api/.vs/easyres-api/v16/Server/sqlite3/storage.ide
+easyres-api/.vs/easyres-api/v16/Server/sqlite3/storage.ide-shm
+easyres-api/.vs/easyres-api/v16/Server/sqlite3/storage.ide-wal
+easyres-api/.vs/easyres-api/v16/.suo
+easyres-api/.vs/easyres-api/config/applicationhost.config
+easyres-api/.vs/easyres-api/DesignTimeBuild/.dtbcache
+easyres-api/Business layer/obj/Debug/netcoreapp2.2/Business layer.csproj.FileListAbsolute.txt
+easyres-api/Business layer/obj/Debug/netcoreapp2.2/Business layer.assets.cache
+easyres-api/Business layer/obj/Debug/netcoreapp2.2/Business layer.csproj.FileListAbsolute.txt
+easyres-api/Data layer/obj/Debug/netcoreapp2.2/Data layer.assets.cache
