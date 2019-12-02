@@ -1,0 +1,7 @@
+C:\Users\Gebruiker\Documents\GitHub\APV1920B\easyres-api\Business layer\bin\Debug\netcoreapp2.2\Data layer.dll
+C:\Users\Gebruiker\Documents\GitHub\APV1920B\easyres-api\Business layer\bin\Debug\netcoreapp2.2\Microsoft.AspNetCore.Mvc.Core.dll
+C:\Users\Gebruiker\Documents\GitHub\APV1920B\easyres-api\Business layer\bin\Debug\netcoreapp2.2\Microsoft.AspNetCore.Mvc.Core.xml
+C:\Users\Gebruiker\Documents\GitHub\APV1920B\easyres-api\Business layer\obj\Debug\netcoreapp2.2\Business layer.csprojAssemblyReference.cache
+C:\Users\Gebruiker\Documents\GitHub\APV1920B\easyres-api\Business layer\obj\Debug\netcoreapp2.2\Business layer.csproj.CoreCompileInputs.cache
+C:\Users\Gebruiker\Documents\GitHub\APV1920B\easyres-api\Business layer\obj\Debug\netcoreapp2.2\Business layer.AssemblyInfoInputs.cache
+C:\Users\Gebruiker\Documents\GitHub\APV1920B\easyres-api\Business layer\obj\Debug\netcoreapp2.2\Business layer.AssemblyInfo.cs
