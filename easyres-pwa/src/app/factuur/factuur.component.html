@@ -14,7 +14,7 @@
         <div class="producten card-text" *ngIf="factuur.producten">
             <p class="factuurInfo">
                 Factuurnummer: {{factuur.id}} <br>
-                Factuurdatum: {{factuur.datum | date: 'd/MM/yyyy'}} - {{factuur.datum | date: 'H:mm'}} 
+                Factuurdatum: {{factuur.datum | date: 'd/MM/yyyy'}} - {{factuur.datum | date: 'H:mm'}}
             </p>
             <table>
                 <tr>
@@ -22,7 +22,7 @@
                     <th style="width: 40%;">Naam</th>
                     <th style="width: 25%;">Prijs</th>
                     <th style="width: 25%;">Tot.</th>
-                </tr> 
+                </tr>
                 <tr *ngFor="let product of factuur.producten;">
                     <td>{{product.aantal}}</td>
                     <td>{{product.naam}}</td>
@@ -38,6 +38,15 @@
             </table>
         </div>
         <hr>
-        <a [routerLink]="" class="btn btn-danger">Betalen</a>
+        <div *ngIf="factuur.betaald">
+            <p>Je factuur is betaald.</p>
+            <p>Bedankt voor gebruik te maken van EasyRes!</p>
+            <p>U wordt vanzelf over {{seconden}} seconden naar u facturen geredirect.</p>
+            <button class="btn btn-danger" [routerLink]="['/facturen']">Naar mijn facturen</button>
+        </div>
+        <div *ngIf="!factuur.betaald">
+            <a (click)="pay(factuur.totaalPrijs)" class="btn btn-danger">Betalen</a>
+        </div>
     </div>
 </div>
+<!-- <div #paypal></div> -->

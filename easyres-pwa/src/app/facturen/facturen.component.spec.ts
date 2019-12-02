@@ -4,7 +4,7 @@ import { FacturenComponent } from './facturen.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { MsalService } from '../services/msal.service';
-import { FacturenfactuurComponent } from '../facturenfactuur/facturenfactuur.component';
+import { FacturenfactuurComponent } from './facturenfactuur/facturenfactuur.component';
 
 describe('FacturenComponent', () => {
   let component: FacturenComponent;
@@ -22,7 +22,6 @@ describe('FacturenComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(FacturenComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {

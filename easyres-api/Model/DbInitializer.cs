@@ -362,8 +362,8 @@ namespace easyres_api.Model
                          EtenGereed = false,
                          DrinkenGereed = false,
                          HuidigeTijd = DateTime.Now,
-                         EtenStatus = true,
-                         DrinkenStatus = true
+                         EtenStatus = false,
+                         DrinkenStatus = false
                     }
                 };
                 foreach (Bestelling bestelling in bestellingen)

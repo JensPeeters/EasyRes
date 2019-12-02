@@ -76,7 +76,7 @@ namespace easyres_api.Controllers
             return factuur;
         }
 
-        [Route("{idGebruiker}/{idRes}")]
+        [Route("{idGebruiker}/{idRes}/{mail}")]
         [HttpPost]
         public ActionResult<Factuur> GenerateFactuur(string idGebruiker, long idRes, string mail)
         {
@@ -117,7 +117,8 @@ namespace easyres_api.Controllers
                 }
             }
 
-            Factuur factuur = new Factuur() {
+            Factuur factuur = new Factuur()
+            {
                 Gebruiker = gebruiker,
                 Restaurant = restaurant,
                 Producten = producten,
@@ -129,12 +130,27 @@ namespace easyres_api.Controllers
             pdfGenerator.GeneratePDF(factuur);
             if (gebruiker.GetFactuurByEmail)
             {
+                //Normaal stuur je de renderer niet mee
                 string msg = "In bijlage vindt u de factuur van u bezoek aan " + factuur.Restaurant.Naam + ".";
+                //emailSender.SendEmailAsync(mail,
+                //                           "Factuur van " + factuur.Restaurant.Naam,
+                //                           msg).Wait();
                 emailSender.SendEmailAsync(mail,
-                                           "Factuur van " + factuur.Restaurant.Naam,
-                                           msg,factuur.Id).Wait();
+                "Factuur van " + factuur.Restaurant.Naam,
+                                           msg, factuur.Id, pdfGenerator.GetStream()).Wait();
             }
             return Created("", factuur);
+        }
+
+        [HttpPut]
+        public ActionResult<Factuur> UpdateFactuur([FromBody] Factuur factuur)
+        {
+            Factuur UpdateFactuur  = context.Facturen.Where(a => a.Id == factuur.Id).FirstOrDefault();
+            if (UpdateFactuur == null)
+                return NotFound();
+            UpdateFactuur.Betaald = factuur.Betaald;
+            context.SaveChanges();
+            return Ok(UpdateFactuur);
         }
     }
 }

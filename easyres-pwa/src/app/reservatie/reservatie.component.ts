@@ -55,13 +55,12 @@ export class ReservatieComponent implements OnInit {
   async ngOnInit() {
     this._Activatedroute.paramMap.subscribe(params => {
       this.restaurantId = +params.get('id');
+      if (this.restaurantId != null) {
+        this.ResService.GetRestaurantByID(this.restaurantId).subscribe(result => {
+          this.tempReservatie.restaurant = result;
+        });
+      }
     });
-
-    if (this.restaurantId != null) {
-      this.ResService.GetRestaurantByID(this.restaurantId).subscribe(result => {
-        this.tempReservatie.restaurant = result;
-      });
-    }
 
     if (this.MsalService.isLoggedIn()) {
       this.tempReservatie.naam = this.MsalService.getUserFirstName() + ' ' + this.MsalService.getUserFamilyName();
@@ -76,11 +75,9 @@ export class ReservatieComponent implements OnInit {
       this.finalReservatie.userid = this.MsalService.getUserObjectId();
       this.ResService.PostReservation(this.finalReservatie).subscribe(
         a => {
-
           this.submitted = true;
           this.bezet = false;
           console.log("mail");
-
 
         },
         err => {
@@ -89,7 +86,6 @@ export class ReservatieComponent implements OnInit {
             console.log("bezet");
             this.bezet = true;
           }
-
         });
     }
     this.SendEvent("Aanmaken Reservatie");

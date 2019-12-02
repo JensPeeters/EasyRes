@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IFactuur } from '../services/common.service';
+import { IFactuur } from '../../services/common.service';
 
 @Component({
   selector: 'app-facturenfactuur',

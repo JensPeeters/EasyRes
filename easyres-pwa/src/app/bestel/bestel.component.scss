@@ -1,3 +1,12 @@
+.editProduct{
+    display: flex;
+    margin-top: auto;
+    margin-bottom: auto;
+    span{
+        cursor: pointer;
+    }
+    min-width: 70px;
+}
 .btn{
     width: 100% !important;
 }
@@ -12,7 +21,7 @@ div{
             margin-top: 10px;
             display: grid;
             justify-content: center;
-            grid-template-columns: 33% 33% 33%;
+            grid-template-columns: 50% 33% 100px;
             p{
                 margin: auto;
                 text-align: center;
@@ -39,9 +48,24 @@ div{
     font-size: 20px;
     font-weight: bold;
 }
+.failed{
+    margin: 25px;
+    margin-top: 15px;
+    text-align: center;
+    button{
+        width: fit-content !important;
+    }
+}
 @media screen and (max-width: 460px){
     .btn-danger:nth-child(1), .btn-danger:nth-child(2){
         font-size: 16px;
+    }
+    div{
+        ul{
+            li{
+                grid-template-columns: 33% 33% 100px !important;
+            }
+        }
     }
 }
 @media screen and (max-width: 360px){
@@ -52,5 +76,12 @@ div{
 @media screen and (max-width: 325px){
     .button-top-fixed{
         grid-template-columns: 100%;
+    }
+    div{
+        ul{
+            li{
+                grid-template-columns: 33% 33% 33%;
+            }
+        }
     }
 }

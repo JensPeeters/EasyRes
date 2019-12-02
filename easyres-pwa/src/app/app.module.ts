@@ -32,10 +32,11 @@ import { UserService } from './services/user.service';
 import { GoogleAnalyticsService } from './services/google-analytics.service';
 import { FactuurComponent } from './factuur/factuur.component';
 import { FacturenComponent } from './facturen/facturen.component';
-import { FacturenfactuurComponent } from './facturenfactuur/facturenfactuur.component';
+import { FacturenfactuurComponent } from './facturen/facturenfactuur/facturenfactuur.component';
 import { InstellingenComponent } from './instellingen/instellingen.component';
 import { FactuurMoreInfoComponent } from './factuur-more-info/factuur-more-info.component';
 import { AgmCoreModule } from '@agm/core';
+import { PrivacyComponent } from './privacy/privacy.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { AgmCoreModule } from '@agm/core';
     FacturenComponent,
     FacturenfactuurComponent,
     InstellingenComponent,
-    FactuurMoreInfoComponent
+    FactuurMoreInfoComponent,
+    PrivacyComponent
   ],
   imports: [
     BrowserModule,

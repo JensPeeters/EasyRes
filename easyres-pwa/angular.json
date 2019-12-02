@@ -30,7 +30,8 @@
               "src/web.config"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/main.css"
             ],
             "scripts": []
           },
@@ -99,7 +100,8 @@
               "src/web.config"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/main.css"
             ],
             "scripts": []
           }

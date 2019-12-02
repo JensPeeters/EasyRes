@@ -2,7 +2,7 @@
     <h3>Mijn favorieten</h3>
     <div class="input-search-restaurant">
         <input type="text" placeholder="Zoek in favorieten" [(ngModel)]="zoeknaam" (keydown.enter)="Zoeken()">
-        <a (click)="Zoeken()"><i class="fas fa-search" style="cursor: pointer;"></i></a>
+        <span (click)="Zoeken()"><i class="fas fa-search" style="cursor: pointer;"></i></span>
     </div>
     <div class="empty" *ngIf="IsEmpty(Restaurants)">
         <h5>U heeft nog geen favoriete restaurants.</h5>

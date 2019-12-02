@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FacturenfactuurComponent } from './facturenfactuur.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { MsalService } from '../services/msal.service';
+import { MsalService } from '../../services/msal.service';
 
 describe('FacturenfactuurComponent', () => {
   let component: FacturenfactuurComponent;
@@ -21,7 +21,6 @@ describe('FacturenfactuurComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(FacturenfactuurComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
