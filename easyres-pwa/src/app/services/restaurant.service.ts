@@ -47,6 +47,10 @@ export class RestaurantService {
     return this.http.get<IReservatie[]>(`${this.common.urlAPI}/reservatie?userid=${userid}`);
   }
 
+  GetPastReservationsByUserID(userid: string) {
+    return this.http.get<IReservatie[]>(`${this.common.urlAPI}/reservatie/past/${userid}`);
+  }
+
   GetReservationByID(id: number) {
     return this.http.get<IReservatie>(`${this.common.urlAPI}/reservatie/${id}`);
   }

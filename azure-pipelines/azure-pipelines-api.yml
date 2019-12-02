@@ -6,7 +6,7 @@
 trigger:
   branches:
     include:
-      - master
+      - "*"
   paths:
     include:
       - easyres-api/*
@@ -26,6 +26,7 @@ steps:
     arguments: '--configuration $(BuildConfiguration)'
 
 - task: DotNetCoreCLI@2
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   inputs:
     command: publish
     publishWebProjects: True
@@ -33,6 +34,7 @@ steps:
     zipAfterPublish: True
 
 - task: PublishBuildArtifacts@1
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   displayName: Publish Artifacts
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'

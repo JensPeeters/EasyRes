@@ -6,7 +6,7 @@
 trigger:
   branches:
     include:
-      - master
+      - "*"
   paths:
     include:
       - easyres-pwa/*
@@ -41,6 +41,7 @@ steps:
   displayName: 'Running Tests'
 
 - task: ArchiveFiles@2
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   inputs:
     rootFolderOrFile: 'easyres-pwa/dist/easyres-pwa'
     includeRootFolder: false
@@ -49,6 +50,7 @@ steps:
     replaceExistingArchive: true
 
 - task: PublishBuildArtifacts@1
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'

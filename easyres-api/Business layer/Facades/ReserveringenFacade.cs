@@ -20,6 +20,10 @@ namespace Business_layer.Facades
         {
             return _reserveringRepository.GetReserveringen(userid);
         }
+        public List<Reservatie> GetPastReserveringen(string userid)
+        {
+            return _reserveringRepository.GetPastReserveringen(userid);
+        }
         public Reservatie GetReservatie(long id)
         {
             return _reserveringRepository.GetReservatie(id);
