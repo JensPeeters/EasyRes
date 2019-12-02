@@ -38,12 +38,19 @@
     gap: 1%;
     grid-template-columns: 33% 33% 33%;
     grid-template-areas:
-          "left center right"
+          "left center center"
           "left scan scan"
           "left content content";
     grid-row-gap: 1em;
     margin: auto;
-    margin-bottom: 50px;
+    margin-bottom: 25px;
+    grid-template-rows: auto 1fr;
+}
+.center{
+    grid-area: center;
+    display: inline-flex;
+    justify-content: center;
+    width: 100%;
 }
 .content{
     grid-area: content;
@@ -53,6 +60,9 @@
 }
 .right{
     grid-area: right;
+}
+.scan{
+    grid-area: scan;
 }
 .button-search{
     width: 30%;
@@ -65,7 +75,6 @@
 .button-scan{
     margin-bottom: 7px;
     height: 50px;
-    grid-area: scan;
     width: 100%;
 }
 .icon-search{
@@ -82,18 +91,18 @@ input::placeholder{
     padding-left: 5px;
 }
 .input-search-restaurant{
-    display: inline-block;
     height: 35px;
     width: 100%;
     border-radius: 5px;
     border: 1px solid grey;
 }
 .dropdown-toggle{
-    width: 100% !important;
+    width: 100%!important;
     color: black;
     background-color: white;
     border: 1px solid grey;
 }
+
 .dropdown-menu{
     width: 100%;
 }
@@ -159,6 +168,13 @@ p{
     height: 0;
     width: 0;
   }
+
+  .filteren {
+    margin-top: 30px;
+  }
+  .filteren > div {
+    margin-top: 40px;
+  }
   
   /* Custom checkbox */
   .checkmark {
@@ -204,11 +220,49 @@ p{
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
   }
-  .typeNormal{
-      margin-top: 65px;
-  }
+
 .right{
     max-width: 200px;
+    display: inline;
+}
+
+.rightaanbevolen{
+    justify-self: end;
+}
+
+.footer{
+    background-color: #333;
+    color: white;
+    box-shadow: -5px 0px 5px grey;
+    padding-bottom: 100px;
+}
+.logo-footer{
+    display: inline;
+    grid-area: logo-footer;
+}
+.middle-footer{
+    grid-area: middle-footer;
+}
+.privacy{
+    grid-area: privacy;
+}
+.content-footer{
+    font-family: Roboto;
+    width: 90%;
+    padding-top: 15px;
+    margin: auto;
+    display: grid;
+    text-align: center;
+    grid-template-columns: 33% 33% 33%;
+    grid-template-areas:
+          "left-footer middle-footer right-footer"
+          "left-footer middle-footer right-footer"
+          "text-footer text-footer text-footer"
+          "logo-footer privacy cookie";
+}
+.text-footer{
+    grid-area: text-footer;
+    width: 100%;
 }
 @media screen and (max-width: 1200px){
     input{
@@ -221,6 +275,9 @@ p{
     }
 }
 @media screen and (max-width: 880px){
+    .input-search-restaurant{
+        max-width: 320px !important;
+    }
     .header-image-text{
         left: 20%;
         right: 20%; 
@@ -239,14 +296,14 @@ p{
         padding-top: 10px;
     }
     input{
-        width: 87%;
+        width: 92%;
     }
-    .typeNormal{
+    .filteren{
         display: none;
     }
     .center{
-        display: inline-block;
-        margin-right: 25px;
+        margin-top: 15px;
+        margin-bottom: 15px;
     }
     .right{
         display: inline-block;
@@ -255,7 +312,7 @@ p{
     }
     .left{
         max-width: 200px;
-        margin-right: 25px;
+        margin: auto;
     }
     .dropdowns{
         display: flex;
@@ -275,19 +332,17 @@ p{
         width: 80%;
     }
 }
-@media screen and (max-width: 680px){
-    input{
-        width: 86%;
-    }
-}
 @media screen and (max-width: 580px){
     .dropdowns{
-        display: block;
+        display: grid;
+        justify-content: center;
+        margin-bottom: 0px !important;
     }
     .allDropdown{
         width: 100%;
         max-width: 320px;
         margin-bottom: 15px;
+        width: 80vw;
     }
     .firstDropdown{
         margin-right: 0px;
@@ -309,6 +364,9 @@ p{
     .header-image-text{
         font-size: 16px;
     }
+    input{
+        width: 91%;
+    }
 }
 @media screen and (max-width: 330px){
     p{
@@ -324,11 +382,18 @@ p{
     .header-image-text{
         font-size: 14px;
     }
+    input{
+        width: 89%;
+    }
 }
 .fa-search{
     color: black;
 }
-
+@media screen and (max-width: 313px){
+    .button-card:last-child{
+        margin-top: 10px;
+    }   
+}
 @media screen and (min-width: 880px){
     .dropdowns{
         display: none;

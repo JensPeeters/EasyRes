@@ -10,7 +10,7 @@ export class FactuurService {
   constructor(private http: HttpClient, private common: CommonService) { }
 
   GenerateFactuur(userId: string, resId: number, mail: string) {
-    return this.http.post<IFactuur>(`${this.common.urlAPI}/factuur/${userId}/${resId}?mail=${mail}`, '');
+    return this.http.post<IFactuur>(`${this.common.urlAPI}/factuur/${userId}/${resId}/${mail}`, '');
   }
   GetFactuur(userId: string, resId: number) {
     return this.http.get<IFactuur>(`${this.common.urlAPI}/factuur/${userId}/${resId}`);
@@ -22,5 +22,9 @@ export class FactuurService {
 
   GetFactuurById(userId: string, factId: number) {
     return this.http.get<IFactuur>(`${this.common.urlAPI}/factuur/${userId}/factuur/${factId}`);
+  }
+  UpdateFactuur(factuur: IFactuur){
+    var updateFactuur = {id:factuur.id, betaald:factuur.betaald}
+    return this.http.put<IFactuur>(`${this.common.urlAPI}/factuur`,updateFactuur);
   }
 }

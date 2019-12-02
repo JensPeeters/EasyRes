@@ -22,7 +22,7 @@ steps:
   displayName: Build
   inputs:
     command: 'build'
-    projects: 'easyres-api/easyres-api.csproj'
+    projects: 'easyres-api/easyres-api/easyres-api.csproj'
     arguments: '--configuration $(BuildConfiguration)'
 
 - task: DotNetCoreCLI@2

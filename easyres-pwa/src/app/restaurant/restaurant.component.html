@@ -7,35 +7,37 @@
     <input type="text" placeholder="Zoek" [(ngModel)]="zoeknaam" (keydown.enter)="Zoeken()">
     <a (click)="Zoeken()"><i class="fas fa-search" style="cursor: pointer;"></i></a>
   </div>
-  <p class="center">Sorteren op: </p>
-  <div class="dropdown right">
-    <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-      aria-haspopup="true" aria-expanded="false">
-      {{sorterenOp}}
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a (click)="Sorteren(keuze)" class="dropdown-item" *ngFor="let keuze of sorteerKeuzes">{{keuze}}</a>
+  <div class="center">
+    <p class="mr-2"><b>Sorteer</b></p>
+    <div class="dropdown">
+      <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        {{SorterenOp}}
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a (click)="Sorteren(keuze)" class="dropdown-item" *ngFor="let keuze of sorteerKeuzes">{{keuze}}</a>
+      </div>
     </div>
   </div>
   <div class="left">
-    <div class="typeNormal">
+    <div class="filteren">
       <div>
-        <p><b>Type:</b></p>
-        <label class="typeContainar" *ngFor="let type of types">{{type.naam}}
+        <p><b>Type</b></p>
+        <label class="typeContainar" *ngFor="let type of Types">{{type.naam}}
           <input type="checkbox" [(ngModel)]="type.active" (click)="ChangeTypes(type)">
           <span class="checkmark"></span>
         </label>
       </div>
       <div>
-        <p><b>Gerechten:</b></p>
-        <label class="typeContainar" *ngFor="let gerecht of gerechten">{{gerecht.naam}}
+        <p><b>Gerechten</b></p>
+        <label class="typeContainar" *ngFor="let gerecht of Gerechten">{{gerecht.naam}}
           <input type="checkbox" [(ngModel)]="gerecht.active" (click)="ChangeGerechten(gerecht)">
           <span class="checkmark"></span>
         </label>
       </div>
       <div>
-        <p><b>Filters:</b></p>
-        <div *ngFor="let filter of filters">
+        <p><b>Filters</b></p>
+        <div *ngFor="let filter of Filters">
           {{filter.naam}}
           <div class="filterCheckbox">
             <label class="typeContainar">
@@ -61,7 +63,7 @@
         <b>Type</b>
       </button><br>
       <div class="collapse card card-body" id="collapseType">
-        <label class="typeContainar" *ngFor="let type of types">{{type.naam}}
+        <label class="typeContainar" *ngFor="let type of Types">{{type.naam}}
           <input type="checkbox" [(ngModel)]="type.active" (click)="ChangeTypes(type)">
           <span class="checkmark"></span>
         </label>
@@ -73,7 +75,7 @@
         <b>Gerechten</b>
       </button><br>
       <div class="collapse card card-body" id="collapseGerechten">
-        <label class="typeContainar" *ngFor="let gerecht of gerechten">{{gerecht.naam}}
+        <label class="typeContainar" *ngFor="let gerecht of Gerechten">{{gerecht.naam}}
           <input type="checkbox" [(ngModel)]="gerecht.active" (click)="ChangeGerechten(gerecht)">
           <span class="checkmark"></span>
         </label>
@@ -87,7 +89,7 @@
         <b>Filters</b>
       </button><br>
       <div class="collapse card card-body" id="collapseFilter">
-        <div *ngFor="let filter of filters">
+        <div *ngFor="let filter of Filters">
           {{filter.naam}}
           <div class="filterCheckbox">
             <label class="typeContainar">
@@ -101,13 +103,28 @@
               placeholder="{{filter.naam}}" [datasource]="ChangeLocation(filter)" [minSearchLength]="1"></ng2-completer>
           </div>
         </div><br>
-        <button class="btn btn-primary" (click)="ApplyFilters()">Toepassen</button>
+        <button class="btn btn-danger" (click)="ApplyFilters()">Toepassen</button>
       </div>
     </div>
     <div class="allDropdown"></div>
   </div>
-  <button class="btn-danger btn button-scan" [routerLink]="['/scan']" (click)="SendEvent('Scan')">
-    <i class="fas fa-qrcode fa-lg mr-2"></i>Scan tafel</button>
+  <div class="scan">
+      <button class="btn-danger btn button-scan" [routerLink]="['/scan']" (click)="SendEvent('Scan')">
+        <i class="fas fa-qrcode fa-lg mr-2"></i>Scan tafel</button>
+      <div class="text-center" *ngIf="noResults">
+        <p>Geen overeenkomstige resultaten gevonden.</p>
+      </div>
+      <div class="d-flex justify-content-center m-2" *ngIf="restaurantLoading">
+          <div class="spinner-border justify-content-center" role="status">
+              <span class="sr-only">Loading...</span>
+          </div>
+      </div>
+      <div *ngIf="restaurantFailed" class="text-center">
+          <h5>Het is ons niet gelukt de resultaten te laden. Gelieve dit opnieuw te proberen.</h5>
+          <button class="btn btn-danger mt-2" (click)="GetRestaurants()">Probeer opnieuw</button>
+      </div>
+  </div>
+  
   <div class="content">
     <div class="restaurant-advertentie-template" *ngIf="Advertentie">
       <div class="card">
@@ -141,6 +158,17 @@
             (click)="SendEvent('Meer info')">Meer info</button>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <div class="content-footer">
+    <h5 class="middle-footer">EasyRes</h5>
+    <h6 class="text-footer">Bestellen is nog nooit zo gemakkelijk geweest</h6>
+    <div class="logo-footer">
+    </div>
+    <div class="privacy">
+      <a href="" [routerLink]="['/privacy']">Privacybeleid</a>
     </div>
   </div>
 </div>
