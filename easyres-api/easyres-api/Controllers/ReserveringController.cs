@@ -22,6 +22,13 @@ namespace easyres_api.Controllers
             return _reserveringFacade.GetReserveringen(userid);
         }
 
+        [Route("past/{userid}")]
+        [HttpGet]
+        public List<Reservatie> GetPastReserveringen(string userid)
+        {
+            return _reserveringFacade.GetPastReserveringen(userid);
+        }
+
         [Route("{id}")]
         [HttpGet]
         public ActionResult<Reservatie> GetReservatie(long id)

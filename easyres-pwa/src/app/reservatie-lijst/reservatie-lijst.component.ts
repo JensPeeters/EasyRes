@@ -19,7 +19,6 @@ export class ReservatieLijstComponent implements OnInit {
   filterKeuzes: string[] = ['Komende Reservaties', 'Voorbije Reservaties'];
 
   constructor(private resService: RestaurantService, private msalService: MsalService, private analytics: GoogleAnalyticsService) {
-    //Nog aanpassen nadat userid beschikbaar is
     if (msalService.isLoggedIn()) {
       this.userid = msalService.getUserObjectId();
     }
