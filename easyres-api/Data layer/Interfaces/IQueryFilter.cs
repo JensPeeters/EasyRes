@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Data_layer.Interfaces
+﻿namespace Data_layer.Interfaces
 {
     public interface IQueryFilter
     {

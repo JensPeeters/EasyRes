@@ -1,7 +1,4 @@
 ﻿using Data_layer.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Data_layer.Filter
 {

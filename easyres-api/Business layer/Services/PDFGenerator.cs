@@ -4,7 +4,6 @@ using MigraDoc.DocumentObjectModel.Shapes;
 using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.Rendering;
 using System.IO;
-using System.Text;
 
 namespace Business_layer.Services
 {

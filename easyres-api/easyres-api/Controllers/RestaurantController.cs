@@ -1,12 +1,9 @@
 ﻿using Business_layer.Exceptions;
 using Business_layer.Interfaces;
 using Data_layer.Filter;
-using Data_layer.Interfaces;
 using Data_layer.Model;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace easyres_api.Controllers
 {
