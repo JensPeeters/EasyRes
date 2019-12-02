@@ -1,6 +1,5 @@
 ﻿using Data_layer.Interfaces;
 using Data_layer.Model;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
