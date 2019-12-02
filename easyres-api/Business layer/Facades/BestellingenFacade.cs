@@ -1,7 +1,6 @@
 ﻿using Business_layer.Interfaces;
 using Data_layer.Interfaces;
 using Data_layer.Model;
-using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
 namespace Business_layer.Facades
