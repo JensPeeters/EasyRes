@@ -38,7 +38,7 @@
     gap: 1%;
     grid-template-columns: 33% 33% 33%;
     grid-template-areas:
-          "left center right"
+          "left center center"
           "left scan scan"
           "left content content";
     grid-row-gap: 1em;
@@ -48,6 +48,9 @@
 }
 .center{
     grid-area: center;
+    display: inline-flex;
+    justify-content: center;
+    width: 100%;
 }
 .content{
     grid-area: content;
@@ -299,8 +302,8 @@ p{
         display: none;
     }
     .center{
-        display: inline-block;
-        margin-right: 25px;
+        margin-top: 15px;
+        margin-bottom: 15px;
     }
     .right{
         display: inline-block;
@@ -309,7 +312,7 @@ p{
     }
     .left{
         max-width: 200px;
-        margin-right: 25px;
+        margin: auto;
     }
     .dropdowns{
         display: flex;
@@ -331,12 +334,15 @@ p{
 }
 @media screen and (max-width: 580px){
     .dropdowns{
-        display: block;
+        display: grid;
+        justify-content: center;
+        margin-bottom: 0px !important;
     }
     .allDropdown{
         width: 100%;
         max-width: 320px;
         margin-bottom: 15px;
+        width: 80vw;
     }
     .firstDropdown{
         margin-right: 0px;
@@ -384,9 +390,9 @@ p{
     color: black;
 }
 @media screen and (max-width: 313px){
- .button-card:last-child{
-     margin-top: 10px;
- }   
+    .button-card:last-child{
+        margin-top: 10px;
+    }   
 }
 @media screen and (min-width: 880px){
     .dropdowns{
