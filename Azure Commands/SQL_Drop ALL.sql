@@ -1,0 +1,23 @@
+DROP TABLE [dbo].[Tijdsmoment];
+DROP TABLE [dbo].[Adres];
+DROP TABLE [dbo].[Menu];
+DROP TABLE [dbo].[Product];
+DROP TABLE [dbo].[Tafel];
+--ALTER TABLE [dbo].[Restaurants] DROP CONSTRAINT [FK_Restaurants_Adres_LocatieID];
+--ALTER TABLE [dbo].[Product] DROP CONSTRAINT [FK_Product_Bestellingen_BestellingId];
+--ALTER TABLE [dbo].[Product] DROP CONSTRAINT [FK_Product_Bestellingen_BestellingId1];
+--DROP TABLE [dbo].[Bestellingen];
+--DROP TABLE [dbo].[Facturen];
+--ALTER TABLE [dbo].[Product] DROP CONSTRAINT [FK_Product_Menu_MenuID];
+--ALTER TABLE [dbo].[Product] DROP CONSTRAINT [FK_Product_Menu_MenuID1];
+--ALTER TABLE [dbo].[Product] DROP CONSTRAINT [FK_Product_Menu_MenuID2];
+--ALTER TABLE [dbo].[Product] DROP CONSTRAINT [FK_Product_Menu_MenuID3];
+--ALTER TABLE [dbo].[Restaurants] DROP CONSTRAINT [FK_Restaurants_Menu_MenuID];
+--ALTER TABLE [dbo].[Restaurants] DROP CONSTRAINT [FK_Restaurants_Openingsuren_OpeningsurenID];
+--DROP TABLE [dbo].[Openingsuren];
+--DROP TABLE [dbo].[Reservaties];
+DROP TABLE [dbo].[Restaurants];
+--DROP TABLE [dbo].[Sessies];
+--DROP TABLE [dbo].[Uitbaters];
+DROP TABLE [dbo].[Gebruikers];
+
