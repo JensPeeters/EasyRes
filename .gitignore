@@ -1,0 +1,5 @@
+
+*.lock
+easyres-api/.vs/easyres-api/v16/Server/sqlite3/storage.ide
+easyres-api/.vs/easyres-api/v16/Server/sqlite3/storage.ide-shm
+easyres-api/.vs/easyres-api/v16/Server/sqlite3/storage.ide-wal
