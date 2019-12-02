@@ -35,6 +35,7 @@ import { FacturenComponent } from './facturen/facturen.component';
 import { FacturenfactuurComponent } from './facturen/facturenfactuur/facturenfactuur.component';
 import { InstellingenComponent } from './instellingen/instellingen.component';
 import { FactuurMoreInfoComponent } from './factuur-more-info/factuur-more-info.component';
+import { AgmCoreModule } from '@agm/core';
 import { PrivacyComponent } from './privacy/privacy.component';
 
 @NgModule({
@@ -68,7 +69,10 @@ import { PrivacyComponent } from './privacy/privacy.component';
     FormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     BrowserAnimationsModule,
-    Ng2CompleterModule
+    Ng2CompleterModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDKhFQLCilfpN3yxweAG8WI5TApRvYI2S8'
+    })
   ],
   providers: [
     RestaurantService,

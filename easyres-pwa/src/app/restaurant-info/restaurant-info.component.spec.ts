@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Ng2CompleterModule } from 'ng2-completer';
 import { RouterModule } from '@angular/router';
 import { GoogleAnalyticsService } from '../services/google-analytics.service';
+import { AgmCoreModule } from '@agm/core';
 
 describe('RestaurantInfoComponent', () => {
   let component: RestaurantInfoComponent;
@@ -14,7 +15,14 @@ describe('RestaurantInfoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ FormsModule, HttpClientModule, RouterModule.forRoot([]), Ng2CompleterModule, ZXingScannerModule ],
+      imports: [ 
+        FormsModule, 
+        HttpClientModule, 
+        RouterModule.forRoot([]), 
+        Ng2CompleterModule, 
+        ZXingScannerModule,
+        AgmCoreModule
+      ],
       declarations: [RestaurantInfoComponent],
       providers: [GoogleAnalyticsService]
     })

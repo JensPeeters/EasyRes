@@ -26,6 +26,9 @@ export class RestaurantService {
   PutRestaurant(restaurant: IRestaurant) {
     return this.http.put<IRestaurant>(`${this.common.urlAPI}/restaurant/${restaurant.restaurantId}`, restaurant);
   }
+  GetLocatieVoorMap(address: string){
+    return this.http.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyDu_7ULu7FZ_SRTdhX4qhJjBqYgFt51NJ0`);
+  }
 
   // Favorieten
   GetFavorites(Gebruikersid: string, naam?: string) {
