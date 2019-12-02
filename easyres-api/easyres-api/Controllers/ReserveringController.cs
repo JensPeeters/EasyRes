@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using easyres_api.Services;
 using Data_layer.Model;
 using Business_layer.Interfaces;
 
@@ -15,7 +14,6 @@ namespace easyres_api.Controllers
     [ApiController]
     public class ReserveringController : ControllerBase
     {
-        SendGridEmailSender emailSender = new SendGridEmailSender();
         private readonly IReserveringenFacade _reserveringFacade;
 
         public ReserveringController(IReserveringenFacade reserveringFacade)

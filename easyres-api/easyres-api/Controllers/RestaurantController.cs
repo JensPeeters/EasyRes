@@ -1,8 +1,8 @@
 ﻿using Business_layer.Exceptions;
 using Business_layer.Interfaces;
+using Data_layer.Filter;
 using Data_layer.Interfaces;
 using Data_layer.Model;
-using easyres_api.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -22,7 +22,7 @@ namespace easyres_api.Controllers
         }
 
         [HttpGet]
-        public List<Restaurant> GetRestaurants([FromQuery]IQueryFilter filter)
+        public List<Restaurant> GetRestaurants([FromQuery]QueryFilter filter)
         {
             return _restaurantFacade.GetRestaurants(filter);
         }

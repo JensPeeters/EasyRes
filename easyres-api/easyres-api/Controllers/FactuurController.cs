@@ -4,8 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Business_layer.Interfaces;
 using Data_layer.Model;
-using dotNETAcademyServer.Services;
-using easyres_api.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

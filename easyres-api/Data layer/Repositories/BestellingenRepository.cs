@@ -1,4 +1,5 @@
-﻿using Data_layer.Model;
+﻿using Data_layer.Interfaces;
+using Data_layer.Model;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Text;
 
 namespace Data_layer.Repositories
 {
-    public class BestellingenRepository
+    public class BestellingenRepository : IBestellingenRepository
     {
         private readonly DatabaseContext _context;
 
