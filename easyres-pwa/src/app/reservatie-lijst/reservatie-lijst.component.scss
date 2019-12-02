@@ -1,3 +1,15 @@
+.dropdown{
+    grid-column: 2;
+    margin-bottom: 25px;
+}
+.dropdown-toggle{
+    width: 100%!important;
+}
+
+.dropdown-menu{
+    width: 100%;
+}
+
 .empty{
     margin: 15px;
     text-align: center;
@@ -11,8 +23,11 @@
     max-width: 1000px;
 }
 
-.reservatie-template{
+.reservaties{
     grid-column: 2;
+}
+
+.reservatie-template{
     margin-bottom: 15px;
 }
 

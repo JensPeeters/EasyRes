@@ -15,42 +15,59 @@ export class ReservatieLijstComponent implements OnInit {
   userid: string;
   aantal: number = 10;
 
-  constructor(private ResService : RestaurantService, private MsalService : MsalService, private analytics: GoogleAnalyticsService) {
-    //Nog aanpassen nadat userid beschikbaar is
-    if(MsalService.isLoggedIn())
-      this.userid = MsalService.getUserObjectId();
+  FilterOp: string = 'Komende Reservaties';
+  filterKeuzes: string[] = ['Komende Reservaties', 'Voorbije Reservaties'];
+
+  constructor(private resService: RestaurantService, private msalService: MsalService, private analytics: GoogleAnalyticsService) {
+    if (msalService.isLoggedIn()) {
+      this.userid = msalService.getUserObjectId();
+    }
    }
 
-   SendEvent(buttonNaam: string) {
-    this.analytics.eventEmitter("reservatieLijst", buttonNaam, buttonNaam, 1);
+  SendEvent(buttonNaam: string) {
+    this.analytics.eventEmitter('reservatieLijst', buttonNaam, buttonNaam, 1);
+  }
+
+  Filteren(item) {
+    this.FilterOp = item;
+    this.getReservations();
+    this.SendEvent('Filteren op: ' + this.FilterOp);
   }
 
   async ngOnInit() {
-    this.ResService.GetReservationsByUserID(this.userid).subscribe(result => {
-      this.reservaties = result;
-    })
-    this.reservaties = this.reservaties
+    this.getReservations();
   }
 
-  isUserLoggedIn(){
-    return this.MsalService.isLoggedIn();
-  }
-
-  Annuleer(reservatieId){
-    this.ResService.DeleteReservationByID(reservatieId).subscribe(a => {
-      this.ResService.GetReservationsByUserID(this.userid).subscribe(result => {
+  getReservations() {
+    if (this.FilterOp === 'Komende Reservaties') {
+      this.resService.GetReservationsByUserID(this.userid).subscribe(result => {
         this.reservaties = result;
-      })
+      });
+    } else if (this.FilterOp === 'Voorbije Reservaties') {
+      this.resService.GetPastReservationsByUserID(this.userid).subscribe(result => {
+        this.reservaties = result;
+      });
+    }
+  }
+
+  isUserLoggedIn() {
+    return this.msalService.isLoggedIn();
+  }
+
+  Annuleer(reservatieId) {
+    this.resService.DeleteReservationByID(reservatieId).subscribe(a => {
+      this.resService.GetReservationsByUserID(this.userid).subscribe(result => {
+        this.reservaties = result;
+      });
     });
-    this.SendEvent("Verwijderen reservatie");
+    this.SendEvent('Verwijderen reservatie');
   }
 
-  isEmpty(arr){
-    if (!(arr.length > 0)){return true;}
-    else{return false;}
+  isEmpty(arr) {
+    if (!(arr.length > 0)) { return true; } else { return false; }
   }
 
-  showMore(){
+  showMore() {
     this.aantal += 10;
   }
 
