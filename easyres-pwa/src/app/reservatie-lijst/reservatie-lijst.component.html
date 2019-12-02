@@ -4,12 +4,21 @@
 <div *ngIf="reservaties && isUserLoggedIn()">
     <div class="main-content">
         <div class="dropdown right">
-            <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownFilterButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {{FilterOp}}
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a (click)="Filteren(keuze)" class="dropdown-item" *ngFor="let keuze of filterKeuzes">{{keuze}}</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownSorterenButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{SorteerOp}}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a (click)="Sorteren(keuze)" class="dropdown-item" *ngFor="let keuze of sorteerKeuzes">{{keuze}}</a>
             </div>
         </div>
         <div class="empty" *ngIf="isEmpty(reservaties)">
