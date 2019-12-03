@@ -6,7 +6,7 @@ namespace Data_layer.Interfaces
     public interface IFactuurRepository
     {
         Factuur GetFactuur(string idGebruiker, long idRes);
-        List<Factuur> GetFacturen(string idGebruiker);
+        List<Factuur> GetFacturen(string idGebruiker, string sortBy);
         void SaveChanges();
         Factuur GetFactuurById(string idGebruiker, long idFactuur);
 

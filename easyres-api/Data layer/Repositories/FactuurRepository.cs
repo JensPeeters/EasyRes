@@ -28,16 +28,34 @@ namespace Data_layer.Repositories
                                      .Where(a => a.Gebruiker == gebruiker).LastOrDefault();
             return factuur;
         }
-        public List<Factuur> GetFacturen(string idGebruiker)
+        public List<Factuur> GetFacturen(string idGebruiker, string sortBy)
         {
             Gebruiker gebruiker = _context.Gebruikers.Where(a => a.GebruikersID == idGebruiker).FirstOrDefault();
             if (gebruiker == null)
                 return null;
-            List<Factuur> facturen = _context.Facturen
-                                            .Include(a => a.Producten)
-                                            .Include(a => a.Restaurant)
-                                            .Where(a => a.Gebruiker == gebruiker).ToList();
-            return facturen;
+            IQueryable<Factuur> facturen = _context.Facturen.Include(a => a.Producten)
+                                                            .Include(a => a.Restaurant)
+                                                            .Where(a => a.Gebruiker == gebruiker);
+            if (string.IsNullOrEmpty(sortBy)) sortBy = "default";
+            switch (sortBy.ToLower())
+            {
+                case "datum":
+                    facturen = facturen.OrderBy(b => b.Datum);
+                    break;
+                case "restaurant":
+                    facturen = facturen.OrderBy(b => b.Restaurant);
+                    break;
+                case "factuurnummer":
+                    facturen = facturen.OrderBy(b => b.Id);
+                    break;
+                case "prijs":
+                    facturen = facturen.OrderBy(b => b.TotaalPrijs);
+                    break;
+                default:
+                    facturen = facturen.OrderBy(b => b.Datum);
+                    break;
+            }
+            return facturen.ToList();
         }
 
         public Factuur GetFactuurById(string idGebruiker, long idFactuur)

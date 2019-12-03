@@ -16,8 +16,8 @@ export class FactuurService {
     return this.http.get<IFactuur>(`${this.common.urlAPI}/factuur/${userId}/${resId}`);
   }
 
-  GetFacturen(userId: string) {
-    return this.http.get<IFactuur[]>(`${this.common.urlAPI}/factuur/${userId}`);
+  GetFacturen(userId: string, sortby: string) {
+    return this.http.get<IFactuur[]>(`${this.common.urlAPI}/factuur/${userId}?sortBy=${sortby}`);
   }
 
   GetFactuurById(userId: string, factId: number) {
