@@ -10,14 +10,14 @@ namespace Business_layer.Facades
     public class FactuurFacade : IFactuurFacade
     {
 
-        PDFGenerator pdfGenerator;
-        SendGridEmailSender emailSender;
+        //PDFGenerator pdfGenerator;
+        //SendGridEmailSender emailSender;
         private readonly IFactuurRepository _factuurRepository;
 
         public FactuurFacade(IFactuurRepository factuurRepository)
         {
-            this.pdfGenerator = new PDFGenerator();
-            this.emailSender = new SendGridEmailSender();
+            //this.pdfGenerator = new PDFGenerator();
+            //this.emailSender = new SendGridEmailSender();
             this._factuurRepository = factuurRepository;
         }
         public Factuur GetFactuur(string idGebruiker, long idRes)

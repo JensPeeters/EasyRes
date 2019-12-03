@@ -11,7 +11,7 @@ import { IReservatie } from '../services/common.service';
 })
 export class ReservatieLijstComponent implements OnInit {
 
-  reservaties: IReservatie[];
+  reservaties: IReservatie[] = [];
   userid: string;
   aantal: number = 10;
 

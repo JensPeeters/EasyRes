@@ -10,7 +10,7 @@ import { ISessie } from '../services/common.service';
 })
 export class SessieComponent implements OnInit {
 
-  Sessies : ISessie[];
+  Sessies : ISessie[] = [];
   TafelNr : number = 4;
   UserId: string;
 
