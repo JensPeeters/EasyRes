@@ -36,7 +36,7 @@ describe('ReservatieLijstComponent', () => {
   });
 
   it('Expect showMore() to add 10 to the pagesize', () => {
-    fixture.detectChanges();
+    //fixture.detectChanges();
     component.showMore();
     expect(component.aantal).toBe(20);
   });
