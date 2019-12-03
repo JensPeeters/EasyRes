@@ -10,19 +10,21 @@ import { ISessie } from '../services/common.service';
 })
 export class SessieComponent implements OnInit {
 
-  Sessies : ISessie[];
-  TafelNr : number = 4;
+  Sessies: ISessie[] = [];
   UserId: string;
 
-  constructor(private sessieServ : SessionService, private msalService: MsalService) { }
+  constructor(private sessieServ: SessionService, private msalService: MsalService) { }
 
-  async ngOnInit() {
-    if(this.msalService.isLoggedIn()){
+  ngOnInit() {
+    if (this.msalService.isLoggedIn()) {
       this.GetUserId();
     }
-    this.Sessies = await this.sessieServ.GetSessions(this.UserId).toPromise();
+    this.sessieServ.GetSessions(this.UserId).subscribe(res => {
+      this.Sessies = res;
+    });
   }
-  GetUserId(){
+
+  GetUserId() {
     this.UserId = this.msalService.getUserObjectId();
   }
 }
