@@ -6,6 +6,7 @@ import { CommonService, IBestelling } from './common.service';
   providedIn: 'root'
 })
 export class BestellingService {
+  [x: string]: {};
   bestelling = {
     prijs: 0,
     tafelNr: 0,

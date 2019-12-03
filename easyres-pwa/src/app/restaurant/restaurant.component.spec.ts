@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MsalService } from '../services/msal.service';
 import { Ng2CompleterModule } from 'ng2-completer';
 import { GoogleAnalyticsService } from '../services/google-analytics.service';
+import { FilterService } from '../services/filter.service';
 
 describe('RestaurantComponent', () => {
   let component: RestaurantComponent;
@@ -16,7 +17,7 @@ describe('RestaurantComponent', () => {
     TestBed.configureTestingModule({
       imports: [FormsModule, RouterModule.forRoot([]), HttpClientModule, Ng2CompleterModule],
       declarations: [ RestaurantComponent ],
-      providers: [MsalService, GoogleAnalyticsService]
+      providers: [MsalService, GoogleAnalyticsService, FilterService]
     })
     .compileComponents();
   }));
@@ -28,6 +29,23 @@ describe('RestaurantComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-    //fixture.detectChanges();
   });
+
+  it('Should give gemeentes of België when België is selected', () => {
+    component.Filters[0].value = "België";
+    var result = component.ChangeLocation({naam: "Gemeente", value: "", active: false});
+    expect(result).toBe(component.GemeentesBelgie);
+  });
+
+  it('Should give gemeentes of Nederland when Nederland is selected', () => {
+    component.Filters[0].value = "Nederland";
+    var result = component.ChangeLocation({naam: "Gemeente", value: "", active: false});
+    expect(result).toBe(component.GemeentesNederland);
+  });
+
+  it('ChangeFilter() should change boolean value', () => {
+    component.ChangeFilter(component.Filters[0]);
+    expect(component.Filters[0].active).toBe(true);
+  });
+
 });

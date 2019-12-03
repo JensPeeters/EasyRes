@@ -26,4 +26,22 @@ describe('BestelComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should collapse the open menu when openingen any of the other menus ', () => {
+    component.buttons = [
+      {
+        type: 'Dranken',
+        nr: 1,
+        state: false
+      },
+      {
+        type: 'Voorgerechten',
+        nr: 2,
+        state: true
+      }
+    ];
+    component.ChangeToFalse(component.buttons[0].state,component.buttons[0].nr)
+    expect(component.buttons[1].state).toBe(false);
+  });
+
 });
