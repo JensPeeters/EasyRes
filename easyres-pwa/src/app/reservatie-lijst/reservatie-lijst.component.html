@@ -22,8 +22,8 @@
             </div>
         </div>
         <div class="reservaties" *ngIf="!isEmpty(reservaties)">
-            <div class="reservatie-template" *ngFor="let reservatie of reservaties| slice:0:aantal;">
-                <div class="modal" tabindex="-1" role="dialog" id="popupModal">
+            <div class="reservatie-template" *ngFor="let reservatie of reservaties| slice:0:aantal; let id = index;">
+                <div class="modal" tabindex="-1" role="dialog" [attr.id]="'verwijderModal' + id">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -49,9 +49,9 @@
                         <div class="reservatie-header">
                             <h4 class="card-title">{{reservatie.restaurant.naam}}</h4>
                             <button class="btn-outline-danger btn button-reserve big" data-toggle="modal"
-                                data-target="#popupModal">Annuleren</button>
+                                [attr.data-target]="'#verwijderModal'+id">Annuleren</button>
                             <button class="btn-outline-danger btn button-reserve small" data-toggle="modal"
-                                data-target="#popupModal"><i class="fa fa-times fa-lg"></i></button>
+                                [attr.data-target]="'#verwijderModal'+id"><i class="fa fa-times fa-lg"></i></button>
                         </div>
                         <div class="reservatie-info">
                             <p class="card-text pers"><strong>Aantal Personen: </strong><br
