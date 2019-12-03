@@ -16,13 +16,13 @@ namespace Business_layer.Facades
             this._reserveringRepository = reserveringRepository;
             this.emailSender = new SendGridEmailSender();
         }
-        public List<Reservatie> GetReserveringen(string userid)
+        public List<Reservatie> GetReserveringen(string userid, string sortBy)
         {
-            return _reserveringRepository.GetReserveringen(userid);
+            return _reserveringRepository.GetReserveringen(userid, sortBy);
         }
-        public List<Reservatie> GetPastReserveringen(string userid)
+        public List<Reservatie> GetPastReserveringen(string userid, string sortBy)
         {
-            return _reserveringRepository.GetPastReserveringen(userid);
+            return _reserveringRepository.GetPastReserveringen(userid, sortBy);
         }
         public Reservatie GetReservatie(long id)
         {

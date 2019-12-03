@@ -43,12 +43,12 @@ export class RestaurantService {
   }
 
   // Reservaties
-  GetReservationsByUserID(userid: string) {
-    return this.http.get<IReservatie[]>(`${this.common.urlAPI}/reservatie?userid=${userid}`);
+  GetReservationsByUserID(userid: string, sortby: string) {
+    return this.http.get<IReservatie[]>(`${this.common.urlAPI}/reservatie?userid=${userid}&sortBy=${sortby}`);
   }
 
-  GetPastReservationsByUserID(userid: string) {
-    return this.http.get<IReservatie[]>(`${this.common.urlAPI}/reservatie/past/${userid}`);
+  GetPastReservationsByUserID(userid: string, sortby: string) {
+    return this.http.get<IReservatie[]>(`${this.common.urlAPI}/reservatie/past/${userid}?sortBy=${sortby}`);
   }
 
   GetReservationByID(id: number) {
