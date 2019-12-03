@@ -21,9 +21,6 @@
                 <a (click)="Sorteren(keuze)" class="dropdown-item" *ngFor="let keuze of sorteerKeuzes">{{keuze}}</a>
             </div>
         </div>
-        <div class="empty" *ngIf="isEmpty(reservaties)">
-            <h5>U heeft nog geen reservaties.</h5>
-        </div>
         <div class="reservaties" *ngIf="!isEmpty(reservaties)">
             <div class="reservatie-template" *ngFor="let reservatie of reservaties| slice:0:aantal;">
                 <div class="modal" tabindex="-1" role="dialog" id="popupModal">
@@ -70,4 +67,7 @@
             </div>
         </div>
     </div>
+</div>
+<div class="empty" *ngIf="isEmpty(reservaties)">
+    <h5>U heeft nog geen reservaties.</h5>
 </div>
