@@ -6,7 +6,7 @@ namespace Business_layer.Interfaces
     public interface IFactuurFacade
     {
         Factuur GetFactuur(string idGebruiker, long idRes);
-        List<Factuur> GetFacturen(string idGebruiker);
+        List<Factuur> GetFacturen(string idGebruiker, string sortBy);
         Factuur GetFactuurById(string idGebruiker, long idFactuur);
         Factuur GenerateFactuur(string idGebruiker, long idRes, string mail);
 

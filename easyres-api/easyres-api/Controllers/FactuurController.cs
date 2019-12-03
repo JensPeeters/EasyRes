@@ -33,9 +33,9 @@ namespace easyres_api.Controllers
 
         [Route("{idGebruiker}")]
         [HttpGet]
-        public ActionResult<List<Factuur>> GetFacturen(string idGebruiker)
+        public ActionResult<List<Factuur>> GetFacturen(string idGebruiker, string sortBy)
         {
-            var facturen = _factuurFacade.GetFacturen(idGebruiker);
+            var facturen = _factuurFacade.GetFacturen(idGebruiker, sortBy);
             if (facturen == null)
                 return NotFound();
             return facturen;

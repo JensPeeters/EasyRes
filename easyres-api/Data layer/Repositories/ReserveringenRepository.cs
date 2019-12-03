@@ -19,20 +19,46 @@ namespace Data_layer.Repositories
         {
             _context.SaveChanges();
         }
-        public List<Reservatie> GetReserveringen(string userid)
+        public List<Reservatie> GetReserveringen(string userid, string sortBy)
         {
             IQueryable<Reservatie> reservaties = _context.Reservaties.Include(a => a.Restaurant);
             if (!string.IsNullOrEmpty(userid))
                 reservaties = reservaties.Where(b => b.UserId == userid)
                                          .Where(b => DateTime.ParseExact(b.Datum, "yyyy-MM-dd", null) >= DateTime.Now);
+            if (string.IsNullOrEmpty(sortBy)) sortBy = "default";
+            switch (sortBy.ToLower())
+            {
+                case "datum":
+                    reservaties = reservaties.OrderBy(b => b.Datum);
+                    break;
+                case "restaurant":
+                    reservaties = reservaties.OrderBy(b => b.Restaurant);
+                    break;
+                default:
+                    reservaties = reservaties.OrderBy(b => b.Datum);
+                    break;
+            }
             return reservaties.ToList();
         }
-        public List<Reservatie> GetPastReserveringen(string userid)
+        public List<Reservatie> GetPastReserveringen(string userid, string sortBy)
         {
             IQueryable<Reservatie> reservaties = _context.Reservaties.Include(a => a.Restaurant);
             if (!string.IsNullOrEmpty(userid))
                 reservaties = reservaties.Where(b => b.UserId == userid)
                                          .Where(b => DateTime.ParseExact(b.Datum, "yyyy-MM-dd", null) < DateTime.Now);
+            if (string.IsNullOrEmpty(sortBy)) sortBy = "default";
+            switch (sortBy.ToLower())
+            {
+                case "datum":
+                    reservaties = reservaties.OrderByDescending(b => b.Datum);
+                    break;
+                case "restaurant":
+                    reservaties = reservaties.OrderBy(b => b.Restaurant);
+                    break;
+                default:
+                    reservaties = reservaties.OrderByDescending(b => b.Datum);
+                    break;
+            }
             return reservaties.ToList();
         }
         public Reservatie GetReservatie(long id)

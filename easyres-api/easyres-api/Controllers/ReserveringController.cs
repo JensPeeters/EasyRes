@@ -17,16 +17,16 @@ namespace easyres_api.Controllers
         }
 
         [HttpGet]
-        public List<Reservatie> GetReserveringen(string userid)
+        public List<Reservatie> GetReserveringen(string userid, string sortBy)
         {
-            return _reserveringFacade.GetReserveringen(userid);
+            return _reserveringFacade.GetReserveringen(userid, sortBy);
         }
 
         [Route("past/{userid}")]
         [HttpGet]
-        public List<Reservatie> GetPastReserveringen(string userid)
+        public List<Reservatie> GetPastReserveringen(string userid, string sortBy)
         {
-            return _reserveringFacade.GetPastReserveringen(userid);
+            return _reserveringFacade.GetPastReserveringen(userid, sortBy);
         }
 
         [Route("{id}")]
