@@ -2,8 +2,8 @@
   <button class="btn btn-danger" [routerLink]="['/bestel', RestaurantId,TafelNr,'menu']">Menu kaart
   </button>
   <button class="btn btn-danger" [routerLink]="['/bestel', RestaurantId,TafelNr,'verstuur']"
-   (click)="SendEvent('Bestelling plaatsen')" [disabled]="bestelling.dranken.length == 0 && bestelling.etenswaren.length == 0"
-   >Bestellen</button>
+    (click)="SendEvent('Bestelling plaatsen')"
+    [disabled]="bestelling.dranken.length == 0 && bestelling.etenswaren.length == 0">Bestellen</button>
 </div>
 <div>
   <hr>
@@ -13,12 +13,12 @@
     <strong>Aantal</strong>
   </li>
   <hr>
-  <li *ngFor="let drank of bestelling.dranken">
+  <li *ngFor="let drank of bestelling.dranken; let id = index">
     <p>{{drank.naam}}</p>
     <p>{{drank.prijs | currency:'€' }}</p>
     <p>{{drank.aantal}}</p>
-    <a class="btn btn-outline-danger" data-toggle="modal" href="#popupModalDrank">✕</a>
-    <div class="modal" tabindex="-1" role="dialog" id="popupModalDrank">
+    <a class="btn btn-outline-danger" data-toggle="modal" [attr.data-target]="'#popupModalDrank'+id">✕</a>
+    <div class="modal" tabindex="-1" role="dialog" [attr.id]="'popupModalDrank' + id">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -38,12 +38,12 @@
       </div>
     </div>
   </li>
-  <li *ngFor="let etenswaar of bestelling.etenswaren">
+  <li *ngFor="let etenswaar of bestelling.etenswaren; let id = index">
     <p>{{etenswaar.naam}}</p>
     <p>{{etenswaar.prijs | currency:'€' }}</p>
     <p>{{etenswaar.aantal}}</p>
-    <a class="btn btn-outline-danger" data-toggle="modal" href="#popupModalEten">✕</a>
-    <div class="modal" tabindex="-1" role="dialog" id="popupModalEten">
+    <a class="btn btn-outline-danger" data-toggle="modal" [attr.data-target]="'#popupModalEten'+id">✕</a>
+    <div class="modal" tabindex="-1" role="dialog" [attr.id]="'popupModalEten' + id">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
