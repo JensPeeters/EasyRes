@@ -71,6 +71,7 @@ export class BestelComponent implements OnInit {
       },
       err => {
         this.menuFailed = true;
+        this.menuLoading = false;
       },
       () => {
         this.menuLoading = false;

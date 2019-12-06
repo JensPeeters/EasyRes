@@ -13,7 +13,7 @@
   <button class="btn btn-danger" [routerLink]="['/bestel', restaurant.restaurantId,TafelNr,'producten']">Bestelde
     producten</button>
 </div>
-<div class="input-search-restaurant">
+<div class="input-search-restaurant" *ngIf="restaurant">
   <input type="text" placeholder="Zoek" [(ngModel)]="searchEntry" (keydown.enter)="Search()">
   <span (click)="Search()"><i class="fas fa-search"></i></span>
 </div>
