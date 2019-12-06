@@ -3,7 +3,7 @@ import { RestaurantService } from '../services/restaurant.service';
 import { ActivatedRoute } from '@angular/router';
 import { BestellingService } from '../services/bestelling.service';
 import { MsalService } from '../services/msal.service';
-import { IRestaurant, IProduct } from '../services/common.service';
+import { IRestaurant, IProduct, IVoorgerechten, IHoofdgerechten, IDranken, IDessert } from '../services/common.service';
 
 @Component({
   selector: 'app-bestel',
@@ -12,6 +12,12 @@ import { IRestaurant, IProduct } from '../services/common.service';
 })
 export class BestelComponent implements OnInit {
   restaurant: IRestaurant;
+
+  ShownVoorgerechten: IVoorgerechten[];
+  ShownHoofdgerechten: IHoofdgerechten[];
+  ShownDranken: IDranken[];
+  ShownDesserts: IDessert[];
+  
   UserId: string;
   TafelNr: number;
   menuLoading: boolean = true;
@@ -39,6 +45,8 @@ export class BestelComponent implements OnInit {
     },
   ];
 
+  searchEntry: string = "";
+
   constructor(private resServ: RestaurantService, private route: ActivatedRoute,
               private bestelServ: BestellingService, private msalService: MsalService) { }
   restuarantId;
@@ -59,6 +67,7 @@ export class BestelComponent implements OnInit {
         this.restaurant = restaurant;
         this.LoadBarProducts();
         this.LoadKitchenProducts();
+        this.ShowMenu();
       },
       err => {
         this.menuFailed = true;
@@ -163,5 +172,59 @@ export class BestelComponent implements OnInit {
       if(tempProduct != null)
         tempProduct.aantal = element.aantal;
     });
+  }
+  ShowMenu(){
+    this.ShownDranken = this.restaurant.menu.dranken;
+    this.ShownVoorgerechten = this.restaurant.menu.voorgerechten;
+    this.ShownHoofdgerechten = this.restaurant.menu.hoofdgerechten;
+    this.ShownDesserts = this.restaurant.menu.desserts;
+  }
+  Search(){
+    if(this.searchEntry == ""){
+      this.ShowMenu();
+    }
+    else{
+      var dranken = [];
+      var voorgerechten = [];
+      var hoofdgerechten = [];
+      var desserts = [];
+      this.restaurant.menu.dranken.map(product =>{
+        if(product.naam.toLocaleLowerCase().indexOf(this.searchEntry.toLocaleLowerCase()) !== -1){
+          dranken.push(product);
+        }
+      });
+      this.restaurant.menu.voorgerechten.map(product =>{
+        if(product.naam.toLocaleLowerCase().indexOf(this.searchEntry.toLocaleLowerCase()) !== -1){
+          voorgerechten.push(product);
+        }
+      });
+      this.restaurant.menu.hoofdgerechten.map(product =>{
+        if(product.naam.toLocaleLowerCase().indexOf(this.searchEntry.toLocaleLowerCase()) !== -1){
+          hoofdgerechten.push(product);
+        }
+      });
+      this.restaurant.menu.desserts.map(product =>{
+        if(product.naam.toLocaleLowerCase().indexOf(this.searchEntry.toLocaleLowerCase()) !== -1){
+          desserts.push(product);
+        }
+      });
+
+      this.ShownDranken = dranken;
+      this.ShownVoorgerechten = voorgerechten;
+      this.ShownHoofdgerechten = hoofdgerechten;
+      this.ShownDesserts = desserts;
+    }
+  }
+  get DrankenAmount(){
+    return this.ShownDranken.length;
+  }
+  get VoorgerechtenAmount(){
+    return this.ShownVoorgerechten.length;
+  }
+  get HoofdgerechtenAmount(){
+    return this.ShownHoofdgerechten.length;
+  }
+  get DessertsAmount(){
+    return this.ShownDesserts.length;
   }
 }
