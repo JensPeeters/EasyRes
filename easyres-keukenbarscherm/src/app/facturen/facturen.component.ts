@@ -25,8 +25,6 @@ export class FacturenComponent implements OnInit {
           else if(!factuur.betaald)
             this.OpenstaandeFacturen.push(factuur);
         });
-        console.log(this.BetaaldeFacturen);
-        console.log(this.OpenstaandeFacturen);
       });
     });
   }

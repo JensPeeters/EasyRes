@@ -20,7 +20,7 @@ export class UserService {
   }
 
   GetFacturenUitbater(resId : number){
-    return this.http.get<IFactuur>(`${this.urlAPI}/factuur/restaurant/${resId}`);
+    return this.http.get<IFactuur[]>(`${this.urlAPI}/factuur/restaurant/${resId}`);
   }
 }
 

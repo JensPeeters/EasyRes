@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FacturenComponent } from './facturen.component';
+import { FactuurComponent } from './factuur/factuur.component';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('FacturenComponent', () => {
   let component: FacturenComponent;
@@ -8,7 +11,8 @@ describe('FacturenComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FacturenComponent ]
+      imports: [HttpClientModule, RouterModule.forRoot([])],
+      declarations: [ FacturenComponent, FactuurComponent ]
     })
     .compileComponents();
   }));
@@ -16,7 +20,6 @@ describe('FacturenComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(FacturenComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
