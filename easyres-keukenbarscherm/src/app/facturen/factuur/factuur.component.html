@@ -1,0 +1,14 @@
+<div class="card" *ngIf="factuur">
+        <div class="card-body">
+            <h4 class="card-title">Tafel : {{factuur.tafelNr}}</h4>
+            <p class="card-text">
+                {{ factuur.datum | date:'MMM d, y, HH:mm' }}
+                <span class="mr-1 verticalLine"></span>
+                Factuurnummer: {{factuur.id}}
+            </p>
+            <div *ngIf="!factuur.betaald" class="red circle"></div>
+            <div *ngIf="factuur.betaald" class="green circle"></div>
+            <p class="float-right fullWidth">Totaalprijs: € {{factuur.totaalPrijs | number:'.2'}}</p>
+            <a [routerLink]="['/facturen', factuur.id]" class="fullWidth">Bekijk bestelling >></a>
+        </div>
+    </div>
