@@ -10,6 +10,8 @@ namespace Business_layer.Interfaces
         Factuur GetFactuurById(string idGebruiker, long idFactuur);
         Factuur GenerateFactuur(string idGebruiker, long idRes, string mail);
 
+        List<Factuur> GetFacturenRestaurant(int idRes);
+
         Factuur UpdateFactuur(Factuur factuur);
     }
 }
