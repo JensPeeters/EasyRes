@@ -46,6 +46,8 @@ namespace easyres_api.Controllers
             var reservatie = _reserveringFacade.DeleteReservatie(id, user);
             if (reservatie == null)
                 return NotFound();
+            if (reservatie.Naam == "PAST")
+                return BadRequest("Kan geen voorbije reservaties verwijderen.");
             return NoContent();
         }
     }

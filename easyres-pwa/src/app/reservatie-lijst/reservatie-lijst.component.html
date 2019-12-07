@@ -48,9 +48,9 @@
                     <div class="card-body">
                         <div class="reservatie-header">
                             <h4 class="card-title">{{reservatie.restaurant.naam}}</h4>
-                            <button class="btn-outline-danger btn button-reserve big" data-toggle="modal"
+                            <button *ngIf="verwijderbaar" class="btn-outline-danger btn button-reserve big" data-toggle="modal"
                                 [attr.data-target]="'#verwijderModal'+id">Annuleren</button>
-                            <button class="btn-outline-danger btn button-reserve small" data-toggle="modal"
+                            <button *ngIf="verwijderbaar" class="btn-outline-danger btn button-reserve small" data-toggle="modal"
                                 [attr.data-target]="'#verwijderModal'+id"><i class="fa fa-times fa-lg"></i></button>
                         </div>
                         <div class="reservatie-info">

@@ -14,6 +14,7 @@ export class ReservatieLijstComponent implements OnInit {
   reservaties: IReservatie[] = [];
   userid: string;
   aantal = 10;
+  verwijderbaar: boolean;
 
   FilterOp = 'Komende Reservaties';
   filterKeuzes: string[] = ['Komende Reservaties', 'Voorbije Reservaties'];
@@ -51,10 +52,12 @@ export class ReservatieLijstComponent implements OnInit {
     if (this.FilterOp === 'Komende Reservaties') {
       this.resService.GetReservationsByUserID(this.userid, this.SorteerOp).subscribe(result => {
         this.reservaties = result;
+        this.verwijderbaar = true;
       });
     } else if (this.FilterOp === 'Voorbije Reservaties') {
       this.resService.GetPastReservationsByUserID(this.userid, this.SorteerOp).subscribe(result => {
         this.reservaties = result;
+        this.verwijderbaar = false;
       });
     }
   }
