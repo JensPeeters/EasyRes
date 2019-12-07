@@ -1,6 +1,7 @@
 ﻿using Data_layer.Interfaces;
 using Data_layer.Model;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -40,6 +41,25 @@ namespace Data_layer.Repositories
                                                          .Include(a => a.Restaurant)
                                                          .Where(a => a.Gebruiker.GebruikersID == userId);
             return query.ToList();
+        }
+
+        public Sessie DeleteSessie(string userId, long restaurantId)
+        {
+            var deletedSessie = _context.Sessies.Include(a => a.Gebruiker)
+                                                .Include(a => a.Restaurant)
+                                                .Where(a => a.Gebruiker.GebruikersID == userId)
+                                                .Where(a => a.Restaurant.RestaurantId == restaurantId)
+                                                .LastOrDefault();
+            try
+            {
+                _context.Sessies.Remove(deletedSessie);
+            }
+            catch (ArgumentNullException)
+            {
+                return null;
+            }
+
+            return deletedSessie;
         }
     }
 }

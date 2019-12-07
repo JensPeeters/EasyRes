@@ -9,5 +9,6 @@ namespace Data_layer.Interfaces
         void SaveChanges();
 
         List<Sessie> GetSessionsByUserId(string userId);
+        Sessie DeleteSessie(string userId, long restaurantId);
     }
 }
