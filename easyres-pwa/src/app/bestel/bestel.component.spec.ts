@@ -4,6 +4,7 @@ import { BestelComponent } from './bestel.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { MsalService } from '../services/msal.service';
+import { FormsModule } from '@angular/forms';
 
 describe('BestelComponent', () => {
   let component: BestelComponent;
@@ -11,7 +12,7 @@ describe('BestelComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [RouterModule.forRoot([]), HttpClientModule],
+      imports: [RouterModule.forRoot([]), HttpClientModule, FormsModule],
       declarations: [ BestelComponent ],
       providers: [MsalService]
     })

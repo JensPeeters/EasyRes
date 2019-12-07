@@ -13,18 +13,25 @@
   <button class="btn btn-danger" [routerLink]="['/bestel', restaurant.restaurantId,TafelNr,'producten']">Bestelde
     producten</button>
 </div>
+<div class="input-search-restaurant" *ngIf="restaurant">
+  <input type="text" placeholder="Zoek" [(ngModel)]="searchEntry" (keydown.enter)="Search()">
+  <span (click)="Search()"><i class="fas fa-search"></i></span>
+</div>
 <div id="accordion" *ngIf="restaurant">
   <div class="card">
     <div class="card-header" id="dranken">
       <button class="btn btn-warning" data-toggle="collapse" data-target="#collapseDranken" aria-expanded="true"
         aria-controls="collapseDranken" (click)=ChangeToFalse(buttons[0].state,buttons[0].nr)>
-        Dranken <i *ngIf="!buttons[0].state" class="fas fa-plus"></i> <i *ngIf="buttons[0].state"
-          class="fas fa-minus"></i></button>
+        Dranken
+        <i *ngIf="!buttons[0].state" class="fas fa-plus"></i>
+        <i *ngIf="buttons[0].state" class="fas fa-minus"></i>
+        <span class="amount">({{DrankenAmount}})</span>
+      </button>
     </div>
     <div id="collapseDranken" class="collapse hidden" aria-labelledby="dranken" data-parent="#accordion">
       <div class="card-body">
         <ul>
-          <li *ngFor="let drinken of restaurant.menu.dranken">
+          <li *ngFor="let drinken of ShownDranken">
             <p>{{drinken.naam}}</p>
             <p>{{drinken.prijs | currency:'€' }}</p>
             <div class="editProduct">
@@ -42,12 +49,13 @@
         Voorgerechten
         <i *ngIf="!buttons[1].state" class="fas fa-plus"></i>
         <i *ngIf="buttons[1].state" class="fas fa-minus"></i>
+        <span class="amount">({{VoorgerechtenAmount}})</span>
       </button>
     </div>
     <div id="collapseVoorgerechten" class="collapse hidden" aria-labelledby="voorgerechten" data-parent="#accordion">
       <div class="card-body">
         <ul>
-          <li *ngFor="let voorgerecht of restaurant.menu.voorgerechten">
+          <li *ngFor="let voorgerecht of ShownVoorgerechten">
             <p>{{voorgerecht.naam}}</p>
             <p>{{voorgerecht.prijs | currency:'€' }}</p>
             <div class="editProduct">
@@ -65,12 +73,13 @@
         Hoofdgerechten
         <i *ngIf="!buttons[2].state" class="fas fa-plus"></i>
         <i *ngIf="buttons[2].state" class="fas fa-minus"></i>
+        <span class="amount">({{HoofdgerechtenAmount}})</span>
       </button>
     </div>
     <div id="collapseHoofdgerechten" class="collapse hidden" aria-labelledby="hoofdgerechten" data-parent="#accordion">
       <div class="card-body">
         <ul>
-          <li *ngFor="let hoofdgerecht of restaurant.menu.hoofdgerechten">
+          <li *ngFor="let hoofdgerecht of ShownHoofdgerechten">
             <p>{{hoofdgerecht.naam}}</p>
             <p>{{hoofdgerecht.prijs | currency:'€' }}</p>
             <div class="editProduct">
@@ -88,12 +97,13 @@
         Desserts
         <i *ngIf="!buttons[3].state" class="fas fa-plus"></i>
         <i *ngIf="buttons[3].state" class="fas fa-minus"></i>
+        <span class="amount">({{DessertsAmount}})</span>
       </button>
     </div>
     <div id="collapseDesserts" class="collapse hidden" aria-labelledby="desserts" data-parent="#accordion">
       <div class="card-body">
         <ul>
-          <li *ngFor="let dessert of restaurant.menu.desserts">
+          <li *ngFor="let dessert of ShownDesserts">
             <p>{{dessert.naam}}</p>
             <p>{{dessert.prijs | currency:'€' }}</p>
             <div class="editProduct">

@@ -8,13 +8,16 @@
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/bar']">Bar</a>
+        <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/bar']">Bar</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/keuken']">Keuken</a>
+        <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/keuken']">Keuken</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/reservaties']">Reservaties</a>
+        <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/reservaties']">Reservaties</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/facturen']">Facturen</a>
       </li>
     </ul>
     <ul class="navbar-nav">

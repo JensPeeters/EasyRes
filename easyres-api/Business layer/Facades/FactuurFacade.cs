@@ -37,6 +37,11 @@ namespace Business_layer.Facades
             var factuur = _factuurRepository.GetFactuurById(idGebruiker, idFactuur);
             return factuur;
         }
+        public List<Factuur> GetFacturenRestaurant(int idRes)
+        {
+            var facturen = _factuurRepository.GetFacturenRestaurant(idRes);
+            return facturen;
+        }
 
         public Factuur GenerateFactuur(string idGebruiker, long idRes, string mail)
         {

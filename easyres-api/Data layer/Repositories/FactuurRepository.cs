@@ -58,6 +58,14 @@ namespace Data_layer.Repositories
             return facturen.ToList();
         }
 
+        public List<Factuur> GetFacturenRestaurant(int idRes)
+        {
+            return _context.Facturen.Where(a => a.Restaurant.RestaurantId == idRes)
+                .Include(a => a.Restaurant)
+                .Include(a => a.Gebruiker)
+                .Include(a => a.Producten).ToList();
+        }
+
         public Factuur GetFactuurById(string idGebruiker, long idFactuur)
         {
             Gebruiker gebruiker = _context.Gebruikers.Where(a => a.GebruikersID == idGebruiker).FirstOrDefault();
@@ -83,8 +91,10 @@ namespace Data_layer.Repositories
                                         .Where(a => a.Restaurant == restaurant)
                                         .Where(a => a.Gebruiker == gebruiker).ToList();
             List<Product> producten = new List<Product>();
+            var tafelNr = 0;
             foreach (var bestelling in Bestellingen)
             {
+                tafelNr = bestelling.TafelNr;
                 foreach (Product eten in bestelling.Etenswaren)
                 {
                     CheckList(eten);
@@ -95,7 +105,8 @@ namespace Data_layer.Repositories
                     CheckList(drinken);
                 }
             }
-
+            if (tafelNr == 0)
+                return null;
             void CheckList(Product product)
             {
                 var tempProduct = producten.Find(a => a.Naam == product.Naam);
@@ -112,6 +123,7 @@ namespace Data_layer.Repositories
 
             Factuur factuur = new Factuur()
             {
+                TafelNr = tafelNr,
                 Gebruiker = gebruiker,
                 Restaurant = restaurant,
                 Producten = producten,
