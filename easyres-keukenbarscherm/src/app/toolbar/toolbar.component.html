@@ -41,22 +41,29 @@
 <div class="navbaronder">
   <a [routerLinkActive]="['active']" [routerLink]="['/bar']"><i class="fas fa-cocktail"></i><br>Bar</a>
   <a [routerLinkActive]="['active']" [routerLink]="['/keuken']"><i class="fas fa-utensils"></i><br>Keuken</a>
-  <a [routerLinkActive]="['active']" [routerLink]="['/reservaties']"><i class="far fa-calendar-alt"></i><br>Reservaties</a>
-  
+  <a [routerLinkActive]="['active']" [routerLink]="['/reservaties']"><i
+      class="far fa-calendar-alt"></i><br>Reservaties</a>
+
   <div class="inline" *ngIf="!isUserLoggedIn()">
-      <a (click)="login()"><i class="far fa-user"></i><br>Login</a>
-      <a (click)="signup()"><i class="far fa-user"></i><br>Sign Up</a>
+    <div id="dropdownLogin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <a class="icon ml-2"><i class="far fa-user"></i><br>Login</a>
+    </div>
+    <div class="dropdown-menu navbaronder-dropdown" aria-labelledby="dropdownLogin">
+      <button class="dropdown-item ml-0" (click)="login()"><i class="far fa-user"></i>Login</button>
+      <button class="dropdown-item ml-0" (click)="signup()"><i class="far fa-user"></i>Sign up</button>
+    </div>
   </div>
 
   <div class="center dropdown" *ngIf="isUserLoggedIn()">
-          <div id="dropdownMenuUseronder" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <a class="icon ml-2"><i class="far fa-user"></i><br>{{userfirstname() | titlecase}}</a>
-          </div>
+    <div id="dropdownMenuUseronder" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <a class="icon ml-2"><i class="far fa-user"></i><br>{{userfirstname() | titlecase}}</a>
+    </div>
 
-          <div class="dropdown-menu navbaronder-dropdown" aria-labelledby="dropdownMenuUseronder">
-              <button class="dropdown-item ml-0" type="button" [routerLink]="['/dashboard']"><i class="fas fa-cog"></i>Instellingen</button>
-              <div class="dropdown-divider"></div>
-              <button class="dropdown-item ml-0" (click)="logout()"><i class="fas fa-sign-out-alt"></i>Logout</button>
-          </div>
-        </div>
+    <div class="dropdown-menu navbaronder-dropdown" aria-labelledby="dropdownMenuUseronder">
+      <button class="dropdown-item ml-0" type="button" [routerLink]="['/dashboard']"><i
+          class="fas fa-cog"></i>Instellingen</button>
+      <div class="dropdown-divider"></div>
+      <button class="dropdown-item ml-0" (click)="logout()"><i class="fas fa-sign-out-alt"></i>Logout</button>
+    </div>
+  </div>
 </div>
