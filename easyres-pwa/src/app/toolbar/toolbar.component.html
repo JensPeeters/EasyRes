@@ -46,8 +46,13 @@
     <a [routerLink]="['/scan']" (click)="SendEvent('Scan')" class="active red"><i class="fas fa-qrcode"></i><br>Scan</a>
     <a [routerLinkActive]="['active']" [routerLink]="['/sessie']"><i class="far fa-clock"></i><br>Sessies</a>
     <div class="inline" *ngIf="!isUserLoggedIn()">
-        <a (click)="login()"><i class="far fa-user"></i><br>Login</a>
-        <a (click)="signup()"><i class="far fa-user"></i><br>Sign Up</a>
+            <div id="dropdownLogin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="icon ml-2"><i class="far fa-user"></i><br>Login</a>
+            </div>
+            <div class="dropdown-menu navbaronder-dropdown" aria-labelledby="dropdownLogin">
+                    <button class="dropdown-item ml-0" (click)="login()"><i class="far fa-user"></i>Login</button>
+                    <button class="dropdown-item ml-0" (click)="signup()"><i class="far fa-user"></i>Sign up</button>
+            </div>
     </div>
 
     <div class="center dropdown" *ngIf="isUserLoggedIn()">
