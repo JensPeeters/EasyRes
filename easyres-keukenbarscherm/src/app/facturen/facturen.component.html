@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="button-top-fixed">
+    <button class="btn btn-danger" (click)="ChangeRequest(true)">
+      <p> Betaalde facturen</p>
+    </button>
+    <button class="btn btn-danger" (click)="ChangeRequest(false)">
+      <p>Openstaande facturen</p>
+    </button>
+  </div>
+  <div class="header">
+    <h3 *ngIf="BetaaldeFacturenView">Betaalde facturen</h3>
+    <h3 *ngIf="!BetaaldeFacturenView">Openstaande facturen</h3>
+  </div>
+  <div *ngIf="!BetaaldeFacturenView">
+    <app-factuur *ngFor="let factuur of OpenstaandeFacturen" [factuur]="factuur"></app-factuur>
+  </div>
+  <div *ngIf="BetaaldeFacturenView">
+    <app-factuur *ngFor="let factuur of BetaaldeFacturen" [factuur]="factuur"></app-factuur>
+  </div>
+</div>

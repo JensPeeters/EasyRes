@@ -28,16 +28,42 @@ namespace Data_layer.Repositories
                                      .Where(a => a.Gebruiker == gebruiker).LastOrDefault();
             return factuur;
         }
-        public List<Factuur> GetFacturen(string idGebruiker)
+        public List<Factuur> GetFacturen(string idGebruiker, string sortBy)
         {
             Gebruiker gebruiker = _context.Gebruikers.Where(a => a.GebruikersID == idGebruiker).FirstOrDefault();
             if (gebruiker == null)
                 return null;
-            List<Factuur> facturen = _context.Facturen
-                                            .Include(a => a.Producten)
-                                            .Include(a => a.Restaurant)
-                                            .Where(a => a.Gebruiker == gebruiker).ToList();
-            return facturen;
+            IQueryable<Factuur> facturen = _context.Facturen.Include(a => a.Producten)
+                                                            .Include(a => a.Restaurant)
+                                                            .Where(a => a.Gebruiker == gebruiker);
+            if (string.IsNullOrEmpty(sortBy)) sortBy = "default";
+            switch (sortBy.ToLower())
+            {
+                case "datum":
+                    facturen = facturen.OrderBy(b => b.Datum);
+                    break;
+                case "restaurant":
+                    facturen = facturen.OrderBy(b => b.Restaurant);
+                    break;
+                case "factuurnummer":
+                    facturen = facturen.OrderBy(b => b.Id);
+                    break;
+                case "prijs":
+                    facturen = facturen.OrderBy(b => b.TotaalPrijs);
+                    break;
+                default:
+                    facturen = facturen.OrderBy(b => b.Datum);
+                    break;
+            }
+            return facturen.ToList();
+        }
+
+        public List<Factuur> GetFacturenRestaurant(int idRes)
+        {
+            return _context.Facturen.Where(a => a.Restaurant.RestaurantId == idRes)
+                .Include(a => a.Restaurant)
+                .Include(a => a.Gebruiker)
+                .Include(a => a.Producten).ToList();
         }
 
         public Factuur GetFactuurById(string idGebruiker, long idFactuur)
@@ -65,8 +91,10 @@ namespace Data_layer.Repositories
                                         .Where(a => a.Restaurant == restaurant)
                                         .Where(a => a.Gebruiker == gebruiker).ToList();
             List<Product> producten = new List<Product>();
+            var tafelNr = 0;
             foreach (var bestelling in Bestellingen)
             {
+                tafelNr = bestelling.TafelNr;
                 foreach (Product eten in bestelling.Etenswaren)
                 {
                     CheckList(eten);
@@ -77,7 +105,8 @@ namespace Data_layer.Repositories
                     CheckList(drinken);
                 }
             }
-
+            if (tafelNr == 0)
+                return null;
             void CheckList(Product product)
             {
                 var tempProduct = producten.Find(a => a.Naam == product.Naam);
@@ -94,6 +123,7 @@ namespace Data_layer.Repositories
 
             Factuur factuur = new Factuur()
             {
+                TafelNr = tafelNr,
                 Gebruiker = gebruiker,
                 Restaurant = restaurant,
                 Producten = producten,

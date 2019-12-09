@@ -1,7 +1,17 @@
 <div *ngIf="Facturen" class="container mb-5">
+
     <div class="card">
         <div class="card-body">
             <h1 class="card-title">Facturen</h1>
+            <div class="dropdown">
+                <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownSorterenButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{SorteerOp}}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a (click)="Sorteren(keuze)" class="dropdown-item" *ngFor="let keuze of sorteerKeuzes">{{keuze}}</a>
+                </div>
+            </div>
             <div class="empty" *ngIf="Facturen.length == 0">
                 <h5>U heeft nog geen facturen.</h5>
             </div>

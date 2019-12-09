@@ -26,9 +26,9 @@ namespace Business_layer.Facades
             return factuur;
         }
 
-        public List<Factuur> GetFacturen(string idGebruiker)
+        public List<Factuur> GetFacturen(string idGebruiker, string sortBy)
         {
-            var facturen = _factuurRepository.GetFacturen(idGebruiker);
+            var facturen = _factuurRepository.GetFacturen(idGebruiker, sortBy);
             return facturen;
         }
 
@@ -36,6 +36,11 @@ namespace Business_layer.Facades
         {
             var factuur = _factuurRepository.GetFactuurById(idGebruiker, idFactuur);
             return factuur;
+        }
+        public List<Factuur> GetFacturenRestaurant(int idRes)
+        {
+            var facturen = _factuurRepository.GetFacturenRestaurant(idRes);
+            return facturen;
         }
 
         public Factuur GenerateFactuur(string idGebruiker, long idRes, string mail)
