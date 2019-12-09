@@ -46,8 +46,13 @@
     <a [routerLink]="['/scan']" (click)="SendEvent('Scan')" class="active red"><i class="fas fa-qrcode"></i><br><span>Scan</span></a>
     <a [routerLinkActive]="['active']" [routerLink]="['/reservatie-lijst']"><i class="far fa-calendar-alt"></i><br><span>Reservaties</span></a>
     <div class="inline" *ngIf="!isUserLoggedIn()">
-        <a (click)="login()"><i class="far fa-user"></i><br><span>Login</span></a>
-        <a (click)="signup()"><i class="far fa-user"></i><br><span>Sign Up</span></a>
+            <div id="dropdownLogin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="icon ml-2"><i class="far fa-user"></i><br>Login</a>
+            </div>
+            <div class="dropdown-menu navbaronder-dropdown" aria-labelledby="dropdownLogin">
+                    <button class="dropdown-item ml-0" (click)="login()"><i class="far fa-user"></i>Login</button>
+                    <button class="dropdown-item ml-0" (click)="signup()"><i class="far fa-user"></i>Sign up</button>
+            </div>
     </div>
 
     <div class="center dropdown" *ngIf="isUserLoggedIn()">
