@@ -8,13 +8,16 @@
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/bar']">Bar</a>
+        <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/bar']">Bar</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/keuken']">Keuken</a>
+        <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/keuken']">Keuken</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/reservaties']">Reservaties</a>
+        <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/reservaties']">Reservaties</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/facturen']">Facturen</a>
       </li>
     </ul>
     <ul class="navbar-nav">
@@ -25,7 +28,7 @@
         </div>
 
         <div class="center" *ngIf="isUserLoggedIn()">
-          <p>Welkom {{userfirstname()}}</p>
+          <p>Welkom {{userfirstname() | titlecase}}</p>
           <a class="icon-cog" [routerLink]="['/dashboard']"><i class="fas fa-cog cog"></i></a>
           <button class="btn btn-danger" (click)="logout()">Logout</button>
         </div>
@@ -34,3 +37,26 @@
     <div class="white">{{today | date:'HH:mm'}}</div>
   </div>
 </nav>
+
+<div class="navbaronder">
+  <a [routerLinkActive]="['active']" [routerLink]="['/bar']"><i class="fas fa-cocktail"></i><br>Bar</a>
+  <a [routerLinkActive]="['active']" [routerLink]="['/keuken']"><i class="fas fa-utensils"></i><br>Keuken</a>
+  <a [routerLinkActive]="['active']" [routerLink]="['/reservaties']"><i class="far fa-calendar-alt"></i><br>Reservaties</a>
+  
+  <div class="inline" *ngIf="!isUserLoggedIn()">
+      <a (click)="login()"><i class="far fa-user"></i><br>Login</a>
+      <a (click)="signup()"><i class="far fa-user"></i><br>Sign Up</a>
+  </div>
+
+  <div class="center dropdown" *ngIf="isUserLoggedIn()">
+          <div id="dropdownMenuUseronder" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="icon ml-2"><i class="far fa-user"></i><br>{{userfirstname() | titlecase}}</a>
+          </div>
+
+          <div class="dropdown-menu navbaronder-dropdown" aria-labelledby="dropdownMenuUseronder">
+              <button class="dropdown-item ml-0" type="button" [routerLink]="['/dashboard']"><i class="fas fa-cog"></i>Instellingen</button>
+              <div class="dropdown-divider"></div>
+              <button class="dropdown-item ml-0" (click)="logout()"><i class="fas fa-sign-out-alt"></i>Logout</button>
+          </div>
+        </div>
+</div>

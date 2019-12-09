@@ -41,6 +41,16 @@ namespace easyres_api.Controllers
             return facturen;
         }
 
+        [Route("restaurant/{idRes}")]
+        [HttpGet]
+        public ActionResult<List<Factuur>> GetFacturenRestaurant(int idRes)
+        {
+            var facturen = _factuurFacade.GetFacturenRestaurant(idRes);
+            if (facturen == null)
+                return NotFound();
+            return facturen;
+        }
+
         [Route("{idGebruiker}/factuur/{idFactuur}")]
         [HttpGet]
         public ActionResult<Factuur> GetFactuurById(string idGebruiker, long idFactuur)

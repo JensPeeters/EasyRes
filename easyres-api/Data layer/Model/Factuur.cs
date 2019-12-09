@@ -13,6 +13,7 @@ namespace Data_layer.Model
         public Restaurant Restaurant { get; set; }
         public DateTime Datum { get; set; }
         public bool Betaald { get; set; }
+        public int TafelNr { get; set; }
         public double TotaalPrijs
         {
             get

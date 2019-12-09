@@ -14,6 +14,8 @@ import { StartComponent } from './start/start.component';
 import { UserService } from './services/user.service';
 import { ControlePaneelComponent } from './controle-paneel/controle-paneel.component';
 import { ReservatieLijstComponent } from './reservatie-lijst/reservatie-lijst.component';
+import { FacturenComponent } from './facturen/facturen.component';
+import { FactuurComponent } from './facturen/factuur/factuur.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { ReservatieLijstComponent } from './reservatie-lijst/reservatie-lijst.co
     StartComponent,
     ControlePaneelComponent,
     ReservatieLijstComponent,
+    FacturenComponent,
+    FactuurComponent,
   ],
   imports: [
     BrowserModule,
