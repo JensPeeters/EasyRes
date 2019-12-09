@@ -27,7 +27,7 @@ namespace easyres_api
             services.AddDbContext<DatabaseContext>(
                 // options => options.UseMySQL(
                 options => options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")
+                    Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("Data layer")
                 )
             );
             services.AddTransient<ISessieFacade, SessieFacade>();
@@ -59,7 +59,8 @@ namespace easyres_api
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            DbInitializer.Initialize(context);
+            //DbInitializer.Initialize(context);
+            context.Database.Migrate();
             app.UseCors(builder =>
                 builder.AllowAnyOrigin()
                         .AllowAnyHeader()
