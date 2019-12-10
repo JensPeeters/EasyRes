@@ -323,54 +323,6 @@ namespace Data_layer.Model
                     }
                 };
 
-                Bestelling[] bestellingen =
-                {
-                    new Bestelling()
-                    {
-                         Dranken = new List<Product>()
-                         {
-                            new Product()
-                            {
-                                Naam = "Bier 33cl",
-                                Prijs = 5,
-                                Aantal = 2
-                            },
-                            new Product()
-                            {
-                                Naam = "Cola 0.5l",
-                                Prijs = 1.80,
-                                Aantal = 3
-                            }
-                         },
-                         Etenswaren = new List<Product>()
-                         {
-                            new Product()
-                            {
-                                Naam = "Snitzel",
-                                Prijs = 25.20,
-                                Aantal = 1
-                            },
-                            new Product()
-                            {
-                                Naam = "Lasagna",
-                                Prijs = 15.15,
-                                Aantal = 2
-                            }
-                         },
-                         Restaurant = restaurants[0],
-                         TafelNr = 4,
-                         EtenGereed = false,
-                         DrinkenGereed = false,
-                         HuidigeTijd = DateTime.Now,
-                         EtenStatus = false,
-                         DrinkenStatus = false
-                    }
-                };
-                foreach (Bestelling bestelling in bestellingen)
-                {
-                    context.Bestellingen.Add(bestelling);
-                }
-
                 foreach (Restaurant restaurant in restaurants)
                 {
                     context.Restaurants.Add(restaurant);
