@@ -14,13 +14,15 @@ namespace Business_layer.Facades
         //SendGridEmailSender emailSender;
         private readonly IFactuurRepository _factuurRepository;
         private readonly ISessieRepository _sessieRepository;
+        private readonly IBestellingenRepository _bestellingenRepository;
 
-        public FactuurFacade(IFactuurRepository factuurRepository, ISessieRepository sessieRepository)
+        public FactuurFacade(IFactuurRepository factuurRepository, ISessieRepository sessieRepository, IBestellingenRepository bestellingenRepository)
         {
             //this.pdfGenerator = new PDFGenerator();
             //this.emailSender = new SendGridEmailSender();
             this._factuurRepository = factuurRepository;
             this._sessieRepository = sessieRepository;
+            this._bestellingenRepository = bestellingenRepository;
         }
         public Factuur GetFactuur(string idGebruiker, long idRes)
         {
@@ -49,10 +51,12 @@ namespace Business_layer.Facades
         {
             var factuur = _factuurRepository.GenerateFactuur(idGebruiker, idRes, mail);
             _sessieRepository.DeleteSessie(idGebruiker, idRes);
+            _bestellingenRepository.DeleteBestellingen(idGebruiker, idRes);
             try
             {
                 _factuurRepository.SaveChanges();
                 _sessieRepository.SaveChanges();
+                _bestellingenRepository.SaveChanges();
             }
             catch (Exception)
             {

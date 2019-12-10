@@ -1,6 +1,7 @@
 ﻿using Data_layer.Interfaces;
 using Data_layer.Model;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -81,6 +82,29 @@ namespace Data_layer.Repositories
                 .Include(a => a.Etenswaren)
                 .Where(e => e.Gebruiker.GebruikersID == idGebruiker)
                 .Where(e => e.Restaurant.RestaurantId == idRes).ToList();
+        }
+
+        public List<Bestelling> DeleteBestellingen(string userId, long restaurantId)
+        {
+            var deletedBestellingen = _context.Bestellingen.Include(a => a.Gebruiker)
+                                                           .Include(a => a.Restaurant)
+                                                           .Where(a => a.Gebruiker.GebruikersID == userId)
+                                                           .Where(a => a.Restaurant.RestaurantId == restaurantId);
+            try
+            {
+                foreach (var deletedBestelling in deletedBestellingen)
+                {
+                    deletedBestelling.Dranken = null;
+                    deletedBestelling.Etenswaren = null;
+                    _context.Bestellingen.Remove(deletedBestelling);
+                }
+            }
+            catch (ArgumentNullException)
+            {
+                return null;
+            }
+
+            return deletedBestellingen.ToList();
         }
     }
 }
