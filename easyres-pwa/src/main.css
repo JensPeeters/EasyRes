@@ -4137,6 +4137,7 @@ input[type="button"].btn-block {
 /*navbar bottom*/
 
 .red{
+  padding: 25px 35px !important;
   background: #dc3545;
 }
 .navbaronder {
