@@ -5,9 +5,11 @@ VisualStudioVersion = 16.0.29306.81
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "easyres-api", "easyres-api\easyres-api.csproj", "{401C0CB3-7DFF-4CA5-9BDE-4F565537988B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data layer", "Data layer\Data layer.csproj", "{ACF099C4-0C17-4794-95F2-91205771598D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data layer", "Data layer\Data layer.csproj", "{ACF099C4-0C17-4794-95F2-91205771598D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business layer", "Business layer\Business layer.csproj", "{4EC32173-4192-43E8-B9F6-B78FC1B36C4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business layer", "Business layer\Business layer.csproj", "{4EC32173-4192-43E8-B9F6-B78FC1B36C4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestAPI", "UnitTestAPI\UnitTestAPI.csproj", "{EE799705-F6CD-46AB-9D90-7E4E944A3F37}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{4EC32173-4192-43E8-B9F6-B78FC1B36C4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EC32173-4192-43E8-B9F6-B78FC1B36C4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4EC32173-4192-43E8-B9F6-B78FC1B36C4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE799705-F6CD-46AB-9D90-7E4E944A3F37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE799705-F6CD-46AB-9D90-7E4E944A3F37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE799705-F6CD-46AB-9D90-7E4E944A3F37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE799705-F6CD-46AB-9D90-7E4E944A3F37}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
