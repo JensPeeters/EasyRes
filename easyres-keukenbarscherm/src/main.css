@@ -4136,9 +4136,6 @@ input[type="button"].btn-block {
 
 /*navbar bottom*/
 
-.red{
-  background: #dc3545;
-}
 .navbaronder {
   text-align: center;
   background-color: #333;
@@ -4152,15 +4149,24 @@ input[type="button"].btn-block {
   display: inline-block;
   color: rgba(255, 255, 255, 0.5);
   text-align: center;
-  padding: 14px 5px;
+  padding: 24.5px 20px;
   text-decoration: none;
   font-size: 14px;
+}
+
+.navbaronder span{
+ display: none;
+ padding: 12px 16px;
 }
 
 @media (min-width: 482px) {
 .navbaronder a {
   padding: 12px 16px;
 }
+.navbaronder span{
+  display: inline-block;
+  padding: 0;
+ }
 }
 
 .navbaronder a:hover {
