@@ -14,5 +14,6 @@ namespace Data_layer.Interfaces
         Bestelling GetBestellingRestaurantByID(long idRes, long idBestel);
         Bestelling UpdateBestellingen(Bestelling bestelling, long idRes);
         List<Bestelling> GetBestellingenGebruiker(string idGebruiker, long idRes);
+        List<Bestelling> DeleteBestellingen(string userId, long restaurantId);
     }
 }
