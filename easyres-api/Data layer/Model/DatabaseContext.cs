@@ -9,6 +9,10 @@ namespace Data_layer.Model
         {
 
         }
+        public DatabaseContext()
+        {
+
+        }
         public DbSet<Restaurant> Restaurants { get; set; }
         public DbSet<Reservatie> Reservaties { get; set; }
         public DbSet<Bestelling> Bestellingen { get; set; }
