@@ -78,7 +78,7 @@ export class BarComponent implements OnInit {
     this.CancelList = [];
 
     this.Bestellingen.forEach(element => {
-      if(!element.drinkenStatus && element.dranken != null){
+      if(!element.drinkenStatus && element.dranken != null && element.dranken.length != 0){
         if (element.drinkenGereed) {
           this.DoneList.push(element);
         }

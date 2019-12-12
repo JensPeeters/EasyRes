@@ -78,7 +78,7 @@ export class KeukenComponent implements OnInit {
     this.ProcessList = [];
     this.CancelList = [];
     this.Bestellingen.forEach(element => {
-      if(!element.etenStatus && element.etenswaren != null){
+      if(!element.etenStatus && element.etenswaren != null && element.etenswaren.length != 0){
         if (element.etenGereed) {
           this.DoneList.push(element);
         }
