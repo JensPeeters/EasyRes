@@ -11,7 +11,7 @@ import { IUitbater, UserService } from '../services/user.service';
 })
 export class ReservatieLijstComponent implements OnInit {
 
-  reservaties: IReservatie[];
+  reservaties: IReservatie[] = [];
   uitbater: IUitbater;
   aantal: number = 10;
 
@@ -23,10 +23,11 @@ export class ReservatieLijstComponent implements OnInit {
     this.userService.isuitbater(this.MsalService.getUserObjectId()).subscribe(res =>{
       this.uitbater = res;
       this.ResService.GetReservationsByRestaurantID(this.uitbater.restaurantId).subscribe(res => {
-        this.reservaties = res;
+        if(res != null)
+          this.reservaties = res;
       })
     });
-
+    
   }
 
   isUserLoggedIn(){
