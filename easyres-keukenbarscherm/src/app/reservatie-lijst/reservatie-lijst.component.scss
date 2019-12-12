@@ -3,6 +3,19 @@
     text-align: center;
 }
 
+.center{
+    text-align: center;
+}
+
+.failed{
+    margin: 25px;
+    margin-top: 15px;
+    text-align: center;
+    button{
+        width: fit-content !important;
+    }
+}
+
 .main-content{
     display: grid;
     grid-template-columns: 15% 70% 15%;

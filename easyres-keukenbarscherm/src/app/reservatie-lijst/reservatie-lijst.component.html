@@ -1,5 +1,15 @@
 <div *ngIf="reservaties">
-    <div class="empty" *ngIf="isEmpty(reservaties)">
+    <h3 class="center mt-4">Reservaties</h3>
+    <div class="d-flex justify-content-center m-2" *ngIf="reservatiesLoading">
+        <div class="spinner-border justify-content-center" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        </div>
+        <div *ngIf="reservatiesFailed" class="failed">
+        <h5>Het is ons niet gelukt de reservaties te laden. Gelieve dit opnieuw te proberen.</h5>
+        <button class="btn btn-danger" (click)="GetReservationsByRestaurantID()">Probeer opnieuw</button>
+    </div>
+    <div class="empty" *ngIf="isEmpty(reservaties) && !reservatiesLoading && !reservatiesFailed">
         <h5>Er zijn nog geen reservaties.</h5>
     </div>
     <div class="main-content" *ngIf="!isEmpty(reservaties)">

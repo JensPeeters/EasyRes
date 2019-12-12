@@ -15,6 +15,9 @@ export class ReservatieLijstComponent implements OnInit {
   uitbater: IUitbater;
   aantal: number = 10;
 
+  reservatiesLoading: boolean = true;
+  reservatiesFailed: boolean = false;
+
   constructor(private ResService : RestaurantService, private MsalService : MsalService, private userService: UserService) {
     
    }
@@ -22,12 +25,24 @@ export class ReservatieLijstComponent implements OnInit {
   async ngOnInit() {
     this.userService.isuitbater(this.MsalService.getUserObjectId()).subscribe(res =>{
       this.uitbater = res;
-      this.ResService.GetReservationsByRestaurantID(this.uitbater.restaurantId).subscribe(res => {
-        if(res != null)
-          this.reservaties = res;
-      })
+      this.GetReservationsByRestaurantID();
     });
-    
+  }
+
+  GetReservationsByRestaurantID(){
+    this.reservatiesLoading = true;
+    this.reservatiesFailed = false;
+    this.ResService.GetReservationsByRestaurantID(this.uitbater.restaurantId).subscribe(res => {
+      if(res != null)
+        this.reservaties = res;
+    },
+    err => {
+      this.reservatiesFailed = true;
+      this.reservatiesLoading = false;
+    },
+    () => {
+      this.reservatiesLoading = false;
+    });
   }
 
   isUserLoggedIn(){
