@@ -1,6 +1,6 @@
 <div *ngIf="reservaties">
     <div class="empty" *ngIf="isEmpty(reservaties)">
-        <h5>U heeft nog geen reservaties.</h5>
+        <h5>Er zijn nog geen reservaties.</h5>
     </div>
     <div class="main-content" *ngIf="!isEmpty(reservaties)">
         <div class="reservatie-template" *ngFor="let reservatie of reservaties| slice:0:aantal;">
