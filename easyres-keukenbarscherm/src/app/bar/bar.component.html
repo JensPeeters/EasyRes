@@ -18,14 +18,14 @@
                                 {{bestelling.huidigeTijd | date:'HH:mm'}}</h4>
                             <button type="button" (click)="Done(bestelling)" class="btn btn-success"><i
                                     class="fas fa-check"></i> Gereed</button>
-                            <button type="button" data-toggle="modal" data-target="#popup" class="btn btn-danger"><i
+                            <button type="button" data-toggle="modal" [attr.data-target]="'#popupModal'+id" class="btn btn-danger"><i
                                     class="fas fa-times"></i> Annuleren</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Modal -->
-                <div class="modal fade" id="popup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                <div class="modal fade" [attr.id]="'popupModal' + id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -36,7 +36,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                Ben je zeker dat je deze bestelling wilt verwijderen?
+                                Ben je zeker dat je de bestelling van tafel {{bestelling.tafelNr}} wilt verwijderen?
                             </div>
                             <div class="modal-footer">
                                 <button type="button" (click)="Cancel(bestelling)" class="btn btn-success"
