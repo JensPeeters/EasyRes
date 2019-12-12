@@ -19,8 +19,6 @@ export class BarComponent implements OnInit, OnDestroy {
   DoneList: IBestelling[];
   CancelList: IBestelling[];
 
-  today = new Date();
-
   uitbater: IUitbater;
 
   reloadInterval;
@@ -34,9 +32,6 @@ export class BarComponent implements OnInit, OnDestroy {
       this.userService.isuitbater(this.MsalService.getUserObjectId()).subscribe(res =>{
         this.uitbater = res;
         this.GetAlleDrankBestellingen();
-        setInterval(() => {
-          this.today = new Date();
-        }, 1000);
         this.reloadInterval = setInterval(() => {
           this.GetAlleDrankBestellingen();
         }, 1000);
@@ -73,8 +68,7 @@ export class BarComponent implements OnInit, OnDestroy {
 
   Done(bestelling: IBestelling) {
     bestelling.drinkenGereed = true;
-    bestelling.drinkTijdKlaar = this.today;
-    this.today = bestelling.drinkTijdKlaar;
+    bestelling.drinkTijdKlaar = new Date();
     this.serv.Putbestelling(bestelling, this.uitbater.restaurantId).subscribe(res => {
       this.serv.GetAlleDrankbestellingen(this.uitbater.restaurantId).subscribe(result => {
         this.Bestellingen = result;

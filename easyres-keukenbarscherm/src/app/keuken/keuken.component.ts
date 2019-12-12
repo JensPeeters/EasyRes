@@ -19,8 +19,6 @@ export class KeukenComponent implements OnInit, OnDestroy {
   DoneList: IBestelling[];
   CancelList: IBestelling[];
 
-  today = new Date();
-
   uitbater: IUitbater;
 
   reloadInterval;
@@ -33,9 +31,6 @@ export class KeukenComponent implements OnInit, OnDestroy {
       this.userService.isuitbater(this.MsalService.getUserObjectId()).subscribe(res =>{
         this.uitbater = res;
         this.GetAlleVoedingsbestellingen();
-        setInterval(() => {
-          this.today = new Date();
-        }, 1000);
         this.reloadInterval = setInterval(() => {
           this.GetAlleVoedingsbestellingen();
         }, 1000);
@@ -72,8 +67,7 @@ export class KeukenComponent implements OnInit, OnDestroy {
 
   Done(bestelling: IBestelling) {
     bestelling.etenGereed = true;
-    bestelling.eetTijdKlaar = this.today;
-    this.today = bestelling.eetTijdKlaar;
+    bestelling.eetTijdKlaar = new Date();
     this.serv.Putbestelling(bestelling, this.uitbater.restaurantId).subscribe(res => {
       this.serv.GetAlleVoedingsbestellingen(this.uitbater.restaurantId).subscribe(result => {
         this.Bestellingen = result;
