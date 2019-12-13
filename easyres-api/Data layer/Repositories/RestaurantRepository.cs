@@ -146,6 +146,7 @@ namespace Data_layer.Repositories
                                         .Include(a => a.Menu.Dranken)
                                         .Include(a => a.Menu.Hoofdgerechten)
                                         .Include(a => a.Menu.Voorgerechten)
+                                        .Include(a => a.Reservaties)
                                         .FirstOrDefault();
             return restaurant;
         }
