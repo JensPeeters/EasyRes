@@ -10,6 +10,8 @@
   <div class="header">
     <h3 *ngIf="BetaaldeFacturenView">Betaalde facturen</h3>
     <h3 *ngIf="!BetaaldeFacturenView">Openstaande facturen</h3>
+    <h5 *ngIf="BetaaldeFacturenView && BetaaldeFacturen.length==0">Er zijn nog geen betaalde facturen.</h5>
+    <h5 *ngIf="!BetaaldeFacturenView && OpenstaandeFacturen.length==0">Er zijn nog geen openstaande facturen.</h5>
   </div>
   <div *ngIf="!BetaaldeFacturenView">
     <app-factuur *ngFor="let factuur of OpenstaandeFacturen" [factuur]="factuur"></app-factuur>

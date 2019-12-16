@@ -1,10 +1,20 @@
 <div *ngIf="reservaties">
-    <div class="empty" *ngIf="isEmpty(reservaties)">
-        <h5>U heeft nog geen reservaties.</h5>
+    <h3 class="center mt-4">Reservaties</h3>
+    <div class="d-flex justify-content-center m-2" *ngIf="reservatiesLoading">
+        <div class="spinner-border justify-content-center" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        </div>
+        <div *ngIf="reservatiesFailed" class="failed">
+        <h5>Het is ons niet gelukt de reservaties te laden. Gelieve dit opnieuw te proberen.</h5>
+        <button class="btn btn-danger" (click)="GetReservationsByRestaurantID()">Probeer opnieuw</button>
+    </div>
+    <div class="empty" *ngIf="isEmpty(reservaties) && !reservatiesLoading && !reservatiesFailed">
+        <h5>Er zijn nog geen reservaties.</h5>
     </div>
     <div class="main-content" *ngIf="!isEmpty(reservaties)">
-        <div class="reservatie-template" *ngFor="let reservatie of reservaties| slice:0:aantal;">
-            <div class="modal" tabindex="-1" role="dialog" id="popupModal">
+        <div class="reservatie-template" *ngFor="let reservatie of reservaties| slice:0:aantal; let id = index">
+            <div class="modal" tabindex="-1" role="dialog" [attr.id]="'popupModal' + id">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -25,8 +35,8 @@
                 <div class="card-body">
                     <div class="reservatie-header">
                         <h4 class="card-title">{{reservatie.naam}}</h4>
-                        <button class="btn-outline-danger btn button-reserve big" data-toggle="modal" data-target="#popupModal">Annuleren</button>
-                        <button class="btn-outline-danger btn button-reserve small" data-toggle="modal" data-target="#popupModal"><i class="fa fa-times fa-lg"></i></button>
+                        <button class="btn-outline-danger btn button-reserve big" data-toggle="modal" [attr.data-target]="'#popupModal'+id">Annuleren</button>
+                        <button class="btn-outline-danger btn button-reserve small" data-toggle="modal" [attr.data-target]="'#popupModal'+id"><i class="fa fa-times fa-lg"></i></button>
                     </div>
                     <div class="reservatie-info">
                         <p class="card-text pers"><strong>Aantal Personen: </strong><br class="br-pers">{{reservatie.aantalPersonen}}</p>

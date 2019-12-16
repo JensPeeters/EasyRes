@@ -3,7 +3,7 @@
     <div class="row text-center">
         <div class="col">
             <h2>In behandeling</h2>
-            <div class="list" *ngFor="let bestelling of ProcessList">
+            <div class="list" *ngFor="let bestelling of ProcessList; let id = index">
                 <div class="card">
                     <div class="card-body col6">
                         <div>
@@ -18,30 +18,30 @@
                                 {{bestelling.huidigeTijd | date:'HH:mm'}}</h4>
                             <button type="button" (click)="Done(bestelling)" class="btn btn-success"><i
                                     class="fas fa-check"></i> Gereed</button>
-                            <button type="button" data-toggle="modal" data-target="#popup" class="btn btn-danger"><i
+                            <button type="button" data-toggle="modal" [attr.data-target]="'#popupModal'+id" class="btn btn-danger" (click)="ChangeModalOpen()"><i
                                     class="fas fa-times"></i> Annuleren</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Modal -->
-                <div class="modal fade" id="popup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                <div class="modal fade" [attr.id]="'popupModal' + id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel">Ben je zeker?</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="ChangeModalOpen()">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                Ben je zeker dat je deze bestelling wilt verwijderen?
+                                Ben je zeker dat je de bestelling van tafel {{bestelling.tafelNr}} wilt verwijderen?
                             </div>
                             <div class="modal-footer">
                                 <button type="button" (click)="Cancel(bestelling)" class="btn btn-success"
                                     data-dismiss="modal">Ja</button>
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Nee</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="ChangeModalOpen()">Nee</button>
                             </div>
                         </div>
                     </div>
