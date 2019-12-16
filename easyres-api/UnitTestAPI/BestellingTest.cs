@@ -287,41 +287,174 @@ namespace UnitTestAPI
         [DataTestMethod()]
         public void DeleteReservatieTest()
         {
-            IQueryable<Reservatie> reservaties = new List<Reservatie>()
+
+
+            Openingsuren openingsuren = new Openingsuren()
             {
-                new Reservatie()
-                {
-                   AantalPersonen = 5,
-                    Datum = DateTime.Now.ToString(),
-                    Email = "test@email.com",
-                    Naam = "Bob",
-                    ReservatieId = 1,
-                    Restaurant = new Restaurant()
+                Maandag = "16:00 - 23:00",
+                Dinsdag = "16:00 - 23:00",
+                Woensdag = "16:00 - 23:00",
+                Donderdag = "16:00 - 23:00",
+                Vrijdag = "16:00 - 23:00",
+                Zaterdag = "16:00 - 23:00",
+                Zondag = "16:00 - 23:00"
+            };
+            Adres adres = new Adres()
+            {
+                Bus = "A",
+                Gemeente = "Antwerpen",
+                Straat = "Papegaielaan",
+                Straatnummer = 10,
+                Land = "België",
+                Postcode = 2000
+            };
+
+            Menu menu = new Menu()
+            {
+                Desserts = new List<Product>()
+                        {
+                                new Product()
+                                {
+                                    Naam = "Dame Blanche",
+                                    Prijs = 4.55
+                                },
+                                new Product()
+                                {
+                                    Naam = "Brownie",
+                                    Prijs = 2.40
+                                },
+                                new Product()
+                                {
+                                    Naam = "Crème brûlée",
+                                    Prijs = 10.20
+                                }
+                            },
+                Voorgerechten = new List<Product>()
                     {
-                        RestaurantId = 1,
-                        Naam = "Shalaka"
+                                new Product()
+                                {
+                                    Naam = "Kaaskroketten",
+                                    Prijs = 4.70
+                                },
+                                new Product()
+                                {
+                                    Naam = "Lookbroodjes",
+                                    Prijs = 3.80
+                                }
+                            },
+                Hoofdgerechten = new List<Product>()
+                    {
+                                new Product()
+                                {
+                                    Naam = "Verse zalm met aardappelpuree",
+                                    Prijs = 23.10
+                                },
+                                new Product()
+                                {
+                                    Naam = "Lasagna",
+                                    Prijs = 19.10
+                                },
+                                new Product()
+                                {
+                                    Naam = "Spareribs 250g",
+                                    Prijs = 34.20
+                                }
+                            },
+                Dranken = new List<Product>()
+                    {
+                                new Product()
+                                {
+                                    Naam = "Sex on the beach",
+                                    Prijs = 3.45
+                                },
+                                new Product()
+                                {
+                                    Naam = "Cognac 5cl",
+                                    Prijs = 6.50
+                                }
+                            }
+            };
+
+            IQueryable<Bestelling> bestellingen = new List<Bestelling>()
+            {
+                new Bestelling()
+                {
+                   BestellingId = 1,
+                Dranken = new List<Product>()
+                    {
+                        new Product()
+                                {
+                                    Naam = "Sex on the beach",
+                                    Prijs = 3.45
+                                },
+                                new Product()
+                                {
+                                    Naam = "Cognac 5cl",
+                                    Prijs = 6.50
+                                }
                     },
-                    TafelNr = 5,
-                    TelefoonNummer = "+32477299417",
-                    Tijdstip = "18:00",
-                    UserId = "TestUser"
+                DrinkenGereed = false,
+                DrinkenStatus = false,
+                EtenGereed = false,
+                EtenStatus = false,
+                Etenswaren = new List<Product>()
+                {
+                         new Product()
+                         {
+                              Naam = "Kaaskroketten",
+                              Prijs = 4.70
+                         },
+                         new Product()
+                         {
+                              Naam = "Lookbroodjes",
+                              Prijs = 3.80
+                         }
+                },
+                TafelNr = 5,
+                Gebruiker = new Gebruiker()
+                {
+                    GebruikersID = "TestUser"
+                },
+                Restaurant = new Restaurant()
+                {
+                    RestaurantId = 1,
+                      KorteBeschrijving = "Het beste italiaanse restaurant met veel verschillende smaken enzovoort...",
+                      Openingsuren = openingsuren,
+                      Locatie = adres,
+                      LogoImage = "https://via.placeholder.com/350x350.png/8b0000/fff?text=Foto van een restaurant",
+                      Menu = menu,
+                      Naam = "Alles van eten",
+                      Type = "Italiaans",
+                      Soort = "Trattoria",
+                      Tafels = new List<Tafel>()
+                      {
+                          new Tafel() { TafelNr = 1, UrenBezet = 3, Zitplaatsen = 5, BezetteMomenten = new List<Tijdsmoment>() },
+                          new Tafel() { TafelNr = 2, UrenBezet = 3, Zitplaatsen = 4, BezetteMomenten = new List<Tijdsmoment>()  },
+                          new Tafel() { TafelNr = 3, UrenBezet = 3, Zitplaatsen = 4, BezetteMomenten = new List<Tijdsmoment>()  },
+                          new Tafel() { TafelNr = 4, UrenBezet = 3, Zitplaatsen = 2, BezetteMomenten = new List<Tijdsmoment>()  },
+                          new Tafel() { TafelNr = 5, UrenBezet = 3, Zitplaatsen = 2, BezetteMomenten = new List<Tijdsmoment>()  }
+                      },
+                      IsAdvertentie = true,
+                      Gerechten = "Salade"
+                }
                 }
             }.AsQueryable();
 
-            var mockSet = new Mock<DbSet<Reservatie>>();
-            mockSet.As<IQueryable<Reservatie>>().Setup(m => m.Provider).Returns(reservaties.Provider);
-            mockSet.As<IQueryable<Reservatie>>().Setup(m => m.Expression).Returns(reservaties.Expression);
-            mockSet.As<IQueryable<Reservatie>>().Setup(m => m.ElementType).Returns(reservaties.ElementType);
-            mockSet.As<IQueryable<Reservatie>>().Setup(m => m.GetEnumerator()).Returns(reservaties.GetEnumerator());
+            var mockSet = new Mock<DbSet<Bestelling>>();
+            mockSet.As<IQueryable<Bestelling>>().Setup(m => m.Provider).Returns(bestellingen.Provider);
+            mockSet.As<IQueryable<Bestelling>>().Setup(m => m.Expression).Returns(bestellingen.Expression);
+            mockSet.As<IQueryable<Bestelling>>().Setup(m => m.ElementType).Returns(bestellingen.ElementType);
+            mockSet.As<IQueryable<Bestelling>>().Setup(m => m.GetEnumerator()).Returns(bestellingen.GetEnumerator());
 
             var mockContext = new Mock<DatabaseContext>();
-            mockContext.Setup(m => m.Reservaties).Returns(mockSet.Object);
+            mockContext.Setup(m => m.Bestellingen).Returns(mockSet.Object);
 
-            var repo = new ReserveringenRepository(mockContext.Object);
-            var deletedReservatie = repo.DeleteReservatie(1, "TestUser");
+            var repo = new BestellingenRepository(mockContext.Object);
+            var deletedBestelling = repo.DeleteBestellingen("TestUser",1);
 
-            mockContext.Verify(m => m.Reservaties.Remove(It.IsAny<Reservatie>()), Times.Once);
-            Assert.AreEqual(deletedReservatie.ReservatieId, 1);
+            mockContext.Verify(m => m.Bestellingen.Remove(It.IsAny<Bestelling>()), Times.Once);
+            Assert.AreEqual(deletedBestelling.Count(), 1);
+            Assert.AreEqual(deletedBestelling.First().Gebruiker.GebruikersID, "TestUser");
             // Assert
         }
 
