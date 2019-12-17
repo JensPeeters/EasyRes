@@ -40,5 +40,8 @@ export class ToolbarComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.isUserLoggedIn()) {
+      this.msalService.isGebruiker();
+  }
   }
 }

@@ -19,6 +19,7 @@ import { FacturenComponent } from './facturen/facturen.component';
 import { InstellingenComponent } from './instellingen/instellingen.component';
 import { FactuurMoreInfoComponent } from './factuur-more-info/factuur-more-info.component';
 import { PrivacyComponent } from './privacy/privacy.component';
+import { NoGebruikerComponent } from './no-gebruiker/no-gebruiker.component';
 
 const routes: Routes = [
   {path: 'restaurant', component: RestaurantComponent, data: {animation: 'restaurant'}},
@@ -38,6 +39,7 @@ const routes: Routes = [
   {path: 'facturen', component: FacturenComponent, canActivate: [MsalGuard]},
   {path: 'factuurmoreinfo/:id', component: FactuurMoreInfoComponent, canActivate: [MsalGuard]},
   {path: 'privacy', component: PrivacyComponent},
+  {path: 'nogebruiker', component: NoGebruikerComponent},
   {path: '', redirectTo: 'restaurant', pathMatch: 'full', data: {animation: 'restaurant'}},
   {path: '**', redirectTo: 'restaurant', pathMatch: 'full', data: {animation: 'restaurant'}}
 ];
