@@ -88,6 +88,344 @@ namespace UnitTestAPI
         }
 
         [DataTestMethod()]
+        public void OphalenBestellingenKeukenTest()
+        {
+            // Arrange - We're mocking our dbSet & dbContext
+            // in-memory data
+            IQueryable<Bestelling> bestellingen = new List<Bestelling>()
+            {
+                new Bestelling()
+                {
+                    BestellingId = 1,
+                    Dranken = new List<Product>()
+                    {
+                        new Product()
+                                {
+                                    Naam = "Sex on the beach",
+                                    Prijs = 3.45
+                                },
+                                new Product()
+                                {
+                                    Naam = "Cognac 5cl",
+                                    Prijs = 6.50
+                                }
+                    },
+                    DrinkenGereed = false,
+                    DrinkenStatus = false,
+                    EtenGereed = false,
+                    EtenStatus = false,
+                    Etenswaren = new List<Product>()
+                    {
+                         new Product()
+                         {
+                              Naam = "Kaaskroketten",
+                              Prijs = 4.70
+                         },
+                         new Product()
+                         {
+                              Naam = "Lookbroodjes",
+                              Prijs = 3.80
+                         }
+                    },
+                    Gebruiker = new Gebruiker()
+                    {
+                         GebruikersID = "TestUser"
+                    },
+                    Restaurant = new Restaurant()
+                    {
+                         RestaurantId = 1,
+                         Naam = "Com a Casa"
+                    },
+                    TafelNr = 5
+                }
+            }.AsQueryable();
+
+            var mockSet = new Mock<DbSet<Bestelling>>();
+            mockSet.As<IQueryable<Bestelling>>().Setup(m => m.Provider).Returns(bestellingen.Provider);
+            mockSet.As<IQueryable<Bestelling>>().Setup(m => m.Expression).Returns(bestellingen.Expression);
+            mockSet.As<IQueryable<Bestelling>>().Setup(m => m.ElementType).Returns(bestellingen.ElementType);
+            mockSet.As<IQueryable<Bestelling>>().Setup(m => m.GetEnumerator()).Returns(bestellingen.GetEnumerator());
+
+            var mockContext = new Mock<DatabaseContext>();
+            mockContext.Setup(a => a.Bestellingen).Returns(mockSet.Object);
+
+            var repo = new BestellingenRepository(mockContext.Object);
+
+            var actual = repo.GetBestellingenKeuken(1);
+
+            // Assert
+            Assert.AreEqual(actual.First().Etenswaren.Count(), 2);
+            Assert.IsNotNull(actual.First().Etenswaren);
+            Assert.AreEqual(actual.First().TafelNr, 5);
+            Assert.AreEqual(actual.First().Restaurant.RestaurantId, 1);
+        }
+
+        [DataTestMethod()]
+        public void OphalenBestellingenBarTest()
+        {
+            // Arrange - We're mocking our dbSet & dbContext
+            // in-memory data
+            IQueryable<Bestelling> bestellingen = new List<Bestelling>()
+            {
+                new Bestelling()
+                {
+                    BestellingId = 1,
+                    Dranken = new List<Product>()
+                    {
+                        new Product()
+                                {
+                                    Naam = "Sex on the beach",
+                                    Prijs = 3.45
+                                },
+                                new Product()
+                                {
+                                    Naam = "Cognac 5cl",
+                                    Prijs = 6.50
+                                }
+                    },
+                    DrinkenGereed = false,
+                    DrinkenStatus = false,
+                    EtenGereed = false,
+                    EtenStatus = false,
+                    Etenswaren = new List<Product>()
+                    {
+                         new Product()
+                         {
+                              Naam = "Kaaskroketten",
+                              Prijs = 4.70
+                         },
+                         new Product()
+                         {
+                              Naam = "Lookbroodjes",
+                              Prijs = 3.80
+                         }
+                    },
+                    Gebruiker = new Gebruiker()
+                    {
+                         GebruikersID = "TestUser"
+                    },
+                    Restaurant = new Restaurant()
+                    {
+                         RestaurantId = 1,
+                         Naam = "Com a Casa"
+                    },
+                    TafelNr = 5
+                }
+            }.AsQueryable();
+
+            var mockSet = new Mock<DbSet<Bestelling>>();
+            mockSet.As<IQueryable<Bestelling>>().Setup(m => m.Provider).Returns(bestellingen.Provider);
+            mockSet.As<IQueryable<Bestelling>>().Setup(m => m.Expression).Returns(bestellingen.Expression);
+            mockSet.As<IQueryable<Bestelling>>().Setup(m => m.ElementType).Returns(bestellingen.ElementType);
+            mockSet.As<IQueryable<Bestelling>>().Setup(m => m.GetEnumerator()).Returns(bestellingen.GetEnumerator());
+
+            var mockContext = new Mock<DatabaseContext>();
+            mockContext.Setup(a => a.Bestellingen).Returns(mockSet.Object);
+
+            var repo = new BestellingenRepository(mockContext.Object);
+
+            var actual = repo.GetBestellingenBar(1);
+
+            // Assert
+            Assert.AreEqual(actual.First().Dranken.Count(), 2);
+            Assert.IsNotNull(actual.First().Dranken);
+            Assert.AreEqual(actual.First().TafelNr, 5);
+            Assert.AreEqual(actual.First().Restaurant.RestaurantId, 1);
+        }
+
+        [DataTestMethod()]
+        public void OphalenBestellingenRestaurantTest()
+        {
+            // Arrange - We're mocking our dbSet & dbContext
+            // in-memory data
+            IQueryable<Bestelling> bestellingen = new List<Bestelling>()
+            {
+                new Bestelling()
+                {
+                    BestellingId = 1,
+                    Dranken = new List<Product>()
+                    {
+                        new Product()
+                                {
+                                    Naam = "Sex on the beach",
+                                    Prijs = 3.45
+                                },
+                                new Product()
+                                {
+                                    Naam = "Cognac 5cl",
+                                    Prijs = 6.50
+                                }
+                    },
+                    DrinkenGereed = false,
+                    DrinkenStatus = false,
+                    EtenGereed = false,
+                    EtenStatus = false,
+                    Etenswaren = new List<Product>()
+                    {
+                         new Product()
+                         {
+                              Naam = "Kaaskroketten",
+                              Prijs = 4.70
+                         },
+                         new Product()
+                         {
+                              Naam = "Lookbroodjes",
+                              Prijs = 3.80
+                         }
+                    },
+                    Gebruiker = new Gebruiker()
+                    {
+                         GebruikersID = "TestUser"
+                    },
+                    Restaurant = new Restaurant()
+                    {
+                         RestaurantId = 1,
+                         Naam = "Com a Casa"
+                    },
+                    TafelNr = 5
+                }
+            }.AsQueryable();
+
+            var mockSet = new Mock<DbSet<Bestelling>>();
+            mockSet.As<IQueryable<Bestelling>>().Setup(m => m.Provider).Returns(bestellingen.Provider);
+            mockSet.As<IQueryable<Bestelling>>().Setup(m => m.Expression).Returns(bestellingen.Expression);
+            mockSet.As<IQueryable<Bestelling>>().Setup(m => m.ElementType).Returns(bestellingen.ElementType);
+            mockSet.As<IQueryable<Bestelling>>().Setup(m => m.GetEnumerator()).Returns(bestellingen.GetEnumerator());
+
+            var mockContext = new Mock<DatabaseContext>();
+            mockContext.Setup(a => a.Bestellingen).Returns(mockSet.Object);
+
+            var repo = new BestellingenRepository(mockContext.Object);
+
+            var actual = repo.GetBestellingenForRestaurant(1);
+
+            // Assert
+            Assert.AreEqual(actual.First().Dranken.Count(), 2);
+            Assert.AreEqual(actual.First().Etenswaren.Count(), 2);
+            Assert.IsNotNull(actual.First().Dranken);
+            Assert.IsNotNull(actual.First().Etenswaren);
+            Assert.AreEqual(actual.First().TafelNr, 5);
+            Assert.AreEqual(actual.First().Restaurant.RestaurantId, 1);
+        }
+
+        [DataTestMethod()]
+        public void UpdateBestellingTest()
+        {
+            IQueryable<Bestelling> bestellingen = new List<Bestelling>()
+            {
+                new Bestelling()
+                {
+                    BestellingId = 1,
+                    Dranken = new List<Product>()
+                    {
+                        new Product()
+                                {
+                                    Naam = "Sex on the beach",
+                                    Prijs = 3.45
+                                },
+                                new Product()
+                                {
+                                    Naam = "Cognac 5cl",
+                                    Prijs = 6.50
+                                }
+                    },
+                    DrinkenGereed = false,
+                    DrinkenStatus = false,
+                    EtenGereed = false,
+                    EtenStatus = false,
+                    Etenswaren = new List<Product>()
+                    {
+                         new Product()
+                         {
+                              Naam = "Kaaskroketten",
+                              Prijs = 4.70
+                         },
+                         new Product()
+                         {
+                              Naam = "Lookbroodjes",
+                              Prijs = 3.80
+                         }
+                    },
+                    Gebruiker = new Gebruiker()
+                    {
+                         GebruikersID = "TestUser"
+                    },
+                    Restaurant = new Restaurant()
+                    {
+                         RestaurantId = 1,
+                         Naam = "Com a Casa"
+                    },
+                    TafelNr = 5
+                }
+            }.AsQueryable();
+
+            var bestelling = new Bestelling()
+            {
+                BestellingId = 1,
+                Dranken = new List<Product>()
+                    {
+                        new Product()
+                                {
+                                    Naam = "Sex on the beach",
+                                    Prijs = 3.45
+                                },
+                                new Product()
+                                {
+                                    Naam = "Cognac 5cl",
+                                    Prijs = 6.50
+                                }
+                    },
+                DrinkenGereed = true,
+                DrinkenStatus = true,
+                EtenGereed = true,
+                EtenStatus = true,
+                Etenswaren = new List<Product>()
+                    {
+                         new Product()
+                         {
+                              Naam = "Kaaskroketten",
+                              Prijs = 4.70
+                         },
+                         new Product()
+                         {
+                              Naam = "Lookbroodjes",
+                              Prijs = 3.80
+                         }
+                    },
+                Gebruiker = new Gebruiker()
+                {
+                    GebruikersID = "TestUser"
+                },
+                Restaurant = new Restaurant()
+                {
+                    RestaurantId = 1,
+                    Naam = "Com a Casa"
+                },
+                TafelNr = 5
+            };
+
+            var mockSet = new Mock<DbSet<Bestelling>>();
+            mockSet.As<IQueryable<Bestelling>>().Setup(m => m.Provider).Returns(bestellingen.Provider);
+            mockSet.As<IQueryable<Bestelling>>().Setup(m => m.Expression).Returns(bestellingen.Expression);
+            mockSet.As<IQueryable<Bestelling>>().Setup(m => m.ElementType).Returns(bestellingen.ElementType);
+            mockSet.As<IQueryable<Bestelling>>().Setup(m => m.GetEnumerator()).Returns(bestellingen.GetEnumerator());
+
+            var mockContext = new Mock<DatabaseContext>();
+            mockContext.Setup(a => a.Bestellingen).Returns(mockSet.Object);
+
+            var mockRepo = new Mock<IBestellingenRepository>();
+            mockRepo.Setup(m => m.UpdateBestelling(It.IsAny<Bestelling>())).Returns(bestelling);
+            var updatedBestelling = mockRepo.Object.UpdateBestelling(bestelling);
+            // Assert
+            mockRepo.Verify(m => m.UpdateBestelling(It.IsAny<Bestelling>()), Times.Once);
+            Assert.IsTrue(updatedBestelling.EtenGereed);
+            Assert.IsTrue(updatedBestelling.DrinkenGereed);
+            Assert.IsTrue(updatedBestelling.DrinkenStatus);
+            Assert.IsTrue(updatedBestelling.EtenStatus);
+
+        }
+
+        [DataTestMethod()]
         public void CreateBestellingTest()
         {
 
@@ -251,7 +589,7 @@ namespace UnitTestAPI
             };
 
             IQueryable<Bestelling> bestellingen = new List<Bestelling>().AsQueryable();
-           
+
 
             var mockSetRestaurant = new Mock<DbSet<Restaurant>>();
             mockSetRestaurant.As<IQueryable<Restaurant>>().Setup(m => m.Provider).Returns(restaurants.Provider);
@@ -285,7 +623,7 @@ namespace UnitTestAPI
         }
 
         [DataTestMethod()]
-        public void DeleteReservatieTest()
+        public void DeleteBestellingTest()
         {
 
 
@@ -450,12 +788,11 @@ namespace UnitTestAPI
             mockContext.Setup(m => m.Bestellingen).Returns(mockSet.Object);
 
             var repo = new BestellingenRepository(mockContext.Object);
-            var deletedBestelling = repo.DeleteBestellingen("TestUser",1);
+            var deletedBestelling = repo.DeleteBestellingen("TestUser", 1);
 
             mockContext.Verify(m => m.Bestellingen.Remove(It.IsAny<Bestelling>()), Times.Once);
             Assert.AreEqual(deletedBestelling.Count(), 1);
             Assert.AreEqual(deletedBestelling.First().Gebruiker.GebruikersID, "TestUser");
-            // Assert
         }
 
     }

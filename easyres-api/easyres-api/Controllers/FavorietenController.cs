@@ -35,9 +35,9 @@ namespace easyres_api.Controllers
         }
         [Route("{gebruikersId}/{restaurantId}")]
         [HttpDelete]
-        public ActionResult<Gebruiker> DeleteReservatie(string gebruikersId, long restaurantId)
+        public ActionResult<Gebruiker> DeleteFavoriet(string gebruikersId, long restaurantId)
         {
-            var gebruiker = _favorietFacade.DeleteReservatie(gebruikersId, restaurantId);
+            var gebruiker = _favorietFacade.DeleteFavoriet(gebruikersId, restaurantId);
             if (gebruiker == null)
                 return NotFound();
             return NoContent();
