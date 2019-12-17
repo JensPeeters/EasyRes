@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import * as Msal from 'msal';
 import { UserService, IUitbater } from './user.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MsalService {
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   B2CTodoAccessTokenKey = 'b2c.access.token';
 
@@ -118,7 +119,7 @@ export class MsalService {
       this.uitbater = res;
     },
     err => {
-      this.logout();
+      this.router.navigate(['/nouitbater']);
     });
   }
 
