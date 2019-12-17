@@ -24,11 +24,12 @@ export class KeukenComponent implements OnInit, OnDestroy {
   reloadInterval;
   modalOpen: boolean = false;
 
-  constructor(private serv: DataService, private MsalService : MsalService, private userService: UserService) { }
+  constructor(private serv: DataService, private msalService: MsalService, private userService: UserService) { }
 
   ngOnInit() {
-    if (this.MsalService.isLoggedIn()){
-      this.userService.isuitbater(this.MsalService.getUserObjectId()).subscribe(res =>{
+    if (this.msalService.isLoggedIn()) {
+      this.msalService.isUitbater();
+      this.userService.isuitbater(this.msalService.getUserObjectId()).subscribe(res => {
         this.uitbater = res;
         this.GetAlleVoedingsbestellingen();
         this.reloadInterval = setInterval(() => {
@@ -42,16 +43,16 @@ export class KeukenComponent implements OnInit, OnDestroy {
     clearInterval(this.reloadInterval);
   }
 
-  GetAlleVoedingsbestellingen(){
-    if(!this.modalOpen){
+  GetAlleVoedingsbestellingen() {
+    if (!this.modalOpen) {
       this.serv.GetAlleVoedingsbestellingen(this.uitbater.restaurantId).subscribe(res => {
         this.Bestellingen = res;
         this.Checklist();
-      })
+      });
     }
   }
 
-  ChangeModalOpen(){
+  ChangeModalOpen() {
     this.modalOpen = !this.modalOpen;
   }
 
@@ -85,7 +86,6 @@ export class KeukenComponent implements OnInit, OnDestroy {
         this.Checklist();
       });
     });
-    
   }
 
   Checklist() {
@@ -93,15 +93,13 @@ export class KeukenComponent implements OnInit, OnDestroy {
     this.ProcessList = [];
     this.CancelList = [];
     this.Bestellingen.forEach(element => {
-      if(!element.etenStatus && element.etenswaren != null && element.etenswaren.length != 0){
+      if (!element.etenStatus && element.etenswaren != null && element.etenswaren.length != 0) {
         if (element.etenGereed) {
           this.DoneList.push(element);
-        }
-        else{
+        } else {
           this.ProcessList.push(element);
         }
-      }
-      else{
+      } else {
         this.CancelList.push(element);
       }
     });

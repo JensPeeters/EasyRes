@@ -17,6 +17,7 @@ import { ReservatieLijstComponent } from './reservatie-lijst/reservatie-lijst.co
 import { FacturenComponent } from './facturen/facturen.component';
 import { FactuurComponent } from './facturen/factuur/factuur.component';
 import { NoUitbaterComponent } from './no-uitbater/no-uitbater.component';
+import { NoRestaurantComponent } from './no-restaurant/no-restaurant.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { NoUitbaterComponent } from './no-uitbater/no-uitbater.component';
     FacturenComponent,
     FactuurComponent,
     NoUitbaterComponent,
+    NoRestaurantComponent,
   ],
   imports: [
     BrowserModule,

@@ -13,43 +13,44 @@ export class ControlePaneelComponent implements OnInit {
 
   currentSettingsRestaurant: IRestaurant;
   updatedSettingsRestaurant: IRestaurant;
-  soorten: string[] = ["Restaurant","Taverne","Bistro","Trattoria"]
+  soorten: string[] = ['Restaurant', 'Taverne', 'Bistro', 'Trattoria'];
   restaurantId: number;
 
-  constructor(private ResService : RestaurantService, private MsalService: MsalService, private userService: UserService) {
+  constructor(private ResService: RestaurantService, private msalService: MsalService, private userService: UserService) {
    }
 
   ngOnInit() {
-    if (this.MsalService.isLoggedIn()){
-      this.userService.isuitbater(this.MsalService.getUserObjectId()).subscribe(res =>{
+    if (this.msalService.isLoggedIn()) {
+      this.msalService.isUitbater();
+      this.userService.isuitbater(this.msalService.getUserObjectId()).subscribe(res => {
         this.restaurantId = res.restaurantId;
         this.ResService.GetRestaurantByID(this.restaurantId).subscribe(res => {
           this.currentSettingsRestaurant = res;
           this.updatedSettingsRestaurant = res;
-        })
+        });
       });
     }
   }
 
-  submit(){
+  submit() {
     console.log(this.updatedSettingsRestaurant);
     this.ResService.PutRestaurant(this.updatedSettingsRestaurant).subscribe(a => {
       console.log(a);
-      alert("Wijzigingen opgeslagen.");
+      alert('Wijzigingen opgeslagen.');
     });
   }
 
-  reset(){
+  reset() {
     this.ResService.GetRestaurantByID(this.restaurantId).subscribe(res => {
       this.updatedSettingsRestaurant = res;
-    })
+    });
   }
 
-  restaurantSoort(soort){
+  restaurantSoort(soort) {
     this.updatedSettingsRestaurant.soort = soort;
   }
 
-  append(arr){
-    arr.push({aantal: 0, naam: "", prijs:0})
+  append(arr) {
+    arr.push({aantal: 0, naam: '', prijs: 0});
   }
 }

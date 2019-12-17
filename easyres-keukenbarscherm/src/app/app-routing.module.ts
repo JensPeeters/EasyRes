@@ -9,6 +9,7 @@ import { ControlePaneelComponent } from './controle-paneel/controle-paneel.compo
 import { ReservatieLijstComponent } from './reservatie-lijst/reservatie-lijst.component';
 import { FacturenComponent } from './facturen/facturen.component';
 import { NoUitbaterComponent } from './no-uitbater/no-uitbater.component';
+import { NoRestaurantComponent } from './no-restaurant/no-restaurant.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path: 'facturen', component: FacturenComponent, canActivate: [MsalGuard]},
   {path: 'reservaties', component: ReservatieLijstComponent, canActivate: [MsalGuard]},
   {path: 'nouitbater', component: NoUitbaterComponent},
+  {path: 'norestaurant', component: NoRestaurantComponent, canActivate: [MsalGuard]},
   {path: '', redirectTo: 'start', pathMatch: 'full'},
   {path: '**', redirectTo: 'start', pathMatch: 'full'},
 ];

@@ -24,12 +24,13 @@ export class BarComponent implements OnInit, OnDestroy {
   reloadInterval;
 
   modalOpen: boolean = false;
-  
-  constructor(private serv: DataService, private MsalService : MsalService, private userService: UserService) { }
+
+  constructor(private serv: DataService, private msalService: MsalService, private userService: UserService) { }
 
   ngOnInit() {
-    if (this.MsalService.isLoggedIn()){
-      this.userService.isuitbater(this.MsalService.getUserObjectId()).subscribe(res =>{
+    if (this.msalService.isLoggedIn()) {
+      this.msalService.isUitbater();
+      this.userService.isuitbater(this.msalService.getUserObjectId()).subscribe(res => {
         this.uitbater = res;
         this.GetAlleDrankBestellingen();
         this.reloadInterval = setInterval(() => {
@@ -39,20 +40,20 @@ export class BarComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     clearInterval(this.reloadInterval);
   }
 
-  GetAlleDrankBestellingen(){
-    if(!this.modalOpen){
+  GetAlleDrankBestellingen() {
+    if (!this.modalOpen) {
       this.serv.GetAlleDrankbestellingen(this.uitbater.restaurantId).subscribe(res => {
         this.Bestellingen = res;
         this.Checklist();
-      })
+      });
     }
   }
 
-  ChangeModalOpen(){
+  ChangeModalOpen() {
     this.modalOpen = !this.modalOpen;
   }
 
@@ -94,15 +95,13 @@ export class BarComponent implements OnInit, OnDestroy {
     this.CancelList = [];
 
     this.Bestellingen.forEach(element => {
-      if(!element.drinkenStatus && element.dranken != null && element.dranken.length != 0){
+      if (!element.drinkenStatus && element.dranken != null && element.dranken.length != 0) {
         if (element.drinkenGereed) {
           this.DoneList.push(element);
-        }
-        else{
+        } else {
           this.ProcessList.push(element);
         }
-      }
-      else{
+      } else {
         this.CancelList.push(element);
       }
     });

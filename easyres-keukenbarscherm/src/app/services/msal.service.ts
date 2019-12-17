@@ -117,17 +117,13 @@ export class MsalService {
   isUitbater() {
     this.userService.isuitbater(this.getUserObjectId()).subscribe(res =>{
       this.uitbater = res;
+      if (this.uitbater.restaurantId === 0) {
+        this.router.navigate(['/norestaurant']);
+      }
     },
     err => {
       this.router.navigate(['/nouitbater']);
     });
-  }
-
-  GetUitbaterRestaurantId(){
-    this.userService.isuitbater(this.getUserObjectId()).subscribe(res =>{
-      this.uitbater = res;
-    });
-    return this.uitbater.restaurantId;
   }
 
   getUserObjectId() {
