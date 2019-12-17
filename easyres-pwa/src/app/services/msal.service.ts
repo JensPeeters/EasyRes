@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as Msal from 'msal';
 import { UserService } from './user.service';
-import { IGebruiker } from './common.service';
 import { Router } from '@angular/router';
 
 @Injectable()
@@ -10,8 +9,6 @@ export class MsalService {
     constructor(private userService: UserService, private router: Router) { }
 
     B2CTodoAccessTokenKey = 'b2c.access.token';
-
-    gebruiker: IGebruiker;
 
     tenantConfig = {
         domain: 'https://EasyRes.b2clogin.com/tfp/EasyRes.onmicrosoft.com/',
@@ -22,7 +19,6 @@ export class MsalService {
         resetPasswordPolicy: 'B2C_1_resetpassword',
         editProfilePolicy: 'B2C_1_editprofile',
         redirectUri: 'https://easyres-pwa.azurewebsites.net',
-        postLogoutRedirectUri: 'https://easyres-pwa.azurewebsites.net/nogebruiker',
         b2cScopes: ['https://EasyRes.onmicrosoft.com/access-api/user_impersonation']
     };
 

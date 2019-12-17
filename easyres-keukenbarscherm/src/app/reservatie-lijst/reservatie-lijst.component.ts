@@ -18,23 +18,25 @@ export class ReservatieLijstComponent implements OnInit {
   reservatiesLoading: boolean = true;
   reservatiesFailed: boolean = false;
 
-  constructor(private ResService : RestaurantService, private MsalService : MsalService, private userService: UserService) {
-    
-   }
+  constructor(private ResService: RestaurantService, private msalService: MsalService, private userService: UserService) { }
 
   async ngOnInit() {
-    this.userService.isuitbater(this.MsalService.getUserObjectId()).subscribe(res =>{
-      this.uitbater = res;
-      this.GetReservationsByRestaurantID();
-    });
+    if (this.msalService.isLoggedIn()) {
+      this.msalService.isUitbater();
+      this.userService.isuitbater(this.msalService.getUserObjectId()).subscribe(res =>{
+        this.uitbater = res;
+        this.GetReservationsByRestaurantID();
+      });
+    }
   }
 
-  GetReservationsByRestaurantID(){
+  GetReservationsByRestaurantID() {
     this.reservatiesLoading = true;
     this.reservatiesFailed = false;
     this.ResService.GetReservationsByRestaurantID(this.uitbater.restaurantId).subscribe(res => {
-      if(res != null)
+      if (res != null) {
         this.reservaties = res;
+      }
     },
     err => {
       this.reservatiesFailed = true;
@@ -45,24 +47,27 @@ export class ReservatieLijstComponent implements OnInit {
     });
   }
 
-  isUserLoggedIn(){
-    return this.MsalService.isLoggedIn();
+  isUserLoggedIn() {
+    return this.msalService.isLoggedIn();
   }
 
-  Annuleer(reservatieId){
+  Annuleer(reservatieId) {
     this.ResService.DeleteReservationByIDasUitbater(reservatieId).subscribe(a => {
       this.ResService.GetReservationsByRestaurantID(this.uitbater.restaurantId).subscribe(result => {
         this.reservaties = result;
-      })
+      });
     });
   }
 
-  isEmpty(arr){
-    if (!(arr.length > 0)){return true;}
-    else{return false;}
+  isEmpty(arr) {
+    if (!(arr.length > 0)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
-  showMore(){
+  showMore() {
     this.aantal += 10;
   }
 

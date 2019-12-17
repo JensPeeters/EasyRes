@@ -16,6 +16,8 @@ import { ControlePaneelComponent } from './controle-paneel/controle-paneel.compo
 import { ReservatieLijstComponent } from './reservatie-lijst/reservatie-lijst.component';
 import { FacturenComponent } from './facturen/facturen.component';
 import { FactuurComponent } from './facturen/factuur/factuur.component';
+import { NoUitbaterComponent } from './no-uitbater/no-uitbater.component';
+import { NoRestaurantComponent } from './no-restaurant/no-restaurant.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { FactuurComponent } from './facturen/factuur/factuur.component';
     ReservatieLijstComponent,
     FacturenComponent,
     FactuurComponent,
+    NoUitbaterComponent,
+    NoRestaurantComponent,
   ],
   imports: [
     BrowserModule,

@@ -33,6 +33,9 @@ export class ToolbarComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.isUserLoggedIn()) {
+      this.msalService.isUitbater();
+    }
     setInterval(() => {
       this.today = new Date();
    }, 1000);

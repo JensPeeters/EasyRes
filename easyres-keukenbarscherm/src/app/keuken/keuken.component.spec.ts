@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { KeukenComponent } from './keuken.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 describe('KeukenComponent', () => {
   let component: KeukenComponent;
@@ -9,7 +10,7 @@ describe('KeukenComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule],
+      imports: [HttpClientModule, RouterModule.forRoot([])],
       declarations: [ KeukenComponent ]
     })
     .compileComponents();
