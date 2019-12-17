@@ -42,7 +42,7 @@ namespace Data_layer.Repositories
             return gebruiker;
         }
 
-        public Gebruiker DeleteReservatie(string gebruikersId, long restaurantId)
+        public Gebruiker DeleteFavoriet(string gebruikersId, long restaurantId)
         {
             var gebruiker = _context.Gebruikers.Include(a => a.Favorieten)
                                                .Where(a => a.GebruikersID == gebruikersId)

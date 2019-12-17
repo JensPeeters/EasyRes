@@ -11,12 +11,12 @@ namespace Business_layer.Facades
         public FavorietenFacade(IFavorietenRepository favorietRepository)
         {
             this._favorietRepository = favorietRepository;
-        }   
+        }
         public Gebruiker GetFavorieteRestaurants(string gebruikersId, string naam)
         {
             return _favorietRepository.GetFavorieteRestaurants(gebruikersId, naam);
         }
-        
+
         public Gebruiker AddFavorieteRestaurant(string gebruikersId, long restaurantId)
         {
             var gebruiker = _favorietRepository.AddFavorieteRestaurant(gebruikersId, restaurantId);
@@ -24,9 +24,9 @@ namespace Business_layer.Facades
             return gebruiker;
         }
 
-        public Gebruiker DeleteReservatie(string gebruikersId, long restaurantId)
+        public Gebruiker DeleteFavoriet(string gebruikersId, long restaurantId)
         {
-            var gebruiker = _favorietRepository.DeleteReservatie(gebruikersId, restaurantId);
+            var gebruiker = _favorietRepository.DeleteFavoriet(gebruikersId, restaurantId);
             _favorietRepository.SaveChanges();
             return gebruiker;
         }

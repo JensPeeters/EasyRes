@@ -14,7 +14,7 @@ namespace UnitTestAPI
     public class ReserveerTest
     {
         [DataTestMethod()]
-        public void OphalenReserveringen()
+        public void OphalenReserveringenGebruikerTest()
         {
             // Arrange - We're mocking our dbSet & dbContext
             // in-memory data
@@ -48,15 +48,17 @@ namespace UnitTestAPI
             mockContext.Setup(a => a.Reservaties).Returns(mockSet.Object);
 
             var mockRepo = new Mock<IReserveringenRepository>();
-            mockRepo.Setup(a => a.GetReserveringen("TestUser","asc")).Returns(mockContext.Object.Reservaties.ToList());
+            mockRepo.Setup(a => a.GetReserveringen("TestUser", "asc")).Returns(mockContext.Object.Reservaties.ToList());
 
-            var actual = mockRepo.Object.GetReserveringen("TestUser","asc");
+            var actual = mockRepo.Object.GetReserveringen("TestUser", "asc");
 
             // Assert
             mockRepo.Verify(a => a.GetReserveringen(It.IsAny<string>(), It.IsAny<string>()), Times.Once);
             Assert.AreEqual(actual.Count(), 1);
             Assert.AreEqual(actual.First().Naam, "Bob");
         }
+
+
 
         [DataTestMethod()]
         public void CreateReservatieTest()
@@ -244,6 +246,53 @@ namespace UnitTestAPI
             mockContext.Verify(m => m.Reservaties.Remove(It.IsAny<Reservatie>()), Times.Once);
             Assert.AreEqual(deletedReservatie.ReservatieId, 1);
             // Assert
+        }
+
+        [DataTestMethod()]
+        public void OphalenReservatieTest()
+        {
+            // Arrange - We're mocking our dbSet & dbContext
+            // in-memory data
+            IQueryable<Reservatie> reservaties = new List<Reservatie>()
+            {
+                new Reservatie()
+                {
+                    AantalPersonen = 5,
+                    Datum = DateTime.Now.ToString(),
+                    Email = "test@email.com",
+                    Naam = "Bob",
+                    ReservatieId = 1,
+                    Restaurant = new Restaurant()
+                    {
+                        Naam = "Shalaka"
+                    },
+                    TafelNr = 5,
+                    TelefoonNummer = "+32477299417",
+                    Tijdstip = "18:00",
+                    UserId = "TestUser"
+                }
+            }.AsQueryable();
+
+            var mockSet = new Mock<DbSet<Reservatie>>();
+            mockSet.As<IQueryable<Reservatie>>().Setup(m => m.Provider).Returns(reservaties.Provider);
+            mockSet.As<IQueryable<Reservatie>>().Setup(m => m.Expression).Returns(reservaties.Expression);
+            mockSet.As<IQueryable<Reservatie>>().Setup(m => m.ElementType).Returns(reservaties.ElementType);
+            mockSet.As<IQueryable<Reservatie>>().Setup(m => m.GetEnumerator()).Returns(reservaties.GetEnumerator());
+
+            var mockContext = new Mock<DatabaseContext>();
+            mockContext.Setup(a => a.Reservaties).Returns(mockSet.Object);
+
+            var mockRepo = new Mock<IReserveringenRepository>();
+            mockRepo.Setup(a => a.GetReservatie(1)).Returns(mockContext.Object.Reservaties.Where(a => a.ReservatieId == 1).FirstOrDefault());
+
+            var actual = mockRepo.Object.GetReservatie(1);
+
+            mockRepo.Verify(a => a.GetReservatie(It.IsAny<long>()), Times.Once);
+            Assert.AreEqual(actual.ReservatieId, 1);
+            Assert.AreEqual(actual.Email, "test@email.com");
+            Assert.AreEqual(actual.Naam, "Bob");
+            Assert.AreEqual(actual.UserId, "TestUser");
+            Assert.AreEqual(actual.Restaurant.Naam, "Shalaka");
         }
     }
 }
