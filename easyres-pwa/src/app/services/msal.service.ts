@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
 import * as Msal from 'msal';
 import { UserService } from './user.service';
+import { IGebruiker } from './common.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class MsalService {
 
-    constructor(private userService: UserService) {}
+    constructor(private userService: UserService, private router: Router) { }
 
     B2CTodoAccessTokenKey = 'b2c.access.token';
+
+    gebruiker: IGebruiker;
 
     tenantConfig = {
         domain: 'https://EasyRes.b2clogin.com/tfp/EasyRes.onmicrosoft.com/',
@@ -18,6 +22,7 @@ export class MsalService {
         resetPasswordPolicy: 'B2C_1_resetpassword',
         editProfilePolicy: 'B2C_1_editprofile',
         redirectUri: 'https://easyres-pwa.azurewebsites.net',
+        postLogoutRedirectUri: 'https://easyres-pwa.azurewebsites.net/nogebruiker',
         b2cScopes: ['https://EasyRes.onmicrosoft.com/access-api/user_impersonation']
     };
 
@@ -32,18 +37,18 @@ export class MsalService {
         function(errorDesc: any, token: any, error: any, tokenType: any) {
         },
         {
-          validateAuthority: false
+            validateAuthority: false
         }
     );
 
     public login(): void {
-      this.clientApplication.authority = this.tenantConfig.domain + this.tenantConfig.signInPolicy;
-      this.authenticate();
+        this.clientApplication.authority = this.tenantConfig.domain + this.tenantConfig.signInPolicy;
+        this.authenticate();
     }
 
     public signup(): void {
-      this.clientApplication.authority = this.tenantConfig.domain + this.tenantConfig.signUpPolicy;
-      this.authenticate();
+        this.clientApplication.authority = this.tenantConfig.domain + this.tenantConfig.signUpPolicy;
+        this.authenticate();
     }
 
     public resetPassword(): void {
@@ -58,19 +63,19 @@ export class MsalService {
 
     public authenticate(): void {
         const THIS = this;
-        this.clientApplication.loginPopup(this.tenantConfig.b2cScopes).then(function(idToken: any) {
+        this.clientApplication.loginPopup(this.tenantConfig.b2cScopes).then(function (idToken: any) {
             THIS.clientApplication.acquireTokenSilent(THIS.tenantConfig.b2cScopes).then(
-                function(accessToken: any) {
+                function (accessToken: any) {
                     THIS.saveAccessTokenToCache(accessToken);
-                }, function(error: any) {
+                }, function (error: any) {
                     THIS.clientApplication.acquireTokenPopup(THIS.tenantConfig.b2cScopes).then(
-                        function(accessToken: any) {
+                        function (accessToken: any) {
                             THIS.saveAccessTokenToCache(accessToken);
-                        }, function(error: any) {
+                        }, function (error: any) {
                             console.log('error: ', error);
                         });
                 });
-        }, function(errorDesc: any) {
+        }, function (errorDesc: any) {
             console.log('error: ', errorDesc);
             if (errorDesc.indexOf('AADB2C90118') > -1) {
                 THIS.resetPassword();
@@ -86,6 +91,7 @@ export class MsalService {
         if (this.isNew()) {
             this.userService.saveUserInDb(this.getUserObjectId()).subscribe();
         }
+        this.isGebruiker();
     }
 
     logout(): void {
@@ -105,6 +111,14 @@ export class MsalService {
             return true;
         }
         return false;
+    }
+
+    isGebruiker() {
+        this.userService.GetGerbuiker(this.getUserObjectId()).subscribe(res => {
+        },
+            err => {
+                this.router.navigate(['/nogebruiker']);
+            });
     }
 
     getUserObjectId() {

@@ -37,6 +37,7 @@ import { InstellingenComponent } from './instellingen/instellingen.component';
 import { FactuurMoreInfoComponent } from './factuur-more-info/factuur-more-info.component';
 import { AgmCoreModule } from '@agm/core';
 import { PrivacyComponent } from './privacy/privacy.component';
+import { NoGebruikerComponent } from './no-gebruiker/no-gebruiker.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { PrivacyComponent } from './privacy/privacy.component';
     FacturenfactuurComponent,
     InstellingenComponent,
     FactuurMoreInfoComponent,
-    PrivacyComponent
+    PrivacyComponent,
+    NoGebruikerComponent
   ],
   imports: [
     BrowserModule,

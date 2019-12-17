@@ -33,8 +33,8 @@ export class InstellingenComponent implements OnInit {
 
   isUserLoggedIn() {
     return this.msalService.isLoggedIn();
-  }s
-  GetGebruiker(){
+  }
+  GetGebruiker() {
     this.userService.GetGerbuiker(this.userId).subscribe(res =>{
       this.gebruiker = res;
       this.factuur = this.gebruiker.getFactuurByEmail;

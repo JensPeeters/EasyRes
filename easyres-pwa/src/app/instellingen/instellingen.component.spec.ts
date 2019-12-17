@@ -4,6 +4,7 @@ import { InstellingenComponent } from './instellingen.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MsalService } from '../services/msal.service';
+import { RouterModule } from '@angular/router';
 
 describe('InstellingenComponent', () => {
   let component: InstellingenComponent;
@@ -11,7 +12,7 @@ describe('InstellingenComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, HttpClientModule],
+      imports: [FormsModule, HttpClientModule, RouterModule.forRoot([])],
       declarations: [ InstellingenComponent ],
       providers: [ MsalService]
     })
