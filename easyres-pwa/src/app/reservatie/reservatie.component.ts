@@ -40,6 +40,9 @@ export class ReservatieComponent implements OnInit {
   submitted: boolean = false;
   bezet: boolean = false;
   verified: boolean = false;
+  inPast: boolean = false;
+  reservatieLoading: boolean = false;
+  reservatieFailed: boolean = false;
   today: Date = new Date();
 
   constructor(private ResService: RestaurantService, private MsalService: MsalService,
@@ -70,23 +73,33 @@ export class ReservatieComponent implements OnInit {
 
   submit() {
     this.finalReservatie = this.tempReservatie;
-    this.submitted = true;
+    this.reservatieLoading = true;
+    this.reservatieFailed = false;
+    this.submitted = false;
+    this.inPast = false;
+    this.bezet = false;
     if (this.inTime(this.finalReservatie)) {
       this.finalReservatie.userid = this.MsalService.getUserObjectId();
       this.ResService.PostReservation(this.finalReservatie).subscribe(
         a => {
           this.submitted = true;
-          this.bezet = false;
-          console.log("mail");
-
+          this.reservatieLoading = false;
+          //console.log("mail");
         },
         err => {
           if (err.status == 409) {
-            this.submitted = false;
-            console.log("bezet");
+            //console.log("bezet");
             this.bezet = true;
           }
+          else{
+            this.reservatieFailed = true;
+          }
+          this.reservatieLoading = false;
         });
+    }
+    else{
+      this.inPast = true;
+      this.reservatieLoading = false;
     }
     this.SendEvent("Aanmaken Reservatie");
   }
@@ -121,8 +134,9 @@ export class ReservatieComponent implements OnInit {
     var restOpenDate = new Date(givenDate.getFullYear(), givenDate.getMonth(), givenDate.getDate(), +restOpenSplit[0], +restOpenSplit[1]);
     // Genereert een Date object vanaf wanneer het restaurant gesloten is.
     var restClosedDate = new Date(givenDate.getFullYear(), givenDate.getMonth(), givenDate.getDate(), +restClosedSplit[0], +restClosedSplit[1]);
-
-    if (resDate > restOpenDate && resDate < restClosedDate && res.aantalpersonen > 0) {
+    // Genereert een Date object van het huidige tijdstip.
+    var currentDate = new Date();
+    if (resDate > restOpenDate && resDate < restClosedDate && res.aantalpersonen > 0 && givenDate > currentDate) {
       return true;
     } else {
       return false;

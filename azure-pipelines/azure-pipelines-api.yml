@@ -26,6 +26,13 @@ steps:
     arguments: '--configuration $(BuildConfiguration)'
 
 - task: DotNetCoreCLI@2
+  displayName: Test
+  inputs:
+    command: test
+    projects: 'easyres-api/UnitTestAPI/UnitTestAPI.csproj'
+    arguments: '--configuration $(buildConfiguration)'
+
+- task: DotNetCoreCLI@2
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   inputs:
     command: publish

@@ -6,16 +6,8 @@
     font-size: 15px;
     width: fit-content;
 }
-.invalid-screen-size{
-    display: none;
-    padding-top: 10px;
-    grid-column-start: 2;
-    grid-column-end: 3;
-    text-align: center;
-}
 .empty{
-    padding-top: 50px;
-    
+    padding-top: 20px;
     text-align: center;
 }
 .button-more-info{
@@ -35,9 +27,6 @@
     display: grid;
     grid-template-columns: 20% 60% 20%;
 }
-.order-btn{
-    display: inline-block;
-}
 .restaurant-session-template{
     padding-top: 10px;
     grid-column-start: 2;
@@ -46,7 +35,7 @@
 .modal-body{
     text-align: center;
 }
-@media screen and (max-width: 525px){
+@media screen and (max-width: 540px){
    .order-btn{
        width: 100%;
    }
@@ -64,11 +53,12 @@
     }
 }
 @media screen and (min-width: 1000px){
+    .order-btn{
+        width: 100%;
+        margin-bottom: 5px;
+    }
     .invalid-screen-size{
         display: block;
-    }
-    .order-btn{
-        display: none;
     }
     .button-more-info{
         margin-left: 0px;
