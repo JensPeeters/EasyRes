@@ -38,19 +38,12 @@
     gap: 1%;
     grid-template-columns: 33% 33% 33%;
     grid-template-areas:
-          "left center center"
           "left scan scan"
           "left content content";
     grid-row-gap: 1em;
     margin: auto;
     margin-bottom: 25px;
     grid-template-rows: auto 1fr;
-}
-.center{
-    grid-area: center;
-    display: inline-flex;
-    justify-content: center;
-    width: 100%;
 }
 .content{
     grid-area: content;
@@ -169,13 +162,15 @@ p{
     width: 0;
   }
 
-  .filteren {
+  /*.filteren {
     margin-top: 30px;
-  }
+  }*/
   .filteren > div {
     margin-top: 40px;
   }
-  
+  .options{
+      margin-top:50px;
+  }
   /* Custom checkbox */
   .checkmark {
     position: absolute;
@@ -301,9 +296,9 @@ p{
     .filteren{
         display: none;
     }
-    .center{
-        margin-top: 15px;
-        margin-bottom: 15px;
+    .sorteren{
+        margin: 10px 0;
+        width: 100%;
     }
     .right{
         display: inline-block;
@@ -337,6 +332,13 @@ p{
         display: grid;
         justify-content: center;
         margin-bottom: 0px !important;
+    }
+    .options {
+        margin: 10px auto;
+    }
+    .sorteren{
+        display: inline-flex;
+        margin: 0;
     }
     .allDropdown{
         width: 100%;
@@ -394,8 +396,11 @@ p{
         margin-top: 10px;
     }   
 }
-@media screen and (min-width: 880px){
+@media screen and (min-width: 881px){
     .dropdowns{
         display: none;
+    }
+    .sorteren {
+        display: block !important;
     }
 }
