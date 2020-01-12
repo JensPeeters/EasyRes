@@ -90,6 +90,8 @@ export class ReservatieComponent implements OnInit {
           if (err.status == 409) {
             //console.log("bezet");
             this.bezet = true;
+            this.tempReservatie.datum = null;
+            this.tempReservatie.tijdstip = null;
           }
           else{
             this.reservatieFailed = true;
@@ -99,6 +101,8 @@ export class ReservatieComponent implements OnInit {
     }
     else{
       this.inPast = true;
+      this.tempReservatie.datum = null;
+      this.tempReservatie.tijdstip = null;
       this.reservatieLoading = false;
     }
     this.SendEvent("Aanmaken Reservatie");
