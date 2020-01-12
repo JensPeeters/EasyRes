@@ -8,7 +8,7 @@ namespace Data_layer.Interfaces
         Factuur GetFactuur(string idGebruiker, long idRes);
         List<Factuur> GetFacturen(string idGebruiker, string sortBy);
         void SaveChanges();
-        Factuur GetFactuurById(string idGebruiker, long idFactuur);
+        Factuur GetFactuurById(long idFactuur);
 
         Factuur GenerateFactuur(string idGebruiker, long idRes, string mail);
         List<Factuur> GetFacturenRestaurant(int idRes);

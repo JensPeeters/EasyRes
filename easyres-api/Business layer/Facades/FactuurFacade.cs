@@ -36,9 +36,9 @@ namespace Business_layer.Facades
             return facturen;
         }
 
-        public Factuur GetFactuurById(string idGebruiker, long idFactuur)
+        public Factuur GetFactuurById(long idFactuur)
         {
-            var factuur = _factuurRepository.GetFactuurById(idGebruiker, idFactuur);
+            var factuur = _factuurRepository.GetFactuurById(idFactuur);
             return factuur;
         }
         public List<Factuur> GetFacturenRestaurant(int idRes)

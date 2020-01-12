@@ -7,7 +7,7 @@ namespace Business_layer.Interfaces
     {
         Factuur GetFactuur(string idGebruiker, long idRes);
         List<Factuur> GetFacturen(string idGebruiker, string sortBy);
-        Factuur GetFactuurById(string idGebruiker, long idFactuur);
+        Factuur GetFactuurById(long idFactuur);
         Factuur GenerateFactuur(string idGebruiker, long idRes, string mail);
 
         List<Factuur> GetFacturenRestaurant(int idRes);

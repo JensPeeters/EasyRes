@@ -9,6 +9,6 @@
             <div *ngIf="!factuur.betaald" class="red circle"></div>
             <div *ngIf="factuur.betaald" class="green circle"></div>
             <p class="float-right fullWidth">Totaalprijs: € {{factuur.totaalPrijs | number:'.2'}}</p>
-            <a [routerLink]="['/facturen', factuur.id]" class="fullWidth">Bekijk bestelling >></a>
+            <a [routerLink]="['/factuurmoreinfo', factuur.id]" class="fullWidth">Bekijk bestelling >></a>
         </div>
     </div>

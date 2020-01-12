@@ -10,6 +10,7 @@ import { ReservatieLijstComponent } from './reservatie-lijst/reservatie-lijst.co
 import { FacturenComponent } from './facturen/facturen.component';
 import { NoUitbaterComponent } from './no-uitbater/no-uitbater.component';
 import { NoRestaurantComponent } from './no-restaurant/no-restaurant.component';
+import { FactuurMoreInfoComponent } from './factuur-more-info/factuur-more-info.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'bar', component: BarComponent, canActivate: [MsalGuard]},
   {path: 'dashboard', component: ControlePaneelComponent, canActivate: [MsalGuard]},
   {path: 'facturen', component: FacturenComponent, canActivate: [MsalGuard]},
+  {path: 'factuurmoreinfo/:id', component: FactuurMoreInfoComponent, canActivate: [MsalGuard]},
   {path: 'reservaties', component: ReservatieLijstComponent, canActivate: [MsalGuard]},
   {path: 'nouitbater', component: NoUitbaterComponent},
   {path: 'norestaurant', component: NoRestaurantComponent, canActivate: [MsalGuard]},
