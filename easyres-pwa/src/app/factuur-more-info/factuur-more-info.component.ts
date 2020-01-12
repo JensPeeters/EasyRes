@@ -30,7 +30,7 @@ export class FactuurMoreInfoComponent implements OnInit {
   }
 
   GetFactuur() {
-    this.factuurService.GetFactuurById(this.UserId, this.FactuurId).subscribe( res => {
+    this.factuurService.GetFactuurById(this.FactuurId).subscribe( res => {
       this.factuur = res;
     });
   }

@@ -66,15 +66,11 @@ namespace Data_layer.Repositories
                 .Include(a => a.Producten).ToList();
         }
 
-        public Factuur GetFactuurById(string idGebruiker, long idFactuur)
+        public Factuur GetFactuurById(long idFactuur)
         {
-            Gebruiker gebruiker = _context.Gebruikers.Where(a => a.GebruikersID == idGebruiker).FirstOrDefault();
-            if (gebruiker == null)
-                return null;
             Factuur factuur = _context.Facturen
                                      .Include(a => a.Producten)
                                      .Include(a => a.Restaurant)
-                                     .Where(a => a.Gebruiker == gebruiker)
                                      .Where(a => a.Id == idFactuur).LastOrDefault();
             return factuur;
         }

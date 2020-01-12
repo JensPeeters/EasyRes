@@ -18,6 +18,7 @@ import { FacturenComponent } from './facturen/facturen.component';
 import { FactuurComponent } from './facturen/factuur/factuur.component';
 import { NoUitbaterComponent } from './no-uitbater/no-uitbater.component';
 import { NoRestaurantComponent } from './no-restaurant/no-restaurant.component';
+import { FactuurMoreInfoComponent } from './factuur-more-info/factuur-more-info.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { NoRestaurantComponent } from './no-restaurant/no-restaurant.component';
     FactuurComponent,
     NoUitbaterComponent,
     NoRestaurantComponent,
+    FactuurMoreInfoComponent,
   ],
   imports: [
     BrowserModule,

@@ -51,11 +51,11 @@ namespace easyres_api.Controllers
             return facturen;
         }
 
-        [Route("{idGebruiker}/factuur/{idFactuur}")]
+        [Route("id/{idFactuur}")]
         [HttpGet]
-        public ActionResult<Factuur> GetFactuurById(string idGebruiker, long idFactuur)
+        public ActionResult<Factuur> GetFactuurById(long idFactuur)
         {
-            var factuur = _factuurFacade.GetFactuurById(idGebruiker, idFactuur);
+            var factuur = _factuurFacade.GetFactuurById(idFactuur);
             if (factuur == null)
                 return NotFound();
             return factuur;
