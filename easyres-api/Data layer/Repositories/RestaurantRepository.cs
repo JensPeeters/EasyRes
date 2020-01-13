@@ -224,7 +224,7 @@ namespace Data_layer.Repositories
             {
                 if (tafel.Zitplaatsen >= reservatie.AantalPersonen)
                 {
-                    if (tafel.BezetteMomenten.Count == 0)
+                    if (tafel.BezetteMomenten.Count <= 1)
                     {
                         reservatie.TafelNr = tafel.TafelNr;
                         return true;
