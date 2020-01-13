@@ -222,7 +222,7 @@ namespace Data_layer.Repositories
 
             foreach (Tafel tafel in restaurant.Tafels)
             {
-                if (tafel.Zitplaatsen == reservatie.AantalPersonen)
+                if (tafel.Zitplaatsen >= reservatie.AantalPersonen)
                 {
                     if (tafel.BezetteMomenten.Count <= 1)
                     {
